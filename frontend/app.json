@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/redbook/redbook",
     "pages/usercenter/index",
     "pages/usercenter/person-info/index",
     "pages/usercenter/address/list/index",
@@ -52,10 +53,16 @@
       {
         "pagePath": "pages/usercenter/index",
         "text": "我的"
+      },
+      {
+        "pagePath": "pages/redbook/redbook",
+        "text": "redbook"
       }
     ]
   },
-  "requiredPrivateInfos": ["chooseAddress"],
+  "requiredPrivateInfos": [
+    "chooseAddress"
+  ],
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {},
   "window": {
