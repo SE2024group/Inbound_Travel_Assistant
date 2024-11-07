@@ -7,15 +7,18 @@
       <t-icon slot="left-icon" prefix="wr" name="search" size="40rpx" color="#bbb" />
     </t-search>
   </view>
+
 </view>
 <view class="home-page-container">
-  <goods-list wr-class="goods-list-container" goodsList="{{goodsList}}" bind:click="goodListClickHandle" bind:addcart="goodListAddCartHandle" />
+  <view class="goods-list-wrapper">
+    <goods-list wr-class="goods-list-container" goodsList="{{goodsList}}" bind:click="goodListClickHandle" bind:addcart="goodListAddCartHandle" />
+  </view>
   <load-more list-is-empty="{{!goodsList.length}}" status="{{goodsListLoadStatus}}" bind:retry="onReTry" />
   <t-toast id="t-toast" />
-</view>
-<view class="bottom-container" style="display: flex; justify-content: space-around; align-items: center; padding: 10rpx; background-color: #fff;">
-  <view bind:tap="onAlbumButtonClick">
-    <t-icon prefix="wr" name="album" size="50rpx" color="#333" />
+  <view class="bottom-container" style="display: flex; justify-content: space-around; align-items: center; padding: 10rpx; background-color: #fff;">
+    <view bind:tap="onAlbumButtonClick">
+      <t-icon prefix="wr" name="album" size="50rpx" color="#333" />
+    </view>
+    <text class="bottom-text" style="color: #333; font-size: 28rpx;">查看相册</text>
   </view>
-  <text class="bottom-text" style="color: #333; font-size: 28rpx;">查看相册</text>
 </view>
