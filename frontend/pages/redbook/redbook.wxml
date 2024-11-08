@@ -13,12 +13,19 @@
   <view class="goods-list-wrapper">
     <goods-list wr-class="goods-list-container" goodsList="{{goodsList}}" bind:click="goodListClickHandle" bind:addcart="goodListAddCartHandle" />
   </view>
-  <load-more list-is-empty="{{!goodsList.length}}" status="{{goodsListLoadStatus}}" bind:retry="onReTry" />
+  <!-- <load-more list-is-empty="{{!goodsList.length}}" status="{{goodsListLoadStatus}}" bind:retry="onReTry" /> -->
   <t-toast id="t-toast" />
   <view class="bottom-container" style="display: flex; justify-content: space-around; align-items: center; padding: 10rpx; background-color: #fff;">
-    <view bind:tap="onAlbumButtonClick">
-      <t-icon prefix="wr" name="album" size="50rpx" color="#333" />
+    <view style="display: flex; flex-direction: column; align-items: center;">
+      <view bind:tap="onCameraButtonClick">
+        <t-icon prefix="wr" name="star" size="50rpx" color="#333" />
+      </view>
     </view>
-    <text class="bottom-text" style="color: #333; font-size: 28rpx;">查看相册</text>
+    <view style="display: flex; flex-direction: column; align-items: center;">
+      <view bind:tap="onAlbumButtonClick">
+        <t-icon prefix="wr" name="star" size="50rpx" color="#333" />
+      </view>
+    </view>
   </view>
+  <text class="bottom-text" style="text-align: center; width: 100%; color: #333; font-size: 30rpx;">take a photo or choose one from album to search</text>
 </view>

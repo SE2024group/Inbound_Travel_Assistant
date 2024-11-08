@@ -19,7 +19,7 @@ page {
   flex: 1;
   overflow-y: auto;
   /* 设置一个固定的最大高度，可以根据需要调整 */
-  max-height: 70vh;
+  max-height: 75vh;
   margin-top: 16rpx;
   /* 保持与 .goods-list-container 一致 */
   background: #f5f5f5;
