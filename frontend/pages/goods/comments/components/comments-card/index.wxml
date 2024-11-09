@@ -19,9 +19,9 @@
     <view class="comments-card-item-container-image" wx:if="{{commentResources.length > 0}}">
       <images-videos resources="{{commentResources}}" />
     </view>
-    <view class="comments-card-reply" wx:if="{{sellerReply}}">
+    <!-- <view class="comments-card-reply" wx:if="{{sellerReply}}">
       <text class="prefix">店家回复：</text>
       <text class="content">{{sellerReply}}</text>
-    </view>
+    </view> -->
   </view>
 </view>
