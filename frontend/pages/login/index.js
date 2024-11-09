@@ -1,4 +1,23 @@
 Page({
+  data: {
+    isLoad: false,
+    isAgreed: false  // 记录用户是否同意用户使用规则
+  },
+
+  // 处理复选框状态变化
+  onAgreementChange(e) {
+    this.setData({
+      isAgreed: e.detail.value.includes('agree')
+    });
+  },
+
+  // 跳转到用户使用规则页面
+  goToUserRule() {
+    wx.navigateTo({
+      url: '/pages/user_rule/user_rule'
+    });
+  },
+
   onLoad() {
     // 检查用户是否已经授权登录
     wx.getSetting({
@@ -16,6 +35,17 @@ Page({
   },
 
   onWeChatLogin(userInfo) {
+    if (!isLoad) {
+      this.setData({ isLoad: true });
+    } else if (!this.data.isAgreed) {
+      wx.showModal({
+        title: '提示',
+        content: '您拒绝了授权，无法登录。',
+        showCancel: false,
+        confirmText: '知道了'
+      });
+      return;
+    }
     wx.login({
       success: res => {
         if (res.code) {
@@ -39,12 +69,29 @@ Page({
         } else {
           console.log('登录失败！' + res.errMsg);
         }
+      },
+      fail: () => {
+        wx.showModal({
+          title: '提示',
+          content: '您拒绝了授权，无法登录。',
+          showCancel: false,
+          confirmText: '知道了'
+        });
       }
     });
   },
 
 
   onPhoneLogin(e) {
+    if (!this.data.isAgreed) {
+      wx.showModal({
+        title: '提示',
+        content: '您拒绝了授权，无法登录。',
+        showCancel: false,
+        confirmText: '知道了'
+      });
+      return;
+    }
     if (e.detail.iv && e.detail.encryptedData) {
       wx.login({
         success: res => {
@@ -62,10 +109,18 @@ Page({
               }
             });
           }
+        },
+        fail: () => {
+          wx.showModal({
+            title: '提示',
+            content: '您拒绝了授权，无法登录。',
+            showCancel: false,
+            confirmText: '知道了'
+          });
         }
       });
     } else {
       console.log('用户拒绝手机号授权');
     }
-  }
+  },
 });
