@@ -17,9 +17,9 @@
   <t-toast id="t-toast" />
   <view class="bottom-container" style="display: flex;flex-direction: column; justify-content: space-around; align-items: center; padding: 10rpx; background-color: #fff;">
     <view style="display: flex; flex-direction: row; align-items: center;">
-      <view bind:tap="onCameraButtonClick">
+      <button bindtap="onCameraButtonClick" style="background: none; border: none;">
         <t-icon prefix=".t-icon" name="photo" size="50rpx" color="#333" />
-      </view>
+      </button>
     </view>
     <text class="bottom-text" style="text-align: center; width: 100%; color: #333; font-size: 30rpx;">take a photo to search</text>
   </view>
