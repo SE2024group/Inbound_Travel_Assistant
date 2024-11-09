@@ -1,0 +1,4 @@
+<view class="container">
+  <button open-type="getUserInfo" bindgetuserinfo="onWeChatLogin">微信授权登录</button>
+  <button open-type="getPhoneNumber" bindgetphonenumber="onPhoneLogin">手机号授权登录</button>
+</view>

@@ -28,7 +28,8 @@
     "pages/order/fill-tracking-no/index",
     "pages/order/delivery-detail/index",
     "pages/order/invoice/index",
-    "pages/usercenter/name-edit/index"
+    "pages/usercenter/name-edit/index",
+    "pages/login/index"
   ],
   "tabBar": {
     "custom": true,
@@ -55,7 +56,9 @@
       }
     ]
   },
-  "requiredPrivateInfos": ["chooseAddress"],
+  "requiredPrivateInfos": [
+    "chooseAddress"
+  ],
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {},
   "window": {
