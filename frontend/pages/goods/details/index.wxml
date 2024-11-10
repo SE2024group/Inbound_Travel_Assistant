@@ -16,9 +16,9 @@
             <!-- <view class="goods-activity-tag">{{item.tag}}</view> -->
             <!-- <view class="goods-activity-tag">{{this.data.tag}}</view> -->
           </view>
-          <view wx:for="{{ goods.tags }}" wx:key="index" wx:for-item="tag" class="goods-card__tag" data-index="{{index}}">
+          <!-- <view wx:for="{{ goods.tags }}" wx:key="index" wx:for-item="tag" class="goods-card__tag" data-index="{{index}}">
             {{tag}}
-          </view>
+          </view> -->
         </view>
         <!-- <view class="activity-show">
           <view class="activity-show-text">领劵</view>
