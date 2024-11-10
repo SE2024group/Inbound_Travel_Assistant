@@ -10,10 +10,10 @@ const allGoods = [{
     storeId: '1000',
     spuId: '0',
     title: 'Fried rice with egg: rice egg ham etc.',
-    primaryImage: 'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png',
+    primaryImage: 'egg.png',
     images: [
-      'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png',
-      'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09b.png',
+      'C:/Users/anju2/WeChatProjects/Inbound_Travel_Assistant/frontend/imgs/1.png',
+      './2.png'
     ],
     video: null,
     available: 1,
