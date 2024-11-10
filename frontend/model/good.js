@@ -189,7 +189,11 @@ const allGoods = [{
       id: '13001',
       title: '限时抢购',
       image: null
-    }],
+    }, {
+      id: null,
+      title: '限时抢购2',
+      image: null,
+    }, ],
     limitInfo: [{
       text: '限购5件',
     }, ],
@@ -1140,16 +1144,10 @@ const allGoods = [{
       '127886731037912576',
     ],
     spuTagList: [{
-        id: null,
-        title: '限时抢购',
-        image: null,
-      },
-      {
-        id: null,
-        title: '限时抢购2',
-        image: null,
-      },
-    ],
+      id: null,
+      title: '限时抢购',
+      image: null,
+    }, ],
     skuList: [{
         skuId: '135676627',
         skuImage: null,

@@ -10,10 +10,14 @@
         </view>
         <view class="sold-num">已售{{soldNum}}</view>
       </view> -->
-      <view wx:if="{{activityList.length > 0}}" class="goods-activity" bindtap="showPromotionPopup">
+      <view wx:if="{{activityList.length > 0}}" class="goods-activity" bindtap="showPromotionPopup" data-goods="{{ goods }}">
         <view class="tags-container">
           <view wx:for="{{activityList}}" data-promotionId="{{item.promotionId}}" wx:key="index" wx:if="{{index<4}}">
-            <view class="goods-activity-tag">{{item.tag}}</view>
+            <!-- <view class="goods-activity-tag">{{item.tag}}</view> -->
+            <!-- <view class="goods-activity-tag">{{this.data.tag}}</view> -->
+          </view>
+          <view wx:for="{{ goods.tags }}" wx:key="index" wx:for-item="tag" class="goods-card__tag" data-index="{{index}}">
+            {{tag}}
           </view>
         </view>
         <!-- <view class="activity-show">

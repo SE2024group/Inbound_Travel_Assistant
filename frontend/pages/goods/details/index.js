@@ -360,7 +360,7 @@ Page({
       const promotionArray = [];
       activityList.forEach((item) => {
         promotionArray.push({
-          tag: item.promotionSubCode === 'MYJ' ? '满减' : '满折',
+          tag: item.promotionSubCode === 'MYJ' ? 'tebiexin' : '满折',
           label: '满100元减99.9元',
         });
       });
