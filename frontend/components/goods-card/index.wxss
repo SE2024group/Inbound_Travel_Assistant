@@ -31,6 +31,13 @@
   margin: 0;
 }
 
+.goods-card__title-placeholder {
+  height: 0;
+  /* 不占用高度 */
+  min-width: 2000px;
+  /* 确保与 title 对齐 */
+}
+
 .goods-card__img {
   display: block;
   width: 100%;
@@ -46,6 +53,7 @@
   border-radius: 0 0 16rpx 16rpx;
   padding: 16rpx 24rpx 18rpx;
   flex-direction: column;
+  width: 100%;
 }
 
 .goods-card__upper {

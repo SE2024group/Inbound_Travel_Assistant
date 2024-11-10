@@ -1,14 +1,15 @@
-import { cdnBase } from '../config/index';
+import {
+  cdnBase
+} from '../config/index';
 const imgPrefix = cdnBase;
 
 const defaultDesc = [`${imgPrefix}/goods/details-1.png`];
 
-const allGoods = [
-  {
+const allGoods = [{
     saasId: '88888888',
     storeId: '1000',
     spuId: '0',
-    title: '白色短袖连衣裙荷叶边裙摆宽松韩版休闲纯白清爽优雅连衣裙',
+    title: 'Fried rice with egg: rice egg ham etc.',
     primaryImage: 'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png',
     images: [
       'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png',
@@ -28,25 +29,21 @@ const allGoods = [
       '127880527393854976',
       '127880537778953984',
     ],
-    specList: [
-      {
+    specList: [{
         specId: '10011',
         title: '颜色',
-        specValueList: [
-          {
-            specValueId: '10012',
-            specId: null,
-            saasId: null,
-            specValue: '米色荷叶边',
-            image: null,
-          },
-        ],
+        specValueList: [{
+          specValueId: '10012',
+          specId: null,
+          saasId: null,
+          specValue: '米色荷叶边',
+          image: null,
+        }, ],
       },
       {
         specId: '10013',
         title: '尺码',
-        specValueList: [
-          {
+        specValueList: [{
             specValueId: '11014',
             specId: null,
             saasId: null,
@@ -70,12 +67,10 @@ const allGoods = [
         ],
       },
     ],
-    skuList: [
-      {
+    skuList: [{
         skuId: '135676631',
         skuImage: 'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png',
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10011',
             specTitle: null,
             specValueId: '10012',
@@ -88,24 +83,33 @@ const allGoods = [
             specValue: null,
           },
         ],
-        priceInfo: [
-          { priceType: 1, price: '29800', priceTypeName: null },
-          { priceType: 2, price: '40000', priceTypeName: null },
+        priceInfo: [{
+            priceType: 1,
+            price: '29800',
+            priceTypeName: null
+          },
+          {
+            priceType: 2,
+            price: '40000',
+            priceTypeName: null
+          },
         ],
         stockInfo: {
           stockQuantity: 175,
           safeStockQuantity: 0,
           soldQuantity: 0,
         },
-        weight: { value: null, unit: 'KG' },
+        weight: {
+          value: null,
+          unit: 'KG'
+        },
         volume: null,
         profitPrice: null,
       },
       {
         skuId: '135676632',
         skuImage: 'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png',
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10011',
             specTitle: null,
             specValueId: '10012',
@@ -118,24 +122,33 @@ const allGoods = [
             specValue: null,
           },
         ],
-        priceInfo: [
-          { priceType: 1, price: '29800', priceTypeName: null },
-          { priceType: 2, price: '40000', priceTypeName: null },
+        priceInfo: [{
+            priceType: 1,
+            price: '29800',
+            priceTypeName: null
+          },
+          {
+            priceType: 2,
+            price: '40000',
+            priceTypeName: null
+          },
         ],
         stockInfo: {
           stockQuantity: 158,
           safeStockQuantity: 0,
           soldQuantity: 0,
         },
-        weight: { value: null, unit: 'KG' },
+        weight: {
+          value: null,
+          unit: 'KG'
+        },
         volume: null,
         profitPrice: null,
       },
       {
         skuId: '135681631',
         skuImage: 'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09a.png',
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10011',
             specTitle: null,
             specValueId: '10012',
@@ -148,26 +161,38 @@ const allGoods = [
             specValue: null,
           },
         ],
-        priceInfo: [
-          { priceType: 1, price: '29800', priceTypeName: null },
-          { priceType: 2, price: '40000', priceTypeName: null },
+        priceInfo: [{
+            priceType: 1,
+            price: '29800',
+            priceTypeName: null
+          },
+          {
+            priceType: 2,
+            price: '40000',
+            priceTypeName: null
+          },
         ],
         stockInfo: {
           stockQuantity: 177,
           safeStockQuantity: 0,
           soldQuantity: 0,
         },
-        weight: { value: null, unit: 'KG' },
+        weight: {
+          value: null,
+          unit: 'KG'
+        },
         volume: null,
         profitPrice: null,
       },
     ],
-    spuTagList: [{ id: '13001', title: '限时抢购', image: null }],
-    limitInfo: [
-      {
-        text: '限购5件',
-      },
-    ],
+    spuTagList: [{
+      id: '13001',
+      title: '限时抢购',
+      image: null
+    }],
+    limitInfo: [{
+      text: '限购5件',
+    }, ],
     desc: [
       'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09c.png',
       'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-09d.png',
@@ -191,19 +216,15 @@ const allGoods = [
       'https://cdn-we-retail.ym.tencent.com/tsr/goods/nz-08b.png',
     ],
     groupIdList: ['15029', '14023'],
-    spuTagList: [
-      {
-        id: null,
-        title: '2020夏季新款',
-        image: null,
-      },
-    ],
-    skuList: [
-      {
+    spuTagList: [{
+      id: null,
+      title: '2020夏季新款',
+      image: null,
+    }, ],
+    skuList: [{
         skuId: '135686634',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10000',
             specTitle: null,
             specValueId: '10001',
@@ -216,8 +237,7 @@ const allGoods = [
             specValue: 'M',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '25900',
             priceTypeName: '销售价格',
@@ -240,8 +260,7 @@ const allGoods = [
       {
         skuId: '135691631',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10000',
             specTitle: null,
             specValueId: '10001',
@@ -254,8 +273,7 @@ const allGoods = [
             specValue: 'S',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '26900',
             priceTypeName: '销售价格',
@@ -278,8 +296,7 @@ const allGoods = [
       {
         skuId: '135691632',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10000',
             specTitle: null,
             specValueId: '10001',
@@ -292,8 +309,7 @@ const allGoods = [
             specValue: 'L',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '26900',
             priceTypeName: '销售价格',
@@ -318,25 +334,21 @@ const allGoods = [
     spuStockQuantity: 371,
     soldNum: 1032,
     isPutOnSale: 1,
-    specList: [
-      {
+    specList: [{
         specId: '10000',
         title: '颜色',
-        specValueList: [
-          {
-            specValueId: '10001',
-            specId: '10000',
-            saasId: '88888888',
-            specValue: '白色',
-            image: '',
-          },
-        ],
+        specValueList: [{
+          specValueId: '10001',
+          specId: '10000',
+          saasId: '88888888',
+          specValue: '白色',
+          image: '',
+        }, ],
       },
       {
         specId: '10002',
         title: '尺码',
-        specValueList: [
-          {
+        specValueList: [{
             specValueId: '11003',
             specId: '10002',
             saasId: '88888888',
@@ -386,19 +398,15 @@ const allGoods = [
     maxLinePrice: '39900',
     isSoldOut: true,
     groupIdList: ['15029', '14023'],
-    spuTagList: [
-      {
-        id: null,
-        title: '2020夏季新款',
-        image: null,
-      },
-    ],
-    skuList: [
-      {
+    spuTagList: [{
+      id: null,
+      title: '2020夏季新款',
+      image: null,
+    }, ],
+    skuList: [{
         skuId: '135686631',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904180768617216',
@@ -411,8 +419,7 @@ const allGoods = [
             specValue: 'XS',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '25900',
             priceTypeName: '销售价格',
@@ -435,8 +442,7 @@ const allGoods = [
       {
         skuId: '135686632',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904180768617216',
@@ -449,8 +455,7 @@ const allGoods = [
             specValue: 'M',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '25900',
             priceTypeName: '销售价格',
@@ -473,8 +478,7 @@ const allGoods = [
       {
         skuId: '135691629',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904180768617216',
@@ -487,8 +491,7 @@ const allGoods = [
             specValue: 'S',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '25900',
             priceTypeName: '销售价格',
@@ -511,8 +514,7 @@ const allGoods = [
       {
         skuId: '135691630',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904180768617216',
@@ -525,8 +527,7 @@ const allGoods = [
             specValue: 'L',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '25900',
             priceTypeName: '销售价格',
@@ -551,25 +552,21 @@ const allGoods = [
     spuStockQuantity: 0,
     soldNum: 1022,
     isPutOnSale: 1,
-    specList: [
-      {
+    specList: [{
         specId: '127904180600844800',
         title: '颜色',
-        specValueList: [
-          {
-            specValueId: '127904180768617216',
-            specId: '127904180600844800',
-            saasId: '88888888',
-            specValue: '军绿色',
-            image: '',
-          },
-        ],
+        specValueList: [{
+          specValueId: '127904180768617216',
+          specId: '127904180600844800',
+          saasId: '88888888',
+          specValue: '军绿色',
+          image: '',
+        }, ],
       },
       {
         specId: '127904861604820480',
         title: '尺码',
-        specValueList: [
-          {
+        specValueList: [{
             specValueId: '127904862494014208',
             specId: '127904861604820480',
             saasId: '88888888',
@@ -637,19 +634,15 @@ const allGoods = [
       '127886727481142784',
       '127886731440566784',
     ],
-    spuTagList: [
-      {
-        id: null,
-        title: '联名系列',
-        image: null,
-      },
-    ],
-    skuList: [
-      {
+    spuTagList: [{
+      id: null,
+      title: '联名系列',
+      image: null,
+    }, ],
+    skuList: [{
         skuId: '135686624',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10000',
             specTitle: null,
             specValueId: '10001',
@@ -662,8 +655,7 @@ const allGoods = [
             specValue: '节能套装',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '9900',
             priceTypeName: '销售价格',
@@ -686,8 +678,7 @@ const allGoods = [
       {
         skuId: '135686625',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10000',
             specTitle: null,
             specValueId: '11000',
@@ -700,8 +691,7 @@ const allGoods = [
             specValue: '经典套装',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '9900',
             priceTypeName: '销售价格',
@@ -724,8 +714,7 @@ const allGoods = [
       {
         skuId: '135686626',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10000',
             specTitle: null,
             specValueId: '11000',
@@ -738,8 +727,7 @@ const allGoods = [
             specValue: '尊享礼盒装',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '9900',
             priceTypeName: '销售价格',
@@ -762,8 +750,7 @@ const allGoods = [
       {
         skuId: '135691622',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10000',
             specTitle: null,
             specValueId: '10001',
@@ -776,8 +763,7 @@ const allGoods = [
             specValue: 'S',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '9900',
             priceTypeName: '销售价格',
@@ -800,8 +786,7 @@ const allGoods = [
       {
         skuId: '135691623',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10000',
             specTitle: null,
             specValueId: '10001',
@@ -814,8 +799,7 @@ const allGoods = [
             specValue: '尊享礼盒装',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '10900',
             priceTypeName: '销售价格',
@@ -838,8 +822,7 @@ const allGoods = [
       {
         skuId: '135691624',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10000',
             specTitle: null,
             specValueId: '11000',
@@ -852,8 +835,7 @@ const allGoods = [
             specValue: '节能套装',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '9900',
             priceTypeName: '销售价格',
@@ -882,12 +864,10 @@ const allGoods = [
       'https://cdn-we-retail.ym.tencent.com/tsr/goods/dz-3c.png',
       'https://cdn-we-retail.ym.tencent.com/tsr/goods/dz-3d.png',
     ],
-    specList: [
-      {
+    specList: [{
         specId: '10000',
         title: '颜色',
-        specValueList: [
-          {
+        specValueList: [{
             specValueId: '10001',
             specId: '10000',
             saasId: '88888888',
@@ -906,8 +886,7 @@ const allGoods = [
       {
         specId: '10002',
         title: '尺码',
-        specValueList: [
-          {
+        specValueList: [{
             specValueId: '11003',
             specId: '10002',
             saasId: '88888888',
@@ -969,19 +948,15 @@ const allGoods = [
       '15029',
       '15030',
     ],
-    spuTagList: [
-      {
-        id: null,
-        title: '限时抢购',
-        image: null,
-      },
-    ],
-    skuList: [
-      {
+    spuTagList: [{
+      id: null,
+      title: '限时抢购',
+      image: null,
+    }, ],
+    skuList: [{
         skuId: '135676629',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904181322265856',
@@ -994,8 +969,7 @@ const allGoods = [
             specValue: 'S',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '29900',
             priceTypeName: '销售价格',
@@ -1018,8 +992,7 @@ const allGoods = [
       {
         skuId: '135676630',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904181322265856',
@@ -1032,8 +1005,7 @@ const allGoods = [
             specValue: 'L',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '39900',
             priceTypeName: '销售价格',
@@ -1056,8 +1028,7 @@ const allGoods = [
       {
         skuId: '135681629',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904181322265856',
@@ -1070,8 +1041,7 @@ const allGoods = [
             specValue: 'M',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '39900',
             priceTypeName: '销售价格',
@@ -1100,25 +1070,21 @@ const allGoods = [
     spuStockQuantity: 321,
     soldNum: 102,
     isPutOnSale: 1,
-    specList: [
-      {
+    specList: [{
         specId: '127904180600844800',
         title: '颜色',
-        specValueList: [
-          {
-            specValueId: '127904181322265856',
-            specId: '127904180600844800',
-            saasId: '88888888',
-            specValue: '浅灰色',
-            image: '',
-          },
-        ],
+        specValueList: [{
+          specValueId: '127904181322265856',
+          specId: '127904180600844800',
+          saasId: '88888888',
+          specValue: '浅灰色',
+          image: '',
+        }, ],
       },
       {
         specId: '127904861604820480',
         title: '尺码',
-        specValueList: [
-          {
+        specValueList: [{
             specValueId: '127904862175246592',
             specId: '127904861604820480',
             saasId: '88888888',
@@ -1176,19 +1142,15 @@ const allGoods = [
       '127886730652037376',
       '127886731037912576',
     ],
-    spuTagList: [
-      {
-        id: null,
-        title: '限时抢购',
-        image: null,
-      },
-    ],
-    skuList: [
-      {
+    spuTagList: [{
+      id: null,
+      title: '限时抢购',
+      image: null,
+    }, ],
+    skuList: [{
         skuId: '135676627',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10006',
             specTitle: null,
             specValueId: '10007',
@@ -1201,8 +1163,7 @@ const allGoods = [
             specValue: '简约款',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '29000',
             priceTypeName: '销售价格',
@@ -1225,8 +1186,7 @@ const allGoods = [
       {
         skuId: '135676628',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10006',
             specTitle: null,
             specValueId: '10007',
@@ -1239,8 +1199,7 @@ const allGoods = [
             specValue: '礼盒装',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '39000',
             priceTypeName: '销售价格',
@@ -1263,8 +1222,7 @@ const allGoods = [
       {
         skuId: '135681627',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '10006',
             specTitle: null,
             specValueId: '10007',
@@ -1277,8 +1235,7 @@ const allGoods = [
             specValue: '带充电线简约款',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '39000',
             priceTypeName: '销售价格',
@@ -1307,25 +1264,21 @@ const allGoods = [
     spuStockQuantity: 366,
     soldNum: 102,
     isPutOnSale: 1,
-    specList: [
-      {
+    specList: [{
         specId: '10006',
         title: '颜色',
-        specValueList: [
-          {
-            specValueId: '10007',
-            specId: '10006',
-            saasId: '88888888',
-            specValue: '黑色',
-            image: '',
-          },
-        ],
+        specValueList: [{
+          specValueId: '10007',
+          specId: '10006',
+          saasId: '88888888',
+          specValue: '黑色',
+          image: '',
+        }, ],
       },
       {
         specId: '11007',
         title: '类型',
-        specValueList: [
-          {
+        specValueList: [{
             specValueId: '10009',
             specId: '11007',
             saasId: '88888888',
@@ -1391,19 +1344,15 @@ const allGoods = [
       '15029',
       '15030',
     ],
-    spuTagList: [
-      {
-        id: null,
-        title: '掌柜热卖',
-        image: null,
-      },
-    ],
-    skuList: [
-      {
+    spuTagList: [{
+      id: null,
+      title: '掌柜热卖',
+      image: null,
+    }, ],
+    skuList: [{
         skuId: '135676623',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904181506815488',
@@ -1416,8 +1365,7 @@ const allGoods = [
             specValue: '单盘',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '129900',
             priceTypeName: '销售价格',
@@ -1440,8 +1388,7 @@ const allGoods = [
       {
         skuId: '135676624',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904181506815488',
@@ -1454,8 +1401,7 @@ const allGoods = [
             specValue: '盘+碗',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '139900',
             priceTypeName: '销售价格',
@@ -1478,8 +1424,7 @@ const allGoods = [
       {
         skuId: '135681623',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904181506815488',
@@ -1492,8 +1437,7 @@ const allGoods = [
             specValue: '单盘',
           },
         ],
-        priceInfo: [
-          {
+        priceInfo: [{
             priceType: 1,
             price: '139900',
             priceTypeName: '销售价格',
@@ -1518,25 +1462,21 @@ const allGoods = [
     spuStockQuantity: 357,
     soldNum: 23102,
     isPutOnSale: 1,
-    specList: [
-      {
+    specList: [{
         specId: '127904180600844800',
         title: '颜色',
-        specValueList: [
-          {
-            specValueId: '127904181506815488',
-            specId: '127904180600844800',
-            saasId: '88888888',
-            specValue: '奶黄色',
-            image: '',
-          },
-        ],
+        specValueList: [{
+          specValueId: '127904181506815488',
+          specId: '127904180600844800',
+          saasId: '88888888',
+          specValue: '奶黄色',
+          image: '',
+        }, ],
       },
       {
         specId: '127904861604820480',
         title: '类型',
-        specValueList: [
-          {
+        specValueList: [{
             specValueId: '127904862175246592',
             specId: '127904861604820480',
             saasId: '88888888',
@@ -1589,25 +1529,21 @@ const allGoods = [
       '127880527393854977',
       '127880526789875961',
     ],
-    specList: [
-      {
+    specList: [{
         specId: '127904180600844800',
         title: '颜色',
-        specValueList: [
-          {
-            specValueId: '127904180768617216',
-            specId: null,
-            saasId: null,
-            specValue: '奶黄色',
-            image: null,
-          },
-        ],
+        specValueList: [{
+          specValueId: '127904180768617216',
+          specId: null,
+          saasId: null,
+          specValue: '奶黄色',
+          image: null,
+        }, ],
       },
       {
         specId: '127904861604820480',
         title: '数量',
-        specValueList: [
-          {
+        specValueList: [{
             specValueId: '127904862175246592',
             specId: null,
             saasId: null,
@@ -1631,12 +1567,10 @@ const allGoods = [
         ],
       },
     ],
-    skuList: [
-      {
+    skuList: [{
         skuId: '135676625',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904180768617216',
@@ -1649,24 +1583,33 @@ const allGoods = [
             specValue: null,
           },
         ],
-        priceInfo: [
-          { priceType: 1, price: '19900', priceTypeName: null },
-          { priceType: 2, price: '29900', priceTypeName: null },
+        priceInfo: [{
+            priceType: 1,
+            price: '19900',
+            priceTypeName: null
+          },
+          {
+            priceType: 2,
+            price: '29900',
+            priceTypeName: null
+          },
         ],
         stockInfo: {
           stockQuantity: 0,
           safeStockQuantity: 0,
           soldQuantity: 0,
         },
-        weight: { value: null, unit: 'KG' },
+        weight: {
+          value: null,
+          unit: 'KG'
+        },
         volume: null,
         profitPrice: null,
       },
       {
         skuId: '135676626',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904180768617216',
@@ -1679,24 +1622,33 @@ const allGoods = [
             specValue: null,
           },
         ],
-        priceInfo: [
-          { priceType: 1, price: '29900', priceTypeName: null },
-          { priceType: 2, price: '29900', priceTypeName: null },
+        priceInfo: [{
+            priceType: 1,
+            price: '29900',
+            priceTypeName: null
+          },
+          {
+            priceType: 2,
+            price: '29900',
+            priceTypeName: null
+          },
         ],
         stockInfo: {
           stockQuantity: 0,
           safeStockQuantity: 0,
           soldQuantity: 0,
         },
-        weight: { value: null, unit: 'KG' },
+        weight: {
+          value: null,
+          unit: 'KG'
+        },
         volume: null,
         profitPrice: null,
       },
       {
         skuId: '135681625',
         skuImage: null,
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904180768617216',
@@ -1709,21 +1661,35 @@ const allGoods = [
             specValue: null,
           },
         ],
-        priceInfo: [
-          { priceType: 1, price: '29900', priceTypeName: null },
-          { priceType: 2, price: '29900', priceTypeName: null },
+        priceInfo: [{
+            priceType: 1,
+            price: '29900',
+            priceTypeName: null
+          },
+          {
+            priceType: 2,
+            price: '29900',
+            priceTypeName: null
+          },
         ],
         stockInfo: {
           stockQuantity: 0,
           safeStockQuantity: 0,
           soldQuantity: 0,
         },
-        weight: { value: null, unit: 'KG' },
+        weight: {
+          value: null,
+          unit: 'KG'
+        },
         volume: null,
         profitPrice: null,
       },
     ],
-    spuTagList: [{ id: '19011', title: '2020秋季新款', image: null }],
+    spuTagList: [{
+      id: '19011',
+      title: '2020秋季新款',
+      image: null
+    }],
     spuLimitList: null,
     desc: [
       'https://cdn-we-retail.ym.tencent.com/tsr/goods/gh-2c.png',
@@ -1752,25 +1718,21 @@ const allGoods = [
       '127880527393854977',
       '127880526789875961',
     ],
-    specList: [
-      {
+    specList: [{
         specId: '127904180600844800',
         title: '颜色',
-        specValueList: [
-          {
-            specValueId: '127904181322265856',
-            specId: null,
-            saasId: null,
-            specValue: '浅灰色',
-            image: null,
-          },
-        ],
+        specValueList: [{
+          specValueId: '127904181322265856',
+          specId: null,
+          saasId: null,
+          specValue: '浅灰色',
+          image: null,
+        }, ],
       },
       {
         specId: '127904861604820480',
         title: '尺码',
-        specValueList: [
-          {
+        specValueList: [{
             specValueId: '127904862175246592',
             specId: null,
             saasId: null,
@@ -1794,12 +1756,10 @@ const allGoods = [
         ],
       },
     ],
-    skuList: [
-      {
+    skuList: [{
         skuId: '135676629',
         skuImage: 'https://cdn-we-retail.ym.tencent.com/tsr/goods/muy-3a.png',
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904181322265856',
@@ -1812,24 +1772,33 @@ const allGoods = [
             specValue: null,
           },
         ],
-        priceInfo: [
-          { priceType: 1, price: '29900', priceTypeName: null },
-          { priceType: 2, price: '39900', priceTypeName: null },
+        priceInfo: [{
+            priceType: 1,
+            price: '29900',
+            priceTypeName: null
+          },
+          {
+            priceType: 2,
+            price: '39900',
+            priceTypeName: null
+          },
         ],
         stockInfo: {
           stockQuantity: 80,
           safeStockQuantity: 0,
           soldQuantity: 0,
         },
-        weight: { value: null, unit: 'KG' },
+        weight: {
+          value: null,
+          unit: 'KG'
+        },
         volume: null,
         profitPrice: null,
       },
       {
         skuId: '135676630',
         skuImage: 'https://cdn-we-retail.ym.tencent.com/tsr/goods/muy-3a.png',
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904181322265856',
@@ -1842,24 +1811,33 @@ const allGoods = [
             specValue: null,
           },
         ],
-        priceInfo: [
-          { priceType: 1, price: '39900', priceTypeName: null },
-          { priceType: 2, price: '39900', priceTypeName: null },
+        priceInfo: [{
+            priceType: 1,
+            price: '39900',
+            priceTypeName: null
+          },
+          {
+            priceType: 2,
+            price: '39900',
+            priceTypeName: null
+          },
         ],
         stockInfo: {
           stockQuantity: 122,
           safeStockQuantity: 0,
           soldQuantity: 0,
         },
-        weight: { value: null, unit: 'KG' },
+        weight: {
+          value: null,
+          unit: 'KG'
+        },
         volume: null,
         profitPrice: null,
       },
       {
         skuId: '135681629',
         skuImage: 'https://cdn-we-retail.ym.tencent.com/tsr/goods/muy-3a.png',
-        specInfo: [
-          {
+        specInfo: [{
             specId: '127904180600844800',
             specTitle: null,
             specValueId: '127904181322265856',
@@ -1872,21 +1850,35 @@ const allGoods = [
             specValue: null,
           },
         ],
-        priceInfo: [
-          { priceType: 1, price: '39900', priceTypeName: null },
-          { priceType: 2, price: '39900', priceTypeName: null },
+        priceInfo: [{
+            priceType: 1,
+            price: '39900',
+            priceTypeName: null
+          },
+          {
+            priceType: 2,
+            price: '39900',
+            priceTypeName: null
+          },
         ],
         stockInfo: {
           stockQuantity: 119,
           safeStockQuantity: 0,
           soldQuantity: 0,
         },
-        weight: { value: null, unit: 'KG' },
+        weight: {
+          value: null,
+          unit: 'KG'
+        },
         volume: null,
         profitPrice: null,
       },
     ],
-    spuTagList: [{ id: '13001', title: '限时抢购', image: null }],
+    spuTagList: [{
+      id: '13001',
+      title: '限时抢购',
+      image: null
+    }],
     spuLimitList: null,
     desc: [
       'https://cdn-we-retail.ym.tencent.com/tsr/goods/muy-3c.png',
