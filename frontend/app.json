@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/navigation/navigation",
     "pages/home/home",
     "pages/usercenter/index",
     "pages/usercenter/person-info/index",
@@ -38,8 +39,8 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/home/home",
-        "text": "首页"
+        "pagePath": "pages/navigation/navigation",
+        "text": "navigation"
       },
       {
         "pagePath": "pages/goods/category/index",
@@ -55,7 +56,9 @@
       }
     ]
   },
-  "requiredPrivateInfos": ["chooseAddress"],
+  "requiredPrivateInfos": [
+    "chooseAddress"
+  ],
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {},
   "window": {

@@ -1,8 +1,8 @@
 export default [
   {
     icon: 'home',
-    text: '首页',
-    url: 'pages/home/home',
+    text: 'navigation',
+    url: 'pages/navigation/navigation',
   },
   {
     icon: 'sort',

@@ -1,0 +1,66 @@
+<view class="container">
+  <view class="category-section-container">
+    <image class="category-section-bg" src="image/bg1.png" mode="aspectFill" />
+    <view class="title">Application Guidance</view>
+    <view class="category-section">
+      <view class="category-title">Shopping</view>
+      <view class="app-list">
+        <view class="app-item">
+          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+        <view class="app-item">
+          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+        <view class="app-item">
+          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+      </view>
+      <view class="category-title">Shopping</view>
+      <view class="app-list">
+        <view class="app-item">
+          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+        <view class="app-item">
+          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+        <view class="app-item">
+          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+      </view>
+      <view class="category-title">Shopping</view>
+      <view class="app-list">
+        <view class="app-item">
+          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+        <view class="app-item">
+          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="category-section-container">
+    <image class="category-section-bg" src="image/bg2.png" mode="aspectFill" />
+    <view class="ticket-reservation-section">
+      <view class="title-container">
+        <view class="title2">Ticket Reservations</view>
+        <button class="view-all-button">View All</button>
+      </view>
+      <view class="attraction-list">
+        <view class="attraction-item">Tiananmen Square</view>
+        <view class="attraction-item">National Museum</view>
+        <view class="attraction-item">Tsinghua University</view>
+        <view class="attraction-item">Tiananmen Square</view>
+        <view class="attraction-item">National Museum</view>
+      </view>
+    </view>
+  </view>
+</view>

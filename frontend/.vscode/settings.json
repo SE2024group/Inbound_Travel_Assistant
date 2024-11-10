@@ -30,5 +30,8 @@
     "wrap_attributes_count": 4,
     "wrap_attributes_indent_size": 2
   },
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "[wxml]": {
+    "editor.defaultFormatter": "wechat.miniprogram.wxml-language-features"
+  }
 }
