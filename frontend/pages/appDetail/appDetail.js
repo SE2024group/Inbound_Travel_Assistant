@@ -1,27 +1,15 @@
+// pages/appDetail/appDetail.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    id: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
-  },
-
-  onAppTap(event) {
-    // 获取被点击的app的标识
-    const appId = event.currentTarget.dataset.appId;
-    console.log('appId:', appId);
-    const url = '/pages/appDetail/appDetail?id=' + appId;
-    // 使用wx.navigateTo进行页面跳转
-    wx.navigateTo({
-      url: url
+    this.setData({
+      id: options.id
     });
   },
 

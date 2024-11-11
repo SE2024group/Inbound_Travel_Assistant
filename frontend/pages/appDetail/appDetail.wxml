@@ -1,0 +1,3 @@
+<!--pages/appDetail/appDetail.wxml-->
+<text>pages/appDetail/appDetail.wxml</text>
+<view>当前ID: {{id}}</view>

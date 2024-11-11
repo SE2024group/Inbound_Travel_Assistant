@@ -5,15 +5,15 @@
     <view class="category-section">
       <view class="category-title">Trip</view>
       <view class="app-list">
-        <view class="app-item">
+        <view class="app-item" bindtap="onAppTap" data-app-id="gaode">
           <image class="app-image" src="image/gaode.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
-        <view class="app-item">
+        <view class="app-item" bindtap="onAppTap" data-app-id="huazhuhui">
           <image class="app-image" src="image/huazhuhui.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
-        <view class="app-item">
+        <view class="app-item" bindtap="onAppTap" data-app-id="xiecheng">
           <image class="app-image" src="image/xiecheng.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
