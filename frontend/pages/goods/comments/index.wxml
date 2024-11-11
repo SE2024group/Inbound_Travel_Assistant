@@ -1,4 +1,4 @@
-<view class="comments-header">
+<!-- <view class="comments-header">
 	<t-tag t-class="comments-header-tag {{commentType === '' ? 'comments-header-active' : ''}}" data-commentType="" bindtap="changeTag">
 		全部({{countObj.commentCount}})
 	</t-tag>
@@ -22,29 +22,10 @@
 	<t-tag t-class="comments-header-tag {{commentType === '1' ? 'comments-header-active' : ''}}" data-commentType="1" bindtap="changeTag">
 		差评({{countObj.badCount}})
 	</t-tag>
-</view>
+</view> -->
 <view class="comments-card-list">
 	<block wx:for="{{commentList}}" wx:key="index">
-		<comments-card
-		  commentScore="{{item.commentScore}}"
-		  userName="{{item.userName}}"
-		  commentResources="{{item.commentResources || []}}"
-		  commentContent="{{item.commentContent}}"
-		  isAnonymity="{{item.isAnonymity}}"
-		  commentTime="{{item.commentTime}}"
-		  isAutoComment="{{item.isAutoComment}}"
-		  userHeadUrl="{{item.userHeadUrl}}"
-		  specInfo="{{item.specInfo}}"
-		  sellerReply="{{item.sellerReply || ''}}"
-		  goodsDetailInfo="{{item.goodsDetailInfo || ''}}"
-		/>
+		<comments-card commentScore="{{item.commentScore}}" userName="{{item.userName}}" commentResources="{{item.commentResources || []}}" commentContent="{{item.commentContent}}" isAnonymity="{{item.isAnonymity}}" commentTime="{{item.commentTime}}" isAutoComment="{{item.isAutoComment}}" userHeadUrl="{{item.userHeadUrl}}" specInfo="{{item.specInfo}}" sellerReply="{{item.sellerReply || ''}}" />
 	</block>
-	<t-load-more
-	  t-class="no-more"
-	  status="{{loadMoreStatus}}"
-	  no-more-text="没有更多了"
-	  color="#BBBBBB"
-	  failedColor="#FA550F"
-	/>
+	<t-load-more t-class="no-more" status="{{loadMoreStatus}}" no-more-text="no more" color="#BBBBBB" failedColor="#FA550F" />
 </view>
-

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "商品详情",
+  "navigationBarTitleText": "detail",
   "usingComponents": {
     "t-image": "/components/webp-image/index",
     "t-tag": "tdesign-miniprogram/tag/tag",

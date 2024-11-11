@@ -23,6 +23,7 @@ Page({
     swiperImageProps: {
       mode: 'scaleToFill'
     },
+    imagePath: '' // 用于存储选中的图片路径
   },
 
   goodListPagination: {
@@ -62,9 +63,13 @@ Page({
       sourceType: ['album', 'camera'],
       maxDuration: 30,
       camera: 'back',
-      success(res) {
-        console.log(res);
-        // 这里可以处理选取的图片，例如上传到服务器或展示在页面上
+      success: (res) => {
+        console.log(res.tempFiles[0]); // 打印检查 tempFiles 结构
+        if (res.tempFiles.length > 0) {
+          this.setData({
+            imagePath: res.tempFiles[0].tempFilePath // 设置图片路径到数据
+          });
+        }
       },
       fail(err) {
         console.log("选择媒体失败", err);

@@ -19,6 +19,8 @@
     <view style="display: flex; flex-direction: row; align-items: center;">
       <button bindtap="onCameraButtonClick" style="background: none; border: none;">
         <t-icon prefix=".t-icon" name="photo" size="50rpx" color="#333" />
+        <!-- <image wx:if="{{imagePath}}" src="{{imagePath}}" mode="widthFix" class="selected-image"></image> -->
+        <!-- 中文： 只是为了显示我成功选择了图片 -->
       </button>
     </view>
     <text class="bottom-text" style="text-align: center; width: 100%; color: #333; font-size: 30rpx;">take a photo to search</text>

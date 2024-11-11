@@ -187,11 +187,11 @@ const allGoods = [{
     ],
     spuTagList: [{
       id: '13001',
-      title: '限时抢购',
+      title: 'salty',
       image: null
     }, {
       id: null,
-      title: '限时抢购2',
+      title: 'classic',
       image: null,
     }, ],
     limitInfo: [{
@@ -222,7 +222,7 @@ const allGoods = [{
     groupIdList: ['15029', '14023'],
     spuTagList: [{
       id: null,
-      title: '2020夏季新款',
+      title: 'mainfood',
       image: null,
     }, ],
     skuList: [{
@@ -401,7 +401,7 @@ const allGoods = [{
     groupIdList: ['15029', '14023'],
     spuTagList: [{
       id: null,
-      title: '2020夏季新款',
+      title: 'pork',
       image: null,
     }, ],
     skuList: [{
@@ -637,7 +637,7 @@ const allGoods = [{
     ],
     spuTagList: [{
       id: null,
-      title: '联名系列',
+      title: 'spicy',
       image: null,
     }, ],
     skuList: [{
@@ -951,7 +951,7 @@ const allGoods = [{
     ],
     spuTagList: [{
       id: null,
-      title: '限时抢购',
+      title: 'hot',
       image: null,
     }, ],
     skuList: [{
@@ -1145,7 +1145,7 @@ const allGoods = [{
     ],
     spuTagList: [{
       id: null,
-      title: '限时抢购',
+      title: 'cold',
       image: null,
     }, ],
     skuList: [{
