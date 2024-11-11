@@ -3,44 +3,44 @@
     <image class="category-section-bg" src="image/bg1.png" mode="aspectFill" />
     <view class="title">Application Guidance</view>
     <view class="category-section">
-      <view class="category-title">Shopping</view>
+      <view class="category-title">Trip</view>
       <view class="app-list">
         <view class="app-item">
-          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <image class="app-image" src="image/gaode.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
         <view class="app-item">
-          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <image class="app-image" src="image/huazhuhui.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
         <view class="app-item">
-          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <image class="app-image" src="image/xiecheng.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
       </view>
       <view class="category-title">Shopping</view>
       <view class="app-list">
         <view class="app-item">
-          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <image class="app-image" src="image/zhifubao.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
         <view class="app-item">
-          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <image class="app-image" src="image/taobao.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
         <view class="app-item">
-          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <image class="app-image" src="image/meituan.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
       </view>
-      <view class="category-title">Shopping</view>
+      <view class="category-title">Recommendation</view>
       <view class="app-list">
         <view class="app-item">
           <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
         <view class="app-item">
-          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <image class="app-image" src="image/xiaohongshu.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
       </view>

@@ -46,7 +46,7 @@
     "useStaticServer": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.23.1",
+  "libVersion": "3.6.5",
   "appid": "wx00e2299101aae192",
   "projectname": "tdesign-miniprogram-starter-retail",
   "simulatorType": "wechat",
