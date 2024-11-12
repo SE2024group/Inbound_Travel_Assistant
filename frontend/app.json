@@ -31,7 +31,8 @@
     "pages/order/invoice/index",
     "pages/usercenter/name-edit/index",
     "pages/appDetail/appDetail",
-    "pages/attractionDetail/attractionDetail"
+    "pages/attractionDetail/attractionDetail",
+    "pages/attractionSearch/attractionSearch"
   ],
   "tabBar": {
     "custom": true,

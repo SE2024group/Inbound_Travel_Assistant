@@ -52,7 +52,9 @@
     <view class="ticket-reservation-section">
       <view class="title-container">
         <view class="title2">Ticket Reservations</view>
-        <button class="view-all-button">View All</button>
+        <navigator url="../attractionSearch/attractionSearch" open-type="navigate">
+          <button class="view-all-button">View All</button>
+        </navigator>
       </view>
       <view class="attraction-list">
         <block wx:for="{{attractions}}" wx:key="name">

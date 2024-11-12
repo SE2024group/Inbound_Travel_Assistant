@@ -80,8 +80,8 @@
 
 .title-container {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
+  margin-left: 20rpx;
   width: 100%;
 }
 
@@ -97,6 +97,7 @@
   background-color: #246e12;
   color: white;
   border: none;
+  margin-left: 100rpx;
   border-radius: 30rpx;
   font-size: 28rpx;
 }
