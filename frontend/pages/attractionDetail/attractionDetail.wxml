@@ -1,11 +1,32 @@
-<view class="attraction-name">
-  {{attractionName}}
-</view>
+<view class="container">
+  <view class="attraction-name">
+    {{attractionName}}
+  </view>
 
-<swiper class="image-carousel" autoplay="true" interval="3000" duration="500">
-  <block wx:for="{{images}}" wx:key="*this">
-    <swiper-item>
-      <image src="{{item}}" class="carousel-image"></image>
-    </swiper-item>
-  </block>
-</swiper>
+  <view class="swiper-wrap">
+    <t-swiper
+      wx:if="{{imgSrcs.length > 0}}"
+      current="{{current}}"
+      autoplay="{{autoplay}}"
+      duration="{{duration}}"
+      interval="{{interval}}"
+      navigation="{{navigation}}"    
+      imageProps="{{swiperImageProps}}"
+      list="{{imgSrcs}}"                 
+    />
+  </view>
+
+  <view class="description-box">
+    <text class="description-text">
+      {{description}}
+    </text>
+  </view>
+
+  <view class="ticket-info">
+    <text class="opening-hours">Opening Hours: {{openingHours}}</text>
+    <navigator class="reservation-link" url="{{reservationLink}}" open-type="navigate">
+      Reserve Tickets
+    </navigator>
+  </view>
+
+</view>
