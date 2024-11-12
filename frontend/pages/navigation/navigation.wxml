@@ -55,11 +55,15 @@
         <button class="view-all-button">View All</button>
       </view>
       <view class="attraction-list">
-        <view class="attraction-item">Tiananmen Square</view>
-        <view class="attraction-item">National Museum</view>
-        <view class="attraction-item">Tsinghua University</view>
-        <view class="attraction-item">Tiananmen Square</view>
-        <view class="attraction-item">National Museum</view>
+        <block wx:for="{{attractions}}" wx:key="name">
+          <navigator
+            class="attraction-item"
+            url="/pages/attractionDetail/attractionDetail?name={{item}}"
+            open-type="navigate"
+          >
+            {{item}}
+          </navigator>
+        </block>
       </view>
     </view>
   </view>

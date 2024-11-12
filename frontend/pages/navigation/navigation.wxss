@@ -114,5 +114,6 @@
   color: rgb(179, 245, 24);
   margin-bottom: 15rpx;
   text-align: left;
+  text-decoration: underline; /* Adds underline */
 }
 

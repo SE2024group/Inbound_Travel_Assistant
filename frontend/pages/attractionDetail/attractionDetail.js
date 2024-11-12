@@ -1,33 +1,28 @@
+// pages/attractionDetail/attractionDetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    attractions: [
-      "Tiananmen-Square",
-      "National-Museum",
-      "Tsinghua-University",
-      "The-Palace-Museum",
-      "The-Great-Wall"
-    ]
-
+    attractionName: '',
+    images: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
-  },
-
-  onAppTap(event) {
-    // 获取被点击的app的标识
-    const appId = event.currentTarget.dataset.appId;
-    const url = '/pages/appDetail/appDetail?id=' + appId;
-    // 使用wx.navigateTo进行页面跳转
-    wx.navigateTo({
-      url: url
+    const attractionName = options.name;
+    const imageFolderPath = `images/${attractionName}/`;
+    const images = [];
+    for (let i = 1; i <= 3; i++) {
+      const imagePath = `${imageFolderPath}image${i}.jpg`;
+      images.push(imagePath);
+    }
+    this.setData({
+      attractionName: attractionName,
+      images: images
     });
   },
 
