@@ -20,7 +20,7 @@
 				</view>
 			</view>
 			<view class="goods-card__down">
-				<t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" bindtap="toggleFavorite" size="48rpx" color="#FA550F" />
+				<t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
 			</view>
 		</view>
 	</view>

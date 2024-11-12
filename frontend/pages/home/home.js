@@ -1,5 +1,9 @@
-import { fetchHome } from '../../services/home/home';
-import { fetchGoodsList } from '../../services/good/fetchGoods';
+import {
+  fetchHome
+} from '../../services/home/home';
+import {
+  fetchGoodsList
+} from '../../services/good/fetchGoods';
 import Toast from 'tdesign-miniprogram/toast/index';
 
 Page({
@@ -13,8 +17,12 @@ Page({
     autoplay: true,
     duration: '500',
     interval: 5000,
-    navigation: { type: 'dots' },
-    swiperImageProps: { mode: 'scaleToFill' },
+    navigation: {
+      type: 'dots'
+    },
+    swiperImageProps: {
+      mode: 'scaleToFill'
+    },
   },
 
   goodListPagination: {
@@ -54,7 +62,10 @@ Page({
     this.setData({
       pageLoading: true,
     });
-    fetchHome().then(({ swiper, tabList }) => {
+    fetchHome().then(({
+      swiper,
+      tabList
+    }) => {
       this.setData({
         tabList,
         imgSrcs: swiper,
@@ -80,7 +91,9 @@ Page({
       });
     }
 
-    this.setData({ goodsListLoadStatus: 1 });
+    this.setData({
+      goodsListLoadStatus: 1
+    });
 
     const pageSize = this.goodListPagination.num;
     let pageIndex = this.privateData.tabIndex * pageSize + this.goodListPagination.index + 1;
@@ -98,13 +111,19 @@ Page({
       this.goodListPagination.index = pageIndex;
       this.goodListPagination.num = pageSize;
     } catch (err) {
-      this.setData({ goodsListLoadStatus: 3 });
+      this.setData({
+        goodsListLoadStatus: 3
+      });
     }
   },
 
   goodListClickHandle(e) {
-    const { index } = e.detail;
-    const { spuId } = this.data.goodsList[index];
+    const {
+      index
+    } = e.detail;
+    const {
+      spuId
+    } = this.data.goodsList[index];
     wx.navigateTo({
       url: `/pages/goods/details/index?spuId=${spuId}`,
     });
@@ -114,16 +133,22 @@ Page({
     Toast({
       context: this,
       selector: '#t-toast',
-      message: '点击加入购物车',
+      message: '已收藏！',
     });
   },
 
   navToSearchPage() {
-    wx.navigateTo({ url: '/pages/goods/search/index' });
+    wx.navigateTo({
+      url: '/pages/goods/search/index'
+    });
   },
 
-  navToActivityDetail({ detail }) {
-    const { index: promotionID = 0 } = detail || {};
+  navToActivityDetail({
+    detail
+  }) {
+    const {
+      index: promotionID = 0
+    } = detail || {};
     wx.navigateTo({
       url: `/pages/promotion-detail/index?promotion_id=${promotionID}`,
     });
