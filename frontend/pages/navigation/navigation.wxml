@@ -7,11 +7,11 @@
       <view class="app-list">
         <view class="app-item" bindtap="onAppTap" data-app-id="gaode">
           <image class="app-image" src="image/gaode.png" mode="aspectFill" />
-          <view class="app-name">大众点评</view>
+          <view class="app-name">Gaode Map</view>
         </view>
         <view class="app-item" bindtap="onAppTap" data-app-id="huazhuhui">
           <image class="app-image" src="image/huazhuhui.png" mode="aspectFill" />
-          <view class="app-name">大众点评</view>
+          <view class="app-name">Huazhu Club</view>
         </view>
         <view class="app-item" bindtap="onAppTap" data-app-id="xiecheng">
           <image class="app-image" src="image/xiecheng.png" mode="aspectFill" />
@@ -20,26 +20,26 @@
       </view>
       <view class="category-title">Shopping</view>
       <view class="app-list">
-        <view class="app-item">
+        <view class="app-item" bindtap="onAppTap" data-app-id="Alipay">
           <image class="app-image" src="image/zhifubao.png" mode="aspectFill" />
-          <view class="app-name">大众点评</view>
+          <view class="app-name">Alipay</view>
         </view>
-        <view class="app-item">
+        <view class="app-item" bindtap="onAppTap" data-app-id="Taobao">
           <image class="app-image" src="image/taobao.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
-        <view class="app-item">
+        <view class="app-item" bindtap="onAppTap" data-app-id="meituan">
           <image class="app-image" src="image/meituan.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
       </view>
       <view class="category-title">Recommendation</view>
       <view class="app-list">
-        <view class="app-item">
+        <view class="app-item" bindtap="onAppTap" data-app-id="dazhong">
           <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
-        <view class="app-item">
+        <view class="app-item" bindtap="onAppTap" data-app-id="xiaohongshu">
           <image class="app-image" src="image/xiaohongshu.png" mode="aspectFill" />
           <view class="app-name">大众点评</view>
         </view>
