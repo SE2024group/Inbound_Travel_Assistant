@@ -4,35 +4,42 @@
   <view class="subtitle">Museums</view>
   <view class="attraction-list">
     <view class="attraction-item" bindtap="onAttractionClick" data-name="National-Museum">National-Museum</view>
-    <view class="attraction-item">The Museum of Modern Art</view>
-    <!-- Add more museums here -->
+    <view class="attraction-item">Capital-Museum-of-Beijing</view>
+    <view class="attraction-item">National-Art-Museum-of-China</view>
+    <view class="attraction-item">China-Science-and-Technology-Museum</view>
+    <view class="attraction-item">Beijing-Natural-History-Museum</view>
   </view>
 
   <view class="subtitle">Commercial & Entertainment</view>
   <view class="attraction-list">
-    <view class="attraction-item">Beijing Shopping Mall</view>
-    <view class="attraction-item">Happy Valley Beijing</view>
-    <!-- Add more entertainment places here -->
+    <view class="attraction-item">Sanlitun-Taikoo-Li</view>
+    <view class="attraction-item">Wangfujing</view>
+    <view class="attraction-item">China-World-Trade-Center</view>
+    <view class="attraction-item">Solana</view>
   </view>
 
   <view class="subtitle">Cultural Experiences</view>
   <view class="attraction-list">
-    <view class="attraction-item">Chinese Calligraphy Workshop</view>
-    <view class="attraction-item">Tea Ceremony Experience</view>
-    <!-- Add more cultural experiences here -->
+    <view class="attraction-item">Nanluoguxiang</view>
+    <view class="attraction-item">Shichahai</view>
+    <view class="attraction-item">798-Art-District</view>
+    <view class="attraction-item">Bell-and-Drum-Towers-Cultural-Area</view>
   </view>
 
   <view class="subtitle">Historical Sites</view>
   <view class="attraction-list">
-    <view class="attraction-item">The-Great-Wall</view>
-    <view class="attraction-item">The Forbidden City</view>
-    <!-- Add more historical sites here -->
+    <view class="attraction-item">The-Palace-Museum</view>
+    <view class="attraction-item">Tiananmen-Square</view>
+    <view class="attraction-item">Summer-Palace</view>
+    <view class="attraction-item">Yuanming-Yuan</view>
+    <view class="attraction-item">Beihai-Park</view>
   </view>
 
   <view class="subtitle">Natural Scenery</view>
   <view class="attraction-list">
-    <view class="attraction-item">West Lake</view>
-    <view class="attraction-item">Zhangjiajie National Forest Park</view>
-    <!-- Add more natural scenery places here -->
+    <view class="attraction-item">The-Great-Wall</view>
+    <view class="attraction-item">Fragrant-Hills-Park</view>
+    <view class="attraction-item">Beijing-Botanical-Garden</view>
+    <view class="attraction-item">Olympic-Forest-Park</view>
   </view>
 </view>
