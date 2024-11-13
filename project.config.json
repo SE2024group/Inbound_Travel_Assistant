@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "appid": "wx7eb480f15bcc4f20",
     "compileType": "miniprogram",
     "libVersion": "3.6.4",
@@ -25,4 +26,32 @@
         "tabIndent": "auto",
         "tabSize": 4
     }
+=======
+  "appid": "wx7eb480f15bcc4f20",
+  "compileType": "miniprogram",
+  "libVersion": "3.6.4",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "coverView": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "enhance": true,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmRelationList": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+>>>>>>> origin/Oscar
 }

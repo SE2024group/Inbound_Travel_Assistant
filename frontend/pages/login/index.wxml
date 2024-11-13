@@ -1,0 +1,24 @@
+<view class="container">
+  <image class="logo" src="/assets/logo.png" mode="widthFix"></image>
+  <text class="welcome-text">欢迎使用本应用</text>
+
+  <button class="login-button" open-type="getUserProfile" bindtap="onWeChatLogin" type="primary">
+    微信授权登录
+  </button>
+
+  <button class="login-button" open-type="getPhoneNumber" bindgetphonenumber="onPhoneLogin" type="default">
+    手机号授权登录
+  </button>
+
+  <!-- 复选框和用户使用规则 -->
+  <view class="agreement">
+    <checkbox-group bindchange="onAgreementChange">
+      <label class="checkbox-label">
+        <checkbox value="agree" checked="{{isAgreed}}"></checkbox>
+        <text class="agreement-text">我已阅读<text class="agreement-link" bindtap="goToUserRule">《用户使用规则》</text>
+        </text>
+      </label>
+    </checkbox-group>
+  </view>
+
+</view>

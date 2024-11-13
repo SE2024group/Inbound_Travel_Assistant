@@ -1,7 +1,1 @@
-{
-  "component": true,
-  "usingComponents": {
-    "t-icon": "tdesign-miniprogram/icon/icon",
-    "t-avatar": "tdesign-miniprogram/avatar/avatar"
-  }
-}
+{}

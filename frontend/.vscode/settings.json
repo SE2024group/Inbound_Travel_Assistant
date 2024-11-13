@@ -36,6 +36,5 @@
   },
   "[css]": {
     "editor.defaultFormatter": "HookyQR.beautify"
-
   }
 }

@@ -33,7 +33,8 @@
     "pages/usercenter/name-edit/index",
     "pages/appDetail/appDetail",
     "pages/attractionDetail/attractionDetail",
-    "pages/attractionSearch/attractionSearch"
+    "pages/attractionSearch/attractionSearch",
+    "pages/login/index"
   ],
   "tabBar": {
     "custom": true,
