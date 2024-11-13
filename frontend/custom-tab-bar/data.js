@@ -18,5 +18,4 @@ export default [{
     text: 'usercenter',
     url: 'pages/usercenter/index',
   },
-  
 ];
