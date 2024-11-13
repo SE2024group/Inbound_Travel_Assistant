@@ -36,5 +36,8 @@ Page({
     wx.navigateTo({
       url: '/pages/setting/index'
     });
+  },
+  onShow() {
+    this.getTabBar().init();
   }
 });
