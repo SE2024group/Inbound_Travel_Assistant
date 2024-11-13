@@ -1,0 +1,72 @@
+<view class="container">
+  <view class="category-section-container">
+    <image class="category-section-bg" src="image/bg1.png" mode="aspectFill" />
+    <view class="title">Application Guidance</view>
+    <view class="category-section">
+      <view class="category-title">Trip</view>
+      <view class="app-list">
+        <view class="app-item" bindtap="onAppTap" data-app-id="gaode">
+          <image class="app-image" src="image/gaode.png" mode="aspectFill" />
+          <view class="app-name">Gaode Map</view>
+        </view>
+        <view class="app-item" bindtap="onAppTap" data-app-id="huazhuhui">
+          <image class="app-image" src="image/huazhuhui.png" mode="aspectFill" />
+          <view class="app-name">Huazhu Club</view>
+        </view>
+        <view class="app-item" bindtap="onAppTap" data-app-id="xiecheng">
+          <image class="app-image" src="image/xiecheng.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+      </view>
+      <view class="category-title">Shopping</view>
+      <view class="app-list">
+        <view class="app-item" bindtap="onAppTap" data-app-id="Alipay">
+          <image class="app-image" src="image/zhifubao.png" mode="aspectFill" />
+          <view class="app-name">Alipay</view>
+        </view>
+        <view class="app-item" bindtap="onAppTap" data-app-id="Taobao">
+          <image class="app-image" src="image/taobao.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+        <view class="app-item" bindtap="onAppTap" data-app-id="meituan">
+          <image class="app-image" src="image/meituan.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+      </view>
+      <view class="category-title">Recommendation</view>
+      <view class="app-list">
+        <view class="app-item" bindtap="onAppTap" data-app-id="dazhong">
+          <image class="app-image" src="image/dazhong.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+        <view class="app-item" bindtap="onAppTap" data-app-id="xiaohongshu">
+          <image class="app-image" src="image/xiaohongshu.png" mode="aspectFill" />
+          <view class="app-name">大众点评</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="category-section-container">
+    <image class="category-section-bg" src="image/bg2.png" mode="aspectFill" />
+    <view class="ticket-reservation-section">
+      <view class="title-container">
+        <view class="title2">Ticket Reservations</view>
+        <navigator url="../attractionSearch/attractionSearch" open-type="navigate">
+          <button class="view-all-button">View All</button>
+        </navigator>
+      </view>
+      <view class="attraction-list">
+        <block wx:for="{{attractions}}" wx:key="name">
+          <navigator
+            class="attraction-item"
+            url="/pages/attractionDetail/attractionDetail?name={{item}}"
+            open-type="navigate"
+          >
+            {{item}}
+          </navigator>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

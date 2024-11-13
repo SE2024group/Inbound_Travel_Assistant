@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/navigation/navigation",
     "pages/home/home",
     "pages/redbook/redbook",
     "pages/usercenter/index",
@@ -29,7 +30,10 @@
     "pages/order/fill-tracking-no/index",
     "pages/order/delivery-detail/index",
     "pages/order/invoice/index",
-    "pages/usercenter/name-edit/index"
+    "pages/usercenter/name-edit/index",
+    "pages/appDetail/appDetail",
+    "pages/attractionDetail/attractionDetail",
+    "pages/attractionSearch/attractionSearch"
   ],
   "tabBar": {
     "custom": true,
@@ -39,8 +43,8 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/home/home",
-        "text": "首页"
+        "pagePath": "pages/navigation/navigation",
+        "text": "navigation"
       },
       {
         "pagePath": "pages/goods/category/index",

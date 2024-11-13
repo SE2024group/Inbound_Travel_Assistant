@@ -1,0 +1,78 @@
+.container{
+  background-color: #1F2833;
+}
+
+.app-info {
+  display: flex;
+  flex-direction: row;
+  background-color: #2C3E50;
+  border-radius: 20rpx;
+  border: 8rpx solid #45A29E;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.app-icon {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+}
+
+.app-name {
+  font-size: 60rpx;
+  color: #3dfff2;
+}
+
+.app-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 20rpx;
+  margin: 10rpx 0;
+  padding-left: 20rpx;
+}
+
+.label-item {
+  background-color: #4A90E2;
+  color: white;
+  padding: 8rpx 16rpx;
+  border-radius: 10rpx;
+  font-size: 35rpx;
+}
+
+.description-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #2C3E50;
+  border-radius: 20rpx;
+  justify-content: space-around;
+  align-items: center;
+  border: 8rpx solid #45A29E;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+}
+
+.app-description {
+  color: antiquewhite;
+  line-height: 1.6;
+  text-align: center;
+  word-break: break-word;
+  font-size: 30rpx;
+}
+
+.download-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+
+.download-link {
+  background-color: #FF5722;
+  color: white;
+  padding: 12rpx 24rpx;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  text-align: center;
+}

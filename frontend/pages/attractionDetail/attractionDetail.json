@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "首页",
+  "onReachBottomDistance": 10,
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "t-swiper": "tdesign-miniprogram/swiper/swiper"
+  }
+}

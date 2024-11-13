@@ -1,0 +1,38 @@
+<view class="container">
+  <view class="title">Complete List of Attractions</view>
+
+  <view class="subtitle">Museums</view>
+  <view class="attraction-list">
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="National-Museum">National-Museum</view>
+    <view class="attraction-item">The Museum of Modern Art</view>
+    <!-- Add more museums here -->
+  </view>
+
+  <view class="subtitle">Commercial & Entertainment</view>
+  <view class="attraction-list">
+    <view class="attraction-item">Beijing Shopping Mall</view>
+    <view class="attraction-item">Happy Valley Beijing</view>
+    <!-- Add more entertainment places here -->
+  </view>
+
+  <view class="subtitle">Cultural Experiences</view>
+  <view class="attraction-list">
+    <view class="attraction-item">Chinese Calligraphy Workshop</view>
+    <view class="attraction-item">Tea Ceremony Experience</view>
+    <!-- Add more cultural experiences here -->
+  </view>
+
+  <view class="subtitle">Historical Sites</view>
+  <view class="attraction-list">
+    <view class="attraction-item">The-Great-Wall</view>
+    <view class="attraction-item">The Forbidden City</view>
+    <!-- Add more historical sites here -->
+  </view>
+
+  <view class="subtitle">Natural Scenery</view>
+  <view class="attraction-list">
+    <view class="attraction-item">West Lake</view>
+    <view class="attraction-item">Zhangjiajie National Forest Park</view>
+    <!-- Add more natural scenery places here -->
+  </view>
+</view>

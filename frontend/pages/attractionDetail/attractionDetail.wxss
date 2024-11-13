@@ -1,0 +1,59 @@
+.container{
+  background-color: #1F2833;
+}
+
+.attraction-name {
+  font-size: 60rpx;
+  color: #3dfff2;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.image-carousel {
+  width: 100%;
+  height: 400rpx;
+  margin-top: 20rpx;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.description-box {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  background-color: #2C3E50;
+  border: 8rpx solid #45A29E;
+  border-radius: 20rpx;
+}
+
+.description-text {
+  color: antiquewhite;
+  line-height: 1.6;
+  text-align: center;
+  word-break: break-word;
+  font-size: 30rpx;
+}
+
+.ticket-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.opening-hours {
+  font-size: 35rpx;
+  color: #3dfff2;
+  margin-bottom: 10rpx;
+}
+
+.reservation-link {
+  font-size: 35rpx;
+  color: #44c0ba;
+  text-decoration: underline;
+}
