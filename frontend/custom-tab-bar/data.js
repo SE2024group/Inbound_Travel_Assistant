@@ -3,29 +3,20 @@ export default [{
     text: 'navigation',
     url: 'pages/navigation/navigation',
   },
-  // {
-  //   icon: 'sort',
-  //   text: '分类',
-  //   url: 'pages/goods/category/index',
-  // },
-  // {
-  //   icon: 'cart',
-  //   text: '购物车',
-  //   url: 'pages/cart/index',
-  // },
+  {
+    icon: 'search',
+    text: 'search',
+    url: 'pages/redbook/redbook',
+  },
+  {
+    icon: 'list',
+    text: 'translation',
+    url: 'pages/home/home',
+  },
   {
     icon: 'person',
     text: 'usercenter',
     url: 'pages/usercenter/index',
   },
-  {
-    icon: 'person',
-    text: 'translation',
-    url: 'pages/usercenter/index',
-  },
-  {
-    icon: 'person',
-    text: 'search',
-    url: 'pages/redbook/redbook',
-  },
+
 ];

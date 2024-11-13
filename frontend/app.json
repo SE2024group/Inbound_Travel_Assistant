@@ -48,20 +48,16 @@
         "text": "navigation"
       },
       {
-        "pagePath": "pages/goods/category/index",
-        "text": "分类"
+        "pagePath": "pages/redbook/redbook",
+        "text": "search"
       },
       {
-        "pagePath": "pages/cart/index",
-        "text": "购物车"
+        "pagePath": "pages/home/home",
+        "text": "translation"
       },
       {
         "pagePath": "pages/usercenter/index",
-        "text": "我的"
-      },
-      {
-        "pagePath": "pages/redbook/redbook",
-        "text": "redbook"
+        "text": "usercenter"
       }
     ]
   },
