@@ -35,12 +35,12 @@ Page({
   },
 
   onWeChatLogin(userInfo) {
-    if (!isLoad) {
+    if (!this.data.isLoad) {
       this.setData({ isLoad: true });
     } else if (!this.data.isAgreed) {
       wx.showModal({
         title: '提示',
-        content: '您拒绝了授权，无法登录。',
+        content: '您尚未阅读《用户使用规则》，无法登录。',
         showCancel: false,
         confirmText: '知道了'
       });
@@ -73,7 +73,7 @@ Page({
       fail: () => {
         wx.showModal({
           title: '提示',
-          content: '您拒绝了授权，无法登录。',
+          content: '您拒绝了授权，登录失败。',
           showCancel: false,
           confirmText: '知道了'
         });
@@ -83,10 +83,12 @@ Page({
 
 
   onPhoneLogin(e) {
-    if (!this.data.isAgreed) {
+    if (!this.data.isLoad) {
+      this.setData({ isLoad: true });
+    } else if (!this.data.isAgreed) {
       wx.showModal({
         title: '提示',
-        content: '您拒绝了授权，无法登录。',
+        content: '您尚未阅读《用户使用规则》，无法登录。',
         showCancel: false,
         confirmText: '知道了'
       });
