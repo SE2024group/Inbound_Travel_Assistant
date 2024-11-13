@@ -1,9 +1,12 @@
 <view class="search-page">
-  <t-search t-class-input-container="t-class__input-container" t-class-input="t-search__input" value="{{searchValue}}" leftIcon="" placeholder="type to search" bind:submit="handleSubmit" focus>
+  <t-search t-class-input-container="t-class__input-container" t-class-input="t-search__input" value="{{searchValue}}" leftIcon="" placeholder="iPhone12pro" bind:submit="handleSubmit" focus>
     <t-icon slot="left-icon" prefix="wr" name="search" size="40rpx" color="#bbb" />
   </t-search>
   <view class="search-wrap">
     <view class="history-wrap">
+      <view class="filter-checkbox">
+        <checkbox value="filterHot" checked="{{filterActive}}" bindchange="toggleFilter">filter</checkbox>
+      </view>
       <view class="search-header">
         <text class="search-title">history</text>
         <text class="search-clear" bind:tap="handleClearHistory">clear</text>
