@@ -1,4 +1,6 @@
-import { fetchUserData } from '../../services/usercenter/fetchUsercenter';
+import {
+  fetchUserData
+} from '../../services/usercenter/fetchUsercenter';
 
 Page({
   data: {
@@ -6,7 +8,9 @@ Page({
   },
   onLoad() {
     fetchUserData().then((data) => {
-      this.setData({ userInfo: data });
+      this.setData({
+        userInfo: data
+      });
     });
   },
   // 跳转到点赞页面
@@ -27,4 +31,10 @@ Page({
       url: '/pages/notes/index'
     });
   },
+  // 跳转到设置
+  goToSetting() {
+    wx.navigateTo({
+      url: '/pages/setting/index'
+    });
+  }
 });

@@ -1,0 +1,11 @@
+<view class="settings-page">
+  <view class="settings-header">
+    <text class="settings-title">Settings</text>
+  </view>
+  <view class="settings-section">
+    <view class="settings-item">Account Information</view>
+    <view class="settings-item">Privacy and Security</view>
+    <view class="settings-item">Notifications</view>
+    <view class="settings-item">Language</view>
+  </view>
+</view>
