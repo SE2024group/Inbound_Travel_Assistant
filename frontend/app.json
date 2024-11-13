@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/index",
     "pages/navigation/navigation",
     "pages/home/home",
     "pages/redbook/redbook",
@@ -34,7 +35,6 @@
     "pages/appDetail/appDetail",
     "pages/attractionDetail/attractionDetail",
     "pages/attractionSearch/attractionSearch",
-    "pages/login/index",
     "pages/userRule/index",
     "pages/setting/index"
   ],

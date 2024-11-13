@@ -7,10 +7,35 @@ Page({
     userInfo: {},
   },
   onLoad() {
-    fetchUserData().then((data) => {
-      this.setData({
-        userInfo: data
-      });
+    // 从本地存储中获取 authToken
+    wx.getStorage({
+      key: 'authToken',
+      success: (res) => {
+        const token = res.data;
+
+        // 使用 authToken 调用 fetchUserData 并传递 token 参数
+        fetchUserData(token).then((data) => {
+          this.setData({
+            userInfo: data, // 将用户数据存储在 userInfo 中
+          });
+        }).catch((error) => {
+          wx.showToast({
+            title: '加载用户信息失败',
+            icon: 'error',
+          });
+          console.error('Failed to load user data:', error);
+        });
+      },
+      fail: () => {
+        wx.showToast({
+          title: '请先登录',
+          icon: 'error',
+        });
+        // 如果没有找到 authToken，则重定向到登录页面
+        wx.redirectTo({
+          url: '/pages/login/login',
+        });
+      },
     });
   },
   // 跳转到点赞页面

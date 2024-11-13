@@ -14,12 +14,31 @@ function mockfetchUserData() {
 }
 
 /** 获取个人中心信息 */
-export function fetchUserData() {
+export function fetchUserData(token) {
   return new Promise((resolve, reject) => {
-    // 模拟获取用户数据
-    resolve({
-      avatar: 'https://cloud.tsinghua.edu.cn/f/9d512f8861a842f38d48/?dl=1',
-      name: 'User Anonymous',
+    wx.request({
+      url: 'http://1.15.174.177/api/userinfo/',
+      method: 'GET',
+      header: {
+        Authorization: token,
+      },
+      success: (response) => {
+        if (response.statusCode === 200) {
+          const {
+            avatar,
+            nickname
+          } = response.data;
+          resolve({
+            avatar,
+            name: nickname,
+          });
+        } else {
+          reject(`Error: ${response.statusCode}`);
+        }
+      },
+      fail: (error) => {
+        reject(`Request failed: ${error}`);
+      },
     });
   });
 }
