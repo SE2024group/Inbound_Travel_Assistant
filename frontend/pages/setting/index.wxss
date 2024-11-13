@@ -1,0 +1,43 @@
+.settings-page {
+  background: linear-gradient(to bottom, #f9f5f6, #e3ecf2);
+  /* 与 usercenter 相同的背景 */
+  min-height: 100vh;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.settings-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.settings-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.settings-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.settings-item {
+  padding: 16px;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item:active {
+  background-color: #e0e0e0;
+  /* 点击效果 */
+}

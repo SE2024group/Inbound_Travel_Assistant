@@ -34,7 +34,9 @@
     "pages/appDetail/appDetail",
     "pages/attractionDetail/attractionDetail",
     "pages/attractionSearch/attractionSearch",
-    "pages/login/index"
+    "pages/login/index",
+    "pages/userRule/index",
+    "pages/setting/index"
   ],
   "tabBar": {
     "custom": true,
