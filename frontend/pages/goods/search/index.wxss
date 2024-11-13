@@ -5,9 +5,31 @@
   padding: 0 30rpx;
 }
 
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.filter-checkbox checkbox {
+  margin-right: 4px;
+  /* 减小复选框和文本之间的间距 */
+  transform: scale(0.7);
+  /* 缩小复选框 */
+}
+
 .search-page .t-class__input-container {
   height: 64rpx !important;
   border-radius: 32rpx !important;
+}
+
+.filter-clear-wrapper {
+  display: flex;
+  /* 使用 flexbox 布局 */
+  align-items: center;
+  /* 垂直居中对齐 */
+  justify-content: space-between;
+  /* 在两端分散 */
 }
 
 .search-page .t-search__input {
