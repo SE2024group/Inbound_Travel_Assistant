@@ -15,7 +15,7 @@
   </button>
 
   <!-- 用户名输入框 -->
-  <input class="username-input" placeholder="请输入用户名" bindinput="onUsernameInput" />
+  <input class="username-input" placeholder="Please Enter Your Nickname" bindinput="onUsernameInput" />
 
   <!-- 复选框和用户使用规则 -->
   <view class="agreement">

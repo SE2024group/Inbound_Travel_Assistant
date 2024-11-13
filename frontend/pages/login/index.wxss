@@ -25,7 +25,7 @@
 .login-button {
   width: 80%;
   padding: 10px;
-  background-color: #1aad19;
+  background-color: #19a3ad;
   /* 微信绿色 */
   color: white;
   font-size: 16px;
