@@ -14,7 +14,7 @@ Page({
         title: 'Huazhu Club',
         image: '../navigation/image/huazhuhui.png',
         label: ['hotel booking','budget-friendly'],
-        download_link: 'www.gaode.com',
+        download_link: 'www.huazhuhui.com',
         description: 'The Huazhu Club app, is a comprehensive hotel booking platform primarily designed for Chinese travelers. The app offers access to over a thousand hotels under the Huazhu brand, including well-known chains like Hanting, Joya, and Citadines. Users can browse hotel options, make reservations, and manage their bookings all in one place. The app provides a loyalty program, allowing users to earn points on bookings that can be redeemed for discounts, upgrades, and exclusive member benefits. Additionally, it includes features such as contactless check-in and checkout, personalized travel recommendations, and special deals. With a user-friendly interface and a range of hotel options from budget-friendly to luxury, the Huazhu Club app has become an essential tool for millions of travelers in China.'
       }
     }

@@ -18,7 +18,7 @@
   <navigator url="{{items[id].download_link}}" open-type="navigate" class="download-link">
     Download Here
   </navigator>
-</view>
+  </view>
 
 </view>
 
