@@ -18,6 +18,20 @@ Page({
 
   // 登录按钮点击事件
   onTouristLogin() {
+    if (!this.data.isLoad) {
+      this.setData({
+        isLoad: true
+      });
+    } else if (!this.data.isAgreed) {
+      wx.showModal({
+        title: '提示',
+        content: '您尚未阅读《用户使用规则》，无法登录。',
+        showCancel: false,
+        confirmText: '知道了'
+      });
+      return;
+    }
+
     const {
       username
     } = this.data;

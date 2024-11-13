@@ -62,6 +62,54 @@ Page({
       url: '/pages/setting/index'
     });
   },
+
+  // 退出账户
+  onQuitAccount() {
+    wx.removeStorage({
+      key: 'authToken',
+      success: () => {
+        wx.showToast({
+          title: '已退出账号',
+          icon: 'success',
+        });
+        wx.redirectTo({
+          url: '/pages/login/index',
+        });
+      },
+      fail: () => {
+        wx.showToast({
+          title: '退出失败',
+          icon: 'error',
+        });
+      },
+    });
+  },
+
+  // 清除全部 cookie
+  onClearCookies() {
+    wx.clearStorage({
+      success: () => {
+        wx.showToast({
+          title: '已清除所有缓存',
+          icon: 'success',
+        });
+      },
+      fail: () => {
+        wx.showToast({
+          title: '清除缓存失败',
+          icon: 'error',
+        });
+      },
+    });
+  },
+
+
+
+
+
+
+
+
   onShow() {
     this.getTabBar().init();
   }
