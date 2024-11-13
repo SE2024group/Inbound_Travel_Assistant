@@ -12,7 +12,7 @@ export function fetchUserData() {
   return new Promise((resolve, reject) => {
     // 模拟获取用户数据
     resolve({
-      avatar: 'https://example.com/avatar.jpg',
+      avatar: './avatar.jpeg',
       name: 'User Anonymous',
     });
   });
