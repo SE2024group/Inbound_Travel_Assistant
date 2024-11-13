@@ -15,7 +15,7 @@
         </view>
         <view class="app-item" bindtap="onAppTap" data-app-id="xiecheng">
           <image class="app-image" src="https://cloud.tsinghua.edu.cn/f/75818e8dc9ca4f669a71/?dl=1" mode="aspectFill" />
-          <view class="app-name">大众点评</view>
+          <view class="app-name">Ctrip</view>
         </view>
       </view>
       <view class="category-title">Shopping</view>

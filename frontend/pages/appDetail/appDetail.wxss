@@ -14,9 +14,10 @@
 }
 
 .app-icon {
-  width: 150rpx;
-  height: 150rpx;
+  width: 130rpx;
+  height: 130rpx;
   border-radius: 50%;
+  margin-top: 10rpx;
   margin-bottom: 10rpx;
 }
 

@@ -7,6 +7,7 @@ Page({
   data: {
     attractionName: '',
     imgSrcs: [],                      // Array to hold image URLs
+
     current: 0,                       // Initial slide index
     autoplay: true,                   // Autoplay enabled
     duration: 500,                    // Transition duration (ms)
@@ -22,6 +23,34 @@ Page({
       'Tsinghua-University': 'Tsinghua University is one of China’s most prestigious institutions, renowned for its beautiful campus and academic excellence.',
       'The-Palace-Museum': 'Also known as the Forbidden City, this museum is a vast complex of ancient palaces with stunning architecture.',
       'The-Great-Wall': 'The Great Wall is a series of fortifications that stretches across northern China, symbolizing endurance and strength.'
+    },
+    imgSrcs:{
+      'Tiananmen-Square': [
+        "https://cloud.tsinghua.edu.cn/f/e0d6af7b94574b06b4ee/?dl=1",
+        "https://cloud.tsinghua.edu.cn/f/806ca2b883094fd9a939/?dl=1",
+        "https://cloud.tsinghua.edu.cn/f/45177ba384bb4a8d8ff6/?dl=1"
+      ],
+      'National-Museum': [
+        "https://cloud.tsinghua.edu.cn/f/a62961022d534dce8b6c/?dl=1",
+        "https://cloud.tsinghua.edu.cn/f/9fb7eaef64fc4b31b513/?dl=1",
+        "https://cloud.tsinghua.edu.cn/f/74a9311eea8d468aa951/?dl=1"
+      ],
+      'Tsinghua-University': [
+        "https://cloud.tsinghua.edu.cn/f/fde04128f5bc47399bba/?dl=1",
+        "https://cloud.tsinghua.edu.cn/f/67c79d4151984f479d00/?dl=1",
+        "https://cloud.tsinghua.edu.cn/f/4940c99708a54e9db099/?dl=1"
+      ],
+      'The-Palace-Museum': [
+        "https://cloud.tsinghua.edu.cn/f/0307e4d12af94eb1b2b4/?dl=1",
+        "https://cloud.tsinghua.edu.cn/f/5056579d76bc45f58732/?dl=1",
+        "https://cloud.tsinghua.edu.cn/f/2647f23564c24b4f8b9a/?dl=1"
+      ],
+      'The-Great-Wall': [
+        "https://cloud.tsinghua.edu.cn/f/17b5df923f4e4d3da0df/?dl=1",
+        "https://cloud.tsinghua.edu.cn/f/3b8bd02834084915ba78/?dl=1",
+        "https://cloud.tsinghua.edu.cn/f/c98f1742f64447828f3a/?dl=1"
+      ]
+
     },
 
     openingHours: {
@@ -45,13 +74,7 @@ Page({
    */
   onLoad(options) {
     const attractionName = options.name;
-    const imageFolderPath = `/pages/attractionDetail/images/${attractionName}/`;
-    const imgSrcs = [];
-
-    for (let i = 1; i <= 3; i++) {
-      const imagePath = `${imageFolderPath}image${i}.jpg`;
-      imgSrcs.push(imagePath);
-    }
+    const imgSrcs = this.data.imgSrcs[attractionName];
     const description = this.data.descriptions[attractionName];
     const openingHours = this.data.openingHours[attractionName];
     const reservationLink = this.data.reservationLink[attractionName];
