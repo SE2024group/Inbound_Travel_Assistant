@@ -46,40 +46,40 @@ Page({
       this.setData({ addressList });
     });
   },
-  getWXAddressHandle() {
-    wx.chooseAddress({
-      success: (res) => {
-        if (res.errMsg.indexOf('ok') === -1) {
-          Toast({
-            context: this,
-            selector: '#t-toast',
-            message: res.errMsg,
-            icon: '',
-            duration: 1000,
-          });
-          return;
-        }
-        Toast({
-          context: this,
-          selector: '#t-toast',
-          message: '添加成功',
-          icon: '',
-          duration: 1000,
-        });
-        const { length: len } = this.data.addressList;
-        this.setData({
-          [`addressList[${len}]`]: {
-            name: res.userName,
-            phoneNumber: res.telNumber,
-            address: `${res.provinceName}${res.cityName}${res.countryName}${res.detailInfo}`,
-            isDefault: 0,
-            tag: '微信地址',
-            id: len,
-          },
-        });
-      },
-    });
-  },
+  // getWXAddressHandle() {
+  //   wx.chooseAddress({
+  //     success: (res) => {
+  //       if (res.errMsg.indexOf('ok') === -1) {
+  //         Toast({
+  //           context: this,
+  //           selector: '#t-toast',
+  //           message: res.errMsg,
+  //           icon: '',
+  //           duration: 1000,
+  //         });
+  //         return;
+  //       }
+  //       Toast({
+  //         context: this,
+  //         selector: '#t-toast',
+  //         message: '添加成功',
+  //         icon: '',
+  //         duration: 1000,
+  //       });
+  //       const { length: len } = this.data.addressList;
+  //       this.setData({
+  //         [`addressList[${len}]`]: {
+  //           name: res.userName,
+  //           phoneNumber: res.telNumber,
+  //           address: `${res.provinceName}${res.cityName}${res.countryName}${res.detailInfo}`,
+  //           isDefault: 0,
+  //           tag: '微信地址',
+  //           id: len,
+  //         },
+  //       });
+  //     },
+  //   });
+  // },
   confirmDeleteHandle({ detail }) {
     const { id } = detail || {};
     if (id !== undefined) {
