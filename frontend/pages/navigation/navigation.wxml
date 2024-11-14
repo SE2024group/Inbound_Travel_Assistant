@@ -1,6 +1,6 @@
 <view class="container">
   <view class="category-section-container">
-    <image class="category-section-bg" src="https://cloud.tsinghua.edu.cn/f/86cdfa33b9414c00b994/?dl=1" mode="aspectFill" />
+    <!-- <image class="category-section-bg" src="https://cloud.tsinghua.edu.cn/f/86cdfa33b9414c00b994/?dl=1" mode="aspectFill" /> -->
     <view class="title">Application Guidance</view>
     <view class="category-section">
       <view class="category-title">Trip</view>
@@ -58,11 +58,7 @@
       </view>
       <view class="attraction-list">
         <block wx:for="{{attractions}}" wx:key="name">
-          <navigator
-            class="attraction-item"
-            url="/pages/attractionDetail/attractionDetail?name={{item}}"
-            open-type="navigate"
-          >
+          <navigator class="attraction-item" url="/pages/attractionDetail/attractionDetail?name={{item}}" open-type="navigate">
             {{item}}
           </navigator>
         </block>
