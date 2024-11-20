@@ -13,7 +13,6 @@
     "pages/goods/category/index",
     "pages/goods/search/index",
     "pages/goods/result/index",
-    "pages/cart/index",
     "pages/goods/comments/index",
     "pages/goods/comments/create/index",
     "pages/usercenter/name-edit/index",
