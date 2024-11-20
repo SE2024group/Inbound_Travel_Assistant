@@ -1,5 +1,4 @@
 @import '../../../style/global.wxss';
-
 page {
   width: 100vw;
 }
@@ -18,16 +17,6 @@ page {
 .goods-detail-page .goods-info .goods-price {
   display: flex;
   align-items: baseline;
-}
-
-.add-comment-btn-wrap .btn-icon {
-  display: flex;
-  align-items: center;
-}
-
-.add-comment-btn-wrap .add-comment-text {
-  margin-left: 10rpx;
-  /* 控制文字和图标的间距 */
 }
 
 .goods-detail-page .goods-info .goods-price-up {

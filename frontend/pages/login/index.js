@@ -1,73 +1,7 @@
-import {
-  login
-} from '../../services/login/login'
-
 Page({
   data: {
     isLoad: false,
-    isAgreed: false, // 记录用户是否同意用户使用规则
-    username: '', // 存储输入的用户名
-  },
-
-  // 获取输入框中的用户名
-  onUsernameInput(e) {
-    this.setData({
-      username: e.detail.value,
-    });
-  },
-
-  // 登录按钮点击事件
-  onTouristLogin() {
-    if (!this.data.isLoad) {
-      this.setData({
-        isLoad: true
-      });
-    } else if (!this.data.isAgreed) {
-      wx.showModal({
-        title: '提示',
-        content: '您尚未阅读《用户使用规则》，无法登录。',
-        showCancel: false,
-        confirmText: '知道了'
-      });
-      return;
-    }
-
-    const {
-      username
-    } = this.data;
-    console.log('username is ', username);
-
-    if (!username) {
-      wx.showToast({
-        title: '请输入用户名',
-        icon: 'none',
-      });
-      return;
-    }
-
-    // 调用 login 函数并传递用户名
-    login(username)
-      .then((token) => {
-        wx.showToast({
-          title: '登录成功',
-          icon: 'success',
-        });
-        // 登录成功后跳转到 usercenter 页面
-        wx.navigateTo({
-          url: '/pages/usercenter/usercenter',
-        });
-      })
-      .catch((error) => {
-        wx.showToast({
-          title: '登录失败',
-          icon: 'error',
-        });
-        console.error(error);
-      });
-    console.log('tourist')
-    wx.switchTab({
-      url: '/pages/navigation/navigation',
-    })
+    isAgreed: false // 记录用户是否同意用户使用规则
   },
 
   // 处理复选框状态变化
@@ -193,8 +127,5 @@ Page({
         confirmText: '知道了'
       });
     }
-  },
-
-
-
+  }
 });

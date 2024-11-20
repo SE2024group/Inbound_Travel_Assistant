@@ -1,33 +1,22 @@
-export function login(username) {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: 'http://1.15.174.177/api/login/',
-      method: 'POST',
-      header: {
-        'Content-Type': 'application/json',
-      },
-      data: {
-        username: username,
-      },
-      success: (response) => {
-        console.log('response code = ', response.statusCode);
-        if (response.statusCode === 200) {
-          console.log('response', response);
-          const token = response.data.token;
-          // 将 token 存储到本地
-          wx.setStorage({
-            key: 'authToken',
-            data: `Bearer ${token}`,
-          });
-          console.log('data = Bearer ', token);
-          resolve(token);
-        } else {
-          reject(`Login failed: ${response.statusCode}`);
-        }
-      },
-      fail: (error) => {
-        reject(`Request failed: ${error}`);
-      },
-    });
-  });
-}
+const axios = require('axios');
+
+app.post('/wechat-login', async (req, res) => {
+  const { code, userInfo } = req.body;
+  const appId = 'wx7eb480f15bcc4f20';
+  const appSecret = '50985ccdbfc623bd2c8d1cf9f9770a52';
+
+  try {
+    const response = await axios.get(`https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecret}&js_code=${code}&grant_type=authorization_code`);
+    const { openid, session_key } = response.data;
+
+    // 检查用户是否存在，若不存在则创建用户
+    let user = await findOrCreateUser(openid, userInfo);
+
+    // 生成JWT或会话Token
+    const token = generateToken(user);
+
+    res.json({ token });
+  } catch (error) {
+    res.status(500).send('微信登录失败');
+  }
+});
