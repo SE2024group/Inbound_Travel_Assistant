@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "评价商品",
+  "navigationBarTitleText": "comments",
   "usingComponents": {
     "t-image": "/components/webp-image/index",
     "t-rate": "tdesign-miniprogram/rate/rate",
