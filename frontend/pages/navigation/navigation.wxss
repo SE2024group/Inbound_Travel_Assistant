@@ -1,4 +1,7 @@
 .container {
+  background: linear-gradient(to bottom, #f9f5f6, #e3ecf2);
+  /* 与 usercenter 相同的背景 */
+  min-height: 120vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +11,7 @@
 .title {
   font-size: 40rpx;
   font-weight: bold;
-  color: rgb(255, 255, 255);
+  color: rgb(83, 107, 38);
   margin-bottom: 30rpx;
   margin-top: 20rpx;
   margin-left: 20rpx;
@@ -18,8 +21,11 @@
   position: relative;
   width: 100%;
   height: auto;
-  padding: 0;
-  margin: 0;
+  padding: 20rpx;
+  margin: 10rpx 0;
+  background: linear-gradient(145deg, #ffffff, #f0f2f5);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  border-radius: 15rpx;
 }
 
 .category-section-bg {
@@ -28,9 +34,20 @@
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 1; /* 调整透明度，0是完全透明，1是完全不透明 */
-  z-index: -1; /* 将背景图置于底层 */
+  opacity: 0.3;
+  z-index: -1;
   background-size: cover;
+  border-radius: 15rpx;
+}
+
+.category-section-container:first-child {
+  background: linear-gradient(145deg, #f9f1f3, #e8dfe4);
+  /* 浅粉色渐变 */
+}
+
+.category-section-container:nth-child(2) {
+  background: linear-gradient(145deg, #eef3f8, #dfe7ee);
+  /* 浅蓝色渐变 */
 }
 
 .category-section {
@@ -41,7 +58,7 @@
 .category-title {
   font-size: 36rpx;
   font-weight: bold;
-  color: rgb(235, 235, 235);
+  color: rgb(0, 0, 0);
   margin-bottom: 20rpx;
   margin-left: 30rpx;
 }
@@ -57,6 +74,18 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 20rpx;
+  background-color: #f7deec;
+  /* 添加白色背景色 */
+  border-radius: 10rpx;
+  padding: 10rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* 点击时的效果 */
+.app-item:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
 }
 
 .app-image {
@@ -68,7 +97,7 @@
 
 .app-name {
   font-size: 28rpx;
-  color: rgb(240, 240, 240);
+  color: rgb(0, 0, 0);
 }
 
 .ticket-reservation-section {
@@ -88,7 +117,7 @@
 .title2 {
   font-size: 40rpx;
   font-weight: bold;
-  color: rgb(255, 255, 255);
+  color: rgb(83, 107, 38);
   margin-bottom: 30rpx;
   margin-left: 20rpx;
 }
@@ -100,6 +129,14 @@
   margin-left: 100rpx;
   border-radius: 30rpx;
   font-size: 28rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* 按下按钮时效果 */
+.view-all-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
 }
 
 .attraction-list {
@@ -112,9 +149,9 @@
 
 .attraction-item {
   font-size: 33rpx;
-  color: rgb(179, 245, 24);
+  color: rgb(118, 66, 214);
   margin-bottom: 15rpx;
   text-align: left;
-  text-decoration: underline; /* Adds underline */
+  text-decoration: underline;
+  /* Adds underline */
 }
-
