@@ -4,46 +4,59 @@
     <view class="title">Application Guidance</view>
     <view class="category-section">
       <view class="category-title">Trip</view>
-      <view class="app-list">
-        <view class="app-item" bindtap="onAppTap" data-app-id="gaode">
-          <image class="app-image" src="https://cloud.tsinghua.edu.cn/f/024c76f8b1234965b23b/?dl=1" mode="aspectFill" />
-          <view class="app-name">Gaode Map</view>
-        </view>
-        <view class="app-item" bindtap="onAppTap" data-app-id="huazhuhui">
-          <image class="app-image" src="https://cloud.tsinghua.edu.cn/f/d56fe614d79c4d7a855c/?dl=1" mode="aspectFill" />
-          <view class="app-name">Huazhu Club</view>
-        </view>
-        <view class="app-item" bindtap="onAppTap" data-app-id="xiecheng">
-          <image class="app-image" src="https://cloud.tsinghua.edu.cn/f/75818e8dc9ca4f669a71/?dl=1" mode="aspectFill" />
-          <view class="app-name">Ctrip</view>
-        </view>
-      </view>
+      <swiper class="app-swiper" indicator-dots="true" autoplay="false">
+        <block wx:for="{{pagedTripApps}}" wx:key="index">
+          <swiper-item>
+            <view class="app-page">
+              <block wx:for="{{item}}" wx:key="name">
+                <view class="app-card" bindtap="onAppTap" data-app-id="{{item.appId}}">
+                  <image class="app-image" src="{{item.icon}}" mode="aspectFit" />
+                  <view class="app-info">
+                    <view class="app-name">{{item.name}}</view>
+                    <view class="app-desc">{{item.desc}}</view>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
       <view class="category-title">Shopping</view>
-      <view class="app-list">
-        <view class="app-item" bindtap="onAppTap" data-app-id="Alipay">
-          <image class="app-image" src="https://cloud.tsinghua.edu.cn/f/adcccc71704c443fb23f/?dl=1" mode="aspectFill" />
-          <view class="app-name">Alipay</view>
-        </view>
-        <view class="app-item" bindtap="onAppTap" data-app-id="Taobao">
-          <image class="app-image" src="https://cloud.tsinghua.edu.cn/f/401b82016bfd4b39a9e0/?dl=1" mode="aspectFill" />
-          <view class="app-name">Taobao</view>
-        </view>
-        <view class="app-item" bindtap="onAppTap" data-app-id="meituan">
-          <image class="app-image" src="https://cloud.tsinghua.edu.cn/f/61a7cf1e477147c8992b/?dl=1" mode="aspectFill" />
-          <view class="app-name">Meituan</view>
-        </view>
-      </view>
+      <swiper class="app-swiper" indicator-dots="true" autoplay="false">
+        <block wx:for="{{pagedShoppingApps}}" wx:key="index">
+          <swiper-item>
+            <view class="app-page">
+              <block wx:for="{{item}}" wx:key="name">
+                <view class="app-card" bindtap="onAppTap" data-app-id="{{item.appId}}">
+                  <image class="app-image" src="{{item.icon}}" mode="aspectFit" />
+                  <view class="app-info">
+                    <view class="app-name">{{item.name}}</view>
+                    <view class="app-desc">{{item.desc}}</view>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
       <view class="category-title">Recommendation</view>
-      <view class="app-list">
-        <view class="app-item" bindtap="onAppTap" data-app-id="dazhong">
-          <image class="app-image" src="https://cloud.tsinghua.edu.cn/f/de3ff8e17b984fc9a34b/?dl=1" mode="aspectFill" />
-          <view class="app-name">Dianping</view>
-        </view>
-        <view class="app-item" bindtap="onAppTap" data-app-id="xiaohongshu">
-          <image class="app-image" src="https://cloud.tsinghua.edu.cn/f/877cad3a4b82467a8466/?dl=1" mode="aspectFill" />
-          <view class="app-name">Red Book</view>
-        </view>
-      </view>
+      <swiper class="app-swiper" indicator-dots="true" autoplay="false">
+        <block wx:for="{{pagedRecommendationApps}}" wx:key="index">
+          <swiper-item>
+            <view class="app-page">
+              <block wx:for="{{item}}" wx:key="name">
+                <view class="app-card" bindtap="onAppTap" data-app-id="{{item.appId}}">
+                  <image class="app-image" src="{{item.icon}}" mode="aspectFit" />
+                  <view class="app-info">
+                    <view class="app-name">{{item.name}}</view>
+                    <view class="app-desc">{{item.desc}}</view>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
     </view>
   </view>
 

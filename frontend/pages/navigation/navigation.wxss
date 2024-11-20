@@ -1,7 +1,7 @@
 .container {
   background: linear-gradient(to bottom, #f9f5f6, #e3ecf2);
   /* 与 usercenter 相同的背景 */
-  min-height: 120vh;
+  min-height: 150vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,23 +82,79 @@
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
+/* 外部容器样式 */
+.app-swiper {
+  height: 200px;
+}
+
+.app-scroll {
+  width: 100%;
+  /* 占满屏幕宽度 */
+  height: auto;
+  /* 根据内容自动扩展 */
+  padding: 10rpx 0;
+  overflow-y: scroll;
+  /* 垂直滚动 */
+}
+
+/* 每个卡片样式 */
+.app-card {
+  display: flex;
+  flex-direction: row;
+  /* 图片与文字横向排列 */
+  align-items: center;
+  padding: 20rpx;
+  margin-bottom: 15rpx;
+  /* 每个卡片的间距 */
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 图片样式 */
+.app-image {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+  /* 图片与文字的间距 */
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+  /* 圆角效果 */
+}
+
+/* 应用信息样式 */
+.app-info {
+  flex: 1;
+  /* 占据剩余空间 */
+  display: flex;
+  flex-direction: column;
+  /* 垂直布局 */
+  justify-content: center;
+}
+
+/* 应用名称 */
+.app-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10rpx;
+}
+
+/* 应用描述 */
+.app-desc {
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 1.5;
+}
+
+
 /* 点击时的效果 */
 .app-item:active {
   transform: scale(0.95);
   box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
 }
 
-.app-image {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-  margin-bottom: 10rpx;
-}
 
-.app-name {
-  font-size: 28rpx;
-  color: rgb(0, 0, 0);
-}
 
 .ticket-reservation-section {
   display: flex;
