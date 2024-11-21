@@ -8,6 +8,7 @@ import Toast from 'tdesign-miniprogram/toast/index';
 
 Page({
   data: {
+    ocrResult: '',
     imgSrcs: [],
     tabList: [],
     goodsList: [],
@@ -57,6 +58,7 @@ Page({
     this.loadHomePage();
   },
   onCameraButtonClick() {
+    const self = this;
     wx.chooseMedia({
       count: 1,
       mediaType: ['image'],
@@ -66,9 +68,11 @@ Page({
       success: (res) => {
         console.log(res.tempFiles[0]); // 打印检查 tempFiles 结构
         if (res.tempFiles.length > 0) {
-          this.setData({
-            imagePath: res.tempFiles[0].tempFilePath // 设置图片路径到数据
-          });
+          // this.setData({
+          //   imagePath: res.tempFiles[0].tempFilePath // 设置图片路径到数据
+
+          // });
+          self.uploadImage(res.tempFiles[0].tempFilePath);
         }
       },
       fail(err) {
@@ -76,6 +80,43 @@ Page({
       }
     });
   },
+  // 上传图片并请求OCR
+  uploadImage(filePath) {
+    const self = this;
+    wx.uploadFile({
+      url: 'https://luckycola.com.cn/tools/checkImg', // OCR接口地址
+      filePath: String(filePath),
+      name: 'file',
+      formData: {
+        ColaKey: 'ATafPBqUcSPtfb17320747838599dpYhkAsl6',
+        lang: '', // 可选：设置语言参数
+      },
+      header: {
+        'content-type': 'multipart/form-data',
+      },
+      success(res) {
+        const response = JSON.parse(res.data);
+        if (response.code === 200) {
+          self.setData({
+            ocrResult: response.data.imgType
+          });
+        } else {
+          wx.showToast({
+            title: response.msg || 'OCR failed',
+            icon: 'none',
+          });
+        }
+      },
+      fail(err) {
+        console.error('OCR request failed:', err);
+        wx.showToast({
+          title: 'OCR request failed',
+          icon: 'none',
+        });
+      },
+    });
+  },
+
   loadHomePage() {
     wx.stopPullDownRefresh();
 
