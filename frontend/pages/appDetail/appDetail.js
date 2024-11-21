@@ -7,56 +7,56 @@ Page({
         title: 'Gaode Map',
         image: 'https://cloud.tsinghua.edu.cn/f/024c76f8b1234965b23b/?dl=1',
         label: ['detailed map','prcise navigation'],
-        download_link: 'https://www.baidu.com',
+        download_link: 'https://mobile.amap.com/',
         description:'Gaode Map (Amap) is a popular Chinese mapping and navigation application developed by Alibaba Group. It provides users with detailed maps, real-time traffic updates, and precise navigation features for driving, walking, and public transportation. With a wide range of functionalities, Gaode Map is known for its user-friendly interface and accurate location services. It offers features such as voice-guided navigation, 3D map views, route planning, and points of interest (POI) search, making it an essential tool for everyday travel in China. Additionally, it supports offline maps, which is particularly useful in areas with poor internet connectivity.'
       },
       huazhuhui: {
         title: 'Huazhu Club',
         image: 'https://cloud.tsinghua.edu.cn/f/d56fe614d79c4d7a855c/?dl=1',
         label: ['hotel booking','budget-friendly'],
-        download_link: 'www.google.com',
+        download_link: 'https://campaign.huazhu.com/static/2018/app-general/',
         description: 'The Huazhu Club app, is a comprehensive hotel booking platform primarily designed for Chinese travelers. The app offers access to over a thousand hotels under the Huazhu brand, including well-known chains like Hanting, Joya, and Citadines. Users can browse hotel options, make reservations, and manage their bookings all in one place. The app provides a loyalty program, allowing users to earn points on bookings that can be redeemed for discounts, upgrades, and exclusive member benefits. Additionally, it includes features such as contactless check-in and checkout, personalized travel recommendations, and special deals. With a user-friendly interface and a range of hotel options from budget-friendly to luxury, the Huazhu Club app has become an essential tool for millions of travelers in China.'
       },
       xiecheng: {
         title: 'Ctrip',
         image: "https://cloud.tsinghua.edu.cn/f/75818e8dc9ca4f669a71/?dl=1",
         label: ['travel booking','24/7 customer service'],
-        download_link: 'www.huazhuhui.com',
+        download_link: 'https://app.ctrip.com/',
         description: '"Ctrip App" is a leading online travel agency in China, offering a comprehensive suite of travel services through its mobile app. It provides users with the ability to book hotels, flights, trains, and tours with ease. The app is known for its extensive selection of travel options, competitive pricing, and user-friendly interface. "Ctrip" features real-time search and booking capabilities, 24/7 customer service support, and a variety of payment methods. Additionally, the app offers travel guides, reviews, and promotions, making it a one-stop-shop for all travel needs within and from China. With its multi-language support, "Ctrip" is also a preferred choice for international travelers visiting China.'
       },
       Alipay: {
         title: 'Alipay',
         image: "https://cloud.tsinghua.edu.cn/f/adcccc71704c443fb23f/?dl=1",
         label: ['mobile wallet','QR code payment'],
-        download_link: 'www.huazhuhui.com',
+        download_link: 'https://render.alipay.com/p/s/download?form=chinese',
         description: 'Alipay is a widely-used digital payment platform in China, developed by Ant Group. It allows users to make fast, secure, and convenient payments from their mobile devices. Alipay offers a variety of financial services, including money transfers, bill payments, and online shopping. The platform supports QR code scanning for payments at physical stores and online transactions. Alipay also provides a digital wallet, where users can store money, earn interest, and manage their finances. With its robust security features and extensive network of partners, Alipay has become an integral part of daily life for millions of Chinese consumers.'
       },
       Taobao: {
         title: 'Taobao',
         image: "https://cloud.tsinghua.edu.cn/f/401b82016bfd4b39a9e0/?dl=1",
         label: ['online shopping','retail marketplace'],
-        download_link: 'www.huazhuhui.com',
+        download_link: 'https://mpage.taobao.com/hd/download.html',
         description: 'Taobao is one of the largest online retail platforms in China, owned by Alibaba Group. It is a marketplace where millions of individuals and businesses buy and sell a wide range of products, including clothing, electronics, home goods, and more. Taobao offers a user-friendly shopping experience with advanced search filters, product reviews, and buyer protection policies. The platform is known for its vast selection, competitive pricing, and interactive features like live streaming and virtual stores. Taobao also provides various payment options, including Alipay, and offers a comprehensive after-sales service, making it a preferred choice for online shoppers in China.'
       },
       meituan: {
         title: 'Meituan',
         image: "https://cloud.tsinghua.edu.cn/f/61a7cf1e477147c8992b/?dl=1",
         label: ['food delivery','on-demand services'],
-        download_link: 'www.huazhuhui.com',
+        download_link: 'https://www.meituan.com/',
         description:"Meituan is a leading on-demand service platform in China, offering a diverse range of services including food delivery, restaurant reservations, movie ticketing, hotel bookings, and various local services. The platform connects users with local businesses, providing convenience and value through its mobile app. Meituan is known for its extensive network of partner merchants, which offers users a wide array of choices and competitive deals. The app features user-friendly navigation, real-time order tracking, and reliable customer service. With its commitment to enhancing local life, Meituan has become an essential tool for both consumers and businesses in China, facilitating daily activities and promoting local economic growth."
       },
       dazhong: {
         title: 'Dianping',
         image: "https://cloud.tsinghua.edu.cn/f/de3ff8e17b984fc9a34b/?dl=1",
         label: ['user ratings','deals and discounts'],
-        download_link: 'www.huazhuhui.com',
+        download_link: 'https://apps.apple.com/cn/app/%E5%A4%A7%E4%BC%97%E7%82%B9%E8%AF%84-%E7%BE%8E%E9%A3%9F%E6%97%85%E6%B8%B8%E6%94%BB%E7%95%A5%E9%80%9B%E5%90%83%E5%BF%85%E5%A4%87/id351091731',
         description: "Dianping is a popular platform in China for local reviews and information, providing a comprehensive guide to dining, shopping, entertainment, and lifestyle services. Users can browse through millions of reviews and ratings to discover the best local businesses, from restaurants and cafes to spas and salons. Dianping offers a social component, allowing users to share their experiences and tips with others. The platform also provides deals and discounts, making it a valuable resource for finding the best offers in town. With its mobile app, Dianping enables users to make reservations, order food, and even pay for services, all while accessing the latest reviews and recommendations from the community."
       },
       xiaohongshu: {
         title: 'Red Book',
         image: "https://cloud.tsinghua.edu.cn/f/877cad3a4b82467a8466/?dl=1",
         label: ['social media','travel tips'],
-        download_link: 'www.huazhuhui.com',
+        download_link: 'https://oia.xiaohongshu.com/oia',
         description: "Xiaohongshu, also known as RED or Little Red Book, is a social media and e-commerce platform that combines content sharing with online shopping. It is particularly popular among young Chinese consumers for its user-generated content, which includes product reviews, travel tips, fashion, beauty, and lifestyle advice. Xiaohongshu allows users to create and share posts, photos, and videos, building a community-driven environment where users can discover and recommend products and experiences. The platform’s e-commerce feature enables users to purchase items directly through the app, often at discounted prices. With its focus on authenticity and trust, Xiaohongshu has become a influential platform for product discovery and a key channel for brands to engage with their target audience."
       }
     }
