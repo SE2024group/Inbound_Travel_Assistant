@@ -23,6 +23,9 @@
         <!-- 中文： 只是为了显示我成功选择了图片 -->
       </button>
     </view>
+    <view wx:if="{{ocrResult}}" style="margin-top: 20rpx; padding: 10rpx; background-color: #f5f5f5; border-radius: 10rpx;">
+      <text>{{ocrResult}}</text>
+    </view>
     <text class="bottom-text" style="text-align: center; width: 100%; color: #333; font-size: 30rpx;">take a photo to search</text>
   </view>
 </view>
