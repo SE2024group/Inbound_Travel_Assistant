@@ -177,23 +177,57 @@ Page({
         'https://cloud.tsinghua.edu.cn/f/26dc7420a6f74b4f938c/?dl=1'
       ]
 
-
-
     },
 
     openingHours: {
-      'Tiananmen-Square':'Daily: 8:00 AM - 6:00 PM',
+      'Tiananmen-Square':'Daily: 8:30 AM - 4:30 PM',
       'National-Museum':'Daily: 9:00 AM - 5:00 PM. Except Monday',
-      'Tsinghua-University':'Daily: All day',
-      'The-Palace-Museum':'Daily: 6:00 AM - 8:00 PM',
-      'The-Great-Wall':'Daily: 7:00 AM - 5:00 PM',
+      'Tsinghua-University':'Daily: 08:00 AM - 11:00 AM, 1:00 PM- 4:00 PM',
+      'The-Palace-Museum':'Daily: 8:30 AM - 4:30 PM. Except Monday',
+      'Summer-Palace':'Daily: 6:30 AM - 6:00 PM',
+      'Capital-Museum-of-Beijing':'Daily: 9:00 AM - 5:00 PM. Except Monday',
+      'National-Art-Museum-of-China':'Daily: 9:00 AM - 5:00 PM. Except Monday',
+      'China-Science-and-Technology-Museum':'Daily: 9:30 AM - 5:00 PM. Except Monday',
+      'Sanlitun-Taikoo-Li':'Daily: 10:00 AM - 10:00 PM',
+      'Wangfujing':'Daily: 10:00 AM - 10:00 PM',
+      'China-World-Trade-Center':'Daily: 10:00 AM - 10:00 PM',
+      'Solana':'Daily: 10:00 AM - 10:00 PM',
+      'Nanluoguxiang':'Daily: 8:00 AM - 10:00 PM',
+      'Shichahai':'Daily: 8:00 AM - 10:00 PM',
+      '798-Art-District':'Daily: 10:00 AM - 6:00 PM',
+      'Bell-and-Drum-Towers-Cultural-Area':'Daily: 8:00 AM - 10:00 PM',
+      'Yuanming-Yuan':'Daily: 7:00 AM - 7:00 PM',
+      'Beihai-Park':'Daily: 6:00 AM - 8:00 PM',
+      'Fragrant-Hills-Park':'Daily: 6:00 AM - 6:00 PM',
+      'Beijing-Botanical-Garden':'Daily: 8:00 AM - 4:00 PM',
+      'Olympic-Forest-Park':'Daily: 6:00 AM - 9:00 PM',
+
+
     },
     reservationLink: {
-      'Tiananmen-Square':'https://tickets.tiananmen.com',
-      'National-Museum':'https://tickets.tiananmen.com',
-      'Tsinghua-University':'https://tickets.tiananmen.com',
-      'The-Palace-Museum':'https://tickets.tiananmen.com',
-      'The-Great-Wall':'https://tickets.tiananmen.com',
+      'Tiananmen-Square':'https://yuyue.tamgw.beijing.gov.cn/',
+      'National-Museum':'https://www.chnmuseum.cn/cg/',
+      'Tsinghua-University':'https://campusvisit.tsinghua.edu.cn/',
+      'The-Palace-Museum':'https://ticket.dpm.org.cn/',
+      'Summer-Palace':'https://ticket.summerpalace-china.com/#/',
+      'Capital-Museum-of-Beijing':'https://www.capitalmuseum.org.cn/zjsb/cgxz.htm',
+      'National-Art-Museum-of-China':'https://www.namoc.org/zgmsg/cgfw/cgfw.shtml',
+      'China-Science-and-Technology-Museum':'https://pcticket.cstm.org.cn/',
+      'Sanlitun-Taikoo-Li':'',
+      'Wangfujing':'',
+      'China-World-Trade-Center':'',
+      'Solana':'',
+      'Nanluoguxiang':'',
+      'Shichahai':'',
+      '798-Art-District':'',
+      'Bell-and-Drum-Towers-Cultural-Area':'',
+      'Yuanming-Yuan':'http://www.yuanmingyuanpark.cn/pw/mmp/202004/t20200430_4402176.html',
+      'Beihai-Park':'',
+      'Fragrant-Hills-Park':'https://pc.xiangshantickets.com/index.html#/',
+      'Beijing-Botanical-Garden':'https://www.bjgyol.com.cn/?lang=ch',
+      'Olympic-Forest-Park':'',
+
+
     }
   },
 

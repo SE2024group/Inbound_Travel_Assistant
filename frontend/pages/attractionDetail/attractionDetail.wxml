@@ -24,9 +24,14 @@
 
   <view class="ticket-info">
     <text class="opening-hours">Opening Hours: {{openingHours}}</text>
-    <navigator class="reservation-link" url="{{reservationLink}}" open-type="navigate">
-      Reserve Tickets
-    </navigator>
+    <block wx:if="{{reservationLink}}">
+      <navigator class="reservation-link" url="/pages/out2/out2?reservationLink={{reservationLink}}" open-type="navigate">
+        Reserve Tickets
+      </navigator>
+    </block>
+    <block wx:else>
+      <text class="no-appointment">No appointment required</text>
+    </block>
   </view>
 
 </view>
