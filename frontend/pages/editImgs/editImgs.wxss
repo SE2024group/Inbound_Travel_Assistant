@@ -31,7 +31,7 @@
 
 
 .confirm-btn:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
   /* 按下时按钮缩小 */
 }
 
