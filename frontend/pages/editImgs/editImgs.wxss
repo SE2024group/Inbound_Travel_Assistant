@@ -21,6 +21,20 @@
   /* 白色文字 */
 }
 
+.confirm-btn {
+  margin: 10px;
+  padding: 10px;
+  background-color: #04b61c;
+  color: white;
+}
+
+
+
+.confirm-btn:active {
+  transform: scale(0.98);
+  /* 按下时按钮缩小 */
+}
+
 
 .image-canvas {
   width: 100%;

@@ -7,6 +7,6 @@
 
   <view class="button-group">
     <!-- 裁剪确认按钮 -->
-    <button bindtap="cropImage">Confirm</button>
+    <button class="confirm-btn" bindtap="cropImage">Confirm</button>
   </view>
 </view>
