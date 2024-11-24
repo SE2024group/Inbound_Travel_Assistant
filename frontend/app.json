@@ -36,7 +36,10 @@
     "pages/attractionSearch/attractionSearch",
     "pages/login/index",
     "pages/userRule/index",
-    "pages/setting/index"
+    "pages/setting/index",
+    "pages/ocrResults/ocrResults",
+    "pages/editImgs/editImgs",
+    "pages/ocrResults"
   ],
   "tabBar": {
     "custom": true,

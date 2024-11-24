@@ -1,95 +1,51 @@
-import {
-  fetchHome
-} from '../../services/home/home';
-import {
-  fetchGoodsList
-} from '../../services/good/fetchGoods';
-import Toast from 'tdesign-miniprogram/toast/index';
-
 Page({
   data: {
-    ocrResult: '',
-    imgSrcs: [],
-    tabList: [],
-    goodsList: [],
-    goodsListLoadStatus: 0,
-    pageLoading: false,
-    current: 1,
-    autoplay: true,
-    duration: '500',
-    interval: 5000,
-    isTouching: false, // 是否正在触摸
-
-    navigation: {
-      type: 'dots'
-    },
-    swiperImageProps: {
-      mode: 'scaleToFill'
-    },
-    imagePath: '', // 用于存储选中的图片路径
+    imageSrc: '', // 接收的图片路径
+    options: [], // 动态生成的滑动条选项
+    selectedUrl: '', // 存储选中选项的 URL
+    buttonActive: false, // 控制按钮激活状态
     startX: 0, // 开始坐标
     startY: 0,
     cropWidth: 100, // 默认裁剪宽度
     cropHeight: 100,
-  },
-
-  goodListPagination: {
-    index: 0,
-    num: 20,
-  },
-
-  privateData: {
-    tabIndex: 0,
-  },
-
-  onShow() {
-    this.getTabBar().init();
+    isTouching: false, // 是否正在触摸
   },
 
   onLoad() {
-    this.init();
-  },
+    const eventChannel = this.getOpenerEventChannel();
 
-  onReachBottom() {
-    if (this.data.goodsListLoadStatus === 0) {
-      this.loadGoodsList();
-    }
-  },
+    // 使用 eventChannel 接收数据
+    eventChannel.on('sendWordsData', (data) => {
+      const {
+        imagePath,
+        wordsData = []
+      } = data;
 
-  onPullDownRefresh() {
-    this.init();
-  },
-
-  init() {
-    this.loadHomePage();
-  },
-  onCameraButtonClick() {
-    const self = this;
-    wx.chooseMedia({
-      count: 1,
-      mediaType: ['image'],
-      sourceType: ['album', 'camera'],
-      maxDuration: 30,
-      camera: 'back',
-      success: (res) => {
-        console.log(res.tempFiles[0]); // 打印检查 tempFiles 结构
-        if (res.tempFiles.length > 0) {
-          this.setData({
-            imagePath: res.tempFiles[0].tempFilePath // 设置图片路径到数据
-
-          });
-          self.uploadImage(res.tempFiles[0].tempFilePath);
-          //self.drawImageToCanvas(res.tempFiles[0].tempFilePath);
-        }
-      },
-      fail(err) {
-        console.log("选择媒体失败", err);
+      // 检查数据
+      if (!Array.isArray(wordsData) || wordsData.length === 0) {
+        console.error('No valid wordsData provided!');
+        return;
       }
+
+      // 动态创建选项
+      const options = wordsData.map((item) => ({
+        image: item.imageURL, // 使用每项中的图片URL  
+        description: item.name, // 使用每项的名称
+        rectangle: item.rectangle
+      }));
+
+      // 更新数据
+      this.setData({
+        imageSrc: imagePath,
+        options: options,
+      });
+      this.drawImageToCanvas(imagePath);
+      console.log('Options set:', this.data.options);
     });
   },
   drawImageToCanvas(imagePath) {
     const query = wx.createSelectorQuery().in(this);
-    query.select('#imageCanvas')
+    query.select('#rectCanvas')
       .node()
       .exec((res) => {
         if (!res[0]) {
@@ -98,11 +54,17 @@ Page({
         }
 
         const canvas = res[0].node;
-        canvas.width = 400; // 设置 Canvas 宽度
-        canvas.height = 600; // 设置 Canvas 高度
+        canvas.width = 300; // 设置 Canvas 宽度
+        canvas.height = 500; // 设置 Canvas 高度
 
         const ctx = canvas.getContext('2d');
         const img = canvas.createImage(); // 创建图片对象
+        // 计算适应画布的图片尺寸
+        // 确保图片完整显示在画布中，且保持图片的宽高比
+        let imgWidth = img.width;
+        let imgHeight = img.height;
+
+        // ratio = canvas.height / imgHeight
 
         img.onload = () => {
           console.log('Image loaded successfully:', img.width, img.height);
@@ -148,7 +110,7 @@ Page({
     });
     //console.log("设置好数据了")
     const query = wx.createSelectorQuery().in(this);
-    query.select('#imageCanvas')
+    query.select('#rectCanvas')
       .node()
       .exec((res) => {
         const canvas = res[0].node;
@@ -168,14 +130,14 @@ Page({
           ctx.lineWidth = 2;
           ctx.strokeRect(this.data.startX, this.data.startY, this.data.cropWidth, this.data.cropHeight);
         };
-        img.src = this.data.imagePath; // 确保绘制图片的路径有效
+        img.src = this.data.imageSrc; // 确保绘制图片的路径有效
       });
 
   },
 
   cropImage() {
     const query = wx.createSelectorQuery().in(this);
-    query.select('#imageCanvas')
+    query.select('#rectCanvas')
       .node()
       .exec((res) => {
         if (!res[0]) {
@@ -207,7 +169,7 @@ Page({
 
   displayCroppedImage(imagePath) {
     const query = wx.createSelectorQuery().in(this);
-    query.select('#imageCanvas')
+    query.select('#rectCanvas')
       .node()
       .exec((res) => {
         if (!res[0]) {
@@ -236,8 +198,30 @@ Page({
         this.uploadImage(imagePath)
       });
   },
+  onOptionTap(e) {
+    const index = e.currentTarget.dataset.index;
+    const rect = this.data.options[index].rectangle;
 
+    // 更新选中的矩形数据
+    this.setData({
+      selectedRect: rect,
+      buttonActive: true,
+      selectedUrl: "dbio",
+    }, () => {
+      this.drawRectangle(rect);
+    });
 
+    wx.showToast({
+      title: `You selected: ${this.data.options[index].description}`,
+      icon: 'none',
+    });
+
+  },
+  onButtonTap() {
+    if (this.data.buttonActive) {
+      console.log(this.data.selectedUrl)
+    }
+  },
   // 上传图片并请求OCR
   uploadImage(filePath) {
     const self = this;
@@ -333,7 +317,7 @@ Page({
               // 跳转到新页面，并传递五元组数据
               wx.navigateTo({
                 //url: '/pages/ocrResults/ocrResults',
-                url: '/pages/editImgs/editImgs',
+                url: '/pages/ocrResults/ocrResults',
                 success: (res) => {
                   res.eventChannel.emit('sendWordsData', {
                     wordsData: testArray,
@@ -368,101 +352,34 @@ Page({
     });
   },
 
-  loadHomePage() {
-    wx.stopPullDownRefresh();
+  drawRectangle(rect) {
+    console.log("画长方形了")
+    const query = wx.createSelectorQuery().in(this);
+    query.select('#rectCanvas')
+      .node()
+      .exec((res) => {
+        const canvas = res[0].node;
+        const ctx = canvas.getContext('2d');
 
-    this.setData({
-      pageLoading: true,
-    });
-    fetchHome().then(({
-      swiper,
-      tabList
-    }) => {
-      this.setData({
-        tabList,
-        imgSrcs: swiper,
-        pageLoading: false,
-      });
-      this.loadGoodsList(true);
-    });
-  },
+        // 清除画布内容
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        console.log("清除画布");
+        //重新绘制图片（ 确保背景恢复到裁剪框绘制前的状态）
+        const img = canvas.createImage();
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
+          //console.log('Image redrawn, ready for the new crop frame.');
 
-  tabChangeHandle(e) {
-    this.privateData.tabIndex = e.detail;
-    this.loadGoodsList(true);
-  },
-
-  onReTry() {
-    this.loadGoodsList();
-  },
-
-  async loadGoodsList(fresh = false) {
-    if (fresh) {
-      wx.pageScrollTo({
-        scrollTop: 0,
-      });
-    }
-
-    this.setData({
-      goodsListLoadStatus: 1
-    });
-
-    const pageSize = this.goodListPagination.num;
-    let pageIndex = this.privateData.tabIndex * pageSize + this.goodListPagination.index + 1;
-    if (fresh) {
-      pageIndex = 0;
-    }
-
-    try {
-      const nextList = await fetchGoodsList(pageIndex, pageSize);
-      this.setData({
-        goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
-        goodsListLoadStatus: 0,
+          // 绘制实时裁剪框
+          ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)'; // 半透明红框
+          ctx.lineWidth = 2;
+          ctx.strokeRect(rect.topLeft.x,
+            rect.topLeft.y,
+            rect.topRight.x - rect.topLeft.x,
+            rect.bottomLeft.y - rect.topLeft.y);
+        };
+        img.src = this.data.imageSrc; // 确保绘制图片的路径有效
       });
 
-      this.goodListPagination.index = pageIndex;
-      this.goodListPagination.num = pageSize;
-    } catch (err) {
-      this.setData({
-        goodsListLoadStatus: 3
-      });
-    }
-  },
-
-  goodListClickHandle(e) {
-    const {
-      index
-    } = e.detail;
-    const {
-      spuId
-    } = this.data.goodsList[index];
-    wx.navigateTo({
-      url: `/pages/goods/details/index?spuId=${spuId}`,
-    });
-  },
-
-  goodListAddCartHandle() {
-    Toast({
-      context: this,
-      selector: '#t-toast',
-      message: '已收藏',
-    });
-  },
-
-  navToSearchPage() {
-    wx.navigateTo({
-      url: '/pages/goods/search/index'
-    });
-  },
-
-  navToActivityDetail({
-    detail
-  }) {
-    const {
-      index: promotionID = 0
-    } = detail || {};
-    wx.navigateTo({
-      url: `/pages/promotion-detail/index?promotion_id=${promotionID}`,
-    });
-  },
+  }
 });
