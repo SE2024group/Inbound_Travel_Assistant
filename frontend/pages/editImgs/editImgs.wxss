@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f5f5f5;
+}
+
+.image-container {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.action-button {
+  margin: 10px;
+  padding: 10px;
+  background-color: #04b61c;
+  color: white;
+  /* 白色文字 */
+}
+
+
+.image-canvas {
+  width: 100%;
+  /* 确保画布覆盖整个图片 */
+  height: 100%;
+}

@@ -49,11 +49,17 @@ Page({
         }
 
         const canvas = res[0].node;
-        canvas.width = 200; // 设置 Canvas 宽度
-        canvas.height = 200; // 设置 Canvas 高度
+        canvas.width = 300; // 设置 Canvas 宽度
+        canvas.height = 500; // 设置 Canvas 高度
 
         const ctx = canvas.getContext('2d');
         const img = canvas.createImage(); // 创建图片对象
+        // 计算适应画布的图片尺寸
+        // 确保图片完整显示在画布中，且保持图片的宽高比
+        let imgWidth = img.width;
+        let imgHeight = img.height;
+
+        // ratio = canvas.height / imgHeight
 
         img.onload = () => {
           console.log('Image loaded successfully:', img.width, img.height);
