@@ -1,0 +1,13 @@
+<view class="container">
+  <!-- 图片展示部分 -->
+  <view class="image-container">
+    <image src="{{imageSrc}}" mode="aspectFit" class="image-display"></image>
+  </view>
+
+  <!-- 滑动选择条部分 -->
+  <scroll-view scroll-x class="scroll-bar">
+    <view class="scroll-item" wx:for="{{options}}" wx:key="index" bindtap="onOptionTap">
+      {{item}}
+    </view>
+  </scroll-view>
+</view>

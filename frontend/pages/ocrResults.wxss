@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f5f5f5;
+}
+
+.image-container {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.image-display {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.action-button {
+  margin: 10px;
+  padding: 10px;
+  background-color: #04b61c;
+  color: white;
+  /* 白色文字 */
+}
+
+.action-button[disabled] {
+  background-color: #ccc;
+  /* 灰色背景 */
+  color: #666;
+  /* 深灰色文字 */
+}
+
+.scroll-bar {
+  height: 110px;
+  display: flex;
+  white-space: nowrap;
+  background-color: #f9f9f9;
+  overflow: hidden;
+}
+
+.image-canvas {
+  width: 100%;
+  /* 确保画布覆盖整个图片 */
+  height: 100%;
+}
+
+.scroll-item {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.item-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  /* 图片与描述之间的间距 */
+  border-radius: 5px;
+}
+
+.item-description {
+  font-size: 14px;
+  text-align: left;
+  white-space: nowrap;
+  /* 确保文字不换行 */
+}

@@ -78,8 +78,8 @@ Page({
             imagePath: res.tempFiles[0].tempFilePath // 设置图片路径到数据
 
           });
-          // self.uploadImage(res.tempFiles[0].tempFilePath);
-          self.drawImageToCanvas(res.tempFiles[0].tempFilePath);
+          self.uploadImage(res.tempFiles[0].tempFilePath);
+          //self.drawImageToCanvas(res.tempFiles[0].tempFilePath);
         }
       },
       fail(err) {
@@ -130,7 +130,7 @@ Page({
 
   // 手指开始触摸
   onTouchStart(e) {
-    console.log("开始触摸")
+    //console.log("开始触摸")
     this.setData({
       startX: e.touches[0].x,
       startY: e.touches[0].y,
@@ -141,12 +141,12 @@ Page({
   onTouchMove(e) {
     const moveX = e.touches[0].x;
     const moveY = e.touches[0].y;
-    console.log("拖动")
+    // console.log("拖动")
     this.setData({
       cropWidth: Math.abs(moveX - this.data.startX),
       cropHeight: Math.abs(moveY - this.data.startY),
     });
-    console.log("设置好数据了")
+    //console.log("设置好数据了")
     const query = wx.createSelectorQuery().in(this);
     query.select('#imageCanvas')
       .node()
@@ -161,7 +161,7 @@ Page({
         const img = canvas.createImage();
         img.onload = () => {
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
-          console.log('Image redrawn, ready for the new crop frame.');
+          //console.log('Image redrawn, ready for the new crop frame.');
 
           // 绘制实时裁剪框
           ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)'; // 半透明红框
@@ -196,6 +196,7 @@ Page({
           success: (res) => {
             console.log('Cropped image path:', res.tempFilePath);
             this.displayCroppedImage(res.tempFilePath); // 显示裁剪后的图片
+            // console.log(url)
           },
           fail: (err) => {
             console.error('Crop image failed:', err);
@@ -241,7 +242,7 @@ Page({
   uploadImage(filePath) {
     const self = this;
 
-    // 读取图片为 Base64（OCR.space 支持 URL 或 Base64）
+    // 读取图片为 Base64
     wx.getFileSystemManager().readFile({
       filePath: filePath,
       encoding: 'base64',
@@ -257,24 +258,93 @@ Page({
           },
           data: {
             language: 'chs', // 设置语言
-            isOverlayRequired: 'false',
+            isOverlayRequired: 'true', // 请求包含每个词的位置信息
             base64Image: `data:image/png;base64,${base64Image}`, // 将图片作为 Base64 发送
           },
           success(res) {
             console.log('OCR API Response:', res);
 
             if (res.data && res.data.ParsedResults && res.data.ParsedResults.length > 0) {
-              const parsedText = res.data.ParsedResults[0].ParsedText;
-              self.setData({
-                ocrResult: parsedText
-              }); // 更新 OCR 结果到页面
-              console.log(parsedText)
+              // 提取每个词的五元组
+              const parsedResults = res.data.ParsedResults[0].TextOverlay.Lines || [];
+              const wordsData = [];
+
+              parsedResults.forEach((line) => {
+                if (line.Words) {
+                  line.Words.forEach((word) => {
+                    wordsData.push({
+                      WordText: word.WordText,
+                      Left: word.Left,
+                      Top: word.Top,
+                      Height: word.Height,
+                      Width: word.Width,
+                    });
+                  });
+                }
+              });
+
+              console.log('Extracted words data:', wordsData);
+              const testArray = [{
+                  imageURL: filePath, // 子图片地址
+                  name: 'Image 1', // 图片名称
+                  rectangle: {
+                    topLeft: {
+                      x: 50,
+                      y: 50
+                    }, // 长方形左上角
+                    topRight: {
+                      x: 150,
+                      y: 50
+                    }, // 长方形右上角
+                    bottomLeft: {
+                      x: 50,
+                      y: 150
+                    }, // 长方形左下角
+                    bottomRight: {
+                      x: 150,
+                      y: 150
+                    }, // 长方形右下角
+                  },
+                },
+                {
+                  imageURL: filePath, // 子图片地址
+                  name: 'Image 2', // 图片名称
+                  rectangle: {
+                    topLeft: {
+                      x: 20,
+                      y: 20
+                    },
+                    topRight: {
+                      x: 30,
+                      y: 20
+                    },
+                    bottomLeft: {
+                      x: 20,
+                      y: 30
+                    },
+                    bottomRight: {
+                      x: 30,
+                      y: 30
+                    },
+                  },
+                },
+              ];
+              // 跳转到新页面，并传递五元组数据
+              wx.navigateTo({
+                url: '/pages/ocrResults',
+                success: (res) => {
+                  res.eventChannel.emit('sendWordsData', {
+                    wordsData: testArray,
+                    imagePath: filePath,
+                  });
+                  console.log(filePath)
+                },
+              });
             } else {
               wx.showToast({
                 title: 'OCR failed: No text parsed',
                 icon: 'none',
               });
-
             }
           },
           fail(err) {
