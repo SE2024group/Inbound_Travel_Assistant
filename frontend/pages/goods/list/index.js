@@ -1,4 +1,6 @@
-import { fetchGoodsList } from '../../../services/good/fetchGoodsList';
+import {
+  fetchGoodsList
+} from '../../../services/good/fetchGoodsList';
 import Toast from 'tdesign-miniprogram/toast/index';
 
 const initFilters = {
@@ -27,7 +29,11 @@ Page({
   total: 0,
 
   handleFilterChange(e) {
-    const { layout, overall, sorts } = e.detail;
+    const {
+      layout,
+      overall,
+      sorts
+    } = e.detail;
     this.pageNum = 1;
     this.setData({
       layout,
@@ -39,9 +45,20 @@ Page({
   },
 
   generalQueryData(reset = false) {
-    const { filter, keywords, minVal, maxVal } = this.data;
-    const { pageNum, pageSize } = this;
-    const { sorts, overall } = filter;
+    const {
+      filter,
+      keywords,
+      minVal,
+      maxVal
+    } = this.data;
+    const {
+      pageNum,
+      pageSize
+    } = this;
+    const {
+      sorts,
+      overall
+    } = filter;
     const params = {
       sort: 0, // 0 综合，1 价格
       pageNum: 1,
@@ -70,7 +87,10 @@ Page({
   },
 
   async init(reset = true) {
-    const { loadMoreStatus, goodsList = [] } = this.data;
+    const {
+      loadMoreStatus,
+      goodsList = []
+    } = this.data;
     const params = this.generalQueryData(reset);
     if (loadMoreStatus !== 0) return;
     this.setData({
@@ -82,7 +102,10 @@ Page({
       const code = 'Success';
       const data = result;
       if (code.toUpperCase() === 'SUCCESS') {
-        const { spuList, totalCount = 0 } = data;
+        const {
+          spuList,
+          totalCount = 0
+        } = data;
         if (totalCount === 0 && reset) {
           this.total = totalCount;
           this.setData({
@@ -129,8 +152,12 @@ Page({
   },
 
   onReachBottom() {
-    const { goodsList } = this.data;
-    const { total = 0 } = this;
+    const {
+      goodsList
+    } = this.data;
+    const {
+      total = 0
+    } = this;
     if (goodsList.length === total) {
       this.setData({
         loadMoreStatus: 2,
@@ -157,8 +184,12 @@ Page({
   },
 
   gotoGoodsDetail(e) {
-    const { index } = e.detail;
-    const { spuId } = this.data.goodsList[index];
+    const {
+      index
+    } = e.detail;
+    const {
+      spuId
+    } = this.data.goodsList[index];
     wx.navigateTo({
       url: `/pages/goods/details/index?spuId=${spuId}`,
     });
@@ -177,21 +208,35 @@ Page({
   },
 
   onMinValAction(e) {
-    const { value } = e.detail;
-    this.setData({ minVal: value });
+    const {
+      value
+    } = e.detail;
+    this.setData({
+      minVal: value
+    });
   },
 
   onMaxValAction(e) {
-    const { value } = e.detail;
-    this.setData({ maxVal: value });
+    const {
+      value
+    } = e.detail;
+    this.setData({
+      maxVal: value
+    });
   },
 
   reset() {
-    this.setData({ minVal: '', maxVal: '' });
+    this.setData({
+      minVal: '',
+      maxVal: ''
+    });
   },
 
   confirm() {
-    const { minVal, maxVal } = this.data;
+    const {
+      minVal,
+      maxVal
+    } = this.data;
     let message = '';
     if (minVal && !maxVal) {
       message = `价格最小是${minVal}`;
@@ -210,8 +255,7 @@ Page({
       });
     }
     this.pageNum = 1;
-    this.setData(
-      {
+    this.setData({
         show: false,
         minVal: '',
         goodsList: [],

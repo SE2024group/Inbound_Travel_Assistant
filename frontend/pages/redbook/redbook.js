@@ -436,6 +436,8 @@ Page({
     const {
       spuId
     } = this.data.goodsList[index];
+    console.log("在这")
+    console.log(spuId)
     wx.navigateTo({
       url: `/pages/goods/details/index?spuId=${spuId}`,
     });

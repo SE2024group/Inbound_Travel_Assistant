@@ -22,8 +22,7 @@
     "pages/userRule/index",
     "pages/setting/index",
     "pages/ocrResults/ocrResults",
-    "pages/editImgs/editImgs",
-    "pages/ocrResults"
+    "pages/editImgs/editImgs"
   ],
   "tabBar": {
     "custom": true,
