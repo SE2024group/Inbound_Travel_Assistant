@@ -1,7 +1,7 @@
 <view class="container">
   <!-- 景点名称 -->
   <view class="attraction-name">
-    {{attractionName}}
+    <text class="attraction-title">{{attractionName}}</text>
   </view>
 
   <!-- 图片轮播 -->
@@ -11,7 +11,7 @@
 
   <!-- 描述内容 -->
   <view class="description-box">
-    <text class="description-text">
+    <text class="description-text" user-select="true">
       {{description}}
     </text>
   </view>
@@ -21,7 +21,7 @@
     <text class="opening-hours">Opening Hours: {{openingHours}}</text>
     <block wx:if="{{reservationLink}}">
       <navigator class="reservation-link" url="/pages/out2/out2?reservationLink={{reservationLink}}" open-type="navigate">
-        Reserve Tickets
+        <view class="reservation-button">Reserve Tickets</view>
       </navigator>
     </block>
     <block wx:else>
