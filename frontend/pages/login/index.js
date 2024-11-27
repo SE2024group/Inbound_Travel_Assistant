@@ -65,6 +65,14 @@ Page({
         console.error(error);
       });
     console.log('tourist')
+    wx.setStorage({
+      key: 'loggedBy',
+      data: `tourist`,
+    });
+    wx.setStorage({
+      key: 'registeredAt',
+      data: new Date().toISOString(),
+    });
     wx.switchTab({
       url: '/pages/navigation/navigation',
     })
