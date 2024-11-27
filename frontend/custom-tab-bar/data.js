@@ -11,7 +11,7 @@ export default [{
   {
     icon: 'list',
     text: 'translation',
-    url: 'pages/home/home',
+    url: 'pages/record/record',
   },
   {
     icon: 'person',

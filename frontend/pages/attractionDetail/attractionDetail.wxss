@@ -1,61 +1,111 @@
-.container{
-  background-color: #1F2833;
-}
-
-.attraction-name {
-  font-size: 60rpx;
-  color: #3dfff2;
-  text-align: center;
-  margin-top: 20rpx;
-}
-
-.image-carousel {
-  width: 100%;
-  height: 400rpx;
-  margin-top: 20rpx;
-}
-
-.carousel-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.description-box {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20rpx;
+/* 主容器样式 */
+.container {
+  background: linear-gradient(145deg, #f9f1f3, #e8dfe4);
   padding: 20rpx;
-  background-color: #2C3E50;
-  border: 8rpx solid #45A29E;
+  min-height: 100vh;
+}
+
+/* 景点名称样式 */
+.attraction-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(227, 224, 237, 0.8);
   border-radius: 20rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  margin-bottom: 30rpx;
+}
+
+.attraction-title {
+  flex: 1;
+  text-align: center;
+  font-size: 54rpx;
+  /* 最大字体 */
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+
+  /* 防止换行 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* 动态缩放适配宽度 */
+  transform-origin: center;
+}
+
+.opening-hours {
+  display: block;
+  text-align: center;
+  font-size: 30rpx;
+  color: #246e12;
+}
+
+/* 图片轮播样式 */
+.swiper-wrap {
+  width: 100%;
+  margin-top: 20rpx;
+  border-radius: 15rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.3);
+}
+
+/* 描述框 */
+.description-box {
+  margin: 30rpx auto;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-bottom: 30rpx;
+  padding-top: 0rpx;
+  background: rgba(227, 224, 237, 0.8);
+  border: 2rpx solid #45a29e;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.3);
+  color: black;
 }
 
 .description-text {
-  color: antiquewhite;
+  margin: 0;
+  /* 移除多余的外边距 */
+  padding: 0;
+  /* 移除多余的内边距 */
   line-height: 1.6;
   text-align: center;
-  word-break: break-word;
-  font-size: 30rpx;
+  font-size: 32rpx;
 }
 
+/* 票务信息 */
 .ticket-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
 }
 
-.opening-hours {
-  font-size: 35rpx;
-  color: #3dfff2;
-  margin-bottom: 10rpx;
-}
 
 .reservation-link {
-  font-size: 35rpx;
-  color: #44c0ba;
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+.reservation-button {
+  background: linear-gradient(90deg, #FF8C42, #FF5722);
+  color: white;
+  font-size: 32rpx;
+  padding: 12rpx 28rpx;
+  border-radius: 12rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.reservation-button:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.15);
 }
 
 .no-appointment {

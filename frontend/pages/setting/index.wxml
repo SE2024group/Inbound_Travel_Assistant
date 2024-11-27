@@ -3,9 +3,13 @@
     <text class="settings-title">Settings</text>
   </view>
   <view class="settings-section">
-    <view class="settings-item">Account Information</view>
+    <view class="settings-item" bindtap="goToInfo">Account Information</view>
     <view class="settings-item">Privacy and Security</view>
-    <view class="settings-item">Notifications</view>
-    <view class="settings-item">Language</view>
+    <view class="settings-item settings-item-disabled"><text>Notifications</text>
+      <switch class="settings-switch" bindchange="onNotificationToggle" checked="{{notificationsEnabled}}" />
+    </view>
+    <view class="settings-item settings-item-disabled"><text>Language</text>
+      <text class="language-text">English</text>
+    </view>
   </view>
 </view>

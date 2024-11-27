@@ -18,9 +18,13 @@ Page({
           this.setData({
             userInfo: data, // 将用户数据存储在 userInfo 中
           });
+          wx.setStorage({
+            key: 'userName',
+            data: `${data.name}`,
+          });
         }).catch((error) => {
           wx.showToast({
-            title: '加载用户信息失败',
+            title: 'Fail to load user info',
             icon: 'error',
           });
           console.error('Failed to load user data:', error);
@@ -65,9 +69,23 @@ Page({
 
   // 退出账户
   onQuitAccount() {
-    wx.removeStorage({
-      key: 'authToken',
-      success: () => {
+    // 要删除的存储项
+    const keysToRemove = ['authToken', 'userName', 'loggedBy', 'registeredAt'];
+
+    // 使用 Promise.all 删除多个键
+    const removePromises = keysToRemove.map((key) => {
+      return new Promise((resolve, reject) => {
+        wx.removeStorage({
+          key: key,
+          success: () => resolve(key),
+          fail: () => reject(key),
+        });
+      });
+    });
+
+    Promise.all(removePromises)
+      .then(() => {
+        // 所有键成功删除
         wx.showToast({
           title: '已退出账号',
           icon: 'success',
@@ -75,15 +93,16 @@ Page({
         wx.redirectTo({
           url: '/pages/login/index',
         });
-      },
-      fail: () => {
+      })
+      .catch((errKey) => {
+        // 如果某个键删除失败
         wx.showToast({
-          title: '退出失败',
+          title: `退出失败: ${errKey}`,
           icon: 'error',
         });
-      },
-    });
+      });
   },
+
 
   // 清除全部 cookie
   onClearCookies() {
