@@ -64,7 +64,11 @@ Page({
         });
         console.error(error);
       });
-    console.log('tourist')
+    console.log('tourist');
+    wx.setStorage({
+      key: 'userName',
+      data: `${username}`,
+    });
     wx.setStorage({
       key: 'loggedBy',
       data: `tourist`,

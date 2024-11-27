@@ -18,10 +18,6 @@ Page({
           this.setData({
             userInfo: data, // 将用户数据存储在 userInfo 中
           });
-          wx.setStorage({
-            key: 'userName',
-            data: `${data.name}`,
-          });
         }).catch((error) => {
           wx.showToast({
             title: 'Fail to load user info',
