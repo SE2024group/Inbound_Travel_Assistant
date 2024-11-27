@@ -2,5 +2,8 @@
   "navigationBarTitleText": "NAVIGATION",
   "onReachBottomDistance": 10,
   "backgroundTextStyle": "light",
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "t-divider": "/miniprogram_npm/tdesign-miniprogram/divider/divider"
+  }
 }

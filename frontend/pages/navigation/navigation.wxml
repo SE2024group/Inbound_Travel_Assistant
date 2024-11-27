@@ -1,80 +1,108 @@
 <view class="container">
-  <view class="category-section-container">
-    <!-- <image class="category-section-bg" src="https://cloud.tsinghua.edu.cn/f/86cdfa33b9414c00b994/?dl=1" mode="aspectFill" /> -->
-    <view class="title">Application Guidance</view>
-    <view class="category-section">
-      <view class="category-title">Trip</view>
-      <swiper class="app-swiper" indicator-dots="true" autoplay="false">
-        <block wx:for="{{pagedTripApps}}" wx:key="index">
-          <swiper-item>
-            <view class="app-page">
-              <block wx:for="{{item}}" wx:key="name">
-                <view class="app-card" bindtap="onAppTap" data-app-id="{{item.appId}}">
-                  <image class="app-image" src="{{item.icon}}" mode="aspectFit" />
-                  <view class="app-info">
-                    <view class="app-name">{{item.name}}</view>
-                    <view class="app-desc">{{item.desc}}</view>
-                  </view>
-                </view>
-              </block>
-            </view>
-          </swiper-item>
-        </block>
-      </swiper>
-      <view class="category-title">Shopping</view>
-      <swiper class="app-swiper" indicator-dots="true" autoplay="false">
-        <block wx:for="{{pagedShoppingApps}}" wx:key="index">
-          <swiper-item>
-            <view class="app-page">
-              <block wx:for="{{item}}" wx:key="name">
-                <view class="app-card" bindtap="onAppTap" data-app-id="{{item.appId}}">
-                  <image class="app-image" src="{{item.icon}}" mode="aspectFit" />
-                  <view class="app-info">
-                    <view class="app-name">{{item.name}}</view>
-                    <view class="app-desc">{{item.desc}}</view>
-                  </view>
-                </view>
-              </block>
-            </view>
-          </swiper-item>
-        </block>
-      </swiper>
-      <view class="category-title">Recommendation</view>
-      <swiper class="app-swiper" indicator-dots="true" autoplay="false">
-        <block wx:for="{{pagedRecommendationApps}}" wx:key="index">
-          <swiper-item>
-            <view class="app-page">
-              <block wx:for="{{item}}" wx:key="name">
-                <view class="app-card" bindtap="onAppTap" data-app-id="{{item.appId}}">
-                  <image class="app-image" src="{{item.icon}}" mode="aspectFit" />
-                  <view class="app-info">
-                    <view class="app-name">{{item.name}}</view>
-                    <view class="app-desc">{{item.desc}}</view>
-                  </view>
-                </view>
-              </block>
-            </view>
-          </swiper-item>
-        </block>
-      </swiper>
+  <!-- 顶部 Tab 容器 -->
+  <view class="tab-container">
+    <view class="tab-item {{currentTab === 'App' ? 'active' : ''}}" bindtap="switchTab" data-tab="App">
+      App Guide
+    </view>
+    <view class="tab-item {{currentTab === 'Ticket' ? 'active' : ''}}" bindtap="switchTab" data-tab="Ticket">
+      Spots & Tickets
     </view>
   </view>
 
-  <view class="category-section-container">
-    <image class="category-section-bg" src="https://cloud.tsinghua.edu.cn/f/f123cd6dbc3d42ad9b6f/?dl=1" mode="aspectFill" />
-    <view class="ticket-reservation-section">
-      <view class="title-container">
-        <view class="title2">Ticket Reservations</view>
-        <navigator url="../attractionSearch/attractionSearch" open-type="navigate">
-          <button class="view-all-button">View All</button>
-        </navigator>
+  <!-- 动态内容部分 -->
+  <view class="content">
+    <!-- App 部分 -->
+    <view wx:if="{{currentTab === 'App'}}">
+      <view class="category-section-container-app">
+        <!-- <image class="category-section-bg" src="https://cloud.tsinghua.edu.cn/f/86cdfa33b9414c00b994/?dl=1" mode="aspectFill" /> -->
+        <!-- <view class="title">Application Guidance</view> -->
+        <view class="category-section">
+          <view class="category-title">Trip</view>
+          <swiper class="app-swiper" indicator-dots="true" autoplay="false">
+            <block wx:for="{{pagedTripApps}}" wx:key="index">
+              <swiper-item>
+                <view class="app-page">
+                  <block wx:for="{{item}}" wx:key="name">
+                    <view class="app-card" bindtap="onAppTap" data-app-id="{{item.appId}}">
+                      <image class="app-image" src="{{item.icon}}" mode="aspectFit" />
+                      <view class="app-info">
+                        <view class="app-name">{{item.name}}</view>
+                        <view class="app-desc">{{item.desc}}</view>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+          <view class="category-title">Shopping</view>
+          <swiper class="app-swiper" indicator-dots="true" autoplay="false">
+            <block wx:for="{{pagedShoppingApps}}" wx:key="index">
+              <swiper-item>
+                <view class="app-page">
+                  <block wx:for="{{item}}" wx:key="name">
+                    <view class="app-card" bindtap="onAppTap" data-app-id="{{item.appId}}">
+                      <image class="app-image" src="{{item.icon}}" mode="aspectFit" />
+                      <view class="app-info">
+                        <view class="app-name">{{item.name}}</view>
+                        <view class="app-desc">{{item.desc}}</view>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+          <view class="category-title">Recommendation</view>
+          <swiper class="app-swiper" indicator-dots="true" autoplay="false">
+            <block wx:for="{{pagedRecommendationApps}}" wx:key="index">
+              <swiper-item>
+                <view class="app-page">
+                  <block wx:for="{{item}}" wx:key="name">
+                    <view class="app-card" bindtap="onAppTap" data-app-id="{{item.appId}}">
+                      <image class="app-image" src="{{item.icon}}" mode="aspectFit" />
+                      <view class="app-info">
+                        <view class="app-name">{{item.name}}</view>
+                        <view class="app-desc">{{item.desc}}</view>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
       </view>
-      <view class="attraction-list">
-        <block wx:for="{{attractions}}" wx:key="name">
-          <navigator class="attraction-item" url="/pages/attractionDetail/attractionDetail?name={{item}}" open-type="navigate">
-            {{item}}
-          </navigator>
-        </block>
+    </view>
+
+    <!-- Ticket 部分 -->
+    <view wx:if="{{currentTab === 'Ticket'}}">
+      <view class="category-section-container-ticket">
+        <view class="ticket-reservation-section">
+          <view class="title-container">
+            <view class="title2">Suggestions</view>
+            <navigator url="../attractionSearch/attractionSearch" open-type="navigate">
+              <button class="view-all-button">View All</button>
+            </navigator>
+          </view>
+          <swiper class="spot-swiper" indicator-dots="true" autoplay="false">
+            <block wx:for="{{pagedAttractions}}" wx:key="index">
+              <swiper-item>
+                <view class="spot-page">
+                  <block wx:for="{{item}}" wx:key="name">
+                    <view class="spot-card" bindtap="onAttractionTap" data-app-id="{{item.appId}}">
+                      <image class="app-image" src="{{item.icon}}" mode="aspectFit" />
+                      <view class="app-info">
+                        <view class="app-name">{{item.name}}</view>
+                        <view class="app-desc">{{item.desc}}</view>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
       </view>
     </view>
   </view>

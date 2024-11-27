@@ -3,6 +3,7 @@
    */
   Page({
     data: {
+      currentTab: 'App', // 当前选中的 Tab，默认为 App
       tripApps: [{
           icon: "https://cloud.tsinghua.edu.cn/f/024c76f8b1234965b23b/?dl=1",
           name: "Gaode Map",
@@ -63,13 +64,38 @@
         }
       ],
       pagedRecommendationApps: [],
-      attractions: [
-        "Tiananmen-Square",
-        "National-Museum",
-        "Tsinghua-University",
-        "The-Palace-Museum",
-        "The-Great-Wall"
-      ]
+      attractions: [{
+          icon: "https://example.com/icons/tiananmen-square.png",
+          name: "Tiananmen Square",
+          desc: "Historic city center and symbol of Beijing",
+          appId: "Tiananmen-Square"
+        },
+        {
+          icon: "https://example.com/icons/national-museum.png",
+          name: "National Museum",
+          desc: "Largest museum in China with extensive cultural exhibits",
+          appId: "National-Museum"
+        },
+        {
+          icon: "https://example.com/icons/tsinghua-university.png",
+          name: "Tsinghua University",
+          desc: "Top university in China with beautiful campus",
+          appId: "Tsinghua-University"
+        },
+        {
+          icon: "https://example.com/icons/the-palace-museum.png",
+          name: "The Palace Museum",
+          desc: "Famous Forbidden City with ancient imperial history",
+          appId: "The-Palace-Museum"
+        },
+        {
+          icon: "https://example.com/icons/the-great-wall.png",
+          name: "The Great Wall",
+          desc: "World-renowned architectural wonder and cultural symbol",
+          appId: "The-Great-Wall"
+        }
+      ],
+      pagedAttractions: []
     },
 
     // onAppTap: function (e) {
@@ -107,6 +133,7 @@
       this.paginateTripApps();
       this.paginateShoppingApps();
       this.paginateRecommendationApps();
+      this.initAttractions();
     },
 
     paginateTripApps() {
@@ -157,10 +184,42 @@
       });
     },
 
+    initAttractions() {
+      const {
+        attractions
+      } = this.data;
+      const pageSize = 5;
+      const pagedAttractions = [];
+
+      for (let i = 0; i < attractions.length; i += pageSize) {
+        pagedAttractions.push(attractions.slice(i, i + pageSize));
+      }
+
+      this.setData({
+        pagedAttractions
+      });
+    },
+
+    // 功能函数
+
+    switchTab(e) {
+      const tab = e.currentTarget.dataset.tab;
+      this.setData({
+        currentTab: tab
+      });
+    },
+
     onAppTap(e) {
       const appId = e.currentTarget.dataset.appId;
       wx.navigateTo({
         url: `/pages/appDetail/appDetail?id=${appId}`
+      });
+    },
+
+    onAttractionTap(e) {
+      const name = e.currentTarget.dataset.appId;
+      wx.navigateTo({
+        url: `/pages/attractionDetail/attractionDetail?name=${name}`
       });
     },
 
