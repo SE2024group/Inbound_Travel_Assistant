@@ -10,24 +10,52 @@ const options = {
 
 Page({
   data: {
-    isPressed: false,
-    audioFilePath: '', // 存储录音文件路径
-    selectedText: "",
+    isChineseMode: false, // 默认英文模式
+    micButtonText: "Hold to Talk", // 麦克风按钮文字
+    toggleButtonText: "Switch to Chinese Mode", // 切换按钮文字
+    selectedText: "", // 大文本框内容
+    clearText: "Clear",
     phrases: [
       { english: "Sorry, could you repeat that?", chinese: "对不起，你能再说一遍吗？" },
       { english: "Where is the restroom?", chinese: "洗手间在哪里？" },
       { english: "Thank you very much!", chinese: "非常感谢！" },
       { english: "Excuse me, can you help me?", chinese: "不好意思，你能帮我吗？" },
       { english: "How much does it cost?", chinese: "这个多少钱？" },
-      { english: "Is there Wi-Fi here?" , chinese: "这里有WI-FI吗？" },
-    ],
+      { english: "Is there Wi-Fi here?", chinese: "这里有WI-FI吗？" },
+    ], // 中英文短语对
+    currentPhrases: [], // 当前显示的短语
   },
 
-  showTranslation(e) {
-    const index = e.currentTarget.dataset.index; // 获取点击的短语索引
-    const selectedPhrase = this.data.phrases[index].chinese; // 获取对应中文翻译
+  onLoad() {
     this.setData({
-      selectedText: selectedPhrase, // 更新大文本框内容
+      currentPhrases: this.data.phrases.map((phrase) => ({
+        text: phrase.english,
+      })),
+    });
+  },
+
+  // 切换语言模式
+  toggleLanguage() {
+    const isChinese = !this.data.isChineseMode;
+    this.setData({
+      isChineseMode: isChinese,
+      micButtonText: isChinese ? "按住说话" : "Hold to Talk",
+      toggleButtonText: isChinese ? "切换到英语模式" : "Switch to Chinese Mode",
+      clearText: isChinese ? "清除" : "Clear",
+      currentPhrases: isChinese
+        ? this.data.phrases.map((phrase) => ({ text: phrase.chinese }))
+        : this.data.phrases.map((phrase) => ({ text: phrase.english })),
+    });
+  },
+
+  // 显示短语翻译
+  showTranslation(e) {
+    const index = e.currentTarget.dataset.index;
+    const selectedPhrase = this.data.isChineseMode
+      ? this.data.phrases[index].english
+      : this.data.phrases[index].chinese;
+    this.setData({
+      selectedText: selectedPhrase,
     });
   },
 
@@ -37,30 +65,35 @@ Page({
     });
   },
 
-  switchToChinesePage() {
-    const currentText = this.data.selectedText; // 获取当前大文本框的内容
-  },
-
   // 开始录音
   startRecording() {
-    this.setData({ isPressed: true }); // 按下时设置状态
+    this.setData({
+      isPressed: true
+    }); // 按下时设置状态
     recorderManager.start(options);
-    recorderManager.onStart(() => {
-    });
+    recorderManager.onStart(() => {});
     recorderManager.onError((err) => {
       console.error('录音错误:', err);
-      this.setData({ isPressed: false }); 
+      this.setData({
+        isPressed: false
+      });
     });
   },
 
   // 停止录音
   stopRecording() {
-    this.setData({ isPressed: false }); 
+    this.setData({
+      isPressed: false
+    });
     recorderManager.stop();
     recorderManager.onStop((res) => {
       console.log('录音结束', res);
-      const { tempFilePath } = res; // 获取临时文件路径
-      this.setData({ audioFilePath: tempFilePath }); // 更新录音文件路径
+      const {
+        tempFilePath
+      } = res; // 获取临时文件路径
+      this.setData({
+        audioFilePath: tempFilePath
+      }); // 更新录音文件路径
       wx.showToast({
         title: '录音完成',
         icon: 'success'
@@ -70,8 +103,8 @@ Page({
     });
   },
 
-   // 上传录音文件到服务器
-   uploadRecording(filePath) {
+  // 上传录音文件到服务器
+  uploadRecording(filePath) {
     wx.uploadFile({
       url: 'https://example.com/upload', // 替换为实际服务器地址
       filePath: filePath,
@@ -98,9 +131,14 @@ Page({
 
   // 播放录音
   playRecording() {
-    const { audioFilePath } = this.data;
+    const {
+      audioFilePath
+    } = this.data;
     if (!audioFilePath) {
-      wx.showToast({ title: '没有可播放的录音', icon: 'none' });
+      wx.showToast({
+        title: '没有可播放的录音',
+        icon: 'none'
+      });
       return;
     }
     const innerAudioContext = wx.createInnerAudioContext();
@@ -113,7 +151,7 @@ Page({
       console.error('播放错误:', err);
     });
   },
-  
+
   switchTab(e) {
     const tab = e.currentTarget.dataset.tab;
     this.setData({
@@ -123,13 +161,6 @@ Page({
 
   onShow() {
     this.getTabBar().init();
-  },
-
-  onLoad(options) {
-    const text = decodeURIComponent(options.text || "");
-    this.setData({
-      selectedText: text,
-    });
   },
 
 });

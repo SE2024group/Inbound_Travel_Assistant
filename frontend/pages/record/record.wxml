@@ -14,23 +14,23 @@
       src="https://cloud.tsinghua.edu.cn/f/2d783a16dc794e829380/?dl=1" 
       class="microphone-icon"
     />
-    <text class="record-text">Hold to Talk</text>
+    <text class="record-text">{{micButtonText}}</text>
   </view>
 
+  <!-- 按钮区域 -->
   <view class="play-button-container">
-    <button bindtap="switchToChinesePage" class="play-button">Switch to Chinese Mode</button>
-    <button bindtap="clearText" class="clear-button">Clear</button>
+    <button bindtap="toggleLanguage" class="play-button">{{toggleButtonText}}</button>
+    <button bindtap="clearText" class="clear-button">{{clearText}}</button>
   </view>
 
-
-  <!-- 常见英文话语 -->
+  <!-- 常用语 -->
   <view class="common-phrases">
-    <block wx:for="{{phrases}}" wx:key="index">
+    <block wx:for="{{currentPhrases}}" wx:key="index">
       <view 
         class="phrase-box" 
         bindtap="showTranslation" 
         data-index="{{index}}">
-        <text class="phrase-text">{{item.english}}</text>
+        <text class="phrase-text">{{item.text}}</text>
       </view>
     </block>
   </view>

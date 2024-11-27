@@ -45,7 +45,6 @@
   opacity: 0.6; /* 改变透明度 */
 }
 
-
 .record-text {
   color: #333;
   font-size: 14px;
@@ -65,7 +64,7 @@
   position: flex;
   right: 10px;
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 14px;
   color: white;
   background-color: #ff4d4f;
   border: none;
@@ -80,7 +79,7 @@
 }
 
 .play-button {
-  width: 200px;
+  width: 250px;
   height: 50px;
   background: linear-gradient(90deg, #4CAF50, #81C784);
   border: none;
