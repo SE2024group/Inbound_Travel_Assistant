@@ -10,26 +10,56 @@ const options = {
 
 Page({
   data: {
-    isRecording: false,
-    audioFilePath: '' // 存储录音文件路径
+    isPressed: false,
+    audioFilePath: '', // 存储录音文件路径
+    selectedText: "",
+    phrases: [
+      { english: "Sorry, could you repeat that?", chinese: "对不起，你能再说一遍吗？" },
+      { english: "Where is the restroom?", chinese: "洗手间在哪里？" },
+      { english: "Thank you very much!", chinese: "非常感谢！" },
+      { english: "Excuse me, can you help me?", chinese: "不好意思，你能帮我吗？" },
+      { english: "How much does it cost?", chinese: "这个多少钱？" },
+      { english: "Is there Wi-Fi here?" , chinese: "这里有WI-FI吗？" },
+    ],
+  },
+
+  showTranslation(e) {
+    const index = e.currentTarget.dataset.index; // 获取点击的短语索引
+    const selectedPhrase = this.data.phrases[index].chinese; // 获取对应中文翻译
+    this.setData({
+      selectedText: selectedPhrase, // 更新大文本框内容
+    });
+  },
+
+  clearText() {
+    this.setData({
+      selectedText: "", // 清空文本框内容
+    });
+  },
+
+  switchToChinesePage() {
+    const currentText = this.data.selectedText; // 获取当前大文本框的内容
+    // 跳转到中文页面，使用参数传递数据
+    wx.navigateTo({
+      url: `/pages/record2/record2?text=${encodeURIComponent(currentText)}`,
+    });
   },
 
   // 开始录音
   startRecording() {
-    this.setData({ isRecording: true });
+    this.setData({ isPressed: true }); // 按下时设置状态
     recorderManager.start(options);
     recorderManager.onStart(() => {
-      console.log('录音开始');
     });
     recorderManager.onError((err) => {
       console.error('录音错误:', err);
-      this.setData({ isRecording: false });
+      this.setData({ isPressed: false }); 
     });
   },
 
   // 停止录音
   stopRecording() {
-    this.setData({ isRecording: false });
+    this.setData({ isPressed: false }); 
     recorderManager.stop();
     recorderManager.onStop((res) => {
       console.log('录音结束', res);
@@ -97,6 +127,13 @@ Page({
 
   onShow() {
     this.getTabBar().init();
+  },
+
+  onLoad(options) {
+    const text = decodeURIComponent(options.text || "");
+    this.setData({
+      selectedText: text,
+    });
   },
 
 });

@@ -1,4 +1,4 @@
-<!--pages/record/record.wxml-->
+<!--pages/record2/record2.wxml-->
 <view class="container">
   <!-- 大文本框 -->
   <view class="large-text-box">
@@ -14,23 +14,22 @@
       src="https://cloud.tsinghua.edu.cn/f/2d783a16dc794e829380/?dl=1" 
       class="microphone-icon"
     />
-    <text class="record-text">Hold to Talk</text>
+    <text class="record-text">按住说话</text>
   </view>
 
   <view class="play-button-container">
-    <button bindtap="switchToChinesePage" class="play-button">Switch to Chinese Mode</button>
-    <button bindtap="clearText" class="clear-button">Clear</button>
+    <button bindtap="switchToEnglishPage" class="play-button">切换到英文模式</button>
+    <button bindtap="clearText" class="clear-button">清空</button>
   </view>
 
-
-  <!-- 常见英文话语 -->
+  <!-- 常见中文话语 -->
   <view class="common-phrases">
     <block wx:for="{{phrases}}" wx:key="index">
       <view 
         class="phrase-box" 
         bindtap="showTranslation" 
         data-index="{{index}}">
-        <text class="phrase-text">{{item.english}}</text>
+        <text class="phrase-text">{{item.chinese}}</text>
       </view>
     </block>
   </view>

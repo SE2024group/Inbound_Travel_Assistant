@@ -25,7 +25,8 @@
     "pages/editImgs/editImgs",
     "pages/out/out",
     "pages/out2/out2",
-    "pages/record/record"
+    "pages/record/record",
+    "pages/record2/record2"
   ],
   "tabBar": {
     "custom": true,

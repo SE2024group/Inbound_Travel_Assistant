@@ -1,5 +1,4 @@
-/* pages/record/record.wxss */
-
+/* pages/record2/record2.wxss */
 .container {
   display: flex;
   flex-direction: column;
