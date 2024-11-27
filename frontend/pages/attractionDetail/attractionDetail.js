@@ -6,15 +6,17 @@ Page({
    */
   data: {
     attractionName: '',
-    imgSrcs: [],                      // Array to hold image URLs
+    imgSrcs: [], // Array to hold image URLs
 
-    current: 0,                       // Initial slide index
-    autoplay: true,                   // Autoplay enabled
-    duration: 500,                    // Transition duration (ms)
-    interval: 3000,                   // Autoplay interval (ms)
-    navigation: { type: 'fraction' }, // Show navigation arrows and indicators
+    current: 0, // Initial slide index
+    autoplay: true, // Autoplay enabled
+    duration: 500, // Transition duration (ms)
+    interval: 3000, // Autoplay interval (ms)
+    navigation: {
+      type: 'fraction'
+    }, // Show navigation arrows and indicators
     swiperImageProps: {
-      mode: 'aspectFill'              // Image mode for display
+      mode: 'aspectFill' // Image mode for display
     },
     descriptions: {
       'Tiananmen-Square': 'Tiananmen Square, located in the center of Beijing, is one of the largest public squares in the world and holds significant cultural and historical importance in China. Originally built in 1651 and expanded in the 1950s, the square is surrounded by iconic landmarks, including the Tiananmen Gate, the Monument to the People\'s Heroes, and the Mausoleum of Mao Zedong. It has been the site of numerous important events in Chinese history and is a symbol of national pride. Every day, visitors gather to witness the flag-raising ceremony, and the square remains a popular destination for tourists from around the world who come to experience its grandeur and historical ambiance.',
@@ -27,7 +29,7 @@ Page({
 
       'The-Great-Wall': 'The Great Wall of China is one of the most iconic landmarks in the world, stretching over 13,000 miles from east to west across northern China. Built in several stages from the 7th century BC to the 16th century AD, the wall was originally constructed to protect Chinese states and empires against incursions by various nomadic groups of the Eurasian Steppe. The Great Wall is not a single continuous wall but a series of walls, watchtowers, and fortifications made of stone, brick, wood, and other materials. Its most famous sections, such as those near Beijing, have been extensively restored and are now major tourist attractions, drawing visitors with their stunning views and historical significance. A testament to human ingenuity and perseverance, the Great Wall is a symbol of Chinese strength and culture, and it is listed as a UNESCO World Heritage Site. Its grand scale and architectural achievements continue to inspire awe and fascination around the globe.'
     },
-    imgSrcs:{
+    imgSrcs: {
       'Tiananmen-Square': [
         "https://cloud.tsinghua.edu.cn/f/e0d6af7b94574b06b4ee/?dl=1",
         "https://cloud.tsinghua.edu.cn/f/806ca2b883094fd9a939/?dl=1",
@@ -56,18 +58,18 @@ Page({
     },
 
     openingHours: {
-      'Tiananmen-Square':'Daily: 8:00 AM - 6:00 PM',
-      'National-Museum':'Daily: 9:00 AM - 5:00 PM. Except Monday',
-      'Tsinghua-University':'Daily: All day',
-      'The-Palace-Museum':'Daily: 6:00 AM - 8:00 PM',
-      'The-Great-Wall':'Daily: 7:00 AM - 5:00 PM',
+      'Tiananmen-Square': 'Daily: 8:00 AM - 6:00 PM',
+      'National-Museum': 'Daily: 9:00 AM - 5:00 PM. Except Monday',
+      'Tsinghua-University': 'Daily: All day',
+      'The-Palace-Museum': 'Daily: 6:00 AM - 8:00 PM',
+      'The-Great-Wall': 'Daily: 7:00 AM - 5:00 PM',
     },
     reservationLink: {
-      'Tiananmen-Square':'https://tickets.tiananmen.com',
-      'National-Museum':'https://tickets.tiananmen.com',
-      'Tsinghua-University':'https://tickets.tiananmen.com',
-      'The-Palace-Museum':'https://tickets.tiananmen.com',
-      'The-Great-Wall':'https://tickets.tiananmen.com',
+      'Tiananmen-Square': 'https://tickets.tiananmen.com',
+      'National-Museum': 'https://tickets.tiananmen.com',
+      'Tsinghua-University': 'https://tickets.tiananmen.com',
+      'The-Palace-Museum': 'https://tickets.tiananmen.com',
+      'The-Great-Wall': 'https://tickets.tiananmen.com',
     }
   },
 
