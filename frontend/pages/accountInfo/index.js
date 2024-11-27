@@ -1,34 +1,34 @@
-// pages/setting/index.js
+// pages/accountInfo/index.js
 Page({
 
   /**
    * Page initial data
    */
   data: {
-    notificationsEnabled: true, // 开关默认状态
-  },
-
-  onNotificationToggle(e) {
-    const isEnabled = e.detail.value; // 获取开关的状态
-    this.setData({
-      notificationsEnabled: isEnabled,
-    });
-    console.log('Notifications toggled:', isEnabled);
-    // 这里可以添加逻辑，例如存储状态或通知服务器
-  },
-
-  // 跳转到账户信息
-  goToInfo() {
-    wx.navigateTo({
-      url: '/pages/accountInfo/index'
-    });
+    userName: '',
+    loggedBy: '',
+    registeredAt: '',
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad(options) {
+    // 同时读取多个存储数据
+    try {
+      const userName = wx.getStorageSync('userName') || 'Unknown User'; // 如果不存在则设为默认值
+      const loggedBy = wx.getStorageSync('loggedBy') || 'Unknown Method';
+      const registeredAt = wx.getStorageSync('registeredAt') || 'Not Available';
 
+      // 更新 data 数据
+      this.setData({
+        userName,
+        loggedBy,
+        registeredAt,
+      });
+    } catch (err) {
+      console.error('Failed to read storage:', err);
+    }
   },
 
   /**

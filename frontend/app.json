@@ -24,7 +24,8 @@
     "pages/ocrResults/ocrResults",
     "pages/editImgs/editImgs",
     "pages/out/out",
-    "pages/out2/out2"
+    "pages/out2/out2",
+    "pages/accountInfo/index"
   ],
   "tabBar": {
     "custom": true,

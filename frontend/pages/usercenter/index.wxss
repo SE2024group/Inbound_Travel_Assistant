@@ -69,9 +69,10 @@
   font-size: 16px;
   color: #333;
   border-bottom: 1px solid #eee;
-  /* 分割线 */
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  /* 左右两端对齐 */
 }
 
 .settings-item:active {
@@ -85,7 +86,8 @@
   /* 去除最后一个分割线 */
 }
 
-.settings-item:hover {
-  background-color: #f5f5f5;
-  /* 鼠标悬浮效果 */
+.version-text {
+  color: #999;
+  /* 较暗的文字颜色 */
+  font-size: 16px;
 }
