@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/index",
     "pages/navigation/navigation",
+    "pages/login/index",
     "pages/home/home",
     "pages/redbook/redbook",
     "pages/usercenter/index",

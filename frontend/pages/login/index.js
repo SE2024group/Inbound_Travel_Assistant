@@ -73,6 +73,7 @@ Page({
       key: 'registeredAt',
       data: new Date().toISOString(),
     });
+    wx.setStorageSync('isLoggedIn', true);
     wx.switchTab({
       url: '/pages/navigation/navigation',
     })
