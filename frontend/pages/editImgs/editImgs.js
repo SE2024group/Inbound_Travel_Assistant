@@ -1,8 +1,6 @@
 Page({
   data: {
     imageSrc: '', // 接收的图片路径
-    options: [], // 动态生成的滑动条选项
-    selectedUrl: '', // 存储选中选项的 URL
     buttonActive: false, // 控制按钮激活状态
     startX: 0, // 开始坐标
     startY: 0,
@@ -18,29 +16,22 @@ Page({
     eventChannel.on('sendWordsData', (data) => {
       const {
         imagePath,
-        wordsData = []
+        //wordsData = []
       } = data;
 
-      // 检查数据
-      if (!Array.isArray(wordsData) || wordsData.length === 0) {
-        console.error('No valid wordsData provided!');
-        return;
-      }
+      // // 检查数据
+      // if (!Array.isArray(wordsData) || wordsData.length === 0) {
+      //   console.error('No valid wordsData provided!');
+      //   return;
+      // }
 
-      // 动态创建选项
-      const options = wordsData.map((item) => ({
-        image: item.imageURL, // 使用每项中的图片URL  
-        description: item.name, // 使用每项的名称
-        rectangle: item.rectangle
-      }));
+
 
       // 更新数据
       this.setData({
         imageSrc: imagePath,
-        options: options,
       });
       this.drawImageToCanvas(imagePath);
-      console.log('Options set:', this.data.options);
     });
   },
   drawImageToCanvas(imagePath) {
@@ -198,30 +189,7 @@ Page({
         this.uploadImage(imagePath)
       });
   },
-  onOptionTap(e) {
-    const index = e.currentTarget.dataset.index;
-    const rect = this.data.options[index].rectangle;
 
-    // 更新选中的矩形数据
-    this.setData({
-      selectedRect: rect,
-      buttonActive: true,
-      selectedUrl: "dbio",
-    }, () => {
-      this.drawRectangle(rect);
-    });
-
-    wx.showToast({
-      title: `You selected: ${this.data.options[index].description}`,
-      icon: 'none',
-    });
-
-  },
-  onButtonTap() {
-    if (this.data.buttonActive) {
-      console.log(this.data.selectedUrl)
-    }
-  },
   // 上传图片并请求OCR
   uploadImage(filePath) {
     const self = this;
@@ -233,87 +201,130 @@ Page({
       success(res) {
         const base64Image = res.data;
 
-        wx.request({
-          url: 'https://api.ocr.space/parse/image', // OCR.space API 地址
-          method: 'POST',
-          header: {
-            apikey: 'K82943261788957',
-            'content-type': 'application/x-www-form-urlencoded',
-          },
-          data: {
-            language: 'chs', // 设置语言
-            isOverlayRequired: 'true', // 请求包含每个词的位置信息
-            base64Image: `data:image/png;base64,${base64Image}`, // 将图片作为 Base64 发送
-          },
+        wx.uploadFile({
+          url: 'http://1.15.174.177/api/ocr/', // 替换为新API地址
+          filePath: filePath,
+          name: 'image', // 对应API中的表单字段
+          // header: {
+          //   'Content-Type': 'multipart/form-data',
+          // },
+          // data: {
+          //   language: 'chs', // 设置语言
+          //   isOverlayRequired: 'true', // 请求包含每个词的位置信息
+          //   base64Image: `data:image/png;base64,${base64Image}`, // 将图片作为 Base64 发送
+          // },
           success(res) {
             console.log('OCR API Response:', res);
 
             //if (res.data && res.data.ParsedResults && res.data.ParsedResults.length > 0) {
             if (true) {
+              let apiResponse;
+              try {
+                apiResponse = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+              } catch (error) {
+                console.error('Failed to parse API response:', error);
+                return; // 解析失败，退出函数
+              }
+
+              // // 确保返回的数据结构包含 results
+              // if (!apiResponse.results || !Array.isArray(apiResponse.results)) {
+              //   console.error('Unexpected API response format:', apiResponse);
+              //   return; // 数据格式不符合预期，退出函数
+              // }
+              console.error(' API response format:', apiResponse)
+              // 定义并保存解析结果到 testArray
+              const testArray = apiResponse.results.map((item, index) => {
+                const topLeft = item.bounding_box.top_left;
+                const bottomRight = item.bounding_box.bottom_right;
+                const topRight = {
+                  x: bottomRight.x,
+                  y: topLeft.y
+                };
+                const bottomLeft = {
+                  x: topLeft.x,
+                  y: bottomRight.y
+                };
+                console.log(bottomLeft)
+                return {
+                  imageURL: item.image, // 图片地址
+                  name: item.linetext, // OCR 识别出的文字
+                  rectangle: {
+                    topLeft: topLeft,
+                    topRight: topRight,
+                    bottomLeft: bottomLeft,
+                    bottomRight: bottomRight,
+                  },
+                  ID: index + 1, // 新的 ID，从 1 开始递增
+
+                };
+              });
+              console.log('Parsed Test Array:', testArray);
+
+
               // 提取每个词的五元组
               // const parsedResults = res.data.ParsedResults[0].TextOverlay.Lines || [];
-              const wordsData = [];
+              // const wordsData = [];
 
-              // parsedResults.forEach((line) => {
-              //   if (line.Words) {
-              //     line.Words.forEach((word) => {
-              //       wordsData.push({
-              //         WordText: word.WordText,
-              //         Left: word.Left,
-              //         Top: word.Top,
-              //         Height: word.Height,
-              //         Width: word.Width,
-              //       });
-              //     });
-              //   }
-              // });
+              // // parsedResults.forEach((line) => {
+              // //   if (line.Words) {
+              // //     line.Words.forEach((word) => {
+              // //       wordsData.push({
+              // //         WordText: word.WordText,
+              // //         Left: word.Left,
+              // //         Top: word.Top,
+              // //         Height: word.Height,
+              // //         Width: word.Width,
+              // //       });
+              // //     });
+              // //   }
+              // // });
 
-              console.log('Extracted words data:', wordsData);
-              const testArray = [{
-                  imageURL: filePath, // 子图片地址
-                  name: 'Image 1', // 图片名称
-                  rectangle: {
-                    topLeft: {
-                      x: 50,
-                      y: 50
-                    }, // 长方形左上角
-                    topRight: {
-                      x: 150,
-                      y: 50
-                    }, // 长方形右上角
-                    bottomLeft: {
-                      x: 50,
-                      y: 150
-                    }, // 长方形左下角
-                    bottomRight: {
-                      x: 150,
-                      y: 150
-                    }, // 长方形右下角
-                  },
-                },
-                {
-                  imageURL: filePath, // 子图片地址
-                  name: 'Image 2', // 图片名称
-                  rectangle: {
-                    topLeft: {
-                      x: 20,
-                      y: 20
-                    },
-                    topRight: {
-                      x: 30,
-                      y: 20
-                    },
-                    bottomLeft: {
-                      x: 20,
-                      y: 30
-                    },
-                    bottomRight: {
-                      x: 30,
-                      y: 30
-                    },
-                  },
-                },
-              ];
+              // console.log('Extracted words data:', wordsData);
+              // const testArray = [{
+              //     imageURL: filePath, // 子图片地址
+              //     name: 'Image 1', // 图片名称
+              //     rectangle: {
+              //       topLeft: {
+              //         x: 50,
+              //         y: 50
+              //       }, // 长方形左上角
+              //       topRight: {
+              //         x: 150,
+              //         y: 50
+              //       }, // 长方形右上角
+              //       bottomLeft: {
+              //         x: 50,
+              //         y: 150
+              //       }, // 长方形左下角
+              //       bottomRight: {
+              //         x: 150,
+              //         y: 150
+              //       }, // 长方形右下角
+              //     },
+              //   },
+              //   {
+              //     imageURL: filePath, // 子图片地址
+              //     name: 'Image 2', // 图片名称
+              //     rectangle: {
+              //       topLeft: {
+              //         x: 20,
+              //         y: 20
+              //       },
+              //       topRight: {
+              //         x: 30,
+              //         y: 20
+              //       },
+              //       bottomLeft: {
+              //         x: 20,
+              //         y: 30
+              //       },
+              //       bottomRight: {
+              //         x: 30,
+              //         y: 30
+              //       },
+              //     },
+              //   },
+              // ];
               // 跳转到新页面，并传递五元组数据
               wx.navigateTo({
                 //url: '/pages/ocrResults/ocrResults',

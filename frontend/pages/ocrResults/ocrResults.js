@@ -26,7 +26,8 @@ Page({
       const options = wordsData.map((item) => ({
         image: item.imageURL, // 使用每项中的图片URL  
         description: item.name, // 使用每项的名称
-        rectangle: item.rectangle
+        rectangle: item.rectangle,
+        ID: item.ID
       }));
 
       // 更新数据

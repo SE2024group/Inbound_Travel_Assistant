@@ -29,7 +29,9 @@ Page({
       const data = await getSearchHistory();
       const code = 'Success';
       if (String(code).toUpperCase() === 'SUCCESS') {
-        const { historyWords = [] } = data;
+        const {
+          historyWords = []
+        } = data;
         this.setData({
           historyWords,
         });
@@ -44,7 +46,9 @@ Page({
       const data = await getSearchPopular();
       const code = 'Success';
       if (String(code).toUpperCase() === 'SUCCESS') {
-        const { popularWords = [] } = data;
+        const {
+          popularWords = []
+        } = data;
         this.setData({
           popularWords,
         });
@@ -55,8 +59,13 @@ Page({
   },
 
   confirm() {
-    const { historyWords } = this.data;
-    const { deleteType, deleteIndex } = this;
+    const {
+      historyWords
+    } = this.data;
+    const {
+      deleteType,
+      deleteIndex
+    } = this;
     historyWords.splice(deleteIndex, 1);
     if (deleteType === 0) {
       this.setData({
@@ -64,16 +73,23 @@ Page({
         dialogShow: false,
       });
     } else {
-      this.setData({ historyWords: [], dialogShow: false });
+      this.setData({
+        historyWords: [],
+        dialogShow: false
+      });
     }
   },
 
   close() {
-    this.setData({ dialogShow: false });
+    this.setData({
+      dialogShow: false
+    });
   },
 
   handleClearHistory() {
-    const { dialog } = this.data;
+    const {
+      dialog
+    } = this.data;
     this.deleteType = 1;
     this.setData({
       dialog: {
@@ -85,8 +101,12 @@ Page({
   },
 
   deleteCurr(e) {
-    const { index } = e.currentTarget.dataset;
-    const { dialog } = this.data;
+    const {
+      index
+    } = e.currentTarget.dataset;
+    const {
+      dialog
+    } = this.data;
     this.deleteIndex = index;
     this.setData({
       dialog: {
@@ -99,8 +119,12 @@ Page({
   },
 
   handleHistoryTap(e) {
-    const { historyWords } = this.data;
-    const { dataset } = e.currentTarget;
+    const {
+      historyWords
+    } = this.data;
+    const {
+      dataset
+    } = e.currentTarget;
     const _searchValue = historyWords[dataset.index || 0] || '';
     if (_searchValue) {
       wx.navigateTo({
@@ -110,8 +134,12 @@ Page({
   },
 
   handleSubmit(e) {
-    const { value } = e.detail.value;
-    if (value.length === 0) return;
+    console.log('submit event detail:', e.detail); // 调试事件数据
+    const {
+      value
+    } = e.detail.value;
+
+    // if (value.length === 0) return;
     wx.navigateTo({
       url: `/pages/goods/result/index?searchValue=${value}`,
     });
