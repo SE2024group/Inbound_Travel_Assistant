@@ -4,8 +4,8 @@ Page({
     buttonActive: false, // 控制按钮激活状态
     startX: 0, // 开始坐标
     startY: 0,
-    cropWidth: 100, // 默认裁剪宽度
-    cropHeight: 100,
+    cropWidth: 255, // 默认裁剪宽度
+    cropHeight: 425,
     isTouching: false, // 是否正在触摸
   },
 
