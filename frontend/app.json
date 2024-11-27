@@ -25,6 +25,7 @@
     "pages/editImgs/editImgs",
     "pages/out/out",
     "pages/out2/out2",
+    "pages/record/record",
     "pages/accountInfo/index"
   ],
   "tabBar": {
@@ -43,7 +44,7 @@
         "text": "search"
       },
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/record/record",
         "text": "translation"
       },
       {
