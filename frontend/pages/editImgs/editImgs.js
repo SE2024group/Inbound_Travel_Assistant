@@ -49,32 +49,68 @@ Page({
         canvas.height = 500; // 设置 Canvas 高度
 
         const ctx = canvas.getContext('2d');
+        const {
+          pixelRatio,
+          windowWidth,
+          windowHeight
+        } = wx.getWindowInfo();
+        // const systemInfo = wx.getSystemInfoSync(); // 获取设备信息
+        // const pixelRatio = systemInfo.pixelRatio; // 获取设备像素比
+
+        // 设置高分辨率 Canvas
+        canvas.width = 300 * pixelRatio;
+        canvas.height = 500 * pixelRatio;
+
+        ctx.scale(pixelRatio, pixelRatio); // 按照像素比缩放
+
         const img = canvas.createImage(); // 创建图片对象
         // 计算适应画布的图片尺寸
         // 确保图片完整显示在画布中，且保持图片的宽高比
         let imgWidth = img.width;
         let imgHeight = img.height;
-
+        img.src = imagePath; // 设置图片路径
         // ratio = canvas.height / imgHeight
 
         img.onload = () => {
-          console.log('Image loaded successfully:', img.width, img.height);
-          ctx.clearRect(0, 0, canvas.width, canvas.height); // 清空画布
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
+          // 获取图片的原始宽高
+          const imgWidth = img.width;
+          const imgHeight = img.height;
+
+          // 获取画布的宽高
+          const canvasWidth = canvas.width / pixelRatio;
+          const canvasHeight = canvas.height / pixelRatio;
+
+          // 计算缩放因子，确保图片不会超出画布
+          const scaleFactor = Math.min(canvasWidth / imgWidth, canvasHeight / imgHeight);
+
+          // 根据缩放因子计算图片在画布上的宽高
+          const drawWidth = imgWidth * scaleFactor;
+          const drawHeight = imgHeight * scaleFactor;
+
+          // 计算图片在画布上的居中偏移量
+          const offsetX = (canvasWidth - drawWidth) / 2;
+          //console.log(offsetX)
+          const offsetY = (canvasHeight - drawHeight) / 2;
+          // console.log(canvasHeight)
+          // console.log(drawHeight)
+          // 清空画布并绘制缩放后的图片
+          ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+          ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
         };
+
 
         img.onerror = (err) => {
           console.error('Failed to load image:', err);
         };
 
-        console.log('Setting image source to:', imagePath);
-        img.src = imagePath; // 设置图片路径
+        //console.log('Setting image source to:', imagePath);
+
         //this.uploadImage(imagePath)
       });
   },
   // 结束触摸
   onTouchEnd(e) {
-    console.log('Touch end');
+    //console.log('Touch end');
     this.setData({
       isTouching: false, // 重置触摸状态
     });
@@ -106,14 +142,43 @@ Page({
       .exec((res) => {
         const canvas = res[0].node;
         const ctx = canvas.getContext('2d');
-
+        const {
+          pixelRatio,
+          windowWidth,
+          windowHeight
+        } = wx.getWindowInfo();
         // 清除画布内容
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // 重新绘制图片（确保背景恢复到裁剪框绘制前的状态）
         const img = canvas.createImage();
+        img.src = this.data.imageSrc; // 确保绘制图片的路径有效
         img.onload = () => {
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
+          // 获取图片的原始宽高
+          const imgWidth = img.width;
+          const imgHeight = img.height;
+
+          // 获取画布的宽高
+          const canvasWidth = canvas.width / pixelRatio;
+          const canvasHeight = canvas.height / pixelRatio;
+
+          // 计算缩放因子，确保图片不会超出画布
+          const scaleFactor = Math.min(canvasWidth / imgWidth, canvasHeight / imgHeight);
+
+          // 根据缩放因子计算图片在画布上的宽高
+          const drawWidth = imgWidth * scaleFactor;
+          const drawHeight = imgHeight * scaleFactor;
+
+          // 计算图片在画布上的居中偏移量
+          const offsetX = (canvasWidth - drawWidth) / 2;
+          //console.log(offsetX)
+          const offsetY = (canvasHeight - drawHeight) / 2;
+          // console.log(canvasHeight)
+          // console.log(drawHeight)
+          // 清空画布并绘制缩放后的图片
+          ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+          ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
+          //  ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
           //console.log('Image redrawn, ready for the new crop frame.');
 
           // 绘制实时裁剪框
@@ -121,7 +186,7 @@ Page({
           ctx.lineWidth = 2;
           ctx.strokeRect(this.data.startX, this.data.startY, this.data.cropWidth, this.data.cropHeight);
         };
-        img.src = this.data.imageSrc; // 确保绘制图片的路径有效
+        // img.src = this.data.imageSrc; // 确保绘制图片的路径有效
       });
 
   },
@@ -137,24 +202,62 @@ Page({
         }
 
         const canvas = res[0].node;
+        const ctx = canvas.getContext('2d');
+        const {
+          pixelRatio
+        } = wx.getWindowInfo();
 
-        wx.canvasToTempFilePath({
-          canvas,
-          x: this.data.startX,
-          y: this.data.startY,
-          width: this.data.cropWidth,
-          height: this.data.cropHeight,
-          destWidth: this.data.cropWidth,
-          destHeight: this.data.cropHeight,
-          success: (res) => {
-            console.log('Cropped image path:', res.tempFilePath);
-            this.displayCroppedImage(res.tempFilePath); // 显示裁剪后的图片
-            // console.log(url)
-          },
-          fail: (err) => {
-            console.error('Crop image failed:', err);
-          },
-        });
+        // 设置画布大小
+        const cropWidth = 300 * pixelRatio;
+        const cropHeight = 500 * pixelRatio;
+
+        canvas.width = cropWidth;
+        canvas.height = cropHeight;
+
+        const img = canvas.createImage();
+        img.src = this.data.imageSrc;
+
+        // 确保图片加载完成后处理
+        img.onload = () => {
+          // 获取图片的原始宽高
+          const imgWidth = img.width;
+          const imgHeight = img.height;
+
+          // 获取画布的宽高
+          const canvasWidth = canvas.width / pixelRatio;
+          const canvasHeight = canvas.height / pixelRatio;
+
+          // 计算缩放因子，确保图片不会超出画布
+          const scaleFactor = Math.min(canvasWidth / imgWidth, canvasHeight / imgHeight);
+
+          // 根据缩放因子计算图片在画布上的宽高
+          const drawWidth = imgWidth * scaleFactor;
+          const drawHeight = imgHeight * scaleFactor;
+
+          // 计算图片在画布上的居中偏移量
+          const offsetX = (canvasWidth - drawWidth) / 2;
+          const offsetY = (canvasHeight - drawHeight) / 2;
+
+          // 清空画布并绘制缩放后的图片
+          ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+          ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth * pixelRatio, drawHeight * pixelRatio);
+
+          // 在绘制完成后导出图片
+          wx.canvasToTempFilePath({
+            canvas,
+            x: this.data.startX - offsetX,
+            y: this.data.startY - offsetY,
+            width: this.data.cropWidth,
+            height: this.data.cropHeight,
+            success: (res) => {
+              console.log('Cropped image path:', res.tempFilePath);
+              this.displayCroppedImage(res.tempFilePath); // 显示裁剪后的图片
+            },
+            fail: (err) => {
+              console.error('Crop image failed:', err);
+            },
+          });
+        };
       });
   },
 
@@ -167,52 +270,166 @@ Page({
           console.error('Canvas node not found');
           return;
         }
-
+        console.log(imagePath)
         const canvas = res[0].node;
-        canvas.width = 300; // 设置 Canvas 宽度
-        canvas.height = 300; // 设置 Canvas 高度
-
         const ctx = canvas.getContext('2d');
         const img = canvas.createImage(); // 创建新的图片对象
+        const {
+          pixelRatio,
+          windowWidth,
+          windowHeight
+        } = wx.getWindowInfo();
+        canvas.width = 300 * pixelRatio;
+        canvas.height = 500 * pixelRatio;
 
+        ctx.scale(pixelRatio, pixelRatio); // 按照像素比缩放
         img.onload = () => {
+          // 图片加载完成后才能获取宽高
           console.log('Image loaded successfully:', img.width, img.height);
-          ctx.clearRect(0, 0, canvas.width, canvas.height); // 清空画布
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制裁剪后的图片
+
+          const imgWidth = img.width;
+          const imgHeight = img.height;
+
+          const {
+            pixelRatio
+          } = wx.getWindowInfo();
+          const canvasWidth = canvas.width / pixelRatio;
+          const canvasHeight = canvas.height / pixelRatio;
+
+          // 计算缩放因子，确保图片不会超出画布
+          const scaleFactor = Math.min(canvasWidth / imgWidth, canvasHeight / imgHeight);
+
+          // 根据缩放因子计算图片在画布上的宽高
+          const drawWidth = imgWidth * scaleFactor;
+          const drawHeight = imgHeight * scaleFactor;
+
+          // 计算图片在画布上的居中偏移量
+          const offsetX = (canvasWidth - drawWidth) / 2;
+          const offsetY = (canvasHeight - drawHeight) / 2;
+
+          // 清空画布并绘制缩放后的图片
+          ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+          ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
+
+          // 上传图片
+          this.uploadImage(imagePath);
         };
 
         img.onerror = (err) => {
           console.error('Failed to load image:', err);
         };
 
-        img.src = imagePath; // 加载裁剪后的图片路径
-        this.uploadImage(imagePath)
+        // 设置图片路径，触发加载
+        img.src = imagePath;
       });
   },
+
 
   // 上传图片并请求OCR
   uploadImage(filePath) {
     const self = this;
-
+    const testArray = [{
+        imageURL: filePath, // 子图片地址
+        name: 'Image 1', // 图片名称
+        rectangle: {
+          topLeft: {
+            x: 50,
+            y: 50
+          }, // 长方形左上角
+          topRight: {
+            x: 150,
+            y: 50
+          }, // 长方形右上角
+          bottomLeft: {
+            x: 50,
+            y: 150
+          }, // 长方形左下角
+          bottomRight: {
+            x: 150,
+            y: 150
+          }, // 长方形右下角
+        },
+      },
+      {
+        imageURL: filePath, // 子图片地址
+        name: 'Image 2', // 图片名称
+        rectangle: {
+          topLeft: {
+            x: 20,
+            y: 20
+          },
+          topRight: {
+            x: 30,
+            y: 20
+          },
+          bottomLeft: {
+            x: 20,
+            y: 30
+          },
+          bottomRight: {
+            x: 30,
+            y: 30
+          },
+        },
+      },
+    ];
+    wx.navigateTo({
+      //url: '/pages/ocrResults/ocrResults',
+      url: '/pages/ocrResults/ocrResults',
+      success: (res) => {
+        res.eventChannel.emit('sendWordsData', {
+          wordsData: testArray,
+          imagePath: filePath,
+        });
+        console.log(filePath)
+      },
+    });
     // 读取图片为 Base64
     wx.getFileSystemManager().readFile({
       filePath: filePath,
       encoding: 'base64',
       success(res) {
         const base64Image = res.data;
+        // wx.uploadFile({
+        //   url: 'http://1.15.174.177/api/ocr/', // 替换为新API地址
+        //   filePath: filePath,
+        //   name: 'image', // 对应API中的表单字段
+        //   // header: {
+        //   //   'Content-Type': 'multipart/form-data',
 
+        // wx.request({
+        //   // url: 'https://api.ocr.space/parse/image', // OCR.space API 地址
+        //   // method: 'POST',
+        //   // header: {
+        //   //   apikey: 'K82943261788957',
+        //   //   'content-type': 'application/x-www-form-urlencoded',
+
+        //   // },
+        //   // data: {
+        //   //   language: 'chs', // 设置语言
+        //   //   isOverlayRequired: 'true', // 请求包含每个词的位置信息
+        //   //   base64Image: `data:image/png;base64,${base64Image}`, // 将图片作为 Base64 发送
+        //   // },
+
+        //   url: 'https://luckycola.com.cn/tools/fanyi', // OCR.space API 地址
+        //   method: 'POST',
+        //   header: {
+        //     "Content-Type": "application/json", // 设置为 JSON 格式
+        //   },
+        //   data: {
+        //     ColaKey: 'ATafPBqUcSPtfb17320747838599dpYhkAsl6',
+        //     text: "索着生活的秘密。花儿一样的年纪，带着对未来的期许，我们喜欢在雨后的长亭或走道静静站立，闭上眼睛感受淡淡的泥土芬芳，风似调皮的孩子带着水汽扑面而来，轻轻扯动那秀丽的长发。一碧如洗的天空，",
+        //     fromlang: "ZH", // 原文语言类型
+        //     tolang: "EN", // 目标语言类型
+        //   },
         wx.uploadFile({
-          url: 'http://1.15.174.177/api/ocr/', // 替换为新API地址
+
+          url: 'http://1.15.174.177/api/ocr/', // 替换为新API地址
           filePath: filePath,
-          name: 'image', // 对应API中的表单字段
-          // header: {
-          //   'Content-Type': 'multipart/form-data',
-          // },
-          // data: {
-          //   language: 'chs', // 设置语言
-          //   isOverlayRequired: 'true', // 请求包含每个词的位置信息
-          //   base64Image: `data:image/png;base64,${base64Image}`, // 将图片作为 Base64 发送
-          // },
+          name: 'image', // 对应API中的表单字段
+          header: {
+            'Content-Type': 'multipart/form-data',
+          },
           success(res) {
             console.log('OCR API Response:', res);
 
@@ -244,7 +461,7 @@ Page({
                   x: topLeft.x,
                   y: bottomRight.y
                 };
-                console.log(bottomLeft)
+                //console.log(bottomLeft)
                 return {
                   imageURL: item.image, // 图片地址
                   name: item.linetext, // OCR 识别出的文字
@@ -377,6 +594,7 @@ Page({
         console.log("清除画布");
         //重新绘制图片（ 确保背景恢复到裁剪框绘制前的状态）
         const img = canvas.createImage();
+        img.src = this.data.imageSrc; // 确保绘制图片的路径有效
         img.onload = () => {
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
           //console.log('Image redrawn, ready for the new crop frame.');
@@ -389,7 +607,7 @@ Page({
             rect.topRight.x - rect.topLeft.x,
             rect.bottomLeft.y - rect.topLeft.y);
         };
-        img.src = this.data.imageSrc; // 确保绘制图片的路径有效
+        //img.src = this.data.imageSrc; // 确保绘制图片的路径有效
       });
 
   }
