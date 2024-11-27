@@ -19,7 +19,7 @@ export function login(username) {
             key: 'authToken',
             data: `Bearer ${token}`,
           });
-          console.log('data = Bearer ', token);
+          console.log('data = Bearer', token);
           resolve(token);
         } else {
           reject(`Login failed: ${response.statusCode}`);
