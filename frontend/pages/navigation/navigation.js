@@ -8,7 +8,7 @@
           icon: "https://cloud.tsinghua.edu.cn/f/024c76f8b1234965b23b/?dl=1",
           name: "Gaode Map",
           desc: "Navigation & Traffic",
-          appId: "gaode" // 对应绑定的 app id
+          appId: "gaode" 
         },
         {
           icon: "https://cloud.tsinghua.edu.cn/f/d56fe614d79c4d7a855c/?dl=1",
@@ -23,7 +23,7 @@
           appId: "xiecheng"
         },
         {
-          icon: "",
+          icon: "https://cloud.tsinghua.edu.cn/f/b4e13ab6a8e34b5ebb55/?dl=1",
           name: "DiDi",
           desc: "Call Taxis and various cars, like Uber",
           appId: "didi"
@@ -37,17 +37,17 @@
           appId: "Alipay"
         },
         {
+          icon: "https://cloud.tsinghua.edu.cn/f/61a7cf1e477147c8992b/?dl=1",
+          name: "Meituan",
+          desc: "Local Services",
+          appId: "meituan"
+        },
+        {
           icon: "https://cloud.tsinghua.edu.cn/f/401b82016bfd4b39a9e0/?dl=1",
           name: "Taobao",
           desc: "Online Shopping",
           appId: "Taobao"
         },
-        {
-          icon: "https://cloud.tsinghua.edu.cn/f/61a7cf1e477147c8992b/?dl=1",
-          name: "Meituan",
-          desc: "Local Services",
-          appId: "meituan"
-        }
       ],
       pagedShoppingApps: [],
       recommendationApps: [{
@@ -65,35 +65,36 @@
       ],
       pagedRecommendationApps: [],
       attractions: [{
-          icon: "https://example.com/icons/tiananmen-square.png",
+          icon: "https://cloud.tsinghua.edu.cn/f/e0d6af7b94574b06b4ee/?dl=1",
           name: "Tiananmen Square",
           desc: "Historic city center and symbol of Beijing",
           appId: "Tiananmen-Square"
         },
         {
-          icon: "https://example.com/icons/national-museum.png",
+          icon: "https://cloud.tsinghua.edu.cn/f/a62961022d534dce8b6c/?dl=1",
           name: "National Museum",
           desc: "Largest museum in China with extensive cultural exhibits",
           appId: "National-Museum"
         },
         {
-          icon: "https://example.com/icons/tsinghua-university.png",
+          icon: "https://cloud.tsinghua.edu.cn/f/fde04128f5bc47399bba/?dl=1",
           name: "Tsinghua University",
           desc: "Top university in China with beautiful campus",
           appId: "Tsinghua-University"
         },
         {
-          icon: "https://example.com/icons/the-palace-museum.png",
+          icon: "https://cloud.tsinghua.edu.cn/f/5056579d76bc45f58732/?dl=1",
           name: "The Palace Museum",
           desc: "Famous Forbidden City with ancient imperial history",
           appId: "The-Palace-Museum"
         },
         {
-          icon: "https://example.com/icons/the-great-wall.png",
-          name: "The Great Wall",
-          desc: "World-renowned architectural wonder and cultural symbol",
-          appId: "The-Great-Wall"
-        }
+          icon: 'https://cloud.tsinghua.edu.cn/f/9cf05d07ce1a487ca2bc/?dl=1',
+          name: "Summer Palace",
+          desc: "Historic imperial garden and summer retreat with picturesque lakes and palaces",
+          appId: "Summer-Palace"
+        },
+
       ],
       pagedAttractions: []
     },

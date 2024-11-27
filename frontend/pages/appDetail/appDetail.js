@@ -24,6 +24,13 @@ Page({
         download_link: 'https://app.ctrip.com/',
         description: '"Ctrip App" is a leading online travel agency in China, offering a comprehensive suite of travel services through its mobile app. It provides users with the ability to book hotels, flights, trains, and tours with ease. The app is known for its extensive selection of travel options, competitive pricing, and user-friendly interface. "Ctrip" features real-time search and booking capabilities, 24/7 customer service support, and a variety of payment methods. Additionally, the app offers travel guides, reviews, and promotions, making it a one-stop-shop for all travel needs within and from China. With its multi-language support, "Ctrip" is also a preferred choice for international travelers visiting China.'
       },
+      didi:{
+        title: 'DiDi',
+        image: "https://cloud.tsinghua.edu.cn/f/b4e13ab6a8e34b5ebb55/?dl=1",
+        label: ['ride-hailing', 'real-time tracking'],
+        download_link: 'https://www.didiglobal.com/download',
+        description: '“DiDi” is a leading ride-hailing platform in China, offering a wide range of on-demand transportation services through its mobile app. Users can easily hail taxis, private cars, and other vehicles with just a few taps. The app is renowned for its convenient booking process, fast response times, and safe travel experience. DiDi provides various services including express rides, premium rides, carpooling, and even bike-sharing. With real-time tracking, in-app communication, and multiple payment options, DiDi ensures a seamless travel experience for its users. Additionally, the app offers promotions and discounts, making it an affordable and reliable choice for daily commuting and travel in China. DiDi’s commitment to innovation and customer satisfaction has made it a staple in the transportation industry.'
+      },
       Alipay: {
         title: 'Alipay',
         image: "https://cloud.tsinghua.edu.cn/f/adcccc71704c443fb23f/?dl=1",
@@ -45,14 +52,14 @@ Page({
         download_link: 'https://www.meituan.com/',
         description:"Meituan is a leading on-demand service platform in China, offering a diverse range of services including food delivery, restaurant reservations, movie ticketing, hotel bookings, and various local services. The platform connects users with local businesses, providing convenience and value through its mobile app. Meituan is known for its extensive network of partner merchants, which offers users a wide array of choices and competitive deals. The app features user-friendly navigation, real-time order tracking, and reliable customer service. With its commitment to enhancing local life, Meituan has become an essential tool for both consumers and businesses in China, facilitating daily activities and promoting local economic growth."
       },
-      dazhong: {
+      dianping: {
         title: 'Dianping',
         image: "https://cloud.tsinghua.edu.cn/f/de3ff8e17b984fc9a34b/?dl=1",
         label: ['user ratings','deals and discounts'],
         download_link: 'https://apps.apple.com/cn/app/%E5%A4%A7%E4%BC%97%E7%82%B9%E8%AF%84-%E7%BE%8E%E9%A3%9F%E6%97%85%E6%B8%B8%E6%94%BB%E7%95%A5%E9%80%9B%E5%90%83%E5%BF%85%E5%A4%87/id351091731',
         description: "Dianping is a popular platform in China for local reviews and information, providing a comprehensive guide to dining, shopping, entertainment, and lifestyle services. Users can browse through millions of reviews and ratings to discover the best local businesses, from restaurants and cafes to spas and salons. Dianping offers a social component, allowing users to share their experiences and tips with others. The platform also provides deals and discounts, making it a valuable resource for finding the best offers in town. With its mobile app, Dianping enables users to make reservations, order food, and even pay for services, all while accessing the latest reviews and recommendations from the community."
       },
-      xiaohongshu: {
+      redbook: {
         title: 'Red Book',
         image: "https://cloud.tsinghua.edu.cn/f/877cad3a4b82467a8466/?dl=1",
         label: ['social media','travel tips'],

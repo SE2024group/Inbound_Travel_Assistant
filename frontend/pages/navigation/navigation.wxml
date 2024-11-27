@@ -14,8 +14,6 @@
     <!-- App 部分 -->
     <view wx:if="{{currentTab === 'App'}}">
       <view class="category-section-container-app">
-        <!-- <image class="category-section-bg" src="https://cloud.tsinghua.edu.cn/f/86cdfa33b9414c00b994/?dl=1" mode="aspectFill" /> -->
-        <!-- <view class="title">Application Guidance</view> -->
         <view class="category-section">
           <view class="category-title">Trip</view>
           <swiper class="app-swiper" indicator-dots="true" autoplay="false">

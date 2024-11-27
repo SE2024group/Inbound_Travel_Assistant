@@ -46,7 +46,7 @@
   <view class="subtitle">Natural Scenery</view>
   <view class="attraction-list">
     <view class="attraction-item" bindtap="onAttractionClick" 
-    data-name="The-Great-Wall">The-Great-Wall</view>
+    data-name="The-Great-Wall">The Great Wall</view>
     <view class="attraction-item" bindtap="onAttractionClick" data-name="Fragrant-Hills-Park">Fragrant Hills Park</view>
     <view class="attraction-item" bindtap="onAttractionClick" data-name="Beijing-Botanical-Garden">Beijing Botanical Garden</view>
     <view class="attraction-item" bindtap="onAttractionClick" data-name="Olympic-Forest-Park">Olympic Forest Park</view>
