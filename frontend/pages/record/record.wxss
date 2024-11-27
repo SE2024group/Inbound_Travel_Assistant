@@ -8,8 +8,10 @@
 }
 
 .large-text-box {
-  width: 90%; 
+  width: 85%; 
   height: 200px; 
+  padding-left: 10px;
+  padding-right: 10px;
   border: 2px solid #4CAF50;
   border-radius: 12px; 
   background-color: #f9f9f9;

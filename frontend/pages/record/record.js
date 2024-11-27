@@ -23,6 +23,13 @@ Page({
       { english: "How much does it cost?", chinese: "这个多少钱？" },
       { english: "Is there Wi-Fi here?", chinese: "这里有WI-FI吗？" },
     ], // 中英文短语对
+    cphrases: [
+      { english: "Sorry, could you repeat that?", chinese: "对不起，你能再说一遍吗？" },
+      { english: "You're welcome.", chinese: "不用谢" },
+      { english: "I didn't understand, could you explain it again?", chinese: "我没有理解，请再解释一下" },
+      { english: "Sorry, I'm not sure about that.", chinese: "不好意思，我不清楚这个" },
+
+    ], // 中英文短语对
     currentPhrases: [], // 当前显示的短语
   },
 
@@ -43,7 +50,7 @@ Page({
       toggleButtonText: isChinese ? "切换到英语模式" : "Switch to Chinese Mode",
       clearText: isChinese ? "清除" : "Clear",
       currentPhrases: isChinese
-        ? this.data.phrases.map((phrase) => ({ text: phrase.chinese }))
+        ? this.data.cphrases.map((phrase) => ({ text: phrase.chinese }))
         : this.data.phrases.map((phrase) => ({ text: phrase.english })),
     });
   },
@@ -52,7 +59,7 @@ Page({
   showTranslation(e) {
     const index = e.currentTarget.dataset.index;
     const selectedPhrase = this.data.isChineseMode
-      ? this.data.phrases[index].english
+      ? this.data.cphrases[index].english
       : this.data.phrases[index].chinese;
     this.setData({
       selectedText: selectedPhrase,
