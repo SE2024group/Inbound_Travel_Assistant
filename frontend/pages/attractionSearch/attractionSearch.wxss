@@ -1,29 +1,65 @@
+/* 主容器样式 */
 .container {
-  background-color: #243a55;
+  background: linear-gradient(145deg, #f9f1f3, #e8dfe4);
   padding: 20rpx;
 }
 
+/* 标题样式 */
 .title {
-  font-size: 40rpx;
-  color: #3dfff2;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #246e12;
   text-align: center;
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
+  text-shadow: 2rpx 2rpx 5rpx rgba(0, 0, 0, 0.1);
 }
 
+/* 子标题样式 */
 .subtitle {
-  font-size: 35rpx;
-  color: #31eee4;
-  margin-top: 20rpx;
+  font-size: 36rpx;
+  color: rgb(83, 107, 38);
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+  border-left: 6rpx solid rgb(83, 107, 38);
+  padding-left: 10rpx;
 }
 
+/* 景点列表 */
 .attraction-list {
   display: flex;
   flex-direction: column;
-  margin-left: 20rpx;
+  margin-left: 0;
+  margin-bottom: 20rpx;
 }
 
+/* 单个景点卡片 */
 .attraction-item {
-  font-size: 30rpx;
-  color: #B3F518;
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
   margin-bottom: 15rpx;
+  background-color: #ffffff;
+  border-radius: 15rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.attraction-item:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
+}
+
+/* 图标样式 */
+.attraction-icon {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+/* 文字样式 */
+.attraction-text {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
 }
