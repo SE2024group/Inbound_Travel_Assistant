@@ -245,8 +245,9 @@
 }
 
 .button-container {
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  align-items: right;
+  text-align: right;
   /* 垂直居中 */
   padding: 0 150rpx;
   /* 左右留白，防止元素贴边 */
@@ -255,30 +256,51 @@
 }
 
 .view-all-button {
-  background-color: #45a29e;
+  margin: 0;
+  background: linear-gradient(90deg, #4CAF50, #81C784);
+  /* 渐变背景 */
   color: white;
+  /* 按钮文字颜色 */
   border: none;
-  margin-left: auto;
-  margin-right: 10rpx;
   border-radius: 30rpx;
+  /* 圆角 */
   font-size: 28rpx;
-  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  /* 字体大小保持原样 */
+  display: inline-block;
+  /* 使按钮宽度仅匹配内容 */
+  font-weight: bold;
+  /* 文字加粗 */
+  text-align: center;
+  /* 文字居中 */
+  line-height: 50rpx;
+  /* 确保文字垂直居中 */
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.2);
+  /* 按钮阴影 */
+  transition: all 0.3s ease;
+  /* 动画过渡 */
+  overflow: hidden;
 }
 
 /* 悬停效果 */
 .view-all-button:hover {
+  background: linear-gradient(90deg, #388E3C, #66BB6A);
+  /* 悬停时颜色更深 */
+  box-shadow: 0 6rpx 10rpx rgba(0, 0, 0, 0.3);
+  /* 增强阴影效果 */
   transform: translateY(-2rpx);
-  /* 轻微上移，增加交互感 */
-  box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.4);
-  /* 阴影更明显 */
+  /* 轻微上移 */
 }
 
 /* 按下按钮时效果 */
 .view-all-button:active {
   transform: scale(0.95);
+  /* 按下时按钮缩小 */
+  background: linear-gradient(90deg, #2E7D32, #4CAF50);
+  /* 按下时颜色更深 */
   box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
+  /* 按下时阴影变浅 */
 }
+
 
 .attraction-list {
   display: flex;

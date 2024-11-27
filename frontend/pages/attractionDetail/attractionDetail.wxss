@@ -8,28 +8,42 @@
 /* 景点名称样式 */
 .attraction-name {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background: rgba(227, 224, 237, 0.8);
   border-radius: 20rpx;
   box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
-  padding: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
   margin-bottom: 30rpx;
-}
-
-.attraction-icon {
-  width: 130rpx;
-  height: 130rpx;
-  border-radius: 50%;
 }
 
 .attraction-title {
   flex: 1;
   text-align: center;
-  font-size: 48rpx;
+  font-size: 54rpx;
+  /* 最大字体 */
   color: #333;
   font-weight: bold;
+  margin-bottom: 15rpx;
+
+  /* 防止换行 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* 动态缩放适配宽度 */
+  transform-origin: center;
+}
+
+.opening-hours {
+  display: block;
+  text-align: center;
+  font-size: 30rpx;
+  color: #246e12;
 }
 
 /* 图片轮播样式 */
@@ -73,11 +87,6 @@
   margin-top: 30rpx;
 }
 
-.opening-hours {
-  font-size: 36rpx;
-  color: #246e12;
-  margin-bottom: 15rpx;
-}
 
 .reservation-link {
   text-decoration: none;
