@@ -1,0 +1,32 @@
+/* pages/record/record.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.record-button {
+  width: 200px;
+  height: 50px;
+  background-color: #ff4d4f;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 50px;
+  margin-bottom: 20px;
+}
+
+.actions button {
+  width: 200px;
+  height: 50px;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 50px;
+  margin-top: 10px;
+}

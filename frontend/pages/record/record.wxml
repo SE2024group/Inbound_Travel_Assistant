@@ -1,0 +1,17 @@
+<!--pages/record/record.wxml-->
+<view class="container">
+  <button
+    class="record-button"
+    bindtouchstart="startRecording"
+    bindtouchend="stopRecording"
+    disabled="{{isRecording}}"
+  >
+    {{isRecording ? '录音中...' : '按住录音'}}
+  </button>
+
+  <view class="actions">
+    <button bindtap="playRecording" class="play-button">
+      播放录音
+    </button>
+  </view>
+</view>

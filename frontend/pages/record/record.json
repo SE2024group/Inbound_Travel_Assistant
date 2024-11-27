@@ -1,9 +1,9 @@
 {
-  "navigationBarTitleText": "App",
+  "navigationBarTitleText": "TRANSLATION",
   "onReachBottomDistance": 10,
   "backgroundTextStyle": "light",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "t-swiper": "tdesign-miniprogram/swiper/swiper"
+    "t-divider": "/miniprogram_npm/tdesign-miniprogram/divider/divider"
   }
 }

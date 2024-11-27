@@ -24,7 +24,8 @@
     "pages/ocrResults/ocrResults",
     "pages/editImgs/editImgs",
     "pages/out/out",
-    "pages/out2/out2"
+    "pages/out2/out2",
+    "pages/record/record"
   ],
   "tabBar": {
     "custom": true,
@@ -42,7 +43,7 @@
         "text": "search"
       },
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/record/record",
         "text": "translation"
       },
       {
