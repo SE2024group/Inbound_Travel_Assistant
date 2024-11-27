@@ -1,0 +1,2 @@
+<!--pages/out2/out2.wxml-->
+<web-view src="{{reservationLink}}"></web-view>
