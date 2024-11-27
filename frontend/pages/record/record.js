@@ -39,10 +39,6 @@ Page({
 
   switchToChinesePage() {
     const currentText = this.data.selectedText; // 获取当前大文本框的内容
-    // 跳转到中文页面，使用参数传递数据
-    wx.navigateTo({
-      url: `/pages/record2/record2?text=${encodeURIComponent(currentText)}`,
-    });
   },
 
   // 开始录音
