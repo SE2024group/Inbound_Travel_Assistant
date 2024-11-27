@@ -20,7 +20,9 @@
     "pages/attractionDetail/attractionDetail",
     "pages/attractionSearch/attractionSearch",
     "pages/userRule/index",
-    "pages/setting/index"
+    "pages/setting/index",
+    "pages/out/out",
+    "pages/out2/out2"
   ],
   "tabBar": {
     "custom": true,
