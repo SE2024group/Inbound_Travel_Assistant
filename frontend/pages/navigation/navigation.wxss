@@ -1,12 +1,73 @@
+/* 容器样式 */
 .container {
-  background: linear-gradient(to bottom, #f9f5f6, #e3ecf2);
-  /* 与 usercenter 相同的背景 */
-  min-height: 120vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20rpx;
+  height: 110vh;
+  /* 占满整个视窗高度 */
+  overflow: hidden;
+  overflow-x: hidden;
 }
+
+/* Tab 样式 */
+.tab-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  height: 100rpx;
+  margin-bottom: 10rpx;
+  /* 动态占据剩余空间 */
+}
+
+.tab-item {
+  width: 100%;
+  flex: 1;
+  text-align: center;
+  font-size: 36rpx;
+  color: #666;
+  padding: 30rpx 0;
+  /* 提高点击区域 */
+  transition: color 0.3s, background-color 0.3s;
+  border-bottom: 4rpx solid transparent;
+}
+
+.tab-item.active {
+  color: #246e12;
+  font-weight: bold;
+  border-bottom: 6rpx solid #246e12;
+}
+
+/* 内容样式 */
+.content {
+  width: 100%;
+  flex: 4;
+  /* 动态占据剩余空间 */
+  overflow-y: scroll;
+  background-color: #f9f5f6;
+  /* 区别于 tab 背景 */
+}
+
+.category-section-container-app {
+  max-height: 100%;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  background: linear-gradient(145deg, #ffffff, #f0f2f5);
+  border-radius: 15rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.category-section-container-ticket {
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  background: linear-gradient(145deg, #ffffff, #f0f2f5);
+  border-radius: 15rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+
 
 .title {
   font-size: 40rpx;
@@ -17,7 +78,18 @@
   margin-left: 20rpx;
 }
 
-.category-section-container {
+.category-section-container-app {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 20rpx;
+  margin: 10rpx 0;
+  background: linear-gradient(145deg, #ffffff, #f0f2f5);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  border-radius: 15rpx;
+}
+
+.category-section-container-ticket {
   position: relative;
   width: 100%;
   height: auto;
@@ -40,17 +112,18 @@
   border-radius: 15rpx;
 }
 
-.category-section-container:first-child {
+.category-section-container-ticket {
   background: linear-gradient(145deg, #f9f1f3, #e8dfe4);
   /* 浅粉色渐变 */
 }
 
-.category-section-container:nth-child(2) {
+.category-section-container-app {
   background: linear-gradient(145deg, #eef3f8, #dfe7ee);
   /* 浅蓝色渐变 */
 }
 
 .category-section {
+  max-height: 100%;
   width: 100%;
   margin-bottom: 40rpx;
 }
@@ -82,23 +155,98 @@
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
+/* 外部容器样式 */
+.app-swiper {
+  width: 95%;
+  height: 200px;
+}
+
+.spot-swiper {
+  width: 95%;
+  height: 500px;
+}
+
+.app-scroll {
+  width: 100%;
+  /* 占满屏幕宽度 */
+  height: auto;
+  /* 根据内容自动扩展 */
+  padding: 10rpx 0;
+  overflow-y: scroll;
+  /* 垂直滚动 */
+}
+
+/* 每个卡片样式 */
+.app-card {
+  display: flex;
+  flex-direction: row;
+  /* 图片与文字横向排列 */
+  align-items: center;
+  padding: 20rpx;
+  margin-bottom: 15rpx;
+  /* 每个卡片的间距 */
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.spot-card {
+  display: flex;
+  flex-direction: row;
+  /* 图片与文字横向排列 */
+  align-items: center;
+  padding: 20rpx;
+  margin-bottom: 15rpx;
+  /* 每个卡片的间距 */
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 图片样式 */
+.app-image {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+  /* 图片与文字的间距 */
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+  /* 圆角效果 */
+}
+
+/* 应用信息样式 */
+.app-info {
+  flex: 1;
+  /* 占据剩余空间 */
+  display: flex;
+  flex-direction: column;
+  /* 垂直布局 */
+  justify-content: center;
+}
+
+/* 应用名称 */
+.app-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10rpx;
+}
+
+/* 应用描述 */
+.app-desc {
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 1.5;
+}
+
+
 /* 点击时的效果 */
 .app-item:active {
   transform: scale(0.95);
   box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
 }
 
-.app-image {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-  margin-bottom: 10rpx;
-}
 
-.app-name {
-  font-size: 28rpx;
-  color: rgb(0, 0, 0);
-}
 
 .ticket-reservation-section {
   display: flex;

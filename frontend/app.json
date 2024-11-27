@@ -39,7 +39,8 @@
     "pages/setting/index",
     "pages/ocrResults/ocrResults",
     "pages/editImgs/editImgs",
-    "pages/ocrResults"
+    "pages/out/out",
+    "pages/out2/out2"
   ],
   "tabBar": {
     "custom": true,

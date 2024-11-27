@@ -4,23 +4,6 @@
   "backgroundTextStyle": "light",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "t-search": "tdesign-miniprogram/search/search",
-    "t-loading": "tdesign-miniprogram/loading/loading",
-    "t-swiper": "tdesign-miniprogram/swiper/swiper",
-    "t-swiper-nav": "tdesign-miniprogram/swiper-nav/swiper-nav",
-    "t-image": "/miniprogram_npm/tdesign-miniprogram/image/image",
-    "t-icon": "tdesign-miniprogram/icon/icon",
-    "t-toast": "tdesign-miniprogram/toast/toast",
-    "t-tabs": "tdesign-miniprogram/tabs/tabs",
-    "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel",
-    "goods-list": "/components/goods-list/index",
-    "load-more": "/components/load-more/index",
-    "t-footer": "/miniprogram_npm/tdesign-miniprogram/footer/footer",
-    "t-navbar": "/miniprogram_npm/tdesign-miniprogram/navbar/navbar",
-    "t-date-time-picker": "/miniprogram_npm/tdesign-miniprogram/date-time-picker/date-time-picker",
-    "t-checkbox": "/miniprogram_npm/tdesign-miniprogram/checkbox/checkbox",
-    "t-textarea": "/miniprogram_npm/tdesign-miniprogram/textarea/textarea",
-    "t-drawer": "/miniprogram_npm/tdesign-miniprogram/drawer/drawer",
-    "t-avatar": "/miniprogram_npm/tdesign-miniprogram/avatar/avatar"
+    "t-divider": "/miniprogram_npm/tdesign-miniprogram/divider/divider"
   }
 }
