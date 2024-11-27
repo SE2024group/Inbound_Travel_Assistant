@@ -49,27 +49,36 @@
 
 .scroll-item {
   display: inline-block;
-  padding: 10px 20px;
+  width: 100px;
+  /* 保持原始宽度 */
   margin: 10px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   text-align: center;
-  font-size: 16px;
-  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+}
+
+.scroll-item.selected {
+  transform: scale(1.1);
+  /* 适度放大效果 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  /* 增强的阴影效果 */
+  border: 3px solid #007aff;
+  /* 蓝色边框 */
+  border-radius: 10px;
+  background-color: #f0f8ff;
+  /* 微弱的背景颜色 */
 }
 
 .item-image {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-  /* 图片与描述之间的间距 */
-  border-radius: 5px;
+  width: 50px;
+  /* 保持和原始大小一致 */
+  height: 50px;
+  /* 保持和原始大小一致 */
+  border-radius: 50%;
+  /* 圆形图片 */
 }
 
 .item-description {
   font-size: 14px;
-  text-align: left;
-  white-space: nowrap;
-  /* 确保文字不换行 */
+  color: #333;
+  margin-top: 5px;
 }

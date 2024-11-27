@@ -270,7 +270,7 @@ Page({
           console.error('Canvas node not found');
           return;
         }
-        console.log(imagePath)
+        //console.log(imagePath)
         const canvas = res[0].node;
         const ctx = canvas.getContext('2d');
         const img = canvas.createImage(); // 创建新的图片对象
@@ -328,62 +328,62 @@ Page({
   // 上传图片并请求OCR
   uploadImage(filePath) {
     const self = this;
-    const testArray = [{
-        imageURL: filePath, // 子图片地址
-        name: 'Image 1', // 图片名称
-        rectangle: {
-          topLeft: {
-            x: 50,
-            y: 50
-          }, // 长方形左上角
-          topRight: {
-            x: 150,
-            y: 50
-          }, // 长方形右上角
-          bottomLeft: {
-            x: 50,
-            y: 150
-          }, // 长方形左下角
-          bottomRight: {
-            x: 150,
-            y: 150
-          }, // 长方形右下角
-        },
-      },
-      {
-        imageURL: filePath, // 子图片地址
-        name: 'Image 2', // 图片名称
-        rectangle: {
-          topLeft: {
-            x: 20,
-            y: 20
-          },
-          topRight: {
-            x: 30,
-            y: 20
-          },
-          bottomLeft: {
-            x: 20,
-            y: 30
-          },
-          bottomRight: {
-            x: 30,
-            y: 30
-          },
-        },
-      },
-    ];
-    wx.navigateTo({
-      //url: '/pages/ocrResults/ocrResults',
-      url: '/pages/ocrResults/ocrResults',
-      success: (res) => {
-        res.eventChannel.emit('sendWordsData', {
-          wordsData: testArray,
-          imagePath: filePath,
-        });
-        console.log(filePath)
-      },
-    });
+    // const testArray = [{
+    //     imageURL: filePath, // 子图片地址
+    //     name: 'Image 1', // 图片名称
+    //     rectangle: {
+    //       topLeft: {
+    //         x: 50,
+    //         y: 50
+    //       }, // 长方形左上角
+    //       topRight: {
+    //         x: 150,
+    //         y: 50
+    //       }, // 长方形右上角
+    //       bottomLeft: {
+    //         x: 50,
+    //         y: 150
+    //       }, // 长方形左下角
+    //       bottomRight: {
+    //         x: 150,
+    //         y: 150
+    //       }, // 长方形右下角
+    //     },
+    //   },
+    //   {
+    //     imageURL: filePath, // 子图片地址
+    //     name: 'Image 2', // 图片名称
+    //     rectangle: {
+    //       topLeft: {
+    //         x: 20,
+    //         y: 20
+    //       },
+    //       topRight: {
+    //         x: 30,
+    //         y: 20
+    //       },
+    //       bottomLeft: {
+    //         x: 20,
+    //         y: 30
+    //       },
+    //       bottomRight: {
+    //         x: 30,
+    //         y: 30
+    //       },
+    //     },
+    //   },
+    // ];
+    // wx.navigateTo({
+    //   //url: '/pages/ocrResults/ocrResults',
+    //   url: '/pages/ocrResults/ocrResults',
+    //   success: (res) => {
+    //     res.eventChannel.emit('sendWordsData', {
+    //       wordsData: testArray,
+    //       imagePath: filePath,
+    //     });
+    //     console.log(filePath)
+    //   },
+    // });
     // 读取图片为 Base64
     wx.getFileSystemManager().readFile({
       filePath: filePath,
