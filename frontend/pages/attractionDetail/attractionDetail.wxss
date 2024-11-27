@@ -1,58 +1,90 @@
-.container{
-  background-color: #1F2833;
+/* 主容器样式 */
+.container {
+  background: linear-gradient(145deg, #f9f1f3, #e8dfe4);
+  /* 渐变背景，深色主题 */
+  padding: 20rpx;
+  min-height: 100vh;
+  /* 确保页面填满视窗 */
 }
 
+/* 景点名称 */
 .attraction-name {
   font-size: 60rpx;
-  color: #3dfff2;
+  font-weight: bold;
+  color: #666;
+  /* 高亮颜色 */
   text-align: center;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
+  text-shadow: 2rpx 2rpx 5rpx rgba(0, 0, 0, 0.5);
+  /* 添加阴影效果 */
 }
 
-.image-carousel {
+/* 图片轮播样式 */
+.swiper-wrap {
   width: 100%;
-  height: 400rpx;
   margin-top: 20rpx;
+  border-radius: 15rpx;
+  /* 圆角效果 */
+  overflow: hidden;
+  /* 确保图片不溢出 */
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.3);
+  /* 卡片阴影 */
 }
 
-.carousel-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
+/* 描述框 */
 .description-box {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20rpx;
+  margin: 30rpx auto;
   padding: 20rpx;
-  background-color: #2C3E50;
-  border: 8rpx solid #45A29E;
+  /* 深色背景，与页面协调 */
+  border: 2rpx solid #45a29e;
+  /* 边框颜色与主题一致 */
   border-radius: 20rpx;
-}
-
-.description-text {
-  color: antiquewhite;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.3);
+  /* 轻微阴影效果 */
+  color: black;
+  /* 白色文字 */
   line-height: 1.6;
-  text-align: center;
-  word-break: break-word;
-  font-size: 30rpx;
+  text-align: justify;
+  font-size: 32rpx;
 }
 
+/* 票务信息 */
 .ticket-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
 }
 
 .opening-hours {
-  font-size: 35rpx;
-  color: #3dfff2;
-  margin-bottom: 10rpx;
+  font-size: 36rpx;
+  color: #246e12;
+  margin-bottom: 15rpx;
 }
 
 .reservation-link {
+  text-decoration: none;
+  /* 去掉默认的下划线 */
+}
+
+.reservation-button {
+  background-color: #45a29e;
+  /* 按钮背景 */
+  color: #ffffff;
+  /* 按钮文字颜色 */
+  font-size: 32rpx;
+  padding: 15rpx 30rpx;
+  border: none;
+  border-radius: 25rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.3);
+  /* 添加阴影 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reservation-button:active {
+  transform: scale(0.98);
+  /* 按压效果 */
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
   font-size: 35rpx;
   color: #44c0ba;
   text-decoration: underline;

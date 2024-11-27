@@ -6,15 +6,17 @@ Page({
    */
   data: {
     attractionName: '',
-    imgSrcs: [],                      // Array to hold image URLs
+    imgSrcs: [], // Array to hold image URLs
 
-    current: 0,                       // Initial slide index
-    autoplay: true,                   // Autoplay enabled
-    duration: 500,                    // Transition duration (ms)
-    interval: 3000,                   // Autoplay interval (ms)
-    navigation: { type: 'fraction' }, // Show navigation arrows and indicators
+    current: 0, // Initial slide index
+    autoplay: true, // Autoplay enabled
+    duration: 500, // Transition duration (ms)
+    interval: 3000, // Autoplay interval (ms)
+    navigation: {
+      type: 'fraction'
+    }, // Show navigation arrows and indicators
     swiperImageProps: {
-      mode: 'aspectFill'              // Image mode for display
+      mode: 'aspectFill' // Image mode for display
     },
     descriptions: {
       'Tiananmen-Square': 'Tiananmen Square, located in the center of Beijing, is one of the largest public squares in the world and holds significant cultural and historical importance in China. Originally built in 1651 and expanded in the 1950s, the square is surrounded by iconic landmarks, including the Tiananmen Gate, the Monument to the People\'s Heroes, and the Mausoleum of Mao Zedong. It has been the site of numerous important events in Chinese history and is a symbol of national pride. Every day, visitors gather to witness the flag-raising ceremony, and the square remains a popular destination for tourists from around the world who come to experience its grandeur and historical ambiance.',
@@ -64,7 +66,6 @@ Page({
 
 
     },
-
     imgSrcs:{
       'Tiananmen-Square': [
         "https://cloud.tsinghua.edu.cn/f/e0d6af7b94574b06b4ee/?dl=1",

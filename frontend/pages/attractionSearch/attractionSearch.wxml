@@ -1,20 +1,20 @@
 <view class="container">
-  <view class="title">Complete List of Attractions</view>
+  <view class="title">Full List of Famous Attractions</view>
 
   <view class="subtitle">Museums</view>
   <view class="attraction-list">
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="National-Museum">National-Museum</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="Capital-Museum-of-Beijing">Capital-Museum-of-Beijing</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="National-Art-Museum-of-China">National-Art-Museum-of-China</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="China-Science-and-Technology-Museum">China-Science-and-Technology-Museum</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="National-Museum">National Museum</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="Capital-Museum-of-Beijing">Capital Museum of Beijing</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="National-Art-Museum-of-China">National Art Museum of China</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="China-Science-and-Technology-Museum">China Science and Technology Museum</view>
   </view>
 
   <view class="subtitle">Commercial & Entertainment</view>
   <view class="attraction-list">
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="Sanlitun-Taikoo-Li">Sanlitun-Taikoo-Li</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="Sanlitun-Taikoo-Li">Sanlitun Taikoo Li</view>
     <view class="attraction-item" bindtap="onAttractionClick" 
     data-name="Wangfujing">Wangfujing</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="China-World-Trade-Center">China-World-Trade-Center</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="China-World-Trade-Center">China World Trade Center</view>
     <view class="attraction-item" bindtap="onAttractionClick" 
     data-name="Solana">Solana</view>
   </view>
@@ -22,33 +22,33 @@
   <view class="subtitle">Cultural Experiences</view>
   <view class="attraction-list">
     <view class="attraction-item" bindtap="onAttractionClick" 
-    data-name="Tsinghua-University">Tsinghua-University</view>
+    data-name="Tsinghua-University">Tsinghua University</view>
     <view class="attraction-item" bindtap="onAttractionClick" 
     data-name="Nanluoguxiang">Nanluoguxiang</view>
     <view class="attraction-item" bindtap="onAttractionClick" 
     data-name="Shichahai">Shichahai</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="798-Art-District">798-Art-District</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="Bell-and-Drum-Towers-Cultural-Area">Bell-and-Drum-Towers-Cultural-Area</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="798-Art-District">798 Art District</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="Bell-and-Drum-Towers-Cultural-Area">Bell and Drum Towers Cultural Area</view>
   </view>
 
   <view class="subtitle">Historical Sites</view>
   <view class="attraction-list">
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="The-Palace-Museum">The-Palace-Museum</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="Tiananmen-Square">Tiananmen-Square</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="The-Palace-Museum">The Palace Museum</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="Tiananmen-Square">Tiananmen Square</view>
     <view class="attraction-item" bindtap="onAttractionClick" 
-    data-name="Summer-Palace">Summer-Palace</view>
+    data-name="Summer-Palace">Summer Palace</view>
     <view class="attraction-item" bindtap="onAttractionClick" 
-    data-name="Yuanming-Yuan">Yuanming-Yuan</view>
+    data-name="Yuanming-Yuan">Yuanming Yuan</view>
     <view class="attraction-item" bindtap="onAttractionClick" 
-    data-name="Beihai-Park">Beihai-Park</view>
+    data-name="Beihai-Park">Beihai Park</view>
   </view>
 
   <view class="subtitle">Natural Scenery</view>
   <view class="attraction-list">
     <view class="attraction-item" bindtap="onAttractionClick" 
     data-name="The-Great-Wall">The-Great-Wall</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="Fragrant-Hills-Park">Fragrant-Hills-Park</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="Beijing-Botanical-Garden">Beijing-Botanical-Garden</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="Olympic-Forest-Park">Olympic-Forest-Park</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="Fragrant-Hills-Park">Fragrant Hills Park</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="Beijing-Botanical-Garden">Beijing Botanical Garden</view>
+    <view class="attraction-item" bindtap="onAttractionClick" data-name="Olympic-Forest-Park">Olympic Forest Park</view>
   </view>
 </view>

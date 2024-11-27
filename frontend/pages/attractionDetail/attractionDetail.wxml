@@ -1,27 +1,22 @@
 <view class="container">
+  <!-- 景点名称 -->
   <view class="attraction-name">
     {{attractionName}}
   </view>
 
+  <!-- 图片轮播 -->
   <view class="swiper-wrap">
-    <t-swiper
-      wx:if="{{imgSrcs.length > 0}}"
-      current="{{current}}"
-      autoplay="{{autoplay}}"
-      duration="{{duration}}"
-      interval="{{interval}}"
-      navigation="{{navigation}}"    
-      imageProps="{{swiperImageProps}}"
-      list="{{imgSrcs}}"                 
-    />
+    <t-swiper wx:if="{{imgSrcs.length > 0}}" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" navigation="{{navigation}}" imageProps="{{swiperImageProps}}" list="{{imgSrcs}}" />
   </view>
 
+  <!-- 描述内容 -->
   <view class="description-box">
     <text class="description-text">
       {{description}}
     </text>
   </view>
 
+  <!-- 票务信息 -->
   <view class="ticket-info">
     <text class="opening-hours">Opening Hours: {{openingHours}}</text>
     <block wx:if="{{reservationLink}}">
@@ -33,5 +28,4 @@
       <text class="no-appointment">No appointment required</text>
     </block>
   </view>
-
 </view>
