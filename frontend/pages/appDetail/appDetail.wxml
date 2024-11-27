@@ -11,39 +11,12 @@
   </view>
 
   <view class="description-container">
-    <text class="app-description">{{items[id].description}}</text>
+    <text class="app-description" user-select="true">{{items[id].description}}</text>
   </view>
 
   <view class="download-container">
-  <navigator url="{{items[id].download_link}}" bindtap="toOut" class="download-link">
-    Download Here
-  </navigator>
+    <navigator url="{{items[id].download_link}}" bindtap="toOut" class="download-link">
+      Download Here
+    </navigator>
   </view>
-
 </view>
-
-
-  <!-- Download Links -->
-  <!-- <view class="download-links">
-    <view class="download-button">
-      <image class="system-icon" src="{{downloadLinks.android.icon}}" mode="aspectFill" />
-      <text>{{downloadLinks.android.text}}</text>
-    </view>
-    <view class="download-button">
-      <image class="system-icon" src="{{downloadLinks.ios.icon}}" mode="aspectFill" />
-      <text>{{downloadLinks.ios.text}}</text>
-    </view>
-  </view> -->
-
-  <!-- User Reviews -->
-  <!-- <view class="user-reviews">
-    <text class="review-tag">User-Friendly</text>
-    <text class="review-tag">Cheap</text>
-    <view class="review-highlight">{{highlightedReview}}</view>
-    <text class="review-comment">{{userComment}}</text>
-
-    <button bindtap="onAddComment">Add Comment</button>
-  </view> -->
-
-
-
