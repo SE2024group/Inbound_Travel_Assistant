@@ -220,8 +220,6 @@
   box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
 }
 
-
-
 .ticket-reservation-section {
   display: flex;
   flex-direction: column;
@@ -231,76 +229,33 @@
 
 .title-container {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between; /* 两端对齐 */
+  align-items: center; /* 垂直居中对齐 */
   margin-left: 20rpx;
-  width: 100%;
-}
-
-.title2 {
-  font-size: 40rpx;
-  font-weight: bold;
-  color: rgb(83, 107, 38);
-  margin-bottom: 30rpx;
-  margin-left: 20rpx;
-}
-
-.button-container {
-  display: inline-block;
-  align-items: right;
-  text-align: right;
-  /* 垂直居中 */
-  padding: 0 150rpx;
-  /* 左右留白，防止元素贴边 */
-  height: 50rpx;
-  /* 可根据需求调整 */
+  width: 80%;
 }
 
 .view-all-button {
-  margin: 0;
-  background: linear-gradient(90deg, #4CAF50, #81C784);
-  /* 渐变背景 */
-  color: white;
-  /* 按钮文字颜色 */
-  border: none;
-  border-radius: 30rpx;
-  /* 圆角 */
-  font-size: 28rpx;
-  /* 字体大小保持原样 */
-  display: inline-block;
-  /* 使按钮宽度仅匹配内容 */
-  font-weight: bold;
-  /* 文字加粗 */
-  text-align: center;
-  /* 文字居中 */
-  line-height: 50rpx;
-  /* 确保文字垂直居中 */
-  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.2);
-  /* 按钮阴影 */
-  transition: all 0.3s ease;
-  /* 动画过渡 */
-  overflow: hidden;
+  display: inline-flex; /* 确保按钮内的文字和按钮整体一致 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  background: linear-gradient(90deg, #4CAF50, #81C784); /* 背景渐变 */
+  color: white; /* 文字颜色 */
+  border-radius: 30rpx; /* 圆角 */
+  font-size: 28rpx; /* 字体大小 */
+  font-weight: bold; /* 字体加粗 */
+  text-align: center; /* 文字居中 */
+  height: 50rpx; /* 按钮高度 */
+  line-height: 50rpx; /* 行高 */
+  padding: 0 20rpx; /* 内边距 */
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.2); /* 按钮阴影 */
+  transition: all 0.3s ease; /* 动画过渡 */
 }
 
-/* 悬停效果 */
-.view-all-button:hover {
-  background: linear-gradient(90deg, #388E3C, #66BB6A);
-  /* 悬停时颜色更深 */
-  box-shadow: 0 6rpx 10rpx rgba(0, 0, 0, 0.3);
-  /* 增强阴影效果 */
-  transform: translateY(-2rpx);
-  /* 轻微上移 */
-}
-
-/* 按下按钮时效果 */
 .view-all-button:active {
-  transform: scale(0.95);
-  /* 按下时按钮缩小 */
   background: linear-gradient(90deg, #2E7D32, #4CAF50);
-  /* 按下时颜色更深 */
   box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
-  /* 按下时阴影变浅 */
 }
-
 
 .attraction-list {
   display: flex;
@@ -316,5 +271,4 @@
   margin-bottom: 15rpx;
   text-align: left;
   text-decoration: underline;
-  /* Adds underline */
 }

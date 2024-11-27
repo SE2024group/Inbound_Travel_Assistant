@@ -1,6 +1,6 @@
 /* 主容器样式 */
 .container {
-  background: linear-gradient(145deg, #f9f1f3, #e8dfe4);
+  background: linear-gradient(145deg, #eef3f8, #dfe7ee);
   padding: 20rpx;
 }
 

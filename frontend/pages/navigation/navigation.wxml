@@ -80,9 +80,7 @@
           <view class="title-container">
             <view class="category-title">Suggestions</view>
             <navigator url="../attractionSearch/attractionSearch" open-type="navigate">
-              <view class="button-container">
-                <button class="view-all-button">View All</button>
-              </view>
+              <button class="view-all-button">View All</button>
             </navigator>
           </view>
           <swiper class="spot-swiper" indicator-dots="true" autoplay="false">
