@@ -23,6 +23,18 @@
         <!-- 中文： 只是为了显示我成功选择了图片 -->
       </button>
     </view>
+    <view wx:if="{{ocrResult}}" style="margin-top: 20rpx; padding: 10rpx; background-color: #f5f5f5; border-radius: 10rpx;">
+      <text>{{ocrResult}}</text>
+    </view>
     <text class="bottom-text" style="text-align: center; width: 100%; color: #333; font-size: 30rpx;">take a photo to search</text>
   </view>
 </view>
+
+<!-- 裁剪 -->
+<!-- <view class="image-container">
+  <canvas id="imageCanvas" type="2d" style="width: 400px; height: 600px; border: 1px solid red;" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd" bindtouchend="onTouchEnd"></canvas>
+</view>
+<view class="button-group"> -->
+<!-- 裁剪确认按钮 -->
+<!-- <button bindtap="cropImage">Crop and Extract Text</button>
+</view> -->
