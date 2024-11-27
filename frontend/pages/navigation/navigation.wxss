@@ -50,24 +50,6 @@
   /* 区别于 tab 背景 */
 }
 
-.category-section-container-app {
-  max-height: 100%;
-  padding: 20rpx;
-  margin-bottom: 20rpx;
-  background: linear-gradient(145deg, #ffffff, #f0f2f5);
-  border-radius: 15rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
-}
-
-.category-section-container-ticket {
-  padding: 20rpx;
-  margin-bottom: 20rpx;
-  background: linear-gradient(145deg, #ffffff, #f0f2f5);
-  border-radius: 15rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
-}
-
-
 
 .title {
   font-size: 40rpx;
@@ -84,7 +66,8 @@
   height: auto;
   padding: 20rpx;
   margin: 10rpx 0;
-  background: linear-gradient(145deg, #ffffff, #f0f2f5);
+  background: linear-gradient(145deg, #eef3f8, #dfe7ee);
+  /* 浅蓝色渐变 */
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
   border-radius: 15rpx;
 }
@@ -95,7 +78,8 @@
   height: auto;
   padding: 20rpx;
   margin: 10rpx 0;
-  background: linear-gradient(145deg, #ffffff, #f0f2f5);
+  background: linear-gradient(145deg, #f2f6fa, #e3ebf2);
+  /* 柔和蓝灰色调 */
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
   border-radius: 15rpx;
 }
@@ -110,16 +94,6 @@
   z-index: -1;
   background-size: cover;
   border-radius: 15rpx;
-}
-
-.category-section-container-ticket {
-  background: linear-gradient(145deg, #f9f1f3, #e8dfe4);
-  /* 浅粉色渐变 */
-}
-
-.category-section-container-app {
-  background: linear-gradient(145deg, #eef3f8, #dfe7ee);
-  /* 浅蓝色渐变 */
 }
 
 .category-section {
@@ -270,15 +244,34 @@
   margin-left: 20rpx;
 }
 
+.button-container {
+  display: flex;
+  align-items: center;
+  /* 垂直居中 */
+  padding: 0 150rpx;
+  /* 左右留白，防止元素贴边 */
+  height: 50rpx;
+  /* 可根据需求调整 */
+}
+
 .view-all-button {
-  background-color: #246e12;
+  background-color: #45a29e;
   color: white;
   border: none;
-  margin-left: 100rpx;
+  margin-left: auto;
+  margin-right: 10rpx;
   border-radius: 30rpx;
   font-size: 28rpx;
   box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
   transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* 悬停效果 */
+.view-all-button:hover {
+  transform: translateY(-2rpx);
+  /* 轻微上移，增加交互感 */
+  box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.4);
+  /* 阴影更明显 */
 }
 
 /* 按下按钮时效果 */
