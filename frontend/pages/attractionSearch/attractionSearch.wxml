@@ -7,7 +7,6 @@
     <view class="attraction-item" bindtap="onAttractionClick" data-name="Capital-Museum-of-Beijing">Capital-Museum-of-Beijing</view>
     <view class="attraction-item" bindtap="onAttractionClick" data-name="National-Art-Museum-of-China">National-Art-Museum-of-China</view>
     <view class="attraction-item" bindtap="onAttractionClick" data-name="China-Science-and-Technology-Museum">China-Science-and-Technology-Museum</view>
-    <view class="attraction-item" bindtap="onAttractionClick" data-name="Beijing-Natural-History-Museum">Beijing-Natural-History-Museum</view>
   </view>
 
   <view class="subtitle">Commercial & Entertainment</view>
@@ -22,6 +21,8 @@
 
   <view class="subtitle">Cultural Experiences</view>
   <view class="attraction-list">
+    <view class="attraction-item" bindtap="onAttractionClick" 
+    data-name="Tsinghua-University">Tsinghua-University</view>
     <view class="attraction-item" bindtap="onAttractionClick" 
     data-name="Nanluoguxiang">Nanluoguxiang</view>
     <view class="attraction-item" bindtap="onAttractionClick" 

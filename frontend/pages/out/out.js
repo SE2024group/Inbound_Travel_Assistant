@@ -1,33 +1,20 @@
+// pages/out/out.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    attractions: [
-      "Tiananmen-Square",
-      "National-Museum",
-      "Tsinghua-University",
-      "The-Palace-Museum",
-      "Summer-Palace"
-    ]
-
+    webViewUrl: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
-  },
-
-  onAppTap(event) {
-    // 获取被点击的app的标识
-    const appId = event.currentTarget.dataset.appId;
-    const url = '/pages/appDetail/appDetail?id=' + appId;
-    // 使用wx.navigateTo进行页面跳转
-    wx.navigateTo({
-      url: url
+    const url = decodeURIComponent(options.url);
+    this.setData({
+      webViewUrl: url
     });
   },
 
@@ -42,7 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.getTabBar().init();
+
   },
 
   /**
