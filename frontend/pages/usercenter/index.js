@@ -16,7 +16,7 @@ Page({
           console.warn(`Attempt ${attempt} failed. Retrying...`);
           // 延迟一段时间后重试
           setTimeout(() => {
-            retryFetchUserData(token, maxRetries, attempt + 1).then(resolve).catch(reject);
+            this.retryFetchUserData(token, maxRetries, attempt + 1).then(resolve).catch(reject);
           }, 100); // 1秒延迟（可调整）
         } else {
           reject(`Failed after ${maxRetries} attempts: ${error}`);
