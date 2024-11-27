@@ -1,0 +1,20 @@
+<!--pages/accountInfo/index.wxml-->
+<view class="account-info-page">
+  <view class="account-info-header">
+    <text class="account-info-title">Account Information</text>
+  </view>
+  <view class="account-info-section">
+    <view class="account-info-item">
+      <text>User Name</text>
+      <text class="account-info-value">{{userName}}</text>
+    </view>
+    <view class="account-info-item">
+      <text>Logged in by</text>
+      <text class="account-info-value">{{loggedBy}}</text>
+    </view>
+    <view class="account-info-item">
+      <text>Registered at</text>
+      <text class="account-info-value">{{registeredAt}}</text>
+    </view>
+  </view>
+</view>

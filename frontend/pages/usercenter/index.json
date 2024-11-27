@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "个人中心",
+  "navigationBarTitleText": "User Center",
   "navigationStyle": "custom",
   "usingComponents": {
     "t-popup": "tdesign-miniprogram/popup/popup",

@@ -1,5 +1,5 @@
 <view class="container">
-  <image class="logo" src="/assets/logo.png" mode="widthFix"></image>
+  <image class="logo" src="./assets/logo.jpg" mode="widthFix"></image>
   <text class="welcome-text">Welcome to use Cultural Compass</text>
 
   <button class="login-button" open-type="getUserProfile" bindtap="onWeChatLogin" type="primary">

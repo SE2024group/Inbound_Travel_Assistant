@@ -31,6 +31,12 @@
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  /* 左右两端对齐 */
+}
+
+.settings-item-disabled {
+  pointer-events: none;
 }
 
 .settings-item:last-child {
@@ -40,4 +46,17 @@
 .settings-item:active {
   background-color: #e0e0e0;
   /* 点击效果 */
+}
+
+.settings-switch {
+  width: 52px;
+  /* 开关的宽度 */
+  height: 32px;
+  /* 开关的高度 */
+}
+
+.language-text {
+  color: #999;
+  /* 较暗的文字颜色 */
+  font-size: 16px;
 }

@@ -1,22 +1,49 @@
 /* 主容器样式 */
 .container {
   background: linear-gradient(145deg, #f9f1f3, #e8dfe4);
-  /* 渐变背景，深色主题 */
   padding: 20rpx;
   min-height: 100vh;
-  /* 确保页面填满视窗 */
 }
 
-/* 景点名称 */
+/* 景点名称样式 */
 .attraction-name {
-  font-size: 60rpx;
-  font-weight: bold;
-  color: #666;
-  /* 高亮颜色 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(227, 224, 237, 0.8);
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  margin-bottom: 30rpx;
+}
+
+.attraction-title {
+  flex: 1;
   text-align: center;
-  margin-top: 30rpx;
-  text-shadow: 2rpx 2rpx 5rpx rgba(0, 0, 0, 0.5);
-  /* 添加阴影效果 */
+  font-size: 54rpx;
+  /* 最大字体 */
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+
+  /* 防止换行 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* 动态缩放适配宽度 */
+  transform-origin: center;
+}
+
+.opening-hours {
+  display: block;
+  text-align: center;
+  font-size: 30rpx;
+  color: #246e12;
 }
 
 /* 图片轮播样式 */
@@ -24,27 +51,31 @@
   width: 100%;
   margin-top: 20rpx;
   border-radius: 15rpx;
-  /* 圆角效果 */
   overflow: hidden;
-  /* 确保图片不溢出 */
   box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.3);
-  /* 卡片阴影 */
 }
 
 /* 描述框 */
 .description-box {
   margin: 30rpx auto;
-  padding: 20rpx;
-  /* 深色背景，与页面协调 */
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-bottom: 30rpx;
+  padding-top: 0rpx;
+  background: rgba(227, 224, 237, 0.8);
   border: 2rpx solid #45a29e;
-  /* 边框颜色与主题一致 */
   border-radius: 20rpx;
   box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.3);
-  /* 轻微阴影效果 */
   color: black;
-  /* 白色文字 */
+}
+
+.description-text {
+  margin: 0;
+  /* 移除多余的外边距 */
+  padding: 0;
+  /* 移除多余的内边距 */
   line-height: 1.6;
-  text-align: justify;
+  text-align: center;
   font-size: 32rpx;
 }
 
@@ -56,38 +87,25 @@
   margin-top: 30rpx;
 }
 
-.opening-hours {
-  font-size: 36rpx;
-  color: #246e12;
-  margin-bottom: 15rpx;
-}
 
 .reservation-link {
   text-decoration: none;
-  /* 去掉默认的下划线 */
 }
 
 .reservation-button {
-  background-color: #45a29e;
-  /* 按钮背景 */
-  color: #ffffff;
-  /* 按钮文字颜色 */
+  background: linear-gradient(90deg, #FF8C42, #FF5722);
+  color: white;
   font-size: 32rpx;
-  padding: 15rpx 30rpx;
-  border: none;
-  border-radius: 25rpx;
-  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.3);
-  /* 添加阴影 */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 12rpx 28rpx;
+  border-radius: 12rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.reservation-button:active {
-  transform: scale(0.98);
-  /* 按压效果 */
-  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
-  font-size: 35rpx;
-  color: #44c0ba;
-  text-decoration: underline;
+.reservation-button:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.15);
 }
 
 .no-appointment {
