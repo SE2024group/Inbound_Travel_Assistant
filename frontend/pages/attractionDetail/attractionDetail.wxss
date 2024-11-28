@@ -61,19 +61,16 @@
   padding-left: 30rpx;
   padding-right: 30rpx;
   padding-bottom: 30rpx;
-  padding-top: 0rpx;
   background: rgba(227, 224, 237, 0.8);
   border: 2rpx solid #45a29e;
   border-radius: 20rpx;
   box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.3);
   color: black;
+  max-height: 600rpx; /* 固定高度 */
+  overflow-y: auto;   /* 允许纵向滚动 */
 }
 
 .description-text {
-  margin: 0;
-  /* 移除多余的外边距 */
-  padding: 0;
-  /* 移除多余的内边距 */
   line-height: 1.6;
   text-align: center;
   font-size: 32rpx;
