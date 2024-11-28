@@ -55,14 +55,16 @@
   box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
   padding: 30rpx;
   margin-bottom: 30rpx;
+  max-height: 800rpx; /* 固定高度 */
+  overflow-y: auto;   /* 允许纵向滚动 */
 }
 
 .app-description {
   color: #444;
-  line-height: 1.8;
+  line-height: 1.6;
   text-align: center;
   word-break: break-word;
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
 
 .download-container {
