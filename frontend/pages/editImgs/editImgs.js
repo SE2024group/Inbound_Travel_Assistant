@@ -40,7 +40,7 @@ Page({
   },
   drawImageToCanvas(imagePath) {
     const query = wx.createSelectorQuery().in(this);
-    query.select('#rectCanvas')
+    query.select('#imageCanvas')
       .node()
       .exec((res) => {
         if (!res[0]) {
@@ -100,6 +100,8 @@ Page({
           // 清空画布并绘制缩放后的图片
           ctx.clearRect(0, 0, canvasWidth, canvasHeight);
           ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
+          // console.log("offsety1")
+          // console.log(offsetY)
         };
 
 
@@ -126,20 +128,86 @@ Page({
     //console.log("开始触摸")
     this.setData({
       startX: e.touches[0].x,
+
       startY: e.touches[0].y,
     });
+    console.log(this.data.startX);
+    console.log(this.data.startY);
   },
 
-  // 手指拖动调整裁剪区域
+  // // 手指拖动调整裁剪区域
+  // onTouchMove(e) {
+  //   const moveX = e.touches[0].x;
+  //   const moveY = e.touches[0].y;
+  //   // console.log("拖动")
+  //   this.setData({
+  //     cropWidth: Math.abs(moveX - this.data.startX),
+  //     cropHeight: Math.abs(moveY - this.data.startY),
+  //   });
+  //   //console.log("设置好数据了")
+  //   const query = wx.createSelectorQuery().in(this);
+  //   query.select('#rectCanvas')
+  //     .node()
+  //     .exec((res) => {
+  //       const canvas = res[0].node;
+  //       const ctx = canvas.getContext('2d');
+  //       const {
+  //         pixelRatio,
+  //         windowWidth,
+  //         windowHeight
+  //       } = wx.getWindowInfo();
+  //       // 清除画布内容
+  //       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  //       // 重新绘制图片（确保背景恢复到裁剪框绘制前的状态）
+  //       const img = canvas.createImage();
+  //       img.src = this.data.imageSrc; // 确保绘制图片的路径有效
+  //       img.onload = () => {
+  //         // 获取图片的原始宽高
+  //         const imgWidth = img.width;
+  //         const imgHeight = img.height;
+
+  //         // 获取画布的宽高
+  //         const canvasWidth = canvas.width / pixelRatio;
+  //         const canvasHeight = canvas.height / pixelRatio;
+
+  //         // 计算缩放因子，确保图片不会超出画布
+  //         const scaleFactor = Math.min(canvasWidth / imgWidth, canvasHeight / imgHeight);
+
+  //         // 根据缩放因子计算图片在画布上的宽高
+  //         const drawWidth = imgWidth * scaleFactor;
+  //         const drawHeight = imgHeight * scaleFactor;
+
+  //         // 计算图片在画布上的居中偏移量
+  //         const offsetX = (canvasWidth - drawWidth) / 2;
+  //         //console.log(offsetX)
+  //         const offsetY = (canvasHeight - drawHeight) / 2;
+  //         // console.log(canvasHeight)
+  //         // console.log(drawHeight)
+  //         // 清空画布并绘制缩放后的图片
+  //         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+  //         ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
+  //         //  ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
+  //         //console.log('Image redrawn, ready for the new crop frame.');
+
+  //         // 绘制实时裁剪框
+  //         ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)'; // 半透明红框
+  //         ctx.lineWidth = 2;
+  //         ctx.strokeRect(this.data.startX, this.data.startY, this.data.cropWidth, this.data.cropHeight);
+  //       };
+  //       // img.src = this.data.imageSrc; // 确保绘制图片的路径有效
+  //     });
+
+  // },
   onTouchMove(e) {
     const moveX = e.touches[0].x;
     const moveY = e.touches[0].y;
-    // console.log("拖动")
+
     this.setData({
       cropWidth: Math.abs(moveX - this.data.startX),
       cropHeight: Math.abs(moveY - this.data.startY),
     });
-    //console.log("设置好数据了")
+
     const query = wx.createSelectorQuery().in(this);
     query.select('#rectCanvas')
       .node()
@@ -151,56 +219,29 @@ Page({
           windowWidth,
           windowHeight
         } = wx.getWindowInfo();
-        // 清除画布内容
+        // 设置高分辨率 Canvas
+        canvas.width = 300 * pixelRatio;
+        canvas.height = 500 * pixelRatio;
+
+        ctx.scale(pixelRatio, pixelRatio); // 按照像素比缩放
+        // 清除裁剪框
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // 重新绘制图片（确保背景恢复到裁剪框绘制前的状态）
-        const img = canvas.createImage();
-        img.src = this.data.imageSrc; // 确保绘制图片的路径有效
-        img.onload = () => {
-          // 获取图片的原始宽高
-          const imgWidth = img.width;
-          const imgHeight = img.height;
-
-          // 获取画布的宽高
-          const canvasWidth = canvas.width / pixelRatio;
-          const canvasHeight = canvas.height / pixelRatio;
-
-          // 计算缩放因子，确保图片不会超出画布
-          const scaleFactor = Math.min(canvasWidth / imgWidth, canvasHeight / imgHeight);
-
-          // 根据缩放因子计算图片在画布上的宽高
-          const drawWidth = imgWidth * scaleFactor;
-          const drawHeight = imgHeight * scaleFactor;
-
-          // 计算图片在画布上的居中偏移量
-          const offsetX = (canvasWidth - drawWidth) / 2;
-          //console.log(offsetX)
-          const offsetY = (canvasHeight - drawHeight) / 2;
-          // console.log(canvasHeight)
-          // console.log(drawHeight)
-          // 清空画布并绘制缩放后的图片
-          ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-          ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
-          //  ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
-          //console.log('Image redrawn, ready for the new crop frame.');
-
-          // 绘制实时裁剪框
-          ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)'; // 半透明红框
-          ctx.lineWidth = 2;
-          ctx.strokeRect(this.data.startX, this.data.startY, this.data.cropWidth, this.data.cropHeight);
-        };
-        // img.src = this.data.imageSrc; // 确保绘制图片的路径有效
+        // 绘制裁剪框
+        ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(this.data.startX, this.data.startY, this.data.cropWidth, this.data.cropHeight);
+        //ctx.strokeRect(0, 0, 100, 100);
       });
-
   },
 
   cropImage() {
     this.setData({
       isProcessing: true
     });
+
     const query = wx.createSelectorQuery().in(this);
-    query.select('#rectCanvas')
+    query.select('#imageCanvas')
       .node()
       .exec((res) => {
         if (!res[0]) {
@@ -209,68 +250,109 @@ Page({
         }
 
         const canvas = res[0].node;
-        const ctx = canvas.getContext('2d');
-        const {
-          pixelRatio
-        } = wx.getWindowInfo();
+        // const ctx = canvas.getContext('2d');
+        // const {
+        //   pixelRatio
+        // } = wx.getWindowInfo();
 
-        // 设置画布大小
-        const cropWidth = 300 * pixelRatio;
-        const cropHeight = 500 * pixelRatio;
+        // // 设置画布大小
+        // const cropWidth = 300 * pixelRatio;
+        // const cropHeight = 500 * pixelRatio;
 
-        canvas.width = cropWidth;
-        canvas.height = cropHeight;
+        // canvas.width = cropWidth;
+        // canvas.height = cropHeight;
 
-        const img = canvas.createImage();
-        img.src = this.data.imageSrc;
+        // const img = canvas.createImage();
+        // img.src = this.data.imageSrc;
 
-        // 确保图片加载完成后处理
-        img.onload = () => {
-          // 获取图片的原始宽高
-          const imgWidth = img.width;
-          const imgHeight = img.height;
+        // // 确保图片加载完成后处理
+        // img.onload = () => {
+        //   // 获取图片的原始宽高
+        //   const imgWidth = img.width;
+        //   const imgHeight = img.height;
 
-          // 获取画布的宽高
-          const canvasWidth = canvas.width / pixelRatio;
-          const canvasHeight = canvas.height / pixelRatio;
+        //   // 获取画布的宽高
+        //   const canvasWidth = canvas.width / pixelRatio;
+        //   const canvasHeight = canvas.height / pixelRatio;
 
-          // 计算缩放因子，确保图片不会超出画布
-          const scaleFactor = Math.min(canvasWidth / imgWidth, canvasHeight / imgHeight);
+        //   // 计算缩放因子，确保图片不会超出画布
+        //   const scaleFactor = Math.min(canvasWidth / imgWidth, canvasHeight / imgHeight);
 
-          // 根据缩放因子计算图片在画布上的宽高
-          const drawWidth = imgWidth * scaleFactor;
-          const drawHeight = imgHeight * scaleFactor;
+        //   // 根据缩放因子计算图片在画布上的宽高
+        //   const drawWidth = imgWidth * scaleFactor;
+        //   const drawHeight = imgHeight * scaleFactor;
 
-          // 计算图片在画布上的居中偏移量
-          const offsetX = (canvasWidth - drawWidth) / 2;
-          const offsetY = (canvasHeight - drawHeight) / 2;
+        //   // 计算图片在画布上的居中偏移量
+        //   const offsetX = (canvasWidth - drawWidth) / 2;
+        //   const offsetY = (canvasHeight - drawHeight) / 2;
 
-          // 清空画布并绘制缩放后的图片
-          ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-          ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth * pixelRatio, drawHeight * pixelRatio);
+        //   // 清空画布并绘制缩放后的图片
+        //   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        //   ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth * pixelRatio, drawHeight * pixelRatio);
+        //   console.log("offsety2")
+        //   console.log(offsetY)
+        // 在绘制完成后导出图片
+        wx.canvasToTempFilePath({
+          canvas,
+          // x: this.data.startX * pixelRatio, // 乘以像素比，确保匹配画布的实际分辨率
+          // y: this.data.startY * pixelRatio,
+          x: this.data.startX,
+          y: this.data.startY,
+          width: this.data.cropWidth,
+          height: this.data.cropHeight,
+          // width: this.data.cropWidth * pixelRatio,
+          // height: this.data.cropHeight * pixelRatio,
+          success: (res) => {
+            console.log('Cropped image path:', res.tempFilePath);
+            this.displayCroppedImage(res.tempFilePath); // 显示裁剪后的图片
+          },
+          fail: (err) => {
+            console.error('Crop image failed:', err);
+          },
+        });
 
-          // 在绘制完成后导出图片
-          wx.canvasToTempFilePath({
-            canvas,
-            x: this.data.startX - offsetX,
-            y: this.data.startY - offsetY,
-            width: this.data.cropWidth,
-            height: this.data.cropHeight,
-            success: (res) => {
-              console.log('Cropped image path:', res.tempFilePath);
-              this.displayCroppedImage(res.tempFilePath); // 显示裁剪后的图片
-            },
-            fail: (err) => {
-              console.error('Crop image failed:', err);
-            },
-          });
-        };
       });
   },
 
   displayCroppedImage(imagePath) {
     const query = wx.createSelectorQuery().in(this);
     query.select('#rectCanvas')
+      .node()
+      .exec((res) => {
+        const canvas = res[0].node;
+        const ctx = canvas.getContext('2d');
+        const {
+          pixelRatio,
+          windowWidth,
+          windowHeight
+        } = wx.getWindowInfo();
+        // 设置高分辨率 Canvas
+        canvas.width = 300 * pixelRatio;
+        canvas.height = 500 * pixelRatio;
+
+        ctx.scale(pixelRatio, pixelRatio); // 按照像素比缩放
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+
+      });
+    const query2 = wx.createSelectorQuery().in(this);
+    query2.select('#imageCanvas')
+      .node()
+      .exec((res) => {
+        if (!res[0]) {
+          console.error('Canvas node not found');
+          return;
+        }
+        //console.log(imagePath)
+        const canvas = res[0].node;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      });
+
+    const query3 = wx.createSelectorQuery().in(this);
+    query3.select('#imageCanvas')
+    query3.select('#imageCanvas')
       .node()
       .exec((res) => {
         if (!res[0]) {

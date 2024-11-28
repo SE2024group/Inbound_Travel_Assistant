@@ -35,9 +35,16 @@
   /* 按下时按钮缩小 */
 }
 
-
 .image-canvas {
   width: 100%;
   /* 确保画布覆盖整个图片 */
   height: 100%;
+  z-index: 1;
+}
+
+.rect-canvas {
+  width: 100%;
+  /* 确保画布覆盖整个图片 */
+  height: 100%;
+  z-index: 2;
 }

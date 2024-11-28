@@ -2,7 +2,8 @@
   <!-- 图片展示部分 -->
   <view class="image-container">
     <!-- <image src="{{imageSrc}}" mode="aspectFit" class="image-display"></image> -->
-    <canvas id="rectCanvas" type="2d" style="width: 300px; height: 500px;position: absolute; top: 0" class="image-canvas" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd" bindtouchend="onTouchEnd"></canvas>
+    <canvas id="rectCanvas" type="2d" style="width: 300px; height: 500px;position: absolute; top: 0" class="rect-canvas" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd" bindtouchend="onTouchEnd"></canvas>
+    <canvas id="imageCanvas" type="2d" style="width: 300px; height: 500px;position: absolute; top: 0" class="image-canvas"></canvas>
   </view>
 
   <view class="button-group">
