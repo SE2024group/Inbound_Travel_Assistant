@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" catchtouchmove="stopTouchMove">
   <!-- 图片展示部分 -->
   <view class="image-container">
     <!-- <image src="{{imageSrc}}" mode="aspectFit" class="image-display"></image> -->
