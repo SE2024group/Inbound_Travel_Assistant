@@ -75,7 +75,7 @@ Page({
     });
     wx.setStorage({
       key: 'registeredAt',
-      data: new Date().toISOString(),
+      data: new Date().toISOString() + " GMT",
     });
     wx.setStorageSync('isLoggedIn', true);
     wx.switchTab({
