@@ -9,7 +9,10 @@ Page({
     isTouching: false, // 是否正在触摸
     isProcessing: false, // 是否正在处理，用于控制按钮状态和加载提示
   },
-
+  stopTouchMove() {
+    // 阻止默认滑动行为
+    return false;
+  },
   onLoad() {
     const eventChannel = this.getOpenerEventChannel();
 
