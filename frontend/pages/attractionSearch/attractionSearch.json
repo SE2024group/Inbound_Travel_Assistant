@@ -1,3 +1,7 @@
 {
+  "navigationBarTitleText": "Attraction List",
+  "onReachBottomDistance": 10,
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

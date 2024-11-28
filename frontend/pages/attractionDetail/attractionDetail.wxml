@@ -1,37 +1,31 @@
 <view class="container">
+  <!-- 景点名称 -->
   <view class="attraction-name">
-    {{attractionName}}
+    <text class="attraction-title" style="transform: scale({{scaleFactor}});">{{attractionName}}</text>
+    <text class="opening-hours">Opening Hours:\n {{openingHours}}</text>
   </view>
 
+  <!-- 图片轮播 -->
   <view class="swiper-wrap">
-    <t-swiper
-      wx:if="{{imgSrcs.length > 0}}"
-      current="{{current}}"
-      autoplay="{{autoplay}}"
-      duration="{{duration}}"
-      interval="{{interval}}"
-      navigation="{{navigation}}"    
-      imageProps="{{swiperImageProps}}"
-      list="{{imgSrcs}}"                 
-    />
+    <t-swiper wx:if="{{imgSrcs.length > 0}}" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" navigation="{{navigation}}" imageProps="{{swiperImageProps}}" list="{{imgSrcs}}" />
   </view>
 
+  <!-- 描述内容 -->
   <view class="description-box">
-    <text class="description-text">
+    <text class="description-text" user-select="true">
       {{description}}
     </text>
   </view>
 
+  <!-- 票务信息 -->
   <view class="ticket-info">
-    <text class="opening-hours">Opening Hours: {{openingHours}}</text>
     <block wx:if="{{reservationLink}}">
       <navigator class="reservation-link" url="/pages/out2/out2?reservationLink={{reservationLink}}" open-type="navigate">
-        Reserve Tickets
+        <view class="reservation-button">Reserve Tickets</view>
       </navigator>
     </block>
     <block wx:else>
       <text class="no-appointment">No appointment required</text>
     </block>
   </view>
-
 </view>
