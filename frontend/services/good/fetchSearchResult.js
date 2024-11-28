@@ -1,10 +1,16 @@
 /* eslint-disable no-param-reassign */
-import { config } from '../../config/index';
+import {
+  config
+} from '../../config/index';
 
 /** 获取搜索历史 */
 function mockSearchResult(params) {
-  const { delay } = require('../_utils/delay');
-  const { getSearchResult } = require('../../model/search');
+  const {
+    delay
+  } = require('../_utils/delay');
+  const {
+    getSearchResult
+  } = require('../../model/search');
 
   const data = getSearchResult(params);
 
@@ -16,7 +22,9 @@ function mockSearchResult(params) {
       item.price = item.minSalePrice;
       item.originPrice = item.maxLinePrice;
       if (item.spuTagList) {
-        item.tags = item.spuTagList.map((tag) => ({ title: tag.title }));
+        item.tags = item.spuTagList.map((tag) => ({
+          title: tag.title
+        }));
       } else {
         item.tags = [];
       }
@@ -29,6 +37,7 @@ function mockSearchResult(params) {
 
 /** 获取搜索历史 */
 export function getSearchResult(params) {
+  // console.log("搜索真的在这")
   if (config.useMock) {
     return mockSearchResult(params);
   }

@@ -33,7 +33,10 @@
   <view class="settings-section">
     <view class="settings-item">Night Mode</view>
     <view class="settings-item" bindtap="goToSetting">Settings</view>
-    <view class="settings-item">Quit this account</view>
-    <view class="settings-item">Clear all cookies</view>
+    <view class="settings-item" bindtap="onQuitAccount">Quit this account</view>
+    <view class="settings-item" bindtap="onClearCookies">Clear all cookies</view>
+    <view class="settings-item"> <text>Version</text>
+      <text class="version-text">v1.0 beta3</text>
+    </view>
   </view>
 </view>

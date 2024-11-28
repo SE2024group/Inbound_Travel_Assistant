@@ -50,24 +50,6 @@
   /* 区别于 tab 背景 */
 }
 
-.category-section-container-app {
-  max-height: 100%;
-  padding: 20rpx;
-  margin-bottom: 20rpx;
-  background: linear-gradient(145deg, #ffffff, #f0f2f5);
-  border-radius: 15rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
-}
-
-.category-section-container-ticket {
-  padding: 20rpx;
-  margin-bottom: 20rpx;
-  background: linear-gradient(145deg, #ffffff, #f0f2f5);
-  border-radius: 15rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
-}
-
-
 
 .title {
   font-size: 40rpx;
@@ -84,7 +66,8 @@
   height: auto;
   padding: 20rpx;
   margin: 10rpx 0;
-  background: linear-gradient(145deg, #ffffff, #f0f2f5);
+  background: linear-gradient(145deg, #eef3f8, #dfe7ee);
+  /* 浅蓝色渐变 */
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
   border-radius: 15rpx;
 }
@@ -95,7 +78,8 @@
   height: auto;
   padding: 20rpx;
   margin: 10rpx 0;
-  background: linear-gradient(145deg, #ffffff, #f0f2f5);
+  background: linear-gradient(145deg, #f2f6fa, #e3ebf2);
+  /* 柔和蓝灰色调 */
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
   border-radius: 15rpx;
 }
@@ -110,16 +94,6 @@
   z-index: -1;
   background-size: cover;
   border-radius: 15rpx;
-}
-
-.category-section-container-ticket {
-  background: linear-gradient(145deg, #f9f1f3, #e8dfe4);
-  /* 浅粉色渐变 */
-}
-
-.category-section-container-app {
-  background: linear-gradient(145deg, #eef3f8, #dfe7ee);
-  /* 浅蓝色渐变 */
 }
 
 .category-section {
@@ -246,8 +220,6 @@
   box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
 }
 
-
-
 .ticket-reservation-section {
   display: flex;
   flex-direction: column;
@@ -257,33 +229,31 @@
 
 .title-container {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between; /* 两端对齐 */
+  align-items: center; /* 垂直居中对齐 */
   margin-left: 20rpx;
-  width: 100%;
-}
-
-.title2 {
-  font-size: 40rpx;
-  font-weight: bold;
-  color: rgb(83, 107, 38);
-  margin-bottom: 30rpx;
-  margin-left: 20rpx;
+  width: 80%;
 }
 
 .view-all-button {
-  background-color: #246e12;
-  color: white;
-  border: none;
-  margin-left: 100rpx;
-  border-radius: 30rpx;
-  font-size: 28rpx;
-  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  display: inline-flex; /* 确保按钮内的文字和按钮整体一致 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  background: linear-gradient(90deg, #4CAF50, #81C784); /* 背景渐变 */
+  color: white; /* 文字颜色 */
+  border-radius: 30rpx; /* 圆角 */
+  font-size: 28rpx; /* 字体大小 */
+  font-weight: bold; /* 字体加粗 */
+  text-align: center; /* 文字居中 */
+  height: 50rpx; /* 按钮高度 */
+  line-height: 50rpx; /* 行高 */
+  padding: 0 20rpx; /* 内边距 */
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.2); /* 按钮阴影 */
+  transition: all 0.3s ease; /* 动画过渡 */
 }
 
-/* 按下按钮时效果 */
 .view-all-button:active {
-  transform: scale(0.95);
+  background: linear-gradient(90deg, #2E7D32, #4CAF50);
   box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
 }
 
@@ -301,5 +271,4 @@
   margin-bottom: 15rpx;
   text-align: left;
   text-decoration: underline;
-  /* Adds underline */
 }
