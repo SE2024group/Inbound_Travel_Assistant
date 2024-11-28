@@ -55,10 +55,17 @@ Page({
     storeLogo: `${imgPrefix}common/store-logo.png`,
     storeName: '云mall标准版旗舰店',
     jumpArray: [{
-      title: '首页',
-      url: '/pages/home/home',
-      iconName: 'home',
-    }, ],
+        title: '首页',
+        url: '/pages/home/home',
+        iconName: 'home',
+      },
+      {
+        title: '购物车',
+        url: '/pages/cart/index',
+        iconName: 'cart',
+        showCartNum: true,
+      },
+    ],
     isStock: true,
     cartNum: 0,
     soldout: false,
@@ -74,6 +81,9 @@ Page({
     outOperateStatus: false, // 是否外层加入购物车
     operateType: 0,
     selectSkuSellsPrice: 0,
+    maxLinePrice: 0,
+    minSalePrice: 0,
+    maxSalePrice: 0,
     list: [],
     spuId: '',
     navigation: {
@@ -83,6 +93,7 @@ Page({
     autoplay: true,
     duration: 500,
     interval: 5000,
+    soldNum: 0, // 已售数量
   },
 
   handlePopupHide() {
@@ -90,12 +101,7 @@ Page({
       isSpuSelectPopupShow: false,
     });
   },
-  goToCreateComment() {
-    wx.navigateTo({
-      url: '../comments/create/index'
-    });
-  },
-  
+
   showSkuSelectPopup(type) {
     this.setData({
       buyType: type || 0,
@@ -236,7 +242,61 @@ Page({
     }
   },
 
+  addCart() {
+    const {
+      isAllSelectedSku
+    } = this.data;
+    Toast({
+      context: this,
+      selector: '#t-toast',
+      message: isAllSelectedSku ? '点击加入购物车' : '请选择规格',
+      icon: '',
+      duration: 1000,
+    });
+  },
 
+  gotoBuy(type) {
+    const {
+      isAllSelectedSku,
+      buyNum
+    } = this.data;
+    if (!isAllSelectedSku) {
+      Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '请选择规格',
+        icon: '',
+        duration: 1000,
+      });
+      return;
+    }
+    this.handlePopupHide();
+    const query = {
+      quantity: buyNum,
+      storeId: '1',
+      spuId: this.data.spuId,
+      goodsName: this.data.details.title,
+      skuId: type === 1 ? this.data.skuList[0].skuId : this.data.selectItem.skuId,
+      available: this.data.details.available,
+      price: this.data.details.minSalePrice,
+      specInfo: this.data.details.specList?.map((item) => ({
+        specTitle: item.title,
+        specValue: item.specValueList[0].specValue,
+      })),
+      primaryImage: this.data.details.primaryImage,
+      spuId: this.data.details.spuId,
+      thumb: this.data.details.primaryImage,
+      title: this.data.details.title,
+    };
+    let urlQueryStr = obj2Params({
+      goodsRequestList: JSON.stringify([query]),
+    });
+    urlQueryStr = urlQueryStr ? `?${urlQueryStr}` : '';
+    const path = `/pages/order/order-confirm/index${urlQueryStr}`;
+    wx.navigateTo({
+      url: path,
+    });
+  },
 
   specsConfirm() {
     const {
@@ -250,6 +310,32 @@ Page({
     // this.handlePopupHide();
   },
 
+  changeNum(e) {
+    this.setData({
+      buyNum: e.detail.buyNum,
+    });
+  },
+
+  closePromotionPopup() {
+    this.setData({
+      isShowPromotionPop: false,
+    });
+  },
+
+  promotionChange(e) {
+    const {
+      index
+    } = e.detail;
+    wx.navigateTo({
+      url: `/pages/promotion-detail/index?promotion_id=${index}`,
+    });
+  },
+
+  showPromotionPopup() {
+    this.setData({
+      isShowPromotionPop: true,
+    });
+  },
 
   getDetail(spuId) {
     Promise.all([fetchGood(spuId), fetchActivityList()]).then((res) => {
@@ -258,6 +344,11 @@ Page({
       const {
         skuList,
         primaryImage,
+        isPutOnSale,
+        minSalePrice,
+        maxSalePrice,
+        maxLinePrice,
+        soldNum,
       } = details;
       skuList.forEach((item) => {
         skuArray.push({
@@ -267,13 +358,24 @@ Page({
         });
       });
       const promotionArray = [];
+      activityList.forEach((item) => {
+        promotionArray.push({
+          tag: item.promotionSubCode === 'MYJ' ? 'tebiexin' : '满折',
+          label: '满100元减99.9元',
+        });
+      });
       this.setData({
         details,
         activityList,
         isStock: details.spuStockQuantity > 0,
+        maxSalePrice: maxSalePrice ? parseInt(maxSalePrice) : 0,
+        maxLinePrice: maxLinePrice ? parseInt(maxLinePrice) : 0,
+        minSalePrice: minSalePrice ? parseInt(minSalePrice) : 0,
         list: promotionArray,
         skuArray: skuArray,
         primaryImage,
+        soldout: isPutOnSale === 0,
+        soldNum,
       });
     });
   },

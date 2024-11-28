@@ -1,7 +1,3 @@
-import {
-  login
-} from '../../services/login/login'
-
 Page({
   data: {
     isLoad: false,
@@ -206,8 +202,5 @@ Page({
         confirmText: '知道了'
       });
     }
-  },
-
-
-
+  }
 });
