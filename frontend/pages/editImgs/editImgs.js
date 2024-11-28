@@ -4,9 +4,10 @@ Page({
     buttonActive: false, // 控制按钮激活状态
     startX: 0, // 开始坐标
     startY: 0,
-    cropWidth: 100, // 默认裁剪宽度
-    cropHeight: 100,
+    cropWidth: 255, // 默认裁剪宽度
+    cropHeight: 425,
     isTouching: false, // 是否正在触摸
+    isProcessing: false, // 是否正在处理，用于控制按钮状态和加载提示
   },
 
   onLoad() {
@@ -192,6 +193,9 @@ Page({
   },
 
   cropImage() {
+    this.setData({
+      isProcessing: true
+    });
     const query = wx.createSelectorQuery().in(this);
     query.select('#rectCanvas')
       .node()
@@ -309,8 +313,9 @@ Page({
 
           // 清空画布并绘制缩放后的图片
           ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+          //ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
           ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
-
+          // ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth * pixelRatio, drawHeight * pixelRatio);
           // 上传图片
           this.uploadImage(imagePath);
         };
