@@ -24,6 +24,12 @@ Page({
     });
   },
 
+  goToTerms() {
+    wx.navigateTo({
+      url: '/pages/userRule/index'
+    });
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
