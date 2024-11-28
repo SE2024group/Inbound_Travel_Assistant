@@ -2,7 +2,7 @@
   background: linear-gradient(to bottom, #f9f5f6, #e3ecf2);
   /* 渐变背景 */
   padding: 16px;
-  padding-top: 120px;
+  padding-top: 30px;
   min-height: 100vh;
   /* 使背景覆盖整个视口 */
   box-sizing: border-box;

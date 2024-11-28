@@ -32,7 +32,7 @@ Page({
         const token = res.data;
 
         // 使用 authToken 调用 fetchUserData 并传递 token 参数
-        this.retryFetchUserData(token, 5).then((data) => {
+        this.retryFetchUserData(token, 20).then((data) => {
           this.setData({
             userInfo: data, // 将用户数据存储在 userInfo 中
           });

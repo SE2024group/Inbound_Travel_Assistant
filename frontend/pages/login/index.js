@@ -24,10 +24,10 @@ Page({
       });
     } else if (!this.data.isAgreed) {
       wx.showModal({
-        title: '提示',
-        content: '您尚未阅读《用户使用规则》，无法登录。',
+        title: 'Notice',
+        content: 'You haven\'t read\'User Terms and Conditions\'. Unable to login. ',
         showCancel: false,
-        confirmText: '知道了'
+        confirmText: 'OK'
       });
       return;
     }
@@ -39,7 +39,7 @@ Page({
 
     if (!username) {
       wx.showToast({
-        title: '请输入用户名',
+        title: 'Please enter your username.',
         icon: 'none',
       });
       return;
@@ -49,7 +49,7 @@ Page({
     login(username)
       .then((token) => {
         wx.showToast({
-          title: '登录成功',
+          title: 'Logged in',
           icon: 'success',
         });
         // 登录成功后跳转到 usercenter 页面
@@ -59,7 +59,7 @@ Page({
       })
       .catch((error) => {
         wx.showToast({
-          title: '登录失败',
+          title: 'Login failed',
           icon: 'error',
         });
         console.error(error);
@@ -120,10 +120,10 @@ Page({
       });
     } else if (!this.data.isAgreed) {
       wx.showModal({
-        title: '提示',
-        content: '您尚未阅读《用户使用规则》，无法登录。',
+        title: 'Notice',
+        content: 'You haven\'t read\'User Terms and Conditions\'. Unable to login. ',
         showCancel: false,
-        confirmText: '知道了'
+        confirmText: 'OK'
       });
       return;
     }
@@ -170,10 +170,10 @@ Page({
       });
     } else if (!this.data.isAgreed) {
       wx.showModal({
-        title: '提示',
-        content: '您尚未阅读《用户使用规则》，无法登录。',
+        title: 'Notice',
+        content: 'You haven\'t read\'User Terms and Conditions\'. Unable to login. ',
         showCancel: false,
-        confirmText: '知道了'
+        confirmText: 'OK'
       });
       return;
     }
