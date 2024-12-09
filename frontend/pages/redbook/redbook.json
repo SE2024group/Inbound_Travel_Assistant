@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "search",
+  "navigationBarTitleText": "Search",
   "onReachBottomDistance": 10,
   "backgroundTextStyle": "light",
   "enablePullDownRefresh": true,

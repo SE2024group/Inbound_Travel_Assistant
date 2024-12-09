@@ -4,7 +4,7 @@
   </view>
   <view class="settings-section">
     <view class="settings-item" bindtap="goToInfo">Account Information</view>
-    <view class="settings-item">Privacy and Security</view>
+    <view class="settings-item" bindtap="goToTerms">Privacy and Security</view>
     <view class="settings-item settings-item-disabled"><text>Notifications</text>
       <switch class="settings-switch" bindchange="onNotificationToggle" checked="{{notificationsEnabled}}" />
     </view>
