@@ -1,0 +1,112 @@
+/* 通用变量 */
+:root {
+  --primary-color: #19a3ad;
+  /* 主色 */
+  --secondary-color: #4A90E2;
+  /* 辅助色 */
+  --error-color: #FF5722;
+  /* 错误色 */
+  --text-primary: #333;
+  /* 主文本颜色 */
+  --text-secondary: #666;
+  /* 次文本颜色 */
+  --text-muted: #999;
+  /* 弱化文本颜色 */
+  --background-light: linear-gradient(to bottom, #f9f5f6, #e3ecf2);
+  /* 浅背景 */
+  --background-gradient: linear-gradient(145deg, #eef3f8, #dfe7ee);
+  /* 浅蓝渐变背景 */
+  --box-shadow-light: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+  /* 轻阴影 */
+  --border-radius: 8rpx;
+  /* 圆角大小 */
+  --transition-duration: 0.3s;
+  /* 动画时长 */
+}
+
+/* 全局容器 */
+.container {
+  width: 100%;
+  padding: 20rpx;
+  background: var(--background-light);
+  box-sizing: border-box;
+  min-height: 100vh;
+  /* 视窗高度 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 通用标题 */
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 20rpx;
+}
+
+/* 通用按钮 */
+.button-primary {
+  width: 100%;
+  padding: 12rpx;
+  text-align: center;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 32rpx;
+  font-weight: bold;
+  box-shadow: var(--box-shadow-light);
+  transition: all var(--transition-duration) ease;
+}
+
+.button-primary:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
+}
+
+/* 通用输入框 */
+.input {
+  width: 100%;
+  padding: 12rpx;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  border: 1rpx solid #ccc;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+
+.input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* 卡片样式 */
+.card {
+  background: #ffffff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-light);
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 轻量文本 */
+.text-muted {
+  color: var(--text-muted);
+  font-size: 24rpx;
+}
+
+/* 通用阴影样式 */
+.shadow-light {
+  box-shadow: var(--box-shadow-light);
+}
+
+/* 动画效果 */
+.clickable {
+  transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+.clickable:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.15);
+}
