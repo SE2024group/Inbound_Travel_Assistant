@@ -92,8 +92,6 @@ Page({
           const offsetX = (canvasWidth - drawWidth) / 2;
           //console.log(offsetX)
           const offsetY = (canvasHeight - drawHeight) / 2;
-          console.log(canvasHeight)
-          console.log(drawHeight)
           // 清空画布并绘制缩放后的图片
           ctx.clearRect(0, 0, canvasWidth, canvasHeight);
           ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
@@ -138,6 +136,9 @@ Page({
   onButtonTap() {
     if (this.data.buttonActive) {
       console.log(this.data.selectedUrl)
+      wx.navigateTo({
+        url: `/pages/goods/details/index?spuId=1`,
+      });
     }
   },
   drawRectangle(rect) {
