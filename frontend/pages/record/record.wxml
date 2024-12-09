@@ -1,8 +1,16 @@
 <!--pages/record/record.wxml-->
 <view class="container">
-  <!-- 大文本框 -->
+<!-- 大文本框 -->
   <view class="large-text-box">
-    <text class="large-text">{{selectedText}}</text>
+    <textarea 
+      class="large-input" 
+      bindinput="onInputChange" 
+      value="{{selectedText}}" 
+      focus="{{isInputFocused}}" 
+      placeholder="{{placeholderText}}"
+    ></textarea>
+     <!-- 发送按钮 -->
+     <button bindtap="sendText" class="send-button">{{sendButtonText}}</button>
   </view>
 
   <!-- 使用图片作为录音按钮 -->

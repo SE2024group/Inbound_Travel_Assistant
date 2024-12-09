@@ -15,6 +15,9 @@ Page({
     toggleButtonText: "Switch to Chinese Mode", // 切换按钮文字
     selectedText: "", // 大文本框内容
     clearText: "Clear",
+    placeholderText: "Please enter text",
+    sendButtonText: "Send",
+    isInputFocused: false,
     phrases: [
       { english: "Sorry, could you repeat that?", chinese: "对不起，你能再说一遍吗？" },
       { english: "Where is the restroom?", chinese: "洗手间在哪里？" },
@@ -28,7 +31,6 @@ Page({
       { english: "You're welcome.", chinese: "不用谢" },
       { english: "I didn't understand, could you explain it again?", chinese: "我没有理解，请再解释一下" },
       { english: "Sorry, I'm not sure about that.", chinese: "不好意思，我不清楚这个" },
-
     ], // 中英文短语对
     currentPhrases: [], // 当前显示的短语
   },
@@ -49,6 +51,8 @@ Page({
       micButtonText: isChinese ? "按住说话" : "Hold to Talk",
       toggleButtonText: isChinese ? "切换到英语模式" : "Switch to Chinese Mode",
       clearText: isChinese ? "清除" : "Clear",
+      placeholderText: isChinese ? "请输入文字" : "Please enter text",
+      sendButtonText: isChinese ? "发送" : "Send",
       currentPhrases: isChinese
         ? this.data.cphrases.map((phrase) => ({ text: phrase.chinese }))
         : this.data.phrases.map((phrase) => ({ text: phrase.english })),
@@ -66,9 +70,35 @@ Page({
     });
   },
 
+  sendText: function () {
+    console.log("发送的文本：", this.data.selectedText);
+    // 这里可以添加实际的发送逻辑
+  },
+
   clearText() {
     this.setData({
       selectedText: "", // 清空文本框内容
+    });
+  },
+
+  // 处理输入框的输入事件
+  onInputChange: function(event) {
+    this.setData({
+      selectedText: event.detail.value // 更新输入框内容
+    });
+  },
+
+  // 你可以选择在点击文本框时自动聚焦
+  focusInput: function() {
+    this.setData({
+      isInputFocused: true
+    });
+  },
+
+  // 你可以选择在点击外部区域时取消聚焦
+  blurInput: function() {
+    this.setData({
+      isInputFocused: false
     });
   },
 
