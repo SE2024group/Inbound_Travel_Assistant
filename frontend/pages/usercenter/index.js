@@ -6,6 +6,24 @@ Page({
   data: {
     userInfo: {},
   },
+  // 定义一个递归函数来重试 fetchUserData
+  retryFetchUserData(token, maxRetries, attempt = 1) {
+    return new Promise((resolve, reject) => {
+      fetchUserData(token).then((data) => {
+        resolve(data); // 成功返回数据
+      }).catch((error) => {
+        if (attempt < maxRetries) {
+          console.warn(`Attempt ${attempt} failed. Retrying...`);
+          // 延迟一段时间后重试
+          setTimeout(() => {
+            this.retryFetchUserData(token, maxRetries, attempt + 1).then(resolve).catch(reject);
+          }, 100); // 1秒延迟（可调整）
+        } else {
+          reject(`Failed after ${maxRetries} attempts: ${error}`);
+        }
+      });
+    });
+  },
   onLoad() {
     // 从本地存储中获取 authToken
     wx.getStorage({
@@ -14,13 +32,9 @@ Page({
         const token = res.data;
 
         // 使用 authToken 调用 fetchUserData 并传递 token 参数
-        fetchUserData(token).then((data) => {
+        this.retryFetchUserData(token, 20).then((data) => {
           this.setData({
             userInfo: data, // 将用户数据存储在 userInfo 中
-          });
-          wx.setStorage({
-            key: 'userName',
-            data: `${data.name}`,
           });
         }).catch((error) => {
           wx.showToast({
@@ -42,6 +56,7 @@ Page({
       },
     });
   },
+
   // 跳转到点赞页面
   goToLikes() {
     wx.navigateTo({
