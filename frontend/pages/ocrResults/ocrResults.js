@@ -122,7 +122,7 @@ Page({
       selectedIndex: index,
       selectedRect: rect,
       buttonActive: true,
-      selectedUrl: "dbio",
+
     }, () => {
       this.drawRectangle(rect);
     });
@@ -135,7 +135,7 @@ Page({
   },
   onButtonTap() {
     if (this.data.buttonActive) {
-      console.log(this.data.selectedUrl)
+      console.log(this.data.ID)
       wx.navigateTo({
         url: `/pages/goods/details/index?spuId=1`,
       });
