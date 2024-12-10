@@ -4,6 +4,7 @@
     <view class="goods-info">
       <view class="goods-title">
         <view class="goods-name">{{details.title}}</view>
+
         <view class="goods-tag">
           <t-button open-type="share" t-class="shareBtn" variant="text">
             <view class="btn-icon">
@@ -13,6 +14,7 @@
           </t-button>
         </view>
       </view>
+      <view class="goods-description">{{details.description}}</view>
       <view class="goods-intro">{{intro}}</view>
     </view>
 
