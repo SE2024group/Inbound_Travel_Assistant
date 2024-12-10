@@ -1,18 +1,25 @@
 <!--pages/record/record.wxml-->
 <view class="container">
 <!-- 大文本框 -->
-  <view class="large-text-box">
-    <textarea 
-      class="large-input" 
-      bindinput="onInputChange" 
-      value="{{selectedText}}" 
-      focus="{{isInputFocused}}" 
-      placeholder="{{placeholderText}}"
-    ></textarea>
-     <!-- 发送按钮 -->
-     <button bindtap="sendText" class="send-button">{{sendButtonText}}</button>
-  </view>
-
+<view class="large-text-box">
+  <textarea 
+    class="large-input" 
+    bindinput="onInputChange" 
+    value="{{selectedText}}" 
+    focus="{{isInputFocused}}" 
+    placeholder="{{placeholderText}}" 
+    bindfocus="focusInput" 
+    bindblur="blurInput"
+  ></textarea>
+  <!-- 发送按钮 -->
+  <button 
+    wx:if="{{isInputFocused}}" 
+    bindtap="sendText" 
+    class="send-button"
+  >
+    {{sendButtonText}}
+  </button>
+</view>
   <!-- 使用图片作为录音按钮 -->
   <view 
     class="record-button {{isPressed ? 'pressed' : ''}}" 
