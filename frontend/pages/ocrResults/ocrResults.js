@@ -122,7 +122,7 @@ Page({
       selectedIndex: index,
       selectedRect: rect,
       buttonActive: true,
-      selectedUrl: "dbio",
+      selectedUrl: `/pages/goods/details/index?spuId=${index % 4 + 1}`
     }, () => {
       this.drawRectangle(rect);
     });
@@ -135,9 +135,9 @@ Page({
   },
   onButtonTap() {
     if (this.data.buttonActive) {
-      console.log(this.data.selectedUrl)
+      // console.log(this.data.ID)
       wx.navigateTo({
-        url: `/pages/goods/details/index?spuId=1`,
+        url: this.data.selectedUrl,
       });
     }
   },
