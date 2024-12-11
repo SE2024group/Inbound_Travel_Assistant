@@ -1172,11 +1172,12 @@ function fetchWithTimeout(url, options = {}, timeout = 5000) {
 
 
 export function genGood(id, available = 1) {
-
-  id = 1 + id % 15;
-  console.log(id);
   return new Promise((resolve, reject) => {
+    if (id == 0) {
+      id = 5;
+    }
     fetchWithTimeout(`http://1.15.174.177/api/dish/${id}/`)
+      // fetchWithTimeout(`http://1.15.174.177/api/dish/1/`)
       .then(response => {
         return response; // 直接返回响应
       })
@@ -1187,8 +1188,8 @@ export function genGood(id, available = 1) {
           spuId: String(apiData.id),
           title: apiData.name_en,
           description: apiData.description_en,
-          primaryImage: "https://cloud.tsinghua.edu.cn/f/699e94b18091454db7a8/?dl=1",
-          // primaryImage: apiData.images[0].image_url,
+          //primaryImage: "https://cloud.tsinghua.edu.cn/f/699e94b18091454db7a8/?dl=1",
+          primaryImage: apiData.images[0].image_url,
           images: apiData.images.map(image => image.image_url),
           spuTagList: apiData.tags.map(tag => ({
             title: tag.name_en

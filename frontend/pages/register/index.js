@@ -126,11 +126,9 @@ Page({
     }
 
     if (!isAgreed) {
-      wx.showModal({
-        title: 'Notice',
-        content: 'Please agree to the User Terms and Conditions\.',
-        showCancel: false,
-        confirmText: 'I got it\.'
+      wx.showToast({
+        title: 'Please read User Terms and Conditions\.',
+        icon: 'none',
       });
       return;
     }
@@ -166,7 +164,7 @@ Page({
               duration: 2000,
             });
             // 存储 authToken 和用户信息
-            wx.setStorageSync('authToken', `Bearer ${data.token}`);
+            wx.setStorageSync('authToken', `Token ${data.token}`);
             wx.setStorageSync('user', data.user);
             wx.setStorageSync('loggedBy', 'auth'); // 标记为认证登录
             // 跳转到主页面
@@ -219,7 +217,7 @@ Page({
               duration: 2000,
             });
             // 存储 authToken 和用户信息
-            wx.setStorageSync('authToken', `Bearer ${res.data.token}`);
+            wx.setStorageSync('authToken', `Token ${res.data.token}`);
             wx.setStorageSync('user', res.data.user);
             wx.setStorageSync('loggedBy', 'auth'); // 标记为认证登录
             // 跳转到主页面
@@ -235,7 +233,7 @@ Page({
               title: 'Registration failed\.',
               content: errorMsg,
               showCancel: false,
-              confirmText: '确定'
+              confirmText: 'OK'
             });
           }
         },

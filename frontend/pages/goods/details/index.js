@@ -30,6 +30,7 @@ const obj2Params = (obj = {}, encode = false) => {
 Page({
   data: {
     image: "",
+    good: {},
     commentsList: [],
     commentsStatistics: {
       badCount: 0,
@@ -108,7 +109,8 @@ Page({
         if (res.confirm) {
           // 用户点击确认，跳转页面并修改参数
           app.globalData.title = name;
-          //app.globalData.image = this.data.image;
+          app.globalData.image = self.data.details.images[0];
+
           wx.switchTab({
             url: `/pages/record/record`,
           });
@@ -150,6 +152,7 @@ Page({
     this.setData({
       image: images[index],
     })
+
     const {
       images
     } = this.data.details;
@@ -276,6 +279,26 @@ Page({
   },
 
 
+  getGoodDetail(spuId) {
+    const {
+      genGood
+    } = require('../../../model/good');
+    return genGood(spuId) // 调用 genGood 方法生成商品
+      .then((good) => {
+        console.log("获取到的商品详情:", good);
+
+        // 将商品详情设置到 data 中
+        this.setData({
+          good: good, // 将生成的商品对象存储到 goodDetails
+        });
+
+        return good; // 返回生成的商品对象
+      })
+      .catch((error) => {
+        console.error("获取商品详情时出错:", error);
+        throw error; // 抛出错误，方便调用方处理
+      });
+  },
   getDetail(spuId) {
     Promise.all([fetchGood(spuId), fetchActivityList()]).then((res) => {
       // const [details, activityList] = res;
@@ -285,23 +308,13 @@ Page({
         // skuList,
         primaryImage,
       } = details;
-      // skuList.forEach((item) => {
-      //   skuArray.push({
-      //     skuId: item.skuId,
-      //     quantity: item.stockInfo ? item.stockInfo.stockQuantity : 0,
-      //     specInfo: item.specInfo,
-      //   });
-      // });
-      // const promotionArray = [];
       this.setData({
         details,
-        // activityList,
-        // isStock: details.spuStockQuantity > 0,
-        // list: promotionArray,
-        // skuArray: skuArray,
         primaryImage,
       });
     });
+
+    this.getGoodDetail(spuId);
   },
 
   async getCommentsList() {

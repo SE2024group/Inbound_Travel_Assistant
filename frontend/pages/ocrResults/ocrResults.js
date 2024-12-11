@@ -122,7 +122,8 @@ Page({
       selectedIndex: index,
       selectedRect: rect,
       buttonActive: true,
-      selectedUrl: `/pages/goods/details/index?spuId=${index % 4 + 1}`
+      // selectedUrl: `/pages/goods/details/index?spuId=${index % 4 + 1}`
+      selectedUrl: `/pages/goods/details/index?spuId=${index }`
     }, () => {
       this.drawRectangle(rect);
     });

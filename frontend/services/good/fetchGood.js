@@ -10,7 +10,6 @@ function mockFetchGood(ID = 0) {
   const {
     genGood
   } = require('../../model/good');
-  console.log("mockFetchGood")
   return delay().then(() => genGood(ID));
 }
 

@@ -303,7 +303,7 @@ Page({
           // width: this.data.cropWidth * pixelRatio,
           // height: this.data.cropHeight * pixelRatio,
           success: (res) => {
-            console.log('Cropped image path:', res.tempFilePath);
+
             this.displayCroppedImage(res.tempFilePath); // 显示裁剪后的图片
           },
           fail: (err) => {
@@ -374,7 +374,7 @@ Page({
         ctx.scale(pixelRatio, pixelRatio); // 按照像素比缩放
         img.onload = () => {
           // 图片加载完成后才能获取宽高
-          console.log('Image loaded successfully:', img.width, img.height);
+
 
           const imgWidth = img.width;
           const imgHeight = img.height;
@@ -523,6 +523,7 @@ Page({
           success(res) {
             console.log('OCR API Response:', res);
 
+
             // if (res.data && res.data.ParsedResults && res.data.ParsedResults.length > 0) {
 
             let apiResponse;
@@ -554,7 +555,8 @@ Page({
 
               // Apply the ID transformation
               const originalID = parseInt(item.ID, 10); // Ensure ID is treated as a number
-              const transformedID = (originalID % 4) + 1;
+              // const transformedID = originalID % 15 + 1;
+              const transformedID = originalID;
 
               return {
                 imageURL: item.image, // Image URL
