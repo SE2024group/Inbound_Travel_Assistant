@@ -9,13 +9,13 @@
 
   <view class="button-container">
     <button class="login-button" bindtap="onLogin">
-      登录
+      Login
     </button>
     <button class="register-button" bindtap="onRegister">
-      注册
+      Register
     </button>
     <button class="tourist-button" bindtap="onTouristLogin">
-      游客登录
+      Tourist
     </button>
   </view>
 
