@@ -141,10 +141,10 @@
 }
 
 .phrase-box {
-  display: flex; /* 使用 flexbox 布局 */
-  justify-content: center; /* 水平居中 */
-  align-items: center; /* 垂直居中 */
-  flex: 0 0 40%; /* 每个元素占据父容器宽度的48% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 40%;
   padding: 15px;
   border-radius: 15px;
   background: #f2f2f2;

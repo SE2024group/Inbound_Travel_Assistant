@@ -71,8 +71,41 @@ Page({
   },
 
   sendText: function () {
-    console.log("发送的文本：", this.data.selectedText);
-    // 这里可以添加实际的发送逻辑
+    // 获取文本框中的文本
+    const textToUpload = this.data.selectedText;
+    console.log("发送的文本：", textToUpload);
+  
+    // 构建请求参数
+    const formData = {
+      text: textToUpload,
+      isChineseMode: this.data.isChineseMode
+    };
+  
+    // 发送请求到服务器
+    wx.request({
+      url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
+      method: 'POST',
+      data: formData,
+      header: {
+        'Content-Type': 'application/json' // 根据服务器要求设置
+      },
+      success: (res) => {
+        console.log('文本发送成功', res);
+        wx.showToast({
+          title: '发送成功',
+          icon: 'success'
+        });
+        // 处理服务器返回的数据
+        this.handleServerResponse(res.data);
+      },
+      fail: (err) => {
+        console.error('文本发送失败', err);
+        wx.showToast({
+          title: '发送失败',
+          icon: 'none'
+        });
+      }
+    });
   },
 
   clearText() {
@@ -117,7 +150,6 @@ Page({
     });
   },
 
-  // 停止录音
   stopRecording() {
     this.setData({
       isPressed: false
@@ -125,29 +157,28 @@ Page({
     recorderManager.stop();
     recorderManager.onStop((res) => {
       console.log('录音结束', res);
-      const {
-        tempFilePath
-      } = res; // 获取临时文件路径
+      const { tempFilePath } = res; // 获取临时文件路径
       this.setData({
-        audioFilePath: tempFilePath
+        audioFilePath: tempFilePath,
       }); // 更新录音文件路径
       wx.showToast({
         title: '录音完成',
         icon: 'success'
       });
-      // 自动上传录音文件
+      // 上传录音文件
       this.uploadRecording(tempFilePath);
     });
   },
 
   // 上传录音文件到服务器
   uploadRecording(filePath) {
+    console.log('isChineseMode',this.data.isChineseMode)
     wx.uploadFile({
-      url: 'https://example.com/upload', // 替换为实际服务器地址
+      url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
       filePath: filePath,
-      name: 'file',
+      name: 'voice_file',
       formData: {
-        user: 'test_user' // 可根据需要传递额外参数
+        'isChineseMode': 'false',
       },
       success: (res) => {
         console.log('文件上传成功', res);
@@ -155,6 +186,8 @@ Page({
           title: '上传成功',
           icon: 'success'
         });
+        // 处理服务器返回的数据
+        this.handleServerResponse(res.data);
       },
       fail: (err) => {
         console.error('文件上传失败', err);
@@ -164,6 +197,22 @@ Page({
         });
       }
     });
+  },
+
+  // 处理服务器返回的数据
+  handleServerResponse(data) {
+    // 假设服务器返回的数据是 JSON 格式
+    try {
+      const response = JSON.parse(data);
+      console.log('response', response);
+      const textToDisplay = response.data.text; // 假设服务器返回的数据中包含 text 键
+      console.log(textToDisplay)
+      this.setData({
+        selectedText: textToDisplay
+      }); // 更新文本框内容
+    } catch (error) {
+      console.error('解析服务器响应失败', error);
+    }
   },
 
   // 播放录音
