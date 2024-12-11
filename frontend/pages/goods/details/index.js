@@ -94,6 +94,7 @@ Page({
       url: '../comments/create/index'
     });
   },
+
   onNavigateButtonTap() {
     const self = this;
     const name = self.data.details.title;
@@ -116,6 +117,7 @@ Page({
       },
     });
   },
+
   showSkuSelectPopup(type) {
     this.setData({
       buyType: type || 0,

@@ -13,6 +13,7 @@
             </t-button>
           </view>
         </view>
+
         <view class="goods-tag">
           <t-button open-type="share" t-class="shareBtn" variant="text">
             <view class="btn-icon">
