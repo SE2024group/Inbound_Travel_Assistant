@@ -23,7 +23,8 @@
     "pages/out/out",
     "pages/out2/out2",
     "pages/record/record",
-    "pages/accountInfo/index"
+    "pages/accountInfo/index",
+    "pages/register/index"
   ],
   "tabBar": {
     "custom": true,

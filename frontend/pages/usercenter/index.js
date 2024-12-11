@@ -17,7 +17,7 @@ Page({
           // 延迟一段时间后重试
           setTimeout(() => {
             this.retryFetchUserData(token, maxRetries, attempt + 1).then(resolve).catch(reject);
-          }, 100); // 1秒延迟（可调整）
+          }, 1000); // 1秒延迟（可调整）
         } else {
           reject(`Failed after ${maxRetries} attempts: ${error}`);
         }
@@ -25,7 +25,6 @@ Page({
     });
   },
   onLoad() {
-
     const loggedBy = wx.getStorageSync('loggedBy') || '';
     if (!loggedBy) {
       wx.showToast({
@@ -35,17 +34,16 @@ Page({
     }
     console.log('logged by ', loggedBy);
 
-    if (loggedBy == 'tourist') {
+    if (loggedBy === 'tourist') {
       const userInfo = {
-        // 随后端userInfo更新而更新
         name: wx.getStorageSync('userName') || 'Tourist',
         avatar: '/pages/usercenter/avatar.jpeg'
       };
       this.setData({
-        userInfo: userInfo,
+        userInfo
       });
       console.log(this.data.userInfo);
-    } else {
+    } else if (loggedBy === 'auth') {
       // 从本地存储中获取 authToken
       wx.getStorage({
         key: 'authToken',
@@ -53,9 +51,9 @@ Page({
           const token = res.data;
 
           // 使用 authToken 调用 fetchUserData 并传递 token 参数
-          this.retryFetchUserData(token, 20).then((data) => {
+          this.retryFetchUserData(token, 5).then((data) => {
             this.setData({
-              userInfo: data, // 将用户数据存储在 userInfo 中
+              userInfo: data
             });
           }).catch((error) => {
             wx.showToast({
@@ -75,6 +73,15 @@ Page({
             url: '/pages/login/login',
           });
         },
+      });
+    } else {
+      // 处理其他登录方式或错误状态
+      wx.showToast({
+        title: 'Unknown login method.',
+        icon: 'error',
+      });
+      wx.redirectTo({
+        url: '/pages/login/login',
       });
     }
   },
@@ -106,10 +113,8 @@ Page({
 
   // 退出账户
   onQuitAccount() {
-    // 要删除的存储项
-    const keysToRemove = ['authToken', 'userName', 'loggedBy', 'registeredAt'];
+    const keysToRemove = ['authToken', 'user', 'loggedBy', 'userName', 'registeredAt'];
 
-    // 使用 Promise.all 删除多个键
     const removePromises = keysToRemove.map((key) => {
       return new Promise((resolve, reject) => {
         wx.removeStorage({
@@ -122,24 +127,21 @@ Page({
 
     Promise.all(removePromises)
       .then(() => {
-        // 所有键成功删除
         wx.showToast({
           title: '已退出账号',
-          icon: 'success',
+          icon: 'success'
         });
         wx.redirectTo({
-          url: '/pages/login/index',
+          url: '/pages/login/index'
         });
       })
       .catch((errKey) => {
-        // 如果某个键删除失败
         wx.showToast({
           title: `退出失败: ${errKey}`,
-          icon: 'error',
+          icon: 'error'
         });
       });
   },
-
 
   // 清除全部 cookie
   onClearCookies() {
@@ -147,24 +149,17 @@ Page({
       success: () => {
         wx.showToast({
           title: '已清除所有缓存',
-          icon: 'success',
+          icon: 'success'
         });
       },
       fail: () => {
         wx.showToast({
           title: '清除缓存失败',
-          icon: 'error',
+          icon: 'error'
         });
       },
     });
   },
-
-
-
-
-
-
-
 
   onShow() {
     this.getTabBar().init();

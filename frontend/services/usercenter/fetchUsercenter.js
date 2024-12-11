@@ -1,23 +1,7 @@
-import {
-  config
-} from '../../config/index';
-
-/** 获取个人中心信息 */
-function mockfetchUserData() {
-  const {
-    delay
-  } = require('../_utils/delay');
-  const {
-    genUsercenter
-  } = require('../../model/usercenter');
-  return delay(200).then(() => genUsercenter());
-}
-
-/** 获取个人中心信息 */
 export function fetchUserData(token) {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: 'http://1.15.174.177/api/userinfo/',
+      url: 'http://1.15.174.177/api/user/',
       method: 'GET',
       header: {
         Authorization: token,
@@ -26,11 +10,17 @@ export function fetchUserData(token) {
         if (response.statusCode === 200) {
           const {
             avatar,
-            nickname
+            nickname,
+            username,
+            personality_description,
+            id,
           } = response.data;
           resolve({
             avatar,
-            name: nickname,
+            nickname,
+            username,
+            personality_description,
+            id,
           });
         } else {
           reject(`Error: ${response.statusCode}`);

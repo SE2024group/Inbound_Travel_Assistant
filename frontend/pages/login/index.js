@@ -24,12 +24,84 @@ Page({
     });
   },
 
-  onLogin() {
-    wx.showToast({
-      title: '还没做',
-      icon: 'loading',
-    });
+  onRegister() {
+    wx.navigateTo({
+      url: '/pages/register/index',
+    })
   },
+
+
+  onLogin() {
+    const {
+      username,
+      password,
+      isAgreed
+    } = this.data;
+
+    // 前端验证
+    if (!username) {
+      wx.showToast({
+        title: '用户名不能为空',
+        icon: 'none',
+      });
+      return;
+    }
+
+    if (!password) {
+      wx.showToast({
+        title: '密码不能为空',
+        icon: 'none',
+      });
+      return;
+    }
+
+    if (!isAgreed) {
+      wx.showModal({
+        title: '提示',
+        content: '请同意用户使用规则',
+        showCancel: false,
+        confirmText: '确定'
+      });
+      return;
+    }
+
+    // 显示加载
+    wx.showLoading({
+      title: '登录中...',
+      mask: true, // 防止用户操作
+    });
+
+
+    // 调用 login 函数
+    login(username, password)
+      .then((token) => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success',
+          duration: 2000,
+        });
+        // 跳转到主页面
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/navigation/navigation',
+          });
+        }, 2000);
+      })
+      .catch((error) => {
+        wx.hideLoading();
+        wx.showModal({
+          title: '登录失败',
+          content: error,
+          showCancel: false,
+          confirmText: '确定'
+        });
+        console.error('登录失败:', error);
+      });
+  },
+
+
+
 
   // 登录按钮点击事件
   onTouristLogin() {
