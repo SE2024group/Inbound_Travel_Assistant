@@ -10,8 +10,8 @@ const options = {
 
 Page({
   data: {
-    title: "",
-    image: "",
+    title: '', // 页面标题（可选）
+    image: '', // 页面图片（可选）
     isChineseMode: false, // 默认英文模式
     micButtonText: "Hold to Talk", // 麦克风按钮文字
     toggleButtonText: "Switch to Chinese Mode", // 切换按钮文字
@@ -21,6 +21,8 @@ Page({
     placeholderText: "Please enter text",
     sendButtonText: "Send",
     isInputFocused: false,
+    audioFilePath: '',
+    isPressed: false,
     phrases: [{
         english: "Sorry, could you repeat that?",
         chinese: "对不起，你能再说一遍吗？"
@@ -73,13 +75,10 @@ Page({
     this.setData({
       currentPhrases: this.data.phrases.map((phrase) => ({
         text: phrase.english,
-
       })),
       title: title,
       image: image,
-
     });
-
   },
 
   // 切换语言模式
@@ -118,33 +117,36 @@ Page({
     });
   },
 
-  sendText: function () {
+  sendText: function() {
     // 获取文本框中的文本
     const textToUpload = this.data.selectedText;
     console.log("发送的文本：", textToUpload);
 
     // 构建请求参数
-    const formData = {
+    const requestData = {
       text: textToUpload,
       isChineseMode: this.data.isChineseMode
     };
-
-    // 发送请求到服务器
+    wx.showLoading({
+      title: 'Processing...',
+      mask: true, // 防止用户操作
+    });
+    // 使用 wx.request 发起请求
     wx.request({
-      url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
+      url: 'http://1.15.174.177/api/text-translation/', // 替换为实际服务器地址
       method: 'POST',
-      data: formData,
+      data: requestData,
       header: {
-        'Content-Type': 'application/json' // 根据服务器要求设置
+        'Content-Type': 'application/json' // 确保为JSON格式
       },
       success: (res) => {
-        console.log('文本发送成功', res);
+        console.log('文本发送成功', res.data);
         wx.showToast({
-          title: '发送成功',
+          title: 'send',
           icon: 'success'
         });
         // 处理服务器返回的数据
-        this.handleServerResponse(res.data);
+        this.handleTextServerResponse(res.data);
       },
       fail: (err) => {
         console.error('文本发送失败', err);
@@ -156,8 +158,38 @@ Page({
     });
   },
 
+  handleTextServerResponse: function(data) {
+    // 假设服务器返回的数据是 JSON 格式
+    try {
+      const response = data;
+      console.log('response', response);
+
+      if (response.code === 200) {
+        const { cn_text, en_text, isChineseMode } = response.data;
+        const textToDisplay = isChineseMode ? en_text : cn_text;
+        console.log('显示的文本:', textToDisplay);
+
+        this.setData({
+          selectedText: textToDisplay
+        });
+      } 
+      else {
+        console.error('服务器返回错误代码:', response.code, '消息:', response.message);
+        wx.showToast({
+          title: `error: ${response.message}`,
+          icon: 'none'
+        });
+      }
+    } catch (error) {
+      console.error('解析服务器响应失败', error);
+      wx.showToast({
+        title: '解析响应失败',
+        icon: 'none'
+      });
+    }
+  },
+
   clearText() {
-    console.log("clear!!")
     this.setData({
       selectedText: "", // 清空文本框内容
     });
@@ -213,8 +245,12 @@ Page({
         audioFilePath: tempFilePath,
       }); // 更新录音文件路径
       wx.showToast({
-        title: '录音完成',
+        title: 'Recording completion',
         icon: 'success'
+      });
+      wx.showLoading({
+        title: 'Processing...',
+        mask: true, // 防止用户操作
       });
       // 上传录音文件
       this.uploadRecording(tempFilePath);
@@ -222,76 +258,64 @@ Page({
   },
 
   // 上传录音文件到服务器
-  uploadRecording(filePath) {
-    if (this.data.isChineseMode) {
-      console.log('isChineseMode', this.data.isChineseMode)
-      wx.uploadFile({
-        url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
-        filePath: filePath,
-        name: 'voice_file',
-        formData: {
-          'isChineseMode': 'false',
-        },
-        success: (res) => {
-          console.log('文件上传成功', res);
-          wx.showToast({
-            title: '上传成功',
-            icon: 'success'
-          });
-          // 处理服务器返回的数据
-          this.handleServerResponse(res.data);
-        },
-        fail: (err) => {
-          console.error('文件上传失败', err);
-          wx.showToast({
-            title: '上传失败',
-            icon: 'none'
-          });
-        }
-      });
-    } else {
-      console.log('isChineseMode', this.data.isChineseMode)
-      wx.uploadFile({
-        url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
-        filePath: filePath,
-        name: 'voice_file',
-        formData: {
-          'isChineseMode': 'true',
-        },
-        success: (res) => {
-          console.log('文件上传成功', res);
-          wx.showToast({
-            title: '上传成功',
-            icon: 'success'
-          });
-          // 处理服务器返回的数据
-          this.handleServerResponse(res.data);
-        },
-        fail: (err) => {
-          console.error('文件上传失败', err);
-          wx.showToast({
-            title: '上传失败',
-            icon: 'none'
-          });
-        }
-      });
-    }
-
+  uploadRecording: function(filePath) {
+    console.log('上传录音文件，isChineseMode:', this.data.isChineseMode);
+    
+    wx.uploadFile({
+      url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
+      filePath: filePath,
+      name: 'voice_file',
+      formData: {
+        'isChineseMode': this.data.isChineseMode.toString(), // 确保发送的是字符串 'true' 或 'false'
+      },
+      success: (res) => {
+        console.log('文件上传成功', res);
+        wx.showToast({
+          title: '上传成功',
+          icon: 'success'
+        });
+        // 处理服务器返回的数据
+        this.handleServerResponse(res.data);
+      },
+      fail: (err) => {
+        console.error('文件上传失败', err);
+        wx.showToast({
+          title: '上传失败',
+          icon: 'none'
+        });
+      }
+    });
   },
 
   // 处理服务器返回的数据
-  handleServerResponse(data) {
+  handleServerResponse: function(data) {
     // 假设服务器返回的数据是 JSON 格式
     try {
       const response = JSON.parse(data);
       console.log('response', response);
-      const textToDisplay = response.data.text; // 假设服务器返回的数据中包含 text 键
-      console.log(textToDisplay)
-      this.setData({
-        selectedText: textToDisplay
-      }); // 更新文本框内容
+
+      if (response.code === 200) {
+        const { cn_text, en_text, isChineseMode } = response.data;
+        const textToDisplay = isChineseMode ? en_text : cn_text;
+        console.log('显示的文本:', textToDisplay);
+
+        this.setData({
+          selectedText: textToDisplay
+        });
+      } 
+      else {
+        console.error('服务器返回错误代码:', response.code, '消息:', response.message);
+        wx.showToast({
+          title: `error: ${response.message}`,
+          icon: 'none'
+        });
+      }
     } catch (error) {
       console.error('解析服务器响应失败', error);
+      wx.showToast({
+        title: '解析响应失败',
+        icon: 'none'
+      });
     }
   },
 
@@ -327,6 +351,12 @@ Page({
 
   onShow() {
     this.getTabBar().init();
+    this.setData({
+      selectedText: "", // 清空文本框内容
+      isInputFocused: false, // 重置输入框聚焦状态
+      currentPhrases: 
+        this.data.phrases.map((phrase) => ({ text: phrase.english })),
+    });
   },
 
 });
