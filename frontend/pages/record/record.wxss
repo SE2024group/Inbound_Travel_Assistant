@@ -4,29 +4,106 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 110vh;
+  height: 120vh;
 }
 
 .large-text-box {
   width: 85%;
-  height: 200px;
-  padding-left: 10px;
-  padding-right: 10px;
+  height: 150px;
   border: 2px solid #4CAF50;
   border-radius: 12px;
   background-color: #f9f9f9;
   margin: 20px auto;
   display: flex;
   align-items: center;
+  /* 垂直居中 */
   justify-content: center;
-  text-align: center;
+  /* 水平居中 */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
-.large-text {
+.large-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
   font-size: 24px;
   color: #333;
-  font-weight: bold;
+  text-align: center;
+  /* 水平居中 */
+  padding-left: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+  white-space: normal;
+  /* 允许文本换行 */
+  overflow-wrap: break-word;
+  resize: none;
+  /* 禁止调整大小 */
+  align-items: center;
+  /* 垂直居中 */
+  justify-content: center;
+  /* 水平居中 */
+  line-height: 1.5;
+  /* 确保行高适中 */
+}
+
+
+.large-input:focus {
+  outline: none;
+}
+
+
+.button-row {
+  position: absolute;
+  /* 绝对定位 */
+  bottom: 10px;
+  /* 距离底部 10px */
+  right: 10px;
+  /* 距离右侧 10px */
+  display: flex;
+  gap: 5px;
+  /* 减少按钮之间的间距 */
+  /* 移除宽度和内边距，以避免占据过多空间 */
+}
+
+.send-button {
+  font-size: 14px;
+  /* 缩小字体 */
+  color: white;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 8px;
+  /* 调整圆角 */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+.clear-button {
+  font-size: 14px;
+  /* 保持与 send-button 一致 */
+  color: white;
+  background-color: #ff4d4f;
+  border: none;
+  border-radius: 8px;
+  /* 调整圆角 */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+.send-button:active {
+  background-color: #388E3C;
+  /* 按下时颜色变深 */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.clear-button:active {
+  background-color: #d32f2f;
+  /* 按下时颜色变深 */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .record-button {
@@ -60,27 +137,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 20px;
-  gap: 40px;
-}
-
-.clear-button {
-  position: flex;
-  right: 10px;
-  padding: 5px 10px;
-  font-size: 14px;
-  color: white;
-  background-color: #ff4d4f;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.clear-button:active {
-  background-color: #d32f2f;
-  /* 悬停时颜色变深 */
 }
 
 .play-button {
@@ -103,7 +159,7 @@
 .play-button:active {
   background: linear-gradient(90deg, #2E7D32, #4CAF50);
   /* 按下时颜色更深 */
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 3px 6px rgba(58, 55, 55, 0.2);
   /* 按下时阴影变浅 */
 }
 
@@ -118,8 +174,10 @@
 }
 
 .phrase-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 0 0 40%;
-  /* 每个元素占据父容器宽度的48% */
   padding: 15px;
   border-radius: 15px;
   background: #f2f2f2;
@@ -130,4 +188,5 @@
 .phrase-text {
   font-size: 18px;
   color: #333;
+  text-align: center;
 }
