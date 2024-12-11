@@ -17,6 +17,7 @@ Page({
     toggleButtonText: "Switch to Chinese Mode", // 切换按钮文字
     selectedText: "", // 大文本框内容
     clearText: "Clear",
+
     placeholderText: "Please enter text",
     sendButtonText: "Send",
     isInputFocused: false,
@@ -120,7 +121,7 @@ Page({
     // 获取文本框中的文本
     const textToUpload = this.data.selectedText;
     console.log("发送的文本：", textToUpload);
-  
+
     // 构建请求参数
     const requestData = {
       text: textToUpload,
@@ -130,7 +131,6 @@ Page({
       title: 'Processing...',
       mask: true, // 防止用户操作
     });
-  
     // 使用 wx.request 发起请求
     wx.request({
       url: 'http://1.15.174.177/api/text-translation/', // 替换为实际服务器地址
