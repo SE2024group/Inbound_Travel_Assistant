@@ -109,6 +109,7 @@ Page({
   },
 
   clearText() {
+    console.log("clear!!")
     this.setData({
       selectedText: "", // 清空文本框内容
     });
@@ -172,31 +173,61 @@ Page({
 
   // 上传录音文件到服务器
   uploadRecording(filePath) {
-    console.log('isChineseMode',this.data.isChineseMode)
-    wx.uploadFile({
-      url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
-      filePath: filePath,
-      name: 'voice_file',
-      formData: {
-        'isChineseMode': 'false',
-      },
-      success: (res) => {
-        console.log('文件上传成功', res);
-        wx.showToast({
-          title: '上传成功',
-          icon: 'success'
-        });
-        // 处理服务器返回的数据
-        this.handleServerResponse(res.data);
-      },
-      fail: (err) => {
-        console.error('文件上传失败', err);
-        wx.showToast({
-          title: '上传失败',
-          icon: 'none'
-        });
-      }
-    });
+    if(this.data.isChineseMode){
+      console.log('isChineseMode',this.data.isChineseMode)
+      wx.uploadFile({
+        url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
+        filePath: filePath,
+        name: 'voice_file',
+        formData: {
+          'isChineseMode': 'false',
+        },
+        success: (res) => {
+          console.log('文件上传成功', res);
+          wx.showToast({
+            title: '上传成功',
+            icon: 'success'
+          });
+          // 处理服务器返回的数据
+          this.handleServerResponse(res.data);
+        },
+        fail: (err) => {
+          console.error('文件上传失败', err);
+          wx.showToast({
+            title: '上传失败',
+            icon: 'none'
+          });
+        }
+      });
+    }
+    else{
+      console.log('isChineseMode',this.data.isChineseMode)
+      wx.uploadFile({
+        url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
+        filePath: filePath,
+        name: 'voice_file',
+        formData: {
+          'isChineseMode': 'true',
+        },
+        success: (res) => {
+          console.log('文件上传成功', res);
+          wx.showToast({
+            title: '上传成功',
+            icon: 'success'
+          });
+          // 处理服务器返回的数据
+          this.handleServerResponse(res.data);
+        },
+        fail: (err) => {
+          console.error('文件上传失败', err);
+          wx.showToast({
+            title: '上传失败',
+            icon: 'none'
+          });
+        }
+      });
+    }
+    
   },
 
   // 处理服务器返回的数据

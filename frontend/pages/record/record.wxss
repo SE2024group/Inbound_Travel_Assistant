@@ -46,17 +46,46 @@
 }
 
 
-.send-button {
+.button-row {
   position: absolute; /* 绝对定位 */
-  right: 5px;
-  bottom: 5px;
-  font-size: 16px;
+  bottom: 10px; /* 距离底部 10px */
+  right: 10px;  /* 距离右侧 10px */
+  display: flex;
+  gap: 5px; /* 减少按钮之间的间距 */
+  /* 移除宽度和内边距，以避免占据过多空间 */
+}
+
+.send-button {
+  font-size: 14px; /* 缩小字体 */
   color: white;
   background-color: #4CAF50;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px; /* 调整圆角 */
   cursor: pointer;
-  z-index: 10;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+.clear-button {
+  font-size: 14px; /* 保持与 send-button 一致 */
+  color: white;
+  background-color: #ff4d4f;
+  border: none;
+  border-radius: 8px; /* 调整圆角 */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+.send-button:active {
+  background-color: #388E3C; /* 按下时颜色变深 */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.clear-button:active {
+  background-color: #d32f2f; /* 按下时颜色变深 */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .record-button {
@@ -88,27 +117,8 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 20px;
-  gap: 40px;
 }
 
-.clear-button {
-  position: flex;
-  right: 10px;
-  padding: 5px 10px;
-  font-size: 14px;
-  color: white;
-  background-color: #ff4d4f;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.clear-button:active {
-  background-color: #d32f2f; /* 悬停时颜色变深 */
-}
 
 .play-button {
   width: 250px;
