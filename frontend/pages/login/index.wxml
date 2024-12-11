@@ -2,20 +2,30 @@
   <image class="logo" src="https://cloud.tsinghua.edu.cn/f/9a5d8ec171fa4541a9f4/?dl=1" mode="widthFix"></image>
   <text class="welcome-text">Welcome to use Cultural Compass</text>
 
-  <button class="login-button" open-type="getUserProfile" bindtap="onWeChatLogin" type="primary">
+  <!-- 用户名输入框 -->
+  <input class="input" placeholder="Please Enter Your Nickname" bindinput="onUsernameInput" />
+  <!-- 密码输入框 -->
+  <input class="input" placeholder="Please Enter Your Password" bindinput="onPasswordInput" />
+
+  <view class="button-container">
+    <button class="login-button" bindtap="onLogin">
+      登录
+    </button>
+    <button class="register-button" bindtap="onRegister">
+      注册
+    </button>
+    <button class="tourist-button" bindtap="onTouristLogin">
+      游客登录
+    </button>
+  </view>
+
+  <!-- <button class="login-button" open-type="getUserProfile" bindtap="onWeChatLogin" type="primary">
     Wechat Authorization Login
   </button>
 
   <button class="login-button" open-type="getPhoneNumber" bindgetphonenumber="onPhoneLogin" type="default">
     Phone Number Authorization Login
-  </button>
-
-  <button class="login-button" bindtap="onTouristLogin">
-    Tourist Login
-  </button>
-
-  <!-- 用户名输入框 -->
-  <input class="username-input" placeholder="Please Enter Your Nickname" bindinput="onUsernameInput" />
+  </button> -->
 
   <!-- 复选框和用户使用规则 -->
   <view class="agreement">

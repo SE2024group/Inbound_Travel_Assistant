@@ -1,4 +1,4 @@
-export function login(username) {
+export function login(username, password) {
   return new Promise((resolve, reject) => {
     wx.request({
       url: 'http://1.15.174.177/api/login/',
@@ -8,6 +8,7 @@ export function login(username) {
       },
       data: {
         username: username,
+        password: password,
       },
       success: (response) => {
         console.log('response code = ', response.statusCode);

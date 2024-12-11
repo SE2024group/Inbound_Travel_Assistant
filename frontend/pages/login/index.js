@@ -7,12 +7,27 @@ Page({
     isLoad: false,
     isAgreed: false, // 记录用户是否同意用户使用规则
     username: '', // 存储输入的用户名
+    password: '',
   },
 
   // 获取输入框中的用户名
   onUsernameInput(e) {
     this.setData({
       username: e.detail.value,
+    });
+  },
+
+  // 获取输入框中的密码
+  onPasswordInput(e) {
+    this.setData({
+      password: e.detail.value,
+    });
+  },
+
+  onLogin() {
+    wx.showToast({
+      title: '还没做',
+      icon: 'loading',
     });
   },
 
@@ -35,39 +50,31 @@ Page({
     const {
       username
     } = this.data;
-    console.log('username is ', username);
+    console.log('username entered is ', username);
 
-    if (!username) {
+    if (this.data.username == '') {
+      console.log('havent enter username')
       wx.showToast({
-        title: 'Please enter your username.',
+        title: 'Haven\'t entered username\n, treated as \'Tourist\'.',
         icon: 'none',
+        duration: 500,
       });
-      return;
-    }
+      this.setData({
+        username: 'Tourist',
+      });
+      console.log('username is ', this.data.username);
+    };
 
-    // 调用 login 函数并传递用户名
-    login(username)
-      .then((token) => {
-        wx.showToast({
-          title: 'Logged in',
-          icon: 'success',
-        });
-        // 登录成功后跳转到 usercenter 页面
-        wx.navigateTo({
-          url: '/pages/usercenter/usercenter',
-        });
-      })
-      .catch((error) => {
-        wx.showToast({
-          title: 'Login failed',
-          icon: 'error',
-        });
-        console.error(error);
-      });
+    wx.showToast({
+      title: 'Logged in',
+      icon: 'success',
+    });
+
     console.log('tourist');
+
     wx.setStorage({
       key: 'userName',
-      data: `${username}`,
+      data: `${this.data.username}`,
     });
     wx.setStorage({
       key: 'loggedBy',
@@ -78,9 +85,11 @@ Page({
       data: new Date().toISOString() + " GMT",
     });
     wx.setStorageSync('isLoggedIn', true);
-    wx.switchTab({
-      url: '/pages/navigation/navigation',
-    })
+    setTimeout(() => {
+      wx.switchTab({
+        url: '/pages/navigation/navigation',
+      });
+    }, 500);
   },
 
   // 处理复选框状态变化
@@ -98,115 +107,10 @@ Page({
   },
 
   onLoad() {
-    // 检查用户是否已经授权登录
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 用户已经授权过，可以直接使用微信信息
-          wx.getUserInfo({
-            success: res => {
-              this.onWeChatLogin(res.userInfo);
-            }
-          });
-        }
-      }
-    });
-  },
 
-  onWeChatLogin(userInfo) {
-    if (!this.data.isLoad) {
-      this.setData({
-        isLoad: true
-      });
-    } else if (!this.data.isAgreed) {
-      wx.showModal({
-        title: 'Notice',
-        content: 'You haven\'t read\'User Terms and Conditions\'. Unable to login. ',
-        showCancel: false,
-        confirmText: 'OK'
-      });
-      return;
-    }
-    wx.login({
-      success: res => {
-        if (res.code) {
-          // 将 code 和用户信息传递到后端
-          wx.request({
-            url: 'http://1.15.174.177:3000/wechat-login',
-            method: 'POST',
-            data: {
-              code: res.code,
-              userInfo: userInfo
-            },
-            success: response => {
-              // 将返回的令牌存储到本地
-              wx.setStorage({
-                key: "userToken",
-                data: response.data.token
-              });
-              console.log("Login successful:", response.data);
-            }
-          });
-        } else {
-          console.log('登录失败！' + res.errMsg);
-        }
-      },
-      fail: () => {
-        wx.showModal({
-          title: '提示',
-          content: '您拒绝了授权，登录失败。',
-          showCancel: false,
-          confirmText: '知道了'
-        });
-      }
-    });
   },
 
 
-  onPhoneLogin(e) {
-    if (!this.data.isLoad) {
-      this.setData({
-        isLoad: true
-      });
-    } else if (!this.data.isAgreed) {
-      wx.showModal({
-        title: 'Notice',
-        content: 'You haven\'t read\'User Terms and Conditions\'. Unable to login. ',
-        showCancel: false,
-        confirmText: 'OK'
-      });
-      return;
-    }
-    console.log('e.detail', e.detail)
-    if (e.detail.code) {
-      wx.request({
-        url: 'https://1.15.174.177:3000/phone-login',
-        method: 'POST',
-        data: {
-          code: e.detail.code
-        },
-        success: response => {
-          console.log("Phone login successful:", response.data);
-          // 在此处处理登录成功后的逻辑，例如存储用户信息或跳转页面
-        },
-        fail: () => {
-          wx.showModal({
-            title: '提示',
-            content: '登录失败，请重试。',
-            showCancel: false,
-            confirmText: '知道了'
-          });
-        }
-      });
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '获取手机号失败，请重试。',
-        showCancel: false,
-        confirmText: '知道了'
-      });
-    }
-  },
 
 
 

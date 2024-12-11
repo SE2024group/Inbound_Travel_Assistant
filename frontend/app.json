@@ -5,9 +5,6 @@
     "pages/home/home",
     "pages/redbook/redbook",
     "pages/usercenter/index",
-    "pages/usercenter/person-info/index",
-    "pages/usercenter/address/list/index",
-    "pages/usercenter/address/edit/index",
     "pages/goods/list/index",
     "pages/goods/details/index",
     "pages/goods/category/index",
@@ -27,7 +24,6 @@
     "pages/out2/out2",
     "pages/record/record",
     "pages/accountInfo/index"
-
   ],
   "tabBar": {
     "custom": true,

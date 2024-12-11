@@ -25,36 +25,58 @@ Page({
     });
   },
   onLoad() {
-    // 从本地存储中获取 authToken
-    wx.getStorage({
-      key: 'authToken',
-      success: (res) => {
-        const token = res.data;
 
-        // 使用 authToken 调用 fetchUserData 并传递 token 参数
-        this.retryFetchUserData(token, 20).then((data) => {
-          this.setData({
-            userInfo: data, // 将用户数据存储在 userInfo 中
+    const loggedBy = wx.getStorageSync('loggedBy') || '';
+    if (!loggedBy) {
+      wx.showToast({
+        title: 'Login status error.',
+        icon: 'error',
+      });
+    }
+    console.log('logged by ', loggedBy);
+
+    if (loggedBy == 'tourist') {
+      const userInfo = {
+        // 随后端userInfo更新而更新
+        name: wx.getStorageSync('userName') || 'Tourist',
+        avatar: '/pages/usercenter/avatar.jpeg'
+      };
+      this.setData({
+        userInfo: userInfo,
+      });
+      console.log(this.data.userInfo);
+    } else {
+      // 从本地存储中获取 authToken
+      wx.getStorage({
+        key: 'authToken',
+        success: (res) => {
+          const token = res.data;
+
+          // 使用 authToken 调用 fetchUserData 并传递 token 参数
+          this.retryFetchUserData(token, 20).then((data) => {
+            this.setData({
+              userInfo: data, // 将用户数据存储在 userInfo 中
+            });
+          }).catch((error) => {
+            wx.showToast({
+              title: 'Fail to load user info',
+              icon: 'error',
+            });
+            console.error('Failed to load user data:', error);
           });
-        }).catch((error) => {
+        },
+        fail: () => {
           wx.showToast({
-            title: 'Fail to load user info',
+            title: 'Please login first.',
             icon: 'error',
           });
-          console.error('Failed to load user data:', error);
-        });
-      },
-      fail: () => {
-        wx.showToast({
-          title: '请先登录',
-          icon: 'error',
-        });
-        // 如果没有找到 authToken，则重定向到登录页面
-        wx.redirectTo({
-          url: '/pages/login/login',
-        });
-      },
-    });
+          // 如果没有找到 authToken，则重定向到登录页面
+          wx.redirectTo({
+            url: '/pages/login/login',
+          });
+        },
+      });
+    }
   },
 
   // 跳转到点赞页面
