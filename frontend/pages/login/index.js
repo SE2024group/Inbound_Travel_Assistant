@@ -41,7 +41,7 @@ Page({
     // 前端验证
     if (!username) {
       wx.showToast({
-        title: '用户名不能为空',
+        title: 'Username shouldn\'t be null.',
         icon: 'none',
       });
       return;
@@ -49,7 +49,7 @@ Page({
 
     if (!password) {
       wx.showToast({
-        title: '密码不能为空',
+        title: 'Password shouldn\'t be null.',
         icon: 'none',
       });
       return;
@@ -57,17 +57,17 @@ Page({
 
     if (!isAgreed) {
       wx.showModal({
-        title: '提示',
-        content: '请同意用户使用规则',
+        title: 'Notice',
+        content: 'You haven\'t read\'User Terms and Conditions\'. Unable to login.',
         showCancel: false,
-        confirmText: '确定'
+        confirmText: 'OK'
       });
       return;
     }
 
     // 显示加载
     wx.showLoading({
-      title: '登录中...',
+      title: 'Logging in...',
       mask: true, // 防止用户操作
     });
 
@@ -77,7 +77,7 @@ Page({
       .then((token) => {
         wx.hideLoading();
         wx.showToast({
-          title: '登录成功',
+          title: 'Logged in',
           icon: 'success',
           duration: 2000,
         });
@@ -91,10 +91,10 @@ Page({
       .catch((error) => {
         wx.hideLoading();
         wx.showModal({
-          title: '登录失败',
+          title: 'Login failed.',
           content: error,
           showCancel: false,
-          confirmText: '确定'
+          confirmText: 'OK'
         });
         console.error('登录失败:', error);
       });
