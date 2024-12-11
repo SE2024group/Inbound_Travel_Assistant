@@ -523,137 +523,67 @@ Page({
           success(res) {
             console.log('OCR API Response:', res);
 
-            //if (res.data && res.data.ParsedResults && res.data.ParsedResults.length > 0) {
-            if (true) {
-              let apiResponse;
-              try {
-                apiResponse = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
-              } catch (error) {
-                console.error('Failed to parse API response:', error);
-                return; // 解析失败，退出函数
-              }
 
-              // // 确保返回的数据结构包含 results
-              // if (!apiResponse.results || !Array.isArray(apiResponse.results)) {
-              //   console.error('Unexpected API response format:', apiResponse);
-              //   return; // 数据格式不符合预期，退出函数
-              // }
-              console.error(' API response format:', apiResponse)
-              // 定义并保存解析结果到 testArray
-              const testArray = apiResponse.results.map((item, index) => {
-                const topLeft = item.bounding_box.top_left;
-                const bottomRight = item.bounding_box.bottom_right;
-                const topRight = {
-                  x: bottomRight.x,
-                  y: topLeft.y
-                };
-                const bottomLeft = {
-                  x: topLeft.x,
-                  y: bottomRight.y
-                };
+            // if (res.data && res.data.ParsedResults && res.data.ParsedResults.length > 0) {
 
-                // Apply the ID transformation
-                const originalID = parseInt(item.ID, 10); // Ensure ID is treated as a number
-                const transformedID = (originalID % 4) + 1;
-
-                return {
-                  imageURL: item.image, // Image URL
-                  name: item.linetext_substring, // OCR detected text
-                  rectangle: {
-                    topLeft: topLeft,
-                    topRight: topRight,
-                    bottomLeft: bottomLeft,
-                    bottomRight: bottomRight,
-                  },
-                  ID: transformedID // Transformed ID
-                };
-              });
-
-              console.log('Parsed Test Array:', testArray);
-
-
-              // 提取每个词的五元组
-              // const parsedResults = res.data.ParsedResults[0].TextOverlay.Lines || [];
-              // const wordsData = [];
-
-              // // parsedResults.forEach((line) => {
-              // //   if (line.Words) {
-              // //     line.Words.forEach((word) => {
-              // //       wordsData.push({
-              // //         WordText: word.WordText,
-              // //         Left: word.Left,
-              // //         Top: word.Top,
-              // //         Height: word.Height,
-              // //         Width: word.Width,
-              // //       });
-              // //     });
-              // //   }
-              // // });
-
-              // console.log('Extracted words data:', wordsData);
-              // const testArray = [{
-              //     imageURL: filePath, // 子图片地址
-              //     name: 'Image 1', // 图片名称
-              //     rectangle: {
-              //       topLeft: {
-              //         x: 50,
-              //         y: 50
-              //       }, // 长方形左上角
-              //       topRight: {
-              //         x: 150,
-              //         y: 50
-              //       }, // 长方形右上角
-              //       bottomLeft: {
-              //         x: 50,
-              //         y: 150
-              //       }, // 长方形左下角
-              //       bottomRight: {
-              //         x: 150,
-              //         y: 150
-              //       }, // 长方形右下角
-              //     },
-              //   },
-              //   {
-              //     imageURL: filePath, // 子图片地址
-              //     name: 'Image 2', // 图片名称
-              //     rectangle: {
-              //       topLeft: {
-              //         x: 20,
-              //         y: 20
-              //       },
-              //       topRight: {
-              //         x: 30,
-              //         y: 20
-              //       },
-              //       bottomLeft: {
-              //         x: 20,
-              //         y: 30
-              //       },
-              //       bottomRight: {
-              //         x: 30,
-              //         y: 30
-              //       },
-              //     },
-              //   },
-              // ];
-              // 跳转到新页面，并传递五元组数据
-              wx.navigateTo({
-                //url: '/pages/ocrResults/ocrResults',
-                url: '/pages/ocrResults/ocrResults',
-                success: (res) => {
-                  res.eventChannel.emit('sendWordsData', {
-                    wordsData: testArray,
-                    imagePath: filePath,
-                  });
-                  console.log(filePath)
-                },
-              });
-            } else {
-              wx.showToast({
-                title: 'OCR failed: No text parsed',
-                icon: 'none',
-              });
+            let apiResponse;
+            try {
+              apiResponse = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+            } catch (error) {
+              console.error('Failed to parse API response:', error);
+              return; // 解析失败，退出函数
             }
+
+            // // 确保返回的数据结构包含 results
+            // if (!apiResponse.results || !Array.isArray(apiResponse.results)) {
+            //   console.error('Unexpected API response format:', apiResponse);
+            //   return; // 数据格式不符合预期，退出函数
+            // }
+            console.error(' API response format:', apiResponse)
+            // 定义并保存解析结果到 testArray
+            const testArray = apiResponse.results.map((item, index) => {
+              const topLeft = item.bounding_box.top_left;
+              const bottomRight = item.bounding_box.bottom_right;
+              const topRight = {
+                x: bottomRight.x,
+                y: topLeft.y
+              };
+              const bottomLeft = {
+                x: topLeft.x,
+                y: bottomRight.y
+              };
+
+              // Apply the ID transformation
+              const originalID = parseInt(item.ID, 10); // Ensure ID is treated as a number
+              const transformedID = (originalID % 4) + 1;
+
+              return {
+                imageURL: item.image, // Image URL
+                name: item.en_name, // OCR detected text
+                rectangle: {
+                  topLeft: topLeft,
+                  topRight: topRight,
+                  bottomLeft: bottomLeft,
+                  bottomRight: bottomRight,
+                },
+                ID: transformedID // Transformed ID
+              };
+            });
+
+            console.log('Parsed Test Array:', testArray);
+
+            // 跳转到新页面，并传递数据
+            wx.navigateTo({
+              url: '/pages/ocrResults/ocrResults',
+              success: (res) => {
+                res.eventChannel.emit('sendWordsData', {
+                  wordsData: testArray,
+                  imagePath: filePath,
+                });
+                console.log(filePath)
+              },
+            });
+
           },
           fail(err) {
             console.error('OCR request failed:', err);

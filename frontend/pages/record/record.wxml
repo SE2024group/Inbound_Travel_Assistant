@@ -4,16 +4,13 @@
   <view class="large-text-box">
     <text class="large-text">{{selectedText}}</text>
   </view>
+  <!-- <view class="test-box">
+    <text class="test-box">{{title}}</text>
+  </view> -->
 
   <!-- 使用图片作为录音按钮 -->
-  <view 
-    class="record-button {{isPressed ? 'pressed' : ''}}" 
-    bindtouchstart="startRecording" 
-    bindtouchend="stopRecording">
-    <image 
-      src="https://cloud.tsinghua.edu.cn/f/2d783a16dc794e829380/?dl=1" 
-      class="microphone-icon"
-    />
+  <view class="record-button {{isPressed ? 'pressed' : ''}}" bindtouchstart="startRecording" bindtouchend="stopRecording">
+    <image src="https://cloud.tsinghua.edu.cn/f/2d783a16dc794e829380/?dl=1" class="microphone-icon" />
     <text class="record-text">{{micButtonText}}</text>
   </view>
 
@@ -26,10 +23,7 @@
   <!-- 常用语 -->
   <view class="common-phrases">
     <block wx:for="{{currentPhrases}}" wx:key="index">
-      <view 
-        class="phrase-box" 
-        bindtap="showTranslation" 
-        data-index="{{index}}">
+      <view class="phrase-box" bindtap="showTranslation" data-index="{{index}}">
         <text class="phrase-text">{{item.text}}</text>
       </view>
     </block>
