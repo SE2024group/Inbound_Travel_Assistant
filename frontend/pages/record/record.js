@@ -204,76 +204,64 @@ Page({
   },
 
   // 上传录音文件到服务器
-  uploadRecording(filePath) {
-    if (this.data.isChineseMode) {
-      console.log('isChineseMode', this.data.isChineseMode)
-      wx.uploadFile({
-        url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
-        filePath: filePath,
-        name: 'voice_file',
-        formData: {
-          'isChineseMode': 'false',
-        },
-        success: (res) => {
-          console.log('文件上传成功', res);
-          wx.showToast({
-            title: '上传成功',
-            icon: 'success'
-          });
-          // 处理服务器返回的数据
-          this.handleServerResponse(res.data);
-        },
-        fail: (err) => {
-          console.error('文件上传失败', err);
-          wx.showToast({
-            title: '上传失败',
-            icon: 'none'
-          });
-        }
-      });
-    } else {
-      console.log('isChineseMode', this.data.isChineseMode)
-      wx.uploadFile({
-        url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
-        filePath: filePath,
-        name: 'voice_file',
-        formData: {
-          'isChineseMode': 'true',
-        },
-        success: (res) => {
-          console.log('文件上传成功', res);
-          wx.showToast({
-            title: '上传成功',
-            icon: 'success'
-          });
-          // 处理服务器返回的数据
-          this.handleServerResponse(res.data);
-        },
-        fail: (err) => {
-          console.error('文件上传失败', err);
-          wx.showToast({
-            title: '上传失败',
-            icon: 'none'
-          });
-        }
-      });
-    }
-
+  uploadRecording: function(filePath) { // 明确使用 function 关键字
+    console.log('上传录音文件，isChineseMode:', this.data.isChineseMode);
+    
+    wx.uploadFile({
+      url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
+      filePath: filePath,
+      name: 'voice_file',
+      formData: {
+        'isChineseMode': this.data.isChineseMode.toString(), // 确保发送的是字符串 'true' 或 'false'
+      },
+      success: (res) => {
+        console.log('文件上传成功', res);
+        wx.showToast({
+          title: '上传成功',
+          icon: 'success'
+        });
+        // 处理服务器返回的数据
+        this.handleServerResponse(res.data);
+      },
+      fail: (err) => {
+        console.error('文件上传失败', err);
+        wx.showToast({
+          title: '上传失败',
+          icon: 'none'
+        });
+      }
+    });
   },
 
   // 处理服务器返回的数据
-  handleServerResponse(data) {
+  handleServerResponse: function(data) {
     // 假设服务器返回的数据是 JSON 格式
     try {
       const response = JSON.parse(data);
       console.log('response', response);
-      const textToDisplay = response.data.text; // 假设服务器返回的数据中包含 text 键
-      console.log(textToDisplay)
-      this.setData({
-        selectedText: textToDisplay
-      }); // 更新文本框内容
+
+      if (response.code === 200) {
+        const { cn_text, en_text, isChineseMode } = response.data;
+        const textToDisplay = isChineseMode ? cn_text : en_text;
+        
+        console.log('显示的文本:', textToDisplay);
+
+        this.setData({
+          selectedText: textToDisplay
+        });
+      } else {
+        console.error('服务器返回错误代码:', response.code, '消息:', response.message);
+        wx.showToast({
+          title: `error: ${response.message}`,
+          icon: 'none'
+        });
+      }
     } catch (error) {
       console.error('解析服务器响应失败', error);
+      wx.showToast({
+        title: '解析响应失败',
+        icon: 'none'
+      });
     }
   },
 
