@@ -108,7 +108,8 @@ Page({
         if (res.confirm) {
           // 用户点击确认，跳转页面并修改参数
           app.globalData.title = name;
-          //app.globalData.image = this.data.image;
+          app.globalData.image = self.data.details.images[0];
+
           wx.switchTab({
             url: `/pages/record/record`,
           });
@@ -150,6 +151,7 @@ Page({
     this.setData({
       image: images[index],
     })
+
     const {
       images
     } = this.data.details;
@@ -285,20 +287,8 @@ Page({
         // skuList,
         primaryImage,
       } = details;
-      // skuList.forEach((item) => {
-      //   skuArray.push({
-      //     skuId: item.skuId,
-      //     quantity: item.stockInfo ? item.stockInfo.stockQuantity : 0,
-      //     specInfo: item.specInfo,
-      //   });
-      // });
-      // const promotionArray = [];
       this.setData({
         details,
-        // activityList,
-        // isStock: details.spuStockQuantity > 0,
-        // list: promotionArray,
-        // skuArray: skuArray,
         primaryImage,
       });
     });

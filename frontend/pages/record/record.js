@@ -17,22 +17,51 @@ Page({
     toggleButtonText: "Switch to Chinese Mode", // 切换按钮文字
     selectedText: "", // 大文本框内容
     clearText: "Clear",
+
     placeholderText: "Please enter text",
     sendButtonText: "Send",
     isInputFocused: false,
-    phrases: [
-      { english: "Sorry, could you repeat that?", chinese: "对不起，你能再说一遍吗？" },
-      { english: "Where is the restroom?", chinese: "洗手间在哪里？" },
-      { english: "Thank you very much!", chinese: "非常感谢！" },
-      { english: "Excuse me, can you help me?", chinese: "不好意思，你能帮我吗？" },
-      { english: "How much does it cost?", chinese: "这个多少钱？" },
-      { english: "Is there Wi-Fi here?", chinese: "这里有WI-FI吗？" },
+    phrases: [{
+        english: "Sorry, could you repeat that?",
+        chinese: "对不起，你能再说一遍吗？"
+      },
+      {
+        english: "Where is the restroom?",
+        chinese: "洗手间在哪里？"
+      },
+      {
+        english: "Thank you very much!",
+        chinese: "非常感谢！"
+      },
+      {
+        english: "Excuse me, can you help me?",
+        chinese: "不好意思，你能帮我吗？"
+      },
+      {
+        english: "How much does it cost?",
+        chinese: "这个多少钱？"
+      },
+      {
+        english: "Is there Wi-Fi here?",
+        chinese: "这里有WI-FI吗？"
+      },
     ], // 中英文短语对
-    cphrases: [
-      { english: "Sorry, could you repeat that?", chinese: "对不起，你能再说一遍吗？" },
-      { english: "You're welcome.", chinese: "不用谢" },
-      { english: "I didn't understand, could you explain it again?", chinese: "我没有理解，请再解释一下" },
-      { english: "Sorry, I'm not sure about that.", chinese: "不好意思，我不清楚这个" },
+    cphrases: [{
+        english: "Sorry, could you repeat that?",
+        chinese: "对不起，你能再说一遍吗？"
+      },
+      {
+        english: "You're welcome.",
+        chinese: "不用谢"
+      },
+      {
+        english: "I didn't understand, could you explain it again?",
+        chinese: "我没有理解，请再解释一下"
+      },
+      {
+        english: "Sorry, I'm not sure about that.",
+        chinese: "不好意思，我不清楚这个"
+      },
     ], // 中英文短语对
     currentPhrases: [], // 当前显示的短语
   },
@@ -40,14 +69,15 @@ Page({
   onLoad() {
     const app = getApp();
     const title = app.globalData.title;
-    //const image = app.globalData.image;
+    const image = app.globalData.image;
     this.setData({
       currentPhrases: this.data.phrases.map((phrase) => ({
         text: phrase.english,
 
       })),
       title: title,
-      //image: image,
+      image: image,
+
     });
 
   },
@@ -60,11 +90,20 @@ Page({
       micButtonText: isChinese ? "按住说话" : "Hold to Talk",
       toggleButtonText: isChinese ? "切换到英语模式" : "Switch to Chinese Mode",
       clearText: isChinese ? "清除" : "Clear",
+      currentPhrases: isChinese ?
+        this.data.cphrases.map((phrase) => ({
+          text: phrase.chinese
+        })) : this.data.phrases.map((phrase) => ({
+          text: phrase.english
+        })),
       placeholderText: isChinese ? "请输入文字" : "Please enter text",
       sendButtonText: isChinese ? "发送" : "Send",
-      currentPhrases: isChinese
-        ? this.data.cphrases.map((phrase) => ({ text: phrase.chinese }))
-        : this.data.phrases.map((phrase) => ({ text: phrase.english })),
+      currentPhrases: isChinese ?
+        this.data.cphrases.map((phrase) => ({
+          text: phrase.chinese
+        })) : this.data.phrases.map((phrase) => ({
+          text: phrase.english
+        })),
     });
   },
 
@@ -83,13 +122,13 @@ Page({
     // 获取文本框中的文本
     const textToUpload = this.data.selectedText;
     console.log("发送的文本：", textToUpload);
-  
+
     // 构建请求参数
     const formData = {
       text: textToUpload,
       isChineseMode: this.data.isChineseMode
     };
-  
+
     // 发送请求到服务器
     wx.request({
       url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
@@ -125,21 +164,21 @@ Page({
   },
 
   // 处理输入框的输入事件
-  onInputChange: function(event) {
+  onInputChange: function (event) {
     this.setData({
       selectedText: event.detail.value // 更新输入框内容
     });
   },
 
   // 你可以选择在点击文本框时自动聚焦
-  focusInput: function() {
+  focusInput: function () {
     this.setData({
       isInputFocused: true
     });
   },
 
   // 你可以选择在点击外部区域时取消聚焦
-  blurInput: function() {
+  blurInput: function () {
     this.setData({
       isInputFocused: false
     });
@@ -167,7 +206,9 @@ Page({
     recorderManager.stop();
     recorderManager.onStop((res) => {
       console.log('录音结束', res);
-      const { tempFilePath } = res; // 获取临时文件路径
+      const {
+        tempFilePath
+      } = res; // 获取临时文件路径
       this.setData({
         audioFilePath: tempFilePath,
       }); // 更新录音文件路径
@@ -182,8 +223,8 @@ Page({
 
   // 上传录音文件到服务器
   uploadRecording(filePath) {
-    if(this.data.isChineseMode){
-      console.log('isChineseMode',this.data.isChineseMode)
+    if (this.data.isChineseMode) {
+      console.log('isChineseMode', this.data.isChineseMode)
       wx.uploadFile({
         url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
         filePath: filePath,
@@ -208,9 +249,8 @@ Page({
           });
         }
       });
-    }
-    else{
-      console.log('isChineseMode',this.data.isChineseMode)
+    } else {
+      console.log('isChineseMode', this.data.isChineseMode)
       wx.uploadFile({
         url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
         filePath: filePath,
@@ -236,7 +276,7 @@ Page({
         }
       });
     }
-    
+
   },
 
   // 处理服务器返回的数据

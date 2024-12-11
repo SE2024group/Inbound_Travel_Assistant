@@ -30,7 +30,6 @@ import {
 // }
 
 function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
-  console.log("mockFetchGoodsList");
   const {
     delay
   } = require('../_utils/delay');
@@ -49,7 +48,6 @@ function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
         title: item.title,
         tags: item.spuTagList.map((tag) => tag.title),
       }));
-      console.log("Returned Goods List:", result);
       return result; // 返回处理后的数据
     });
 }
