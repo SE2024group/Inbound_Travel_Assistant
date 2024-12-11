@@ -4,6 +4,10 @@ import {
   fetchUserData
 } from '../../services/usercenter/fetchUsercenter';
 
+import {
+  updateUserPreferences
+} from '../../services/usercenter/updateUserPreferences'
+
 Page({
   data: {
     userInfo: {},
@@ -112,11 +116,37 @@ Page({
     this.setData({
       selectedReligiousBelief: selected,
     });
-    // Store selection locally
+    // 本地存储选择
     wx.setStorageSync('religiousBelief', selected);
 
-    // TODO: Integrate with backend API if needed in the future
+    // 调用后端API更新宗教信仰
+    updateUserPreferences({
+        religious_belief: selected
+      })
+      .then((data) => {
+        wx.showToast({
+          title: 'Belief updated.',
+          icon: 'success',
+        });
+        // 更新 userInfo 数据（如果后端返回更新后的用户信息）
+        if (data.user) {
+          this.setData({
+            userInfo: data.user,
+          });
+          // 同步本地存储
+          wx.setStorageSync('religiousBelief', data.user.religious_belief || '');
+          wx.setStorageSync('dietaryRestrictions', data.user.dietary_restrictions || []);
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to update religious belief:', error);
+        wx.showToast({
+          title: error,
+          icon: 'none',
+        });
+      });
   },
+
 
   // Open dietary restrictions selection modal
   openDietaryModal() {
@@ -142,14 +172,40 @@ Page({
 
   // Save dietary restrictions selections
   saveDietaryRestrictions() {
+    const selections = this.data.dietarySelections; // 已移除 'None'
     this.setData({
-      selectedDietaryRestrictions: this.data.dietarySelections,
+      selectedDietaryRestrictions: selections,
       showDietaryModal: false,
     });
-    // Store selections locally
-    wx.setStorageSync('dietaryRestrictions', this.data.dietarySelections);
+    // 本地存储选择
+    wx.setStorageSync('dietaryRestrictions', selections);
 
-    // TODO: Integrate with backend API if needed in the future
+    // 调用后端API更新饮食禁忌
+    updateUserPreferences({
+        dietary_restrictions: selections
+      })
+      .then((data) => {
+        wx.showToast({
+          title: '饮食禁忌更新成功。',
+          icon: 'success',
+        });
+        // 更新 userInfo 数据（如果后端返回更新后的用户信息）
+        if (data.user) {
+          this.setData({
+            userInfo: data.user,
+          });
+          // 同步本地存储
+          wx.setStorageSync('religiousBelief', data.user.religious_belief || '');
+          wx.setStorageSync('dietaryRestrictions', data.user.dietary_restrictions || []);
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to update dietary restrictions:', error);
+        wx.showToast({
+          title: error,
+          icon: 'none',
+        });
+      });
   },
 
   // Check if a dietary restriction is selected
