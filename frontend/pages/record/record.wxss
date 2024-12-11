@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 130vh;
+  height: 120vh;
 }
 
 .large-text-box {
@@ -141,6 +141,9 @@
 }
 
 .phrase-box {
+  display: flex; /* 使用 flexbox 布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
   flex: 0 0 40%; /* 每个元素占据父容器宽度的48% */
   padding: 15px;
   border-radius: 15px;
@@ -152,5 +155,6 @@
 .phrase-text {
   font-size: 18px;
   color: #333;
+  text-align: center;
 }
 
