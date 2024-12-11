@@ -94,13 +94,32 @@
   line-height: 30rpx;
   margin: 0 8rpx 8rpx 0;
   display: block;
-  overflow: hidden;
   white-space: nowrap;
-  word-break: keep-all;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
+
+.goods-card__tags {
+  max-width: calc(100% - 60rpx);
+  /* 限制父容器宽度，预留右侧空间 */
+  display: flex;
+  /* 使用 Flexbox 布局，使子标签排列 */
+  flex-wrap: wrap;
+  /* 多个标签自动换行 */
+  overflow: hidden;
+  /* 防止超出容器 */
+}
+
 .goods-card__down {
+  position: absolute;
+  bottom: 10px;
+  /* 调整距离底部的距离 */
+  right: 0px;
+  /* 调整距离右侧的距离 */
+}
+
+/* .goods-card__down {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -108,7 +127,7 @@
   align-items: baseline;
   line-height: 32rpx;
   margin: 8rpx 0 0 0;
-}
+} */
 
 .goods-card__origin-price {
   white-space: nowrap;

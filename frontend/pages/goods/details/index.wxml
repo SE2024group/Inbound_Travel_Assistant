@@ -4,6 +4,16 @@
     <view class="goods-info">
       <view class="goods-title">
         <view class="goods-name">{{details.title}}</view>
+        <view class="navigate-btn">
+          <view class="navigate-btn">
+            <t-button t-class="navBtn" theme="primary" shape="round" bind:tap="onNavigateButtonTap">
+              <view class="btn-icon">
+                <view class="nav-text">Ask For Help</view>
+              </view>
+            </t-button>
+          </view>
+        </view>
+
         <view class="goods-tag">
           <t-button open-type="share" t-class="shareBtn" variant="text">
             <view class="btn-icon">
@@ -13,6 +23,7 @@
           </t-button>
         </view>
       </view>
+      <view class="goods-description">{{details.description}}</view>
       <view class="goods-intro">{{intro}}</view>
     </view>
 

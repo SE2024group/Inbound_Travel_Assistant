@@ -99,11 +99,13 @@
   width: 100px;
   height: 100px;
   margin-bottom: 8px;
-  transition: transform 0.2s, opacity 0.2s; /* 动画过渡 */
+  transition: transform 0.2s, opacity 0.2s;
+  /* 动画过渡 */
 }
 
 .record-button.pressed .microphone-icon {
-  opacity: 0.6; /* 改变透明度 */
+  opacity: 0.6;
+  /* 改变透明度 */
 }
 
 .record-text {
@@ -133,7 +135,8 @@
   line-height: 50px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: all 0.3s ease; /* 动画过渡 */
+  transition: all 0.3s ease;
+  /* 动画过渡 */
 }
 
 .play-button:active {
@@ -143,7 +146,8 @@
 
 .common-phrases {
   display: flex;
-  flex-wrap: wrap; /* 自动换行 */
+  flex-wrap: wrap;
+  /* 自动换行 */
   justify-content: space-between;
   gap: 10px;
   width: 90%;

@@ -10,6 +10,8 @@ const options = {
 
 Page({
   data: {
+    title: "",
+    image: "",
     isChineseMode: false, // 默认英文模式
     micButtonText: "Hold to Talk", // 麦克风按钮文字
     toggleButtonText: "Switch to Chinese Mode", // 切换按钮文字
@@ -36,11 +38,18 @@ Page({
   },
 
   onLoad() {
+    const app = getApp();
+    const title = app.globalData.title;
+    //const image = app.globalData.image;
     this.setData({
       currentPhrases: this.data.phrases.map((phrase) => ({
         text: phrase.english,
+
       })),
+      title: title,
+      //image: image,
     });
+
   },
 
   // 切换语言模式
@@ -62,9 +71,9 @@ Page({
   // 显示短语翻译
   showTranslation(e) {
     const index = e.currentTarget.dataset.index;
-    const selectedPhrase = this.data.isChineseMode
-      ? this.data.cphrases[index].english
-      : this.data.phrases[index].chinese;
+    const selectedPhrase = this.data.isChineseMode ?
+      this.data.cphrases[index].english :
+      this.data.phrases[index].chinese;
     this.setData({
       selectedText: selectedPhrase,
     });

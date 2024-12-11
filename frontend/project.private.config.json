@@ -9,8 +9,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/usercenter/index",
-          "pathName": "pages/usercenter/index",
+          "name": "pages/goods/detail",
+          "pathName": "pages/goods/detail",
           "query": "",
           "launchMode": "default",
           "scene": null
