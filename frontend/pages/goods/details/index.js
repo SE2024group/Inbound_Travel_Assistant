@@ -95,7 +95,7 @@ Page({
       url: '../comments/create/index'
     });
   },
-  
+
   showSkuSelectPopup(type) {
     this.setData({
       buyType: type || 0,
@@ -253,26 +253,27 @@ Page({
 
   getDetail(spuId) {
     Promise.all([fetchGood(spuId), fetchActivityList()]).then((res) => {
-      const [details, activityList] = res;
-      const skuArray = [];
+      // const [details, activityList] = res;
+      const [details] = res;
+      // const skuArray = [];
       const {
-        skuList,
+        // skuList,
         primaryImage,
       } = details;
-      skuList.forEach((item) => {
-        skuArray.push({
-          skuId: item.skuId,
-          quantity: item.stockInfo ? item.stockInfo.stockQuantity : 0,
-          specInfo: item.specInfo,
-        });
-      });
-      const promotionArray = [];
+      // skuList.forEach((item) => {
+      //   skuArray.push({
+      //     skuId: item.skuId,
+      //     quantity: item.stockInfo ? item.stockInfo.stockQuantity : 0,
+      //     specInfo: item.specInfo,
+      //   });
+      // });
+      // const promotionArray = [];
       this.setData({
         details,
-        activityList,
-        isStock: details.spuStockQuantity > 0,
-        list: promotionArray,
-        skuArray: skuArray,
+        // activityList,
+        // isStock: details.spuStockQuantity > 0,
+        // list: promotionArray,
+        // skuArray: skuArray,
         primaryImage,
       });
     });

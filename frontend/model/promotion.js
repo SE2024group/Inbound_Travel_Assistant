@@ -4,7 +4,7 @@ import {
 
 export function getPromotion(baseID = 0, length = 10) {
   return {
-    list: getGoodsList(baseID, length).map((item) => {
+    list: getGoodsList(baseID, 5).map((item) => {
       return {
         spuId: item.spuId,
         thumb: item.primaryImage,

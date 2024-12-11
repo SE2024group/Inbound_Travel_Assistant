@@ -551,20 +551,24 @@ Page({
                   x: topLeft.x,
                   y: bottomRight.y
                 };
-                //console.log(bottomLeft)
+
+                // Apply the ID transformation
+                const originalID = parseInt(item.ID, 10); // Ensure ID is treated as a number
+                const transformedID = (originalID % 4) + 1;
+
                 return {
-                  imageURL: item.image, // 图片地址
-                  name: item.linetext, // OCR 识别出的文字
+                  imageURL: item.image, // Image URL
+                  name: item.linetext_substring, // OCR detected text
                   rectangle: {
                     topLeft: topLeft,
                     topRight: topRight,
                     bottomLeft: bottomLeft,
                     bottomRight: bottomRight,
                   },
-                  ID: index + 1, // 新的 ID，从 1 开始递增
-
+                  ID: transformedID // Transformed ID
                 };
               });
+
               console.log('Parsed Test Array:', testArray);
 
 

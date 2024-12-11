@@ -13,14 +13,11 @@
   <view class="goods-list-wrapper">
     <goods-list wr-class="goods-list-container" goodsList="{{goodsList}}" bind:click="goodListClickHandle" bind:addcart="goodListAddCartHandle" />
   </view>
-  <!-- <load-more list-is-empty="{{!goodsList.length}}" status="{{goodsListLoadStatus}}" bind:retry="onReTry" /> -->
   <t-toast id="t-toast" />
   <view class="bottom-container" style="display: flex;flex-direction: column; justify-content: space-around; align-items: center; padding: 10rpx; background-color: #fff;">
     <view style="display: flex; flex-direction: row; align-items: center;">
       <button bindtap="onCameraButtonClick" style="background: none; border: none;">
         <t-icon prefix=".t-icon" name="photo" size="50rpx" color="#333" />
-        <!-- <image wx:if="{{imagePath}}" src="{{imagePath}}" mode="widthFix" class="selected-image"></image> -->
-        <!-- 中文： 只是为了显示我成功选择了图片 -->
       </button>
     </view>
     <view wx:if="{{ocrResult}}" style="margin-top: 20rpx; padding: 10rpx; background-color: #f5f5f5; border-radius: 10rpx;">
@@ -29,12 +26,3 @@
     <text class="bottom-text" style="text-align: center; width: 100%; color: #333; font-size: 30rpx;">take a photo to search</text>
   </view>
 </view>
-
-<!-- 裁剪 -->
-<!-- <view class="image-container">
-  <canvas id="imageCanvas" type="2d" style="width: 400px; height: 600px; border: 1px solid red;" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd" bindtouchend="onTouchEnd"></canvas>
-</view>
-<view class="button-group"> -->
-<!-- 裁剪确认按钮 -->
-<!-- <button bindtap="cropImage">Crop and Extract Text</button>
-</view> -->

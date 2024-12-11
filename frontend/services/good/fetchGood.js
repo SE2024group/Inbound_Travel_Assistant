@@ -1,14 +1,22 @@
-import { config } from '../../config/index';
+import {
+  config
+} from '../../config/index';
 
 /** 获取商品列表 */
 function mockFetchGood(ID = 0) {
-  const { delay } = require('../_utils/delay');
-  const { genGood } = require('../../model/good');
+  const {
+    delay
+  } = require('../_utils/delay');
+  const {
+    genGood
+  } = require('../../model/good');
+  console.log("mockFetchGood")
   return delay().then(() => genGood(ID));
 }
 
 /** 获取商品列表 */
 export function fetchGood(ID = 0) {
+  console.log("fetchGood")
   if (config.useMock) {
     return mockFetchGood(ID);
   }
