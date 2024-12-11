@@ -4,12 +4,12 @@ export default [{
     url: 'pages/navigation/navigation',
   },
   {
-    icon: 'search',
-    text: 'search',
+    icon: 'shop_bag',
+    text: 'food',
     url: 'pages/redbook/redbook',
   },
   {
-    icon: 'list',
+    icon: 'copy',
     text: 'translation',
     url: 'pages/record/record',
   },
