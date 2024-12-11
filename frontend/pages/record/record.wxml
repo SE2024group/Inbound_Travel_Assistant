@@ -4,9 +4,9 @@
   <view class="large-text-box">
     <text class="large-text">{{selectedText}}</text>
   </view>
-  <!-- <view class="test-box">
-    <text class="test-box">{{title}}</text>
-  </view> -->
+  <view class="test-box">
+    <text class="test-box">{{image}}</text>
+  </view>
 
   <!-- 使用图片作为录音按钮 -->
   <view class="record-button {{isPressed ? 'pressed' : ''}}" bindtouchstart="startRecording" bindtouchend="stopRecording">

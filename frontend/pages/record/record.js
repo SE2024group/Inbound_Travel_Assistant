@@ -66,14 +66,14 @@ Page({
   onLoad() {
     const app = getApp();
     const title = app.globalData.title;
-    //const image = app.globalData.image;
+    const image = app.globalData.image;
     this.setData({
       currentPhrases: this.data.phrases.map((phrase) => ({
         text: phrase.english,
 
       })),
       title: title,
-      //image: image,
+      image: image,
     });
 
   },

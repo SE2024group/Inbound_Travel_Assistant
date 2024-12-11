@@ -30,7 +30,6 @@ import {
 // }
 
 function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
-  console.log("mockFetchGoodsList");
   const {
     delay
   } = require('../_utils/delay');
@@ -49,14 +48,13 @@ function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
         title: item.title,
         tags: item.spuTagList.map((tag) => tag.title),
       }));
-      console.log("Returned Goods List:", result);
+
       return result; // 返回处理后的数据
     });
 }
 
 /** 获取商品列表 */
 export function fetchGoodsList(pageIndex = 1, pageSize = 20) {
-  console.log("fetchGoodsList")
   if (config.useMock) {
     return mockFetchGoodsList(pageIndex, pageSize);
   }

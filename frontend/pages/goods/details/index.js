@@ -107,7 +107,7 @@ Page({
         if (res.confirm) {
           // 用户点击确认，跳转页面并修改参数
           app.globalData.title = name;
-          //app.globalData.image = this.data.image;
+          app.globalData.image = self.data.details.images[0];
           wx.switchTab({
             url: `/pages/record/record`,
           });
@@ -148,6 +148,7 @@ Page({
     this.setData({
       image: images[index],
     })
+    console.log(image)
     const {
       images
     } = this.data.details;

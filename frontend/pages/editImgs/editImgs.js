@@ -303,7 +303,7 @@ Page({
           // width: this.data.cropWidth * pixelRatio,
           // height: this.data.cropHeight * pixelRatio,
           success: (res) => {
-            console.log('Cropped image path:', res.tempFilePath);
+
             this.displayCroppedImage(res.tempFilePath); // 显示裁剪后的图片
           },
           fail: (err) => {
@@ -374,7 +374,7 @@ Page({
         ctx.scale(pixelRatio, pixelRatio); // 按照像素比缩放
         img.onload = () => {
           // 图片加载完成后才能获取宽高
-          console.log('Image loaded successfully:', img.width, img.height);
+
 
           const imgWidth = img.width;
           const imgHeight = img.height;
