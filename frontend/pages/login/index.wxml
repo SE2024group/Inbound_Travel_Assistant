@@ -5,7 +5,7 @@
   <!-- 用户名输入框 -->
   <input class="input" placeholder="Please Enter Your Nickname" bindinput="onUsernameInput" />
   <!-- 密码输入框 -->
-  <input class="input" placeholder="Please Enter Your Password" bindinput="onPasswordInput" />
+  <input class="input" placeholder="Please Enter Your Password" type="password" bindinput="onPasswordInput" />
 
   <view class="button-container">
     <button class="login-button" bindtap="onLogin">
