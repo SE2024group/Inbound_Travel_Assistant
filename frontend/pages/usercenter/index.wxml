@@ -4,7 +4,7 @@
   <!-- 用户信息卡片 -->
   <view class="user-card">
     <image class="user-avatar" src="{{userInfo.avatar}}" />
-    <view class="user-name">{{userInfo.name}}</view>
+    <view class="user-name">{{userInfo.nickname}}</view>
     <view class="user-stats">
       <view class="stat-item">66 <text>Likes</text></view>
       <view class="stat-item">12 <text>Comments</text></view>
