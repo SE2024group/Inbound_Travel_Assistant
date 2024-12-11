@@ -10,15 +10,18 @@ const options = {
 
 Page({
   data: {
+    title: '', // 页面标题（可选）
+    image: '', // 页面图片（可选）
     isChineseMode: false, // 默认英文模式
     micButtonText: "Hold to Talk", // 麦克风按钮文字
     toggleButtonText: "Switch to Chinese Mode", // 切换按钮文字
     selectedText: "", // 大文本框内容
     clearText: "Clear",
-
     placeholderText: "Please enter text",
     sendButtonText: "Send",
     isInputFocused: false,
+    audioFilePath: '',
+    isPressed: false,
     phrases: [{
         english: "Sorry, could you repeat that?",
         chinese: "对不起，你能再说一遍吗？"
@@ -216,7 +219,7 @@ Page({
   },
 
   // 上传录音文件到服务器
-  uploadRecording: function(filePath) { // 明确使用 function 关键字
+  uploadRecording: function(filePath) {
     console.log('上传录音文件，isChineseMode:', this.data.isChineseMode);
     
     wx.uploadFile({
@@ -309,6 +312,12 @@ Page({
 
   onShow() {
     this.getTabBar().init();
+    this.setData({
+      selectedText: "", // 清空文本框内容
+      isInputFocused: false, // 重置输入框聚焦状态
+      currentPhrases: 
+        this.data.phrases.map((phrase) => ({ text: phrase.english })),
+    });
   },
 
 });

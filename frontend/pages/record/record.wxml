@@ -25,10 +25,11 @@
       </view>
     </block>
   </view>
+
+  <!-- 按钮区域 -->
+  <view class="play-button-container">
+    <button bindtap="toggleLanguage" class="play-button">{{toggleButtonText}}</button>
+  </view>
 </view>
 
 
-<!-- 按钮区域 -->
-<view class="play-button-container">
-  <button bindtap="toggleLanguage" class="play-button">{{toggleButtonText}}</button>
-</view>
