@@ -105,11 +105,16 @@ Page({
 
   // 登录按钮点击事件
   onTouristLogin() {
+    const {
+      username,
+      isAgreed
+    } = this.data;
     if (!this.data.isLoad) {
       this.setData({
         isLoad: true
       });
-    } else if (!this.data.isAgreed) {
+    }
+    if (!isAgreed) {
       wx.showModal({
         title: 'Notice',
         content: 'You haven\'t read\'User Terms and Conditions\'. Unable to login. ',
@@ -118,10 +123,6 @@ Page({
       });
       return;
     }
-
-    const {
-      username
-    } = this.data;
     console.log('username entered is ', username);
 
     if (this.data.username == '') {
