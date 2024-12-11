@@ -257,7 +257,7 @@ Page({
 
       if (response.code === 200) {
         const { cn_text, en_text, isChineseMode } = response.data;
-        const textToDisplay = isChineseMode ? cn_text : en_text;
+        const textToDisplay = isChineseMode ? en_text : cn_text;
         
         console.log('显示的文本:', textToDisplay);
 
