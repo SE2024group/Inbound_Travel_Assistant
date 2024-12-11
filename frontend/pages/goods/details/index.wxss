@@ -28,6 +28,7 @@ page {
   /* 降低阴影强度 */
   color: #fff;
   /* 白色文字 */
+  padding-left: 100rpx;
 }
 
 .nav-text {

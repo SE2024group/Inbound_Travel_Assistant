@@ -1,7 +1,11 @@
 .goods-card {
   box-sizing: border-box;
   font-size: 24rpx;
-  border-radius: 0 0 16rpx 16rpx;
+  border-radius: 16rpx 16rpx 16rpx 16rpx;
+  overflow: hidden;
+  /* 确保圆角区域有效 */
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.2);
+  /* 按钮阴影 */
   border-bottom: none;
 }
 
@@ -17,6 +21,9 @@
   justify-content: center;
   margin-bottom: 16rpx;
   flex-direction: column;
+  border-radius: 16rpx;
+  /* 确保图片部分也圆角 */
+  overflow: hidden;
 }
 
 .goods-card__thumb {
@@ -42,7 +49,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 16rpx 16rpx 0 0;
+  border-radius: 16rpx 16rpx 16rpx 16rpx;
   overflow: hidden;
 }
 
@@ -50,7 +57,7 @@
   display: flex;
   flex: 1 1 auto;
   background: #fff;
-  border-radius: 0 0 16rpx 16rpx;
+  border-radius: 16rpx 16rpx 16rpx 16rpx;
   padding: 16rpx 24rpx 18rpx;
   flex-direction: column;
   width: 100%;
@@ -92,7 +99,7 @@
   padding: 0 8rpx;
   border-radius: 16rpx;
   line-height: 30rpx;
-  margin: 0 8rpx 8rpx 0;
+  margin: 8rpx 8rpx 8rpx 8rpx;
   display: block;
   white-space: nowrap;
   overflow: hidden;
