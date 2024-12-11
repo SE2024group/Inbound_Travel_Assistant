@@ -1,13 +1,12 @@
+/* /pages/usercenter/index.wxss */
+
 .profile-page {
   background: linear-gradient(to bottom, #f9f5f6, #e3ecf2);
-  /* 渐变背景 */
   padding: 16px;
   padding-top: 30px;
-  min-height: 100vh;
-  /* 使背景覆盖整个视口 */
+  min-height: 130vh;
   box-sizing: border-box;
 }
-
 
 .user-card {
   background-color: #ffffff;
@@ -16,20 +15,35 @@
   text-align: center;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  /* 添加底部间距 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-
 .user-avatar {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  /* px unit */
+  height: 120px;
+  /* px unit */
   border-radius: 50%;
+  object-fit: cover;
   margin-bottom: 10px;
 }
 
 .user-name {
-  font-size: 18px;
+  font-size: 22px;
+  /* px unit */
   font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.user-motto {
+  font-size: 16px;
+  /* px unit */
+  color: #666;
+  margin-bottom: 15px;
+  font-style: italic;
 }
 
 .user-stats {
@@ -40,54 +54,210 @@
 
 .stat-item {
   font-size: 14px;
+  /* Consistent */
   color: #666;
+  margin: 10px;
 }
 
-.menu-section {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0;
+.dietary-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-.menu-item {
+.picker-container {
+  margin-bottom: 20px;
+}
+
+.picker-label {
+  font-size: 16px;
+  /* px unit */
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.picker {
+  width: 90%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  /* px unit */
+  color: #555;
+  background-color: #f9f9f9;
+}
+
+.open-modal-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #3a9bfd;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+}
+
+/* New Button Styles */
+.select-dietary-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #4CAF50, #81C784);
+  /* Background Gradient */
+  color: white;
+  /* Text Color */
+  border-radius: 30px;
+  /* Rounded Corners */
+  font-size: 14px;
+  /* Adjusted Font Size */
   text-align: center;
-  color: #888;
+  /* Centered Text */
+  height: 30px;
+  /* Button Height */
+  line-height: 40px;
+  /* Line Height */
+  padding: 0 15px;
+  /* Padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  /* Button Shadow */
+  transition: all 0.3s ease;
+  /* Animation Transition */
+  margin-top: 10px;
+  /* Space above the button */
+  cursor: pointer;
+  /* Pointer Cursor on Hover */
+}
+
+.select-dietary-button:active {
+  transform: scale(0.95);
+  /* Button Press Effect */
+}
+
+/* Selected Dietary Restrictions Tags */
+.selected-dietary-restrictions {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  justify-content: flex-start;
+  /* Align tags to the left */
+}
+
+.restriction-tag {
+  background-color: #ffeb3b;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.placeholder-text {
+  color: #999;
+  font-size: 14px;
 }
 
 .settings-section {
   background-color: #ffffff;
-  margin-top: 20px;
   padding: 0;
   border-radius: 8px;
   overflow: hidden;
-  /* 避免边框重叠 */
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .settings-item {
   padding: 16px;
   font-size: 16px;
+  /* Consistent */
   color: #333;
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* 左右两端对齐 */
 }
 
 .settings-item:active {
   background-color: #e0e0e0;
-  /* 点击效果 */
 }
-
 
 .settings-item:last-child {
   border-bottom: none;
-  /* 去除最后一个分割线 */
 }
 
 .version-text {
   color: #999;
-  /* 较暗的文字颜色 */
+  font-size: 16px;
+  /* Consistent */
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #fff;
+  width: 80%;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-body {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-text {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.modal-footer {
+  text-align: right;
+}
+
+.save-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
   font-size: 16px;
 }

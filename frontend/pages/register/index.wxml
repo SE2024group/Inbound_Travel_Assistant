@@ -1,6 +1,13 @@
 <view class="container">
-  <image class="logo" src="https://cloud.tsinghua.edu.cn/f/9a5d8ec171fa4541a9f4/?dl=1" mode="widthFix"></image>
-  <text class="welcome-text">Register for Cultural Compass</text>
+  <!-- Avatar Section -->
+  <view class="avatar-section">
+    <!-- Avatar Preview: Shows placeholder or uploaded avatar -->
+    <image class="avatar-preview" src="{{avatarPath || '/images/default-avatar.png'}}" wx:if="{{avatarPath || '/images/default-avatar.png'}}"></image>
+    <!-- Upload Avatar Button -->
+    <button class="upload-button" bindtap="chooseAvatar">
+      Upload Avatar (Optional)
+    </button>
+  </view>
 
   <!-- 用户名输入框 -->
   <input class="input" placeholder="Please Enter Your Username" bindinput="onUsernameInput" />
@@ -17,28 +24,23 @@
   <!-- 个性描述输入框（可选） -->
   <textarea class="textarea" placeholder="Enter Personality Description (Optional)" bindinput="onPersonalityInput"></textarea>
 
-  <!-- 头像上传 -->
-  <view class="avatar-upload">
-    <button class="upload-button" bindtap="chooseAvatar">Upload Avatar (Optional)</button>
-    <image class="avatar-preview" src="{{avatarPath}}" wx:if="{{avatarPath}}"></image>
-  </view>
-
   <!-- 复选框和用户使用规则 -->
   <view class="agreement">
     <checkbox-group bindchange="onAgreementChange">
       <label class="checkbox-label">
         <checkbox value="agree" checked="{{isAgreed}}"></checkbox>
-        <text class="agreement-text"> I have read <text class="agreement-link" bindtap="goToUserRule">《User Terms and Conditions》</text></text>
+        <text class="agreement-text">I have read <text class="agreement-link" bindtap="goToUserRule">《User Terms and Conditions》</text></text>
       </label>
     </checkbox-group>
   </view>
 
+  <!-- 按钮容器 -->
   <view class="button-container">
     <button class="register-button" bindtap="onRegister">
-      注册
+      Register
     </button>
     <button class="back-button" bindtap="goToLogin">
-      返回登录
+      Back to Login
     </button>
   </view>
 </view>
