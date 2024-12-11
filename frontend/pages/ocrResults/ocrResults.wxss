@@ -34,7 +34,7 @@
 }
 
 .scroll-bar {
-  height: 110px;
+  height: 140px;
   display: flex;
   white-space: nowrap;
   background-color: #f9f9f9;
@@ -78,7 +78,18 @@
 }
 
 .item-description {
+  display: block;
+  /* 确保文本是块级元素 */
+  overflow: hidden;
+  /* 隐藏超出内容 */
+  text-overflow: ellipsis;
+  /* 溢出内容显示省略号 */
+  white-space: normal;
+  /* 允许换行 */
+  line-height: 1.8;
+  /* 设置行高 */
+  max-height: 3.6em;
+  /* 行高（1.5） * 2 行 = 3em */
   font-size: 14px;
-  color: #333;
-  margin-top: 5px;
+  /* 根据需要设置字体大小 */
 }

@@ -1,6 +1,10 @@
 import updateManager from './common/updateManager';
 
 App({
+  globalData: {
+    title: "",
+    image: "",
+  },
   onLaunch: function () {
     // 检查用户登录状态
     const isLoggedIn = wx.getStorageSync('isLoggedIn') || false;
