@@ -7,35 +7,10 @@
   min-height: 100vh;
 }
 
-.title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.username-input {
-  width: 80%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.login-button {
-  width: 80%;
-  padding: 10px;
-  background-color: #19a3ad;
-  /* 微信绿色 */
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-}
-
 .logo {
   width: 200rpx;
   margin-bottom: 50rpx;
+  border-radius: 15px;
 }
 
 .welcome-text {
@@ -44,36 +19,90 @@
   margin-bottom: 80rpx;
 }
 
-.login-button {
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.input {
   width: 80%;
-  margin-bottom: 30rpx;
+  padding: 10px;
+  margin-bottom: 25px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+/* 容器样式 */
+.button-container {
+  width: 90%;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  margin-top: 15rpx;
+  /* 垂直居中 */
+  padding: 0 10rpx;
+  /* 防止按钮过于靠边 */
+  box-sizing: border-box;
 }
 
-.modal-content {
-  width: 600rpx;
-  background-color: #fff;
-  border-radius: 20rpx;
-  padding: 40rpx;
+/* 按钮样式 */
+button {
+  /* 设置按钮最小宽度 */
+  margin-bottom: 30rpx;
+  margin-right: 5rpx;
+  /* 按钮间距 */
+  padding: 20rpx 10rpx;
+  /* 高度适配 */
+  font-size: 16px;
+  /* 字体大小 */
+  color: white;
+  /* 字体颜色 */
   text-align: center;
+  /* 文本居中 */
+  border: none;
+  /* 去除边框 */
+  border-radius: 50rpx;
+  /* 圆角样式 */
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
+  /* 添加阴影效果 */
+  transition: transform 0.2s ease;
+  /* 点击时动画效果 */
 }
 
-.modal-text {
-  font-size: 32rpx;
-  margin-bottom: 40rpx;
+/* 登录按钮样式 */
+.login-button {
+  width: 40%;
+  background-color: #19a3ad;
+  /* 微信绿色 */
 }
 
-.modal-button {
-  width: 100%;
+.login-button:active {
+  transform: scale(0.95);
+  /* 点击缩放 */
+}
+
+/* 注册按钮样式 */
+.register-button {
+  width: 20%;
+  background-color: #4caf50;
+  /* 深绿色 */
+}
+
+.register-button:active {
+  transform: scale(0.95);
+}
+
+/* 游客登录按钮样式 */
+.tourist-button {
+  width: 30%;
+  margin-left: 30rpx;
+  background-color: #ffa726;
+  /* 橙色 */
+}
+
+.tourist-button:active {
+  transform: scale(0.95);
 }
