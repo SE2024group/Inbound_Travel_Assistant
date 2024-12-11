@@ -523,7 +523,6 @@ Page({
           success(res) {
             console.log('OCR API Response:', res);
 
-
             // if (res.data && res.data.ParsedResults && res.data.ParsedResults.length > 0) {
 
             let apiResponse;
