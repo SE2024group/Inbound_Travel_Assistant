@@ -10,10 +10,10 @@ import {
 // export const goodsList = getGoodsList();
 
 
-export function getGoodsList(baseID = 0, length = 10) {
+export function getGoodsList(baseID = 0, length = 20) {
   // 生成一个 Promise 数组
   console.log("进入getGoodList")
-  const promises = new Array(length).fill(0).map((_, idx) => genGood(idx + baseID));
+  const promises = new Array(20).fill(0).map((_, idx) => genGood(idx + baseID));
 
   // 返回一个 Promise，使用 Promise.all 等待所有的 Promise 完成
   return Promise.all(promises);

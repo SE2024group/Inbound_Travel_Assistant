@@ -39,7 +39,7 @@ function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
   } = require('../../model/goods');
 
   return delay()
-    .then(() => getGoodsList(pageIndex, pageSize)) // 等待 getGoodsList 的 Promise 完成
+    .then(() => getGoodsList(pageIndex, 20)) // 等待 getGoodsList 的 Promise 完成
     .then((goodsList) => {
       // 处理返回的商品列表
       const result = goodsList.map((item) => ({

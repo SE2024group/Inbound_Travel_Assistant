@@ -1172,9 +1172,11 @@ function fetchWithTimeout(url, options = {}, timeout = 5000) {
 
 
 export function genGood(id, available = 1) {
-  // console.log(id);
+
+  id = 1 + id % 15;
+  console.log(id);
   return new Promise((resolve, reject) => {
-    fetchWithTimeout(`http://1.15.174.177/api/dish/1/`)
+    fetchWithTimeout(`http://1.15.174.177/api/dish/${id}/`)
       .then(response => {
         return response; // 直接返回响应
       })

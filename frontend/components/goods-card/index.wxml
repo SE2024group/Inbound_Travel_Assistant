@@ -5,9 +5,6 @@
 		</view>
 		<view class="goods-card__body">
 			<view class="goods-card__upper">
-				<!-- <view wx:if="{{ goods.title }}" class="goods-card__title"> 
-					{{ goods.title }}
-				</view> -->
 				<view wx:class="goods-card__title-placeholder">
 					{{ " " }}
 					<!-- 占位符 -->
@@ -16,11 +13,12 @@
 					<view wx:for="{{ goods.tags }}" wx:key="index" wx:for-item="tag" class="goods-card__tag" data-index="{{index}}">
 						{{tag}}
 					</view>
+					<view class="goods-card__down">
+						<t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
+					</view>
 				</view>
 			</view>
-			<view class="goods-card__down">
-				<t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
-			</view>
+
 		</view>
 	</view>
 </view>
