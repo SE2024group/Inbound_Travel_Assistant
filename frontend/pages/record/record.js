@@ -15,6 +15,7 @@ Page({
     toggleButtonText: "Switch to Chinese Mode", // 切换按钮文字
     selectedText: "", // 大文本框内容
     clearText: "Clear",
+
     placeholderText: "Please enter text",
     sendButtonText: "Send",
     isInputFocused: false,
@@ -64,10 +65,15 @@ Page({
   },
 
   onLoad() {
+    const app = getApp();
+    const title = app.globalData.title;
+    const image = app.globalData.image;
     this.setData({
       currentPhrases: this.data.phrases.map((phrase) => ({
         text: phrase.english,
       })),
+      title: title,
+      image: image,
     });
   },
 
@@ -79,6 +85,12 @@ Page({
       micButtonText: isChinese ? "按住说话" : "Hold to Talk",
       toggleButtonText: isChinese ? "切换到英语模式" : "Switch to Chinese Mode",
       clearText: isChinese ? "清除" : "Clear",
+      currentPhrases: isChinese ?
+        this.data.cphrases.map((phrase) => ({
+          text: phrase.chinese
+        })) : this.data.phrases.map((phrase) => ({
+          text: phrase.english
+        })),
       placeholderText: isChinese ? "请输入文字" : "Please enter text",
       sendButtonText: isChinese ? "发送" : "Send",
       currentPhrases: isChinese ?
