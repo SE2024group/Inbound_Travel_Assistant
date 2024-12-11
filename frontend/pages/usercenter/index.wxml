@@ -10,7 +10,7 @@
     <view class="user-name">{{userInfo.nickname || 'Anonymous'}}</view>
 
     <!-- 用户格言 -->
-    <text class="user-motto">{{userInfo.motto || 'Live and let live.'}}</text>
+    <text class="user-motto">{{userInfo.personality_description || 'Live and let live.'}}</text>
 
     <!-- 用户统计 -->
     <view class="user-stats">
