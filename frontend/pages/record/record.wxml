@@ -11,42 +11,31 @@
     bindfocus="focusInput" 
     bindblur="blurInput"
   ></textarea>
-  <!-- 发送按钮 -->
-  <button 
-    wx:if="{{isInputFocused}}" 
-    bindtap="sendText" 
-    class="send-button"
-  >
-    {{sendButtonText}}
-  </button>
+
+  <!-- 按钮容器 -->
+  <view class="button-row" wx:if="{{isInputFocused}}">
+    <button bindtap="sendText" class="send-button">{{sendButtonText}}</button>
+    <button bindtap="clearText" class="clear-button">{{clearText}}</button>
+  </view>
 </view>
   <!-- 使用图片作为录音按钮 -->
-  <view 
-    class="record-button {{isPressed ? 'pressed' : ''}}" 
-    bindtouchstart="startRecording" 
-    bindtouchend="stopRecording">
-    <image 
-      src="https://cloud.tsinghua.edu.cn/f/2d783a16dc794e829380/?dl=1" 
-      class="microphone-icon"
-    />
+  <view class="record-button {{isPressed ? 'pressed' : ''}}" bindtouchstart="startRecording" bindtouchend="stopRecording">
+    <image src="https://cloud.tsinghua.edu.cn/f/2d783a16dc794e829380/?dl=1" class="microphone-icon" />
     <text class="record-text">{{micButtonText}}</text>
-  </view>
-
-  <!-- 按钮区域 -->
-  <view class="play-button-container">
-    <button bindtap="toggleLanguage" class="play-button">{{toggleButtonText}}</button>
-    <button bindtap="clearText" class="clear-button">{{clearText}}</button>
   </view>
 
   <!-- 常用语 -->
   <view class="common-phrases">
     <block wx:for="{{currentPhrases}}" wx:key="index">
-      <view 
-        class="phrase-box" 
-        bindtap="showTranslation" 
-        data-index="{{index}}">
+      <view class="phrase-box" bindtap="showTranslation" data-index="{{index}}">
         <text class="phrase-text">{{item.text}}</text>
       </view>
     </block>
   </view>
+
+  <!-- 按钮区域 -->
+  <view class="play-button-container">
+    <button bindtap="toggleLanguage" class="play-button">{{toggleButtonText}}</button>
+  </view>
 </view>
+

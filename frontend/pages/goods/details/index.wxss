@@ -4,10 +4,57 @@ page {
   width: 100vw;
 }
 
+.navigate-btn {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navBtn {
+  width: 300rpx;
+  /* 调整宽度，原来是 400rpx */
+  height: 80rpx;
+  /* 调整高度，原来是 100rpx */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #007aff;
+  /* 蓝色背景 */
+  border-radius: 40rpx;
+  /* 保持圆角比例 */
+  box-shadow: 0 5rpx 10rpx rgba(0, 0, 0, 0.1);
+  /* 降低阴影强度 */
+  color: #fff;
+  /* 白色文字 */
+}
+
+.nav-text {
+  font-size: 28rpx;
+  /* 调整字体大小，原来是 32rpx */
+  font-weight: bold;
+  margin-left: 8rpx;
+  /* 调整图标与文字的间距 */
+  color: #fff;
+}
+
+
+
+
+
 .goods-detail-page .goods-info {
   margin: 0 auto;
   padding: 26rpx 0 28rpx 30rpx;
   background-color: #fff;
+}
+
+.goods-description {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 10rpx;
+  margin-right: 20rpx;
+  line-height: 40rpx;
 }
 
 .goods-detail-page .swipe-img {

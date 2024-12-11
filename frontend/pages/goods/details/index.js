@@ -29,6 +29,7 @@ const obj2Params = (obj = {}, encode = false) => {
 
 Page({
   data: {
+    image: "",
     commentsList: [],
     commentsStatistics: {
       badCount: 0,
@@ -52,8 +53,6 @@ Page({
         value: 'goods-page',
       },
     ],
-    storeLogo: `${imgPrefix}common/store-logo.png`,
-    storeName: '云mall标准版旗舰店',
     jumpArray: [{
       title: '首页',
       url: '/pages/home/home',
@@ -95,7 +94,30 @@ Page({
       url: '../comments/create/index'
     });
   },
-  
+
+  onNavigateButtonTap() {
+    const self = this;
+    const name = self.data.details.title;
+    const app = getApp(); // 获取全局应用实例
+
+    wx.showModal({
+      title: 'Confirmation',
+      //image = this.data.image,
+      content: `Go to translate page?`,
+      success(res) {
+        if (res.confirm) {
+          // 用户点击确认，跳转页面并修改参数
+          app.globalData.title = name;
+          //app.globalData.image = this.data.image;
+          wx.switchTab({
+            url: `/pages/record/record`,
+          });
+        }
+        // 用户取消不执行操作
+      },
+    });
+  },
+
   showSkuSelectPopup(type) {
     this.setData({
       buyType: type || 0,
@@ -125,6 +147,9 @@ Page({
     const {
       index
     } = e.detail;
+    this.setData({
+      image: images[index],
+    })
     const {
       images
     } = this.data.details;
@@ -253,26 +278,27 @@ Page({
 
   getDetail(spuId) {
     Promise.all([fetchGood(spuId), fetchActivityList()]).then((res) => {
-      const [details, activityList] = res;
-      const skuArray = [];
+      // const [details, activityList] = res;
+      const [details] = res;
+      // const skuArray = [];
       const {
-        skuList,
+        // skuList,
         primaryImage,
       } = details;
-      skuList.forEach((item) => {
-        skuArray.push({
-          skuId: item.skuId,
-          quantity: item.stockInfo ? item.stockInfo.stockQuantity : 0,
-          specInfo: item.specInfo,
-        });
-      });
-      const promotionArray = [];
+      // skuList.forEach((item) => {
+      //   skuArray.push({
+      //     skuId: item.skuId,
+      //     quantity: item.stockInfo ? item.stockInfo.stockQuantity : 0,
+      //     specInfo: item.specInfo,
+      //   });
+      // });
+      // const promotionArray = [];
       this.setData({
         details,
-        activityList,
-        isStock: details.spuStockQuantity > 0,
-        list: promotionArray,
-        skuArray: skuArray,
+        // activityList,
+        // isStock: details.spuStockQuantity > 0,
+        // list: promotionArray,
+        // skuArray: skuArray,
         primaryImage,
       });
     });
