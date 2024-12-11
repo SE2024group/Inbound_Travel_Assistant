@@ -1174,10 +1174,6 @@ function fetchWithTimeout(url, options = {}, timeout = 5000) {
 export function genGood(id, available = 1) {
 
   id = 1 + id % 15;
-<<<<<<< HEAD
-=======
-  console.log(id);
->>>>>>> 171a678faa64b470aa2f1e4bb23a739d88c5c5dc
   return new Promise((resolve, reject) => {
     fetchWithTimeout(`http://1.15.174.177/api/dish/${id}/`)
       .then(response => {

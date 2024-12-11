@@ -30,10 +30,6 @@ import {
 // }
 
 function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
-<<<<<<< HEAD
-=======
-  console.log("mockFetchGoodsList");
->>>>>>> 171a678faa64b470aa2f1e4bb23a739d88c5c5dc
   const {
     delay
   } = require('../_utils/delay');
@@ -52,11 +48,6 @@ function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
         title: item.title,
         tags: item.spuTagList.map((tag) => tag.title),
       }));
-<<<<<<< HEAD
-
-=======
-      console.log("Returned Goods List:", result);
->>>>>>> 171a678faa64b470aa2f1e4bb23a739d88c5c5dc
       return result; // 返回处理后的数据
     });
 }
