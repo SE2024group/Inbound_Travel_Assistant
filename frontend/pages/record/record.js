@@ -210,8 +210,12 @@ Page({
         audioFilePath: tempFilePath,
       }); // 更新录音文件路径
       wx.showToast({
-        title: '录音完成',
+        title: 'Recording completion',
         icon: 'success'
+      });
+      wx.showLoading({
+        title: 'processing...',
+        mask: true, // 防止用户操作
       });
       // 上传录音文件
       this.uploadRecording(tempFilePath);
@@ -258,7 +262,6 @@ Page({
       if (response.code === 200) {
         const { cn_text, en_text, isChineseMode } = response.data;
         const textToDisplay = isChineseMode ? en_text : cn_text;
-        
         console.log('显示的文本:', textToDisplay);
 
         this.setData({
