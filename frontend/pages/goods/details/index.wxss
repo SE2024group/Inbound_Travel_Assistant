@@ -149,6 +149,51 @@ page {
   padding-right: 32rpx;
 }
 
+.goods-card__tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 8rpx 0 0 0;
+}
+
+.goods-card__tag {
+  display: inline-block;
+  /* 保证标签能够并排显示 */
+  margin: 5px;
+  /* 每个标签之间增加间距 */
+}
+
+.tag-wrapper {
+  display: inline-block;
+  /* 保证标签的内容能够根据文字长度自适应 */
+  padding: 5px 10px;
+  /* 设置标签内边距，使其更美观 */
+  font-size: 14px;
+  /* 设置文字大小 */
+  color: #ff4d4f;
+  /* 设置文字颜色为红色 */
+  border: 1px solid #ff4d4f;
+  /* 红色边框 */
+  border-radius: 15px;
+  /* 设置圆角 */
+  background-color: transparent;
+  /* 无背景色 */
+  white-space: nowrap;
+  /* 避免文字换行 */
+}
+
+
+.goods-card__tags {
+  max-width: calc(100% - 60rpx);
+  /* 限制父容器宽度，预留右侧空间 */
+  display: flex;
+  /* 使用 Flexbox 布局，使子标签排列 */
+  flex-wrap: wrap;
+  /* 多个标签自动换行 */
+  overflow: hidden;
+  /* 防止超出容器 */
+}
+
 .goods-detail-page .goods-info .goods-activity .activity-show-text {
   line-height: 42rpx;
 }

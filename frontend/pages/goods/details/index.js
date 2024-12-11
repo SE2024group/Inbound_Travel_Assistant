@@ -30,6 +30,7 @@ const obj2Params = (obj = {}, encode = false) => {
 Page({
   data: {
     image: "",
+    good: {},
     commentsList: [],
     commentsStatistics: {
       badCount: 0,
@@ -278,6 +279,26 @@ Page({
   },
 
 
+  getGoodDetail(spuId) {
+    const {
+      genGood
+    } = require('../../../model/good');
+    return genGood(spuId) // 调用 genGood 方法生成商品
+      .then((good) => {
+        console.log("获取到的商品详情:", good);
+
+        // 将商品详情设置到 data 中
+        this.setData({
+          good: good, // 将生成的商品对象存储到 goodDetails
+        });
+
+        return good; // 返回生成的商品对象
+      })
+      .catch((error) => {
+        console.error("获取商品详情时出错:", error);
+        throw error; // 抛出错误，方便调用方处理
+      });
+  },
   getDetail(spuId) {
     Promise.all([fetchGood(spuId), fetchActivityList()]).then((res) => {
       // const [details, activityList] = res;
@@ -292,6 +313,8 @@ Page({
         primaryImage,
       });
     });
+
+    this.getGoodDetail(spuId);
   },
 
   async getCommentsList() {
