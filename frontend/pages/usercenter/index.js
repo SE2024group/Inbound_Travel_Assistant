@@ -51,7 +51,7 @@ Page({
     if (loggedBy === 'tourist') {
       const userInfo = {
         name: wx.getStorageSync('userName') || 'Tourist',
-        avatar: '/pages/usercenter/avatar.jpeg',
+        avatar: 'https://cloud.tsinghua.edu.cn/f/9a5d8ec171fa4541a9f4/?dl=1',
         motto: wx.getStorageSync('userMotto') || 'Enjoy your journey!',
       };
       this.setData({
