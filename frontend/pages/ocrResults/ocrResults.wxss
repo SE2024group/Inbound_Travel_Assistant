@@ -86,9 +86,9 @@
   /* 溢出内容显示省略号 */
   white-space: normal;
   /* 允许换行 */
-  line-height: 1.8;
+  line-height: 1.5;
   /* 设置行高 */
-  max-height: 3.6em;
+  height: 3em;
   /* 行高（1.5） * 2 行 = 3em */
   font-size: 14px;
   /* 根据需要设置字体大小 */
