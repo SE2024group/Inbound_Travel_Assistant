@@ -84,7 +84,15 @@ Page({
     duration: 500,
     interval: 5000,
   },
+  onTagTap: function (event) {
+    // 获取点击的按钮对应的 tag.title
+    const title = event.currentTarget.dataset.title;
 
+    // 跳转并传递参数
+    wx.navigateTo({
+      url: `/pages/goods/search/index?keyword=${encodeURIComponent(title)}`
+    });
+  },
   handlePopupHide() {
     this.setData({
       isSpuSelectPopupShow: false,

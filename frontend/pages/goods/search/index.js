@@ -14,11 +14,31 @@ Page({
       message: '',
     },
     dialogShow: false,
+    filter: false, // 初始的 filter 参数
+    filterActive: false // 用于控制 checkbox 是否勾选
   },
 
   deleteType: 0,
   deleteIndex: '',
+  onLoad: function (options) {
+    // 获取传递的 keyword 参数
+    const keyword = decodeURIComponent(options.keyword);
+    this.setData({
+      searchValue: keyword,
+    });
+    console.log('传递的 keyword:', keyword);
 
+  },
+  toggleFilter: function (event) {
+    // 获取 checkbox 是否被选中的状态
+    const isChecked = event.detail.value.length > 0;
+
+    // 更新页面的 `filter` 和 `filterActive` 参数
+    this.setData({
+      filter: isChecked,
+      filterActive: isChecked
+    });
+  },
   onShow() {
     this.queryHistory();
     this.queryPopular();
