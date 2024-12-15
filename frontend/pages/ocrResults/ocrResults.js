@@ -123,7 +123,7 @@ Page({
       selectedRect: rect,
       buttonActive: true,
       // selectedUrl: `/pages/goods/details/index?spuId=${index % 4 + 1}`
-      selectedUrl: `/pages/goods/details/index?spuId=${index }`
+      selectedUrl: `/pages/goods/details/index?spuId=${this.data.options[index].ID }`
     }, () => {
       this.drawRectangle(rect);
     });
