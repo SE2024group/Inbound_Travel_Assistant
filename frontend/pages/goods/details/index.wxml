@@ -6,7 +6,6 @@
         <button class="tag-wrapper" bindtap="onTagTap" data-title="{{tag.title}}">{{tag.title}}</button>
       </view>
 
-
       <!-- <view class="goods-name" style="font-weight: bold; flex: 1; text-align: center; word-break: break-word; white-space: normal;">
         {{good.title}}
       </view> -->
