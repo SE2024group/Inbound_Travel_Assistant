@@ -79,17 +79,17 @@
 
 .item-description {
   display: block;
-  /* 确保文本是块级元素 */
+  /* 使用 block 布局，支持换行 */
   overflow: hidden;
-  /* 隐藏超出内容 */
+  /* 超出部分隐藏 */
   text-overflow: ellipsis;
-  /* 溢出内容显示省略号 */
-  white-space: normal;
-  /* 允许换行 */
-  line-height: 1.8;
+  /* 超出部分用省略号 */
+  line-height: 1.5;
   /* 设置行高 */
-  max-height: 3.6em;
-  /* 行高（1.5） * 2 行 = 3em */
+  height: 3em;
+  /* 固定两行的高度（行高 × 2） */
   font-size: 14px;
-  /* 根据需要设置字体大小 */
+  /* 根据需求调整字体大小 */
+  white-space: normal;
+  /* 允许文字换行 */
 }
