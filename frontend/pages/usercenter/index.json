@@ -1,6 +1,4 @@
 {
   "navigationBarTitleText": "User Center",
-  "usingComponents": {
-    "user-center-card": "./components/user-center-card/index"
-  }
+  "usingComponents": {}
 }
