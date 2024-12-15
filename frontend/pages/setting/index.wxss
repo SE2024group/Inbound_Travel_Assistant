@@ -48,13 +48,6 @@
   /* 点击效果 */
 }
 
-.settings-switch {
-  width: 52px;
-  /* 开关的宽度 */
-  height: 32px;
-  /* 开关的高度 */
-}
-
 .language-text {
   color: #999;
   /* 较暗的文字颜色 */
