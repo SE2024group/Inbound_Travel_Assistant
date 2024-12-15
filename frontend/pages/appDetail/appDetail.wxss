@@ -25,9 +25,7 @@
 
 .app-name {
   flex: 1;
-  /* 占据剩余空间 */
   text-align: center;
-  /* 水平居中文字 */
   font-size: 48rpx;
   color: #333;
   font-weight: bold;
