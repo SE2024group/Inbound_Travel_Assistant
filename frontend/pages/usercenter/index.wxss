@@ -46,19 +46,6 @@
   font-style: italic;
 }
 
-.user-stats {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
-}
-
-.stat-item {
-  font-size: 14px;
-  /* Consistent */
-  color: #666;
-  margin: 10px;
-}
-
 .dietary-section {
   background-color: #ffffff;
   padding: 20px;

@@ -221,6 +221,12 @@ Page({
     });
   },
 
+  goToLikes() {
+    wx.navigateTo({
+      url: '/pages/myLikes/index'
+    });
+  },
+
   // Logout account
   onQuitAccount() {
     const keysToRemove = ['authToken', 'user', 'loggedBy', 'userName', 'registeredAt', 'religiousBelief', 'dietaryRestrictions', 'userMotto'];

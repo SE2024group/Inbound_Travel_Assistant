@@ -24,7 +24,8 @@
     "pages/out2/out2",
     "pages/record/record",
     "pages/accountInfo/index",
-    "pages/register/index"
+    "pages/register/index",
+    "pages/myLikes/index"
   ],
   "tabBar": {
     "custom": true,

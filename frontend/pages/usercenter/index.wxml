@@ -12,13 +12,6 @@
     <!-- 用户格言 -->
     <text class="user-motto">{{userInfo.personality_description || 'Live and let live.'}}</text>
 
-    <!-- 用户统计 -->
-    <view class="user-stats">
-      <view class="stat-item">66 <text>Likes</text></view>
-      <view class="stat-item">12 <text>Comments</text></view>
-      <view class="stat-item">88 <text>Viewed</text></view>
-      <view class="stat-item">99 <text>Liked</text></view>
-    </view>
   </view>
 
   <!-- 饮食禁忌选择区域 -->
@@ -73,6 +66,10 @@
     </view>
   </view>
 
+  <view class="settings-section">
+    <view class="settings-item" bindtap="goToLikes">My likes</view>
+  </view>
+
   <!-- 设置和其他操作 -->
   <view class="settings-section">
     <view class="settings-item" bindtap="goToSetting">Settings</view>
@@ -80,7 +77,7 @@
     <view class="settings-item" bindtap="onClearCookies">Clear all cookies</view>
     <view class="settings-item">
       <text>Version</text>
-      <text class="version-text">v1.0 beta3</text>
+      <text class="version-text">v1.0 beta5</text>
     </view>
   </view>
 </view>
