@@ -7,6 +7,25 @@
   height: 150vh;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
 .large-text-box {
   width: 85%;
   height: 150px;
@@ -145,6 +164,7 @@
   background: linear-gradient(90deg, #4CAF50, #81C784);
   border: none;
   border-radius: 25px;
+  margin-top: 20px;
   color: white;
   font-size: 16px;
   font-weight: bold;
