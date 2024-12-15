@@ -11,7 +11,9 @@
   </view>
 
   <view class="description-container">
-    <text class="app-description" user-select="true">{{items[id].description}}</text>
+    <block wx:for="{{items[id].descriptionArray}}" wx:key="*this">
+      <view class="app-description">{{item}}</view>
+    </block>
   </view>
 
   <view class="download-container">
