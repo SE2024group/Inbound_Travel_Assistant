@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'wr';
-  src: url('https://cdn3.codesign.qq.com/icons/gqxWyZ1yMJZmVXk/Yyg5Zp2LG8292lK/iconfont.woff?t=cfc62dd36011e60805f5c3ad1a20b642') format('woff2');
+  src: url('/style/iconfont.woff') format('woff2');
 }
 
 .wr {
