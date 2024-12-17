@@ -147,6 +147,8 @@
 }
 
 .settings-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
   background-color: #ffffff;
   padding: 0;
   border-radius: 8px;

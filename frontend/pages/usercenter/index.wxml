@@ -11,7 +11,10 @@
 
     <!-- 用户格言 -->
     <text class="user-motto">{{userInfo.personality_description || 'Live and let live.'}}</text>
+  </view>
 
+  <view class="settings-section">
+    <view class="settings-item" bindtap="goToLikes">My likes</view>
   </view>
 
   <!-- 饮食禁忌选择区域 -->
@@ -64,10 +67,6 @@
         <button class="save-button" bindtap="saveDietaryRestrictions">Save</button>
       </view>
     </view>
-  </view>
-
-  <view class="settings-section">
-    <view class="settings-item" bindtap="goToLikes">My likes</view>
   </view>
 
   <!-- 设置和其他操作 -->
