@@ -83,13 +83,11 @@
   overflow: hidden;
   /* 超出部分隐藏 */
   text-overflow: ellipsis;
-  /* 溢出内容显示省略号 */
-  white-space: normal;
-  /* 允许换行 */
+  /* 超出部分用省略号 */
   line-height: 1.5;
   /* 设置行高 */
   height: 3em;
-  /* 行高（1.5） * 2 行 = 3em */
+  /* 固定两行的高度（行高 × 2） */
   font-size: 14px;
   /* 根据需求调整字体大小 */
   white-space: normal;

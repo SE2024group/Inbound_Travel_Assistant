@@ -26,7 +26,6 @@ Page({
     if (!keyword) {
       keyword = "";
     }
-
     this.setData({
       searchValue: keyword,
     });
@@ -164,7 +163,6 @@ Page({
       value
     } = e.detail;
     console.log(`/pages/goods/result/index?searchValue=${value}`);
-    // if (value.length === 0) return;
     wx.navigateTo({
       url: `/pages/goods/result/index?searchValue=${value}`,
     });
