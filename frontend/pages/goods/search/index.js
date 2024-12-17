@@ -26,6 +26,7 @@ Page({
     if (!keyword) {
       keyword = "";
     }
+
     this.setData({
       searchValue: keyword,
     });

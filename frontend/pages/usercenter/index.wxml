@@ -4,7 +4,7 @@
   <!-- 用户信息卡片 -->
   <view class="user-card">
     <!-- 用户头像 -->
-    <image class="user-avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" />
+    <image class="user-avatar" src="{{userInfo.avatar || 'https://cloud.tsinghua.edu.cn/f/9a5d8ec171fa4541a9f4/?dl=1'}}" />
 
     <!-- 用户名 -->
     <view class="user-name">{{userInfo.nickname || 'Anonymous'}}</view>
