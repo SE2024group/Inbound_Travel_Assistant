@@ -25,17 +25,12 @@
   flex: 1;
   text-align: center;
   font-size: 54rpx;
-  /* 最大字体 */
   color: #333;
   font-weight: bold;
   margin-bottom: 15rpx;
-
-  /* 防止换行 */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  /* 动态缩放适配宽度 */
   transform-origin: center;
 }
 
@@ -58,10 +53,7 @@
 /* 描述框 */
 .description-box {
   margin: 30rpx auto;
-  padding-left: 30rpx;
-  padding-right: 30rpx;
-  padding-bottom: 30rpx;
-  padding-top: 0rpx;
+  padding: 30rpx;
   background: rgba(227, 224, 237, 0.8);
   border: 2rpx solid #45a29e;
   border-radius: 20rpx;
@@ -72,16 +64,17 @@
 }
 
 .description-text {
-  margin: 0;
-  /* 移除多余的外边距 */
-  padding: 0;
-  /* 移除多余的内边距 */
-  line-height: 1.6;
-  text-align: center;
+  color: #444;
+  line-height: 1.8;
+  text-align: left;
+  word-break: break-word;
   font-size: 32rpx;
+  text-indent: 2em; /* 设置段首缩进 */
+  margin-bottom: 20rpx; /* 段落之间的间距 */
+  white-space: pre-line; /* 保留换行符并自动换行 */
 }
 
-/* 票务信息 */
+
 .ticket-info {
   display: flex;
   flex-direction: column;

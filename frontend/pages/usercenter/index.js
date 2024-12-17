@@ -51,7 +51,7 @@ Page({
     if (loggedBy === 'tourist') {
       const userInfo = {
         name: wx.getStorageSync('userName') || 'Tourist',
-        avatar: '/pages/usercenter/avatar.jpeg',
+        avatar: 'https://cloud.tsinghua.edu.cn/f/9a5d8ec171fa4541a9f4/?dl=1',
         motto: wx.getStorageSync('userMotto') || 'Enjoy your journey!',
       };
       this.setData({
@@ -89,6 +89,7 @@ Page({
           });
         },
       });
+      wx.setStorageSync('registeredAt', this.userInfo.signup_date)
     } else {
       // Handle other login methods or error states
       wx.showToast({
@@ -186,7 +187,7 @@ Page({
       })
       .then((data) => {
         wx.showToast({
-          title: '饮食禁忌更新成功。',
+          title: 'Diet updated\.',
           icon: 'success',
         });
         // 更新 userInfo 数据（如果后端返回更新后的用户信息）

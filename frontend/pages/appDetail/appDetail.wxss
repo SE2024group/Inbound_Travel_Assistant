@@ -25,9 +25,7 @@
 
 .app-name {
   flex: 1;
-  /* 占据剩余空间 */
   text-align: center;
-  /* 水平居中文字 */
   font-size: 48rpx;
   color: #333;
   font-weight: bold;
@@ -62,9 +60,12 @@
 .app-description {
   color: #444;
   line-height: 1.8;
-  text-align: center;
+  text-align: left;
   word-break: break-word;
   font-size: 28rpx;
+  text-indent: 2em; /* 设置段首缩进 */
+  margin-bottom: 20rpx; /* 段落之间的间距 */
+  white-space: pre-line; /* 保留换行符并自动换行 */
 }
 
 .download-container {
