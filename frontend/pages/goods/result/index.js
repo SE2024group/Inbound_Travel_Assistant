@@ -132,7 +132,6 @@ Page({
         //   loadMoreStatus: 2,
         // });
         const promises = spuList.map(spu => genGood(spu));
-        console.log("完成promise了");
         // 使用 Promise.all 来获取所有的结果
         Promise.all(promises)
           .then(results => {
