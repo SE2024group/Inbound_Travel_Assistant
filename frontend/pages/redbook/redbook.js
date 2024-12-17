@@ -146,7 +146,8 @@ Page({
         goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
         goodsListLoadStatus: 0,
       });
-
+      console.log("goodsList");
+      console.log(this.data.goodsList);
       this.goodListPagination.index = pageIndex;
       this.goodListPagination.num = pageSize;
     } catch (err) {

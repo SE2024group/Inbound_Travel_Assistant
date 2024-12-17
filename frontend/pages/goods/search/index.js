@@ -22,13 +22,16 @@ Page({
   deleteIndex: '',
   onLoad: function (options) {
     // 获取传递的 keyword 参数
-    const keyword = decodeURIComponent(options.keyword);
+    let keyword = decodeURIComponent(options.keyword || "");
+    if (!keyword) {
+      keyword = "";
+    }
     this.setData({
       searchValue: keyword,
     });
     console.log('传递的 keyword:', keyword);
-
   },
+
   toggleFilter: function (event) {
     // 获取 checkbox 是否被选中的状态
     const isChecked = event.detail.value.length > 0;
@@ -114,7 +117,7 @@ Page({
     this.setData({
       dialog: {
         ...dialog,
-        message: '确认删除所有历史记录',
+        message: 'clear history?',
       },
       dialogShow: true,
     });
@@ -131,7 +134,7 @@ Page({
     this.setData({
       dialog: {
         ...dialog,
-        message: '确认删除当前历史记录',
+        message: 'clear history',
         deleteType: 0,
       },
       dialogShow: true,
@@ -147,6 +150,7 @@ Page({
     } = e.currentTarget;
     const _searchValue = historyWords[dataset.index || 0] || '';
     if (_searchValue) {
+      console.log(`/pages/goods/result/index?searchValue=${_searchValue}`);
       wx.navigateTo({
         url: `/pages/goods/result/index?searchValue=${_searchValue}`,
       });
@@ -157,8 +161,8 @@ Page({
     console.log('submit event detail:', e.detail); // 调试事件数据
     const {
       value
-    } = e.detail.value;
-
+    } = e.detail;
+    console.log(`/pages/goods/result/index?searchValue=${value}`);
     // if (value.length === 0) return;
     wx.navigateTo({
       url: `/pages/goods/result/index?searchValue=${value}`,
