@@ -14,6 +14,9 @@ export function fetchUserData(token) {
             username,
             personality_description,
             id,
+            signup_date,
+            religious_belief,
+            dietary_preferences,
           } = response.data;
           resolve({
             avatar,
@@ -21,6 +24,9 @@ export function fetchUserData(token) {
             username,
             personality_description,
             id,
+            signup_date,
+            religious_belief,
+            dietary_preferences,
           });
         } else {
           reject(`Error: ${response.statusCode}`);

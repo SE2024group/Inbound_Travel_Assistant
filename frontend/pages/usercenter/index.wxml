@@ -17,7 +17,7 @@
     <view class="settings-item" bindtap="goToLikes">My likes</view>
   </view>
 
-  <!-- 饮食禁忌选择区域 -->
+  <!-- 饮食偏好选择区域 -->
   <view class="dietary-section">
     <!-- 宗教信仰选择 -->
     <view class="picker-container">
@@ -29,42 +29,66 @@
       </picker>
     </view>
 
-    <!-- 饮食禁忌选择按钮 -->
+    <!-- 饮食偏好选择按钮 -->
     <view class="picker-container">
-      <button class="select-dietary-button" bindtap="openDietaryModal">Dietary Restrictions</button>
+      <button class="select-dietary-button" bindtap="openDietaryModal">Dietary Preferences</button>
       <text> (Click to Select):</text>
 
-      <!-- Display Selected Dietary Restrictions as Tags -->
+      <!-- Display Selected Dietary Preferences as Tags -->
       <view class="selected-dietary-restrictions">
-        <block wx:for="{{selectedDietaryRestrictions}}" wx:key="*this">
-          <text class="restriction-tag">{{item}}</text>
+        <block wx:for="{{selectedDietaryPreferences}}" wx:key="*this">
+          <view class="preference-tag">
+            <text class="restriction-tag {{dietaryPreferencesMap[item.tag] === 'LIKE' ? 'tag-like' : (dietaryPreferencesMap[item.tag] === 'DISLIKE' ? 'tag-dislike' : '')}}">{{item.tag}}</text>
+            <button class="clear-button" data-tag="{{item.tag}}" bindtap="clearPreference">✕</button>
+          </view>
         </block>
-        <block wx:if="{{selectedDietaryRestrictions.length === 0}}">
-          <text class="placeholder-text">No dietary restrictions selected</text>
+        <block wx:if="{{selectedDietaryPreferences.length === 0}}">
+          <text class="placeholder-text">No dietary preferences selected</text>
         </block>
       </view>
     </view>
   </view>
 
-  <!-- Modal for Dietary Restrictions -->
+  <!-- Modal for Dietary Preferences -->
   <view wx:if="{{showDietaryModal}}" class="modal-overlay">
     <view class="modal">
       <view class="modal-header">
-        <text class="modal-title">Select Dietary Restrictions</text>
+        <text class="modal-title">Select Dietary Preferences</text>
         <button class="close-button" bindtap="closeDietaryModal">✕</button>
       </view>
       <view class="modal-body">
-        <checkbox-group bindchange="onDietaryCheckboxChange">
-          <block wx:for="{{dietaryRestrictions}}" wx:key="*this">
-            <label class="checkbox-label">
-              <checkbox value="{{item}}"></checkbox>
+        <!-- 新增一行表头 -->
+        <view class="preference-header">
+          <text class="item-header"></text>
+          <view class="like-header">Only</view>
+          <view class="dislike-header">Forbid</view>
+          <view class="clear-header"></view>
+        </view>
+        <block wx:for="{{dietaryRestrictions}}" wx:key="*this">
+          <view class="preference-item">
+            <view class="item-column">
               <text class="checkbox-text">{{item}}</text>
-            </label>
-          </block>
-        </checkbox-group>
+            </view>
+            <radio-group class="radio-group" data-tag="{{item}}" bindchange="onPreferenceChange">
+              <view class="like-column">
+                <label class="radio-label">
+                  <radio value="LIKE" checked="{{dietaryPreferencesMap[item] === 'LIKE'}}"></radio>
+                </label>
+              </view>
+              <view class="dislike-column">
+                <label class="radio-label">
+                  <radio value="DISLIKE" checked="{{dietaryPreferencesMap[item] === 'DISLIKE'}}"></radio>
+                </label>
+              </view>
+            </radio-group>
+            <view class="clear-column">
+              <button class="clear-button" data-tag="{{item}}" bindtap="clearPreferenceItem">✕</button>
+            </view>
+          </view>
+        </block>
       </view>
       <view class="modal-footer">
-        <button class="save-button" bindtap="saveDietaryRestrictions">Save</button>
+        <button class="save-button" bindtap="onSaveDietaryPreferences">Save</button>
       </view>
     </view>
   </view>
