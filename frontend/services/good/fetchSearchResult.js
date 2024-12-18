@@ -46,8 +46,8 @@ export function getSearchResult(params) {
   return new Promise((resolve, reject) => {
     const url = "http://1.15.174.177/api/dish/search/";
     const data = {
-      // tags: [params.keyword], // Using params.keyword as the search query in tags
-      "tags": ["辣", "海鲜"]
+      "tags": [params.keyword], // Using params.keyword as the search query in tags
+      // "tags": ["辣", "海鲜"]
     };
 
     wx.request({

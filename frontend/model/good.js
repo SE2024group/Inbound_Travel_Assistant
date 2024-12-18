@@ -1128,20 +1128,7 @@ const allGoods = [{
  * @param {string} id
  * @param {number} [available] 库存, 默认1
  */
-// export function genGood(id, available = 1) {
-//   const specID = ['135681624', '135681628'];
-//   if (specID.indexOf(id) > -1) {
-//     return allGoods.filter((good) => good.spuId === id)[0];
-//   }
-//   const item = allGoods[id % allGoods.length];
-//   return {
-//     ...item,
-//     spuId: `${id}`,
-//     // available: available,
-//     // desc: item?.desc || defaultDesc,
-//     images: item?.images || [item?.primaryImage],
-//   };
-// }
+
 function fetchWithTimeout(url, options = {}, timeout = 5000) {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
@@ -1163,9 +1150,33 @@ function fetchWithTimeout(url, options = {}, timeout = 5000) {
       },
       fail: (error) => {
         clearTimeout(timer);
+
+        // 这里可以根据具体的错误信息显示不同的提示
+        let errorMessage = "fail to load"; // 默认的错误提示
+
+        // 检查错误类型，进行适当处理
+        if (error.errMsg.includes('request:fail')) {
+          if (error.errMsg.includes('net::ERR_INTERNET_DISCONNECTED')) {
+            errorMessage = "Network disconnected. Please check your internet connection.";
+          } else {
+            errorMessage = "Network request failed. Please try again.";
+          }
+        } else {
+          errorMessage = "An unknown error occurred.";
+        }
+
+        // 在小程序中显示弹窗提示
+        wx.showToast({
+          title: errorMessage,
+          icon: 'none', // 使用默认的提示图标
+          duration: 2000 // 设置显示时长
+        });
+
+        // 还可以选择将错误信息抛出或传递给其他地方进行处理
         reject(error);
       }
-    });
+    }); 
+
   });
 }
 
@@ -1187,7 +1198,7 @@ export function genGood(id, available = 1) {
         const transformedData = {
           spuId: String(apiData.id),
           title: apiData.name_en,
-          title_ch: apiData.name,
+          title_ch: apiData.name_ch,
           description: apiData.description_en,
           //primaryImage: "https://cloud.tsinghua.edu.cn/f/699e94b18091454db7a8/?dl=1",
           primaryImage: apiData.images[0].image_url,
