@@ -18,7 +18,6 @@ function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
       const result = goodsList.map((item) => ({
         spuId: item.spuId,
         thumb: item.primaryImage,
-        //thumb: "https://cloud.tsinghua.edu.cn/f/699e94b18091454db7a8/?dl=1",
         title: item.title,
         tags: item.spuTagList.map((tag) => tag.title),
       }));

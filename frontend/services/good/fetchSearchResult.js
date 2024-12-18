@@ -37,19 +37,14 @@ function mockSearchResult(params) {
 
 /** 获取搜索历史 */
 export function getSearchResult(params) {
+
   console.log(params)
-  // if (config.useMock) {
-  //   const result = mockSearchResult(params); // 获取模拟结果
-  //   console.log('模拟数据:', result); // 打印模拟结果
-  //   return result; // 返回模拟结果
-  // }
   return new Promise((resolve, reject) => {
     const url = "http://1.15.174.177/api/dish/search/";
     const data = {
       "tags": [params.keyword], // Using params.keyword as the search query in tags
       // "tags": ["辣", "海鲜"]
     };
-
     wx.request({
       url: url,
       method: 'POST',

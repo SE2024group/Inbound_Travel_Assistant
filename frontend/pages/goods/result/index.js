@@ -107,7 +107,6 @@ Page({
       const code = 'Success';
       const data = result.data;
       if (code.toUpperCase() === 'SUCCESS') {
-        console.log("进来了")
         const spuList = data.results;
         // const spuList = [7, 2]
         console.log("spuList");
@@ -126,17 +125,11 @@ Page({
           });
           return;
         }
-        // const nextList = await fetchGoodsList(0, 20);
-        // this.setData({
-        //   goodsList: this.data.goodsList.concat(nextList),
-        //   loadMoreStatus: 2,
-        // });
         const promises = spuList.map(spu => genGood(spu));
         // 使用 Promise.all 来获取所有的结果
         Promise.all(promises)
           .then(results => {
             // 更新数据到 goodsList 和 loadMoreStatus
-            // results = fetchGoodsList(0, 20);
             if (results.length) {
               results.forEach((item) => {
                 item.spuId = item.spuId;
