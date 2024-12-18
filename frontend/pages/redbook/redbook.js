@@ -169,11 +169,11 @@ Page({
     });
   },
 
-  goodListAddCartHandle() {
+  goodListLikedHandle() {
     Toast({
       context: this,
       selector: '#t-toast',
-      message: '已收藏',
+      message: 'Liked',
     });
   },
 

@@ -1,0 +1,16 @@
+<!--pages/myLikes/index.wxml-->
+<view style="text-align: center; color: #b9b9b9" wx:if="{{pageLoading}}">
+  <t-loading theme="circular" size="40rpx" text="Loading..." inherit-color />
+</view>
+
+<view class="my-likes-page">
+  <view wx:if="{{!pageLoading}}">
+    <view wx:if="{{goodsList.length > 0}}" class="goods-list-wrapper">
+      <goods-list wr-class="goods-list-container" goodsList="{{goodsList}}" bind:click="goodListClickHandle" bind:addcart="goodListAddCartHandle" />
+    </view>
+    <view wx:else style="text-align:center; margin-top:100rpx; color:#666;">
+      <text>Haven't liked anything.</text>
+    </view>
+  </view>
+  <t-toast id="t-toast" />
+</view>
