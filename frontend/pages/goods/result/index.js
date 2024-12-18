@@ -108,8 +108,8 @@ Page({
       const data = result.data;
       if (code.toUpperCase() === 'SUCCESS') {
         console.log("进来了")
-        // const spuList = data.results;
-        const spuList = [7, 2]
+        const spuList = data.results;
+        // const spuList = [7, 2]
         console.log("spuList");
         console.log(spuList);
         if (spuList.length === 0 && reset) {
@@ -142,6 +142,7 @@ Page({
                 item.spuId = item.spuId;
                 item.thumb = item.primaryImage;
                 item.title = item.title;
+                item.title_ch = item.title_ch;
                 item.price = item.minSalePrice;
                 item.originPrice = item.maxLinePrice;
                 item.desc = '';

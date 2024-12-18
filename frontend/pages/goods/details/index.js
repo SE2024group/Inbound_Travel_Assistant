@@ -103,7 +103,9 @@ Page({
       url: '../comments/create/index'
     });
   },
-
+  addCartHandle(e) {
+    console.log("star")
+  },
   onNavigateButtonTap() {
     const self = this;
     const name = self.data.details.title;

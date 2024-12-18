@@ -1187,6 +1187,7 @@ export function genGood(id, available = 1) {
         const transformedData = {
           spuId: String(apiData.id),
           title: apiData.name_en,
+          title_ch: apiData.name,
           description: apiData.description_en,
           //primaryImage: "https://cloud.tsinghua.edu.cn/f/699e94b18091454db7a8/?dl=1",
           primaryImage: apiData.images[0].image_url,
