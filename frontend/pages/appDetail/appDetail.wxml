@@ -15,8 +15,6 @@
   </view>
 
   <view class="download-container">
-    <navigator url="{{items[id].download_link}}" bindtap="toOut" class="download-link">
-      Download Here
-    </navigator>
+    <button bindtap="copyLink" class="download-link">Download Here</button>
   </view>
 </view>

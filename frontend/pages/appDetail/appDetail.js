@@ -78,6 +78,38 @@ Page({
     });
   },
 
+  copyLink() {
+    const { id, items } = this.data;
+    const url = items[id]?.download_link;
+
+    if (url) {
+      // 复制链接到剪切板
+      wx.setClipboardData({
+        data: url,
+        success: () => {
+          wx.showModal({
+            title: '链接已复制',
+            content: '请打开浏览器并粘贴链接访问。',
+            showCancel: false, // 不需要取消按钮
+            confirmText: '知道了'
+          });
+        },
+        fail: () => {
+          wx.showToast({
+            title: '复制失败，请重试',
+            icon: 'none'
+          });
+        }
+      });
+    } 
+    else {
+      wx.showToast({
+        title: '下载链接不存在',
+        icon: 'none'
+      });
+    }
+  },
+
 
   toOut(event) {
     const {
