@@ -1,3 +1,4 @@
+
 /**
  * @param {string} id
  * @param {number} [available] 库存, 默认1

@@ -375,15 +375,4 @@ Page({
     });
   },
 
-  onShow() {
-    this.getTabBar().init();
-    this.setData({
-      selectedText: "", // 清空文本框内容
-      isInputFocused: false, // 重置输入框聚焦状态
-      currentPhrases: this.data.phrases.map((phrase) => ({
-        text: phrase.english
-      })),
-    });
-  },
-
 });
