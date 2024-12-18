@@ -1,5 +1,11 @@
 <!--pages/record/record.wxml-->
 <view class="container">
+  <view class="header" wx:if="{{title}}">
+    <text class="header-title">{{title}}</text>
+    <view class="header-image-container aspect-ratio-16-9">
+      <image class="header-image" src="{{image}}" />
+    </view>
+  </view>
 
   <!-- 大文本框 -->
   <view class="large-text-box">
@@ -17,6 +23,11 @@
     <text class="record-text">{{micButtonText}}</text>
   </view>
 
+  <!-- 按钮区域 -->
+  <view class="play-button-container">
+    <button bindtap="toggleLanguage" class="play-button">{{toggleButtonText}}</button>
+  </view>
+
   <!-- 常用语 -->
   <view class="common-phrases">
     <block wx:for="{{currentPhrases}}" wx:key="index">
@@ -26,9 +37,4 @@
     </block>
   </view>
 
-  <!-- 按钮区域 -->
-  <view class="play-button-container">
-    <button bindtap="toggleLanguage" class="play-button">{{toggleButtonText}}</button>
-  </view>
 </view>
-

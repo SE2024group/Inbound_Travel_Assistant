@@ -3,6 +3,10 @@ import {
   getSearchResult
 } from '../../../services/good/fetchSearchResult';
 import {
+  getSearchResultFilter
+} from '../../../services/good/fetchSearchResult';
+
+import {
   genGood
 } from '../../../model/good';
 import {
@@ -25,7 +29,7 @@ Page({
     maxVal: '',
     minSalePriceFocus: false,
     maxSalePriceFocus: false,
-    filter: initFilters,
+    filter: false,
     hasLoaded: false,
     keywords: '',
     loadMoreStatus: 0,
@@ -37,16 +41,24 @@ Page({
   pageSize: 30,
 
   onLoad(options) {
-    const {
-      searchValue = ''
-    } = options || {};
+    // const {
+    //   searchValue = '',
+    //     filter
+    // } = options || {};
+    const searchValue = options.searchValue;
+    const filter = options.filter === 'true'; // 将字符串 'true' 转换为布尔值 true
     this.setData({
         keywords: searchValue,
+        filter: filter
       },
       () => {
         this.init(true);
       },
     );
+    console.log('filter:', filter); // 显示传递的过滤值，布尔值
+    this.setData({
+      filter: filter
+    });
   },
 
   generalQueryData(reset = false) {
@@ -91,18 +103,29 @@ Page({
   },
 
   async init(reset = true) {
+    console.log("init");
     const {
       loadMoreStatus,
       goodsList = []
     } = this.data;
     const params = this.generalQueryData(reset);
-    if (loadMoreStatus !== 0) return;
+    console.log("params");
+    // if (loadMoreStatus !== 0) return;
     this.setData({
       loadMoreStatus: 1,
       loading: true,
     });
     try {
-      const result = await getSearchResult(params);
+      let result;
+      if (this.data.filter) {
+        console.log("true");
+        result = await getSearchResultFilter(params);
+
+      } else {
+        console.log("false");
+        result = await getSearchResult(params);
+      }
+      // const result = await getSearchResult(params);
       console.log(result);
       const code = 'Success';
       const data = result.data;
@@ -150,21 +173,8 @@ Page({
               goodsList: this.data.goodsList.concat(results), // 将结果设置为 goodsList
               // loadMoreStatus: _loadMoreStatus, // 设置加载状态
             });
-            console.log("results");
 
-            const _goodsList = reset ? spuList : goodsList.concat(spuList);
-            // _goodsList.forEach((v) => {
-            //   v.tags = v.spuTagList.map((u) => u.title);
-            //   v.hideKey = {
-            //     desc: true
-            //   };
-            // });
-            // const _loadMoreStatus = _goodsList.length === totalCount ? 2 : 0;
-            // this.pageNum = params.pageNum || 1;
-            // this.total = totalCount;
             this.setData({
-              // goodsList: _goodsList,
-              // goodsList: results,
               loadMoreStatus: 2,
             });
           })
@@ -175,21 +185,6 @@ Page({
               loadMoreStatus: '加载失败'
             });
           });
-        // const _goodsList = reset ? spuList : goodsList.concat(spuList);
-        // // _goodsList.forEach((v) => {
-        // //   v.tags = v.spuTagList.map((u) => u.title);
-        // //   v.hideKey = {
-        // //     desc: true
-        // //   };
-        // // });
-        // const _loadMoreStatus = _goodsList.length === totalCount ? 2 : 0;
-        // this.pageNum = params.pageNum || 1;
-        // this.total = totalCount;
-        // this.setData({
-        //   // goodsList: _goodsList,
-        //   // goodsList: results,
-        //   loadMoreStatus: 2,
-        // });
 
       } else {
         this.setData({
@@ -208,7 +203,6 @@ Page({
       hasLoaded: true,
       loading: false,
     });
-    console.log("结束了")
   },
 
   handleCartTap() {

@@ -46,19 +46,6 @@
   font-style: italic;
 }
 
-.user-stats {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
-}
-
-.stat-item {
-  font-size: 14px;
-  /* Consistent */
-  color: #666;
-  margin: 10px;
-}
-
 .dietary-section {
   background-color: #ffffff;
   padding: 20px;
@@ -160,6 +147,8 @@
 }
 
 .settings-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
   background-color: #ffffff;
   padding: 0;
   border-radius: 8px;
@@ -211,6 +200,17 @@
   width: 80%;
   padding: 20px;
   border-radius: 8px;
+  max-height: 60vh;
+  /* 设置最大高度为视口高度的80% */
+  overflow-y: auto;
+  /* 超出部分可滚动 */
+}
+
+.modal-body {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-right: 10px;
+  /* 为滚动条留出空间 */
 }
 
 .modal-header {
@@ -232,10 +232,6 @@
   cursor: pointer;
 }
 
-.modal-body {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 
 .checkbox-label {
   display: flex;
@@ -260,4 +256,157 @@
   border: none;
   border-radius: 5px;
   font-size: 16px;
+}
+
+.preference-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.header-placeholder {
+  /* 与下方 .checkbox-text 列宽相匹配，可根据实际需求调整 */
+  width: 100px;
+}
+
+.header-like,
+.header-dislike {
+  text-align: center;
+  flex: 0 0 50px;
+  /* 根据您的实际按钮列宽调整 */
+  color: #333;
+}
+
+.header-clear-placeholder {
+  width: 30px;
+  /* 与clear-button相似的宽度 */
+}
+
+/* 饮食偏好标签样式 */
+.preference-tag {
+  background-color: #fff7ad;
+  color: #333;
+  padding: 1px 5px;
+  border-radius: 15px;
+  margin: 5px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+/* 修改 .preference-item 样式 */
+.preference-item {
+  display: flex;
+  align-items: center;
+  /* 垂直居中对齐 */
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* 调整标签名称和按钮的容器 */
+.preference-item .checkbox-text {
+  flex: 1;
+  /* 使标签名称占据剩余空间 */
+}
+
+.preference-header,
+.preference-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* 菜名列占比较大，可使用flex:1自动扩展 */
+.item-column,
+.item-header {
+  flex: 1;
+}
+
+.like-column,
+.like-header,
+.dislike-column,
+.dislike-header {
+  width: 50px;
+  /* 可根据实际需求调整 */
+  text-align: left;
+  margin-right: 10px;
+}
+
+.clear-column,
+.clear-header {
+  width: 30px;
+  text-align: center;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  /* 为清除按钮留出空间 */
+}
+
+/* 调整清除按钮的样式 */
+.clear-button {
+  background: none;
+  border: none;
+  color: #ff0000;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 5px;
+  /* 调整内边距以对齐 */
+  display: flex;
+  align-items: center;
+  /* 垂直居中 */
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.radio-label text {
+  margin-left: 5px;
+}
+
+.restriction-tag {
+  color: #fff;
+  /* 白色文字 */
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin: 5px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+/* 喜欢的标签样式 */
+.tag-like {
+  background-color: #4CAF50;
+  /* 绿色 */
+}
+
+/* 禁止的标签样式 */
+.tag-dislike {
+  background-color: #F44336;
+  /* 红色 */
+}
+
+.modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

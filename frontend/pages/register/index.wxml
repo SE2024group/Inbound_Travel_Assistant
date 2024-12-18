@@ -2,7 +2,7 @@
   <!-- Avatar Section -->
   <view class="avatar-section">
     <!-- Avatar Preview: Shows placeholder or uploaded avatar -->
-    <image class="avatar-preview" src="{{avatarPath || '/images/default-avatar.png'}}" wx:if="{{avatarPath || '/images/default-avatar.png'}}"></image>
+    <image class="avatar-preview" src="{{avatarPath || 'https://cloud.tsinghua.edu.cn/f/9a5d8ec171fa4541a9f4/?dl=1'}}" wx:if="{{avatarPath || 'https://cloud.tsinghua.edu.cn/f/9a5d8ec171fa4541a9f4/?dl=1'}}"></image>
     <!-- Upload Avatar Button -->
     <button class="upload-button" bindtap="chooseAvatar">
       Upload Avatar (Optional)

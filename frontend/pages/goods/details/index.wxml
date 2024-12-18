@@ -16,11 +16,11 @@
         <view class="title-container" style="display: flex; flex-direction: column; align-items: flex-start; flex: 1; overflow: hidden;">
           <!-- Main Title -->
           <view class="goods-name" style="font-weight: bold; text-align: left; word-break: break-word;  word-wrap: break-word;white-space: normal; font-size: 28rpx; overflow: hidden;">
-            {{details.title}}
+            {{good.title}}
           </view>
           <!-- Sub Title (title_ch) with smaller font size -->
           <view class="goods-name" style="font-weight: normal; text-align: left; word-break: break-word; white-space: normal; font-size: 20rpx; color: #666; overflow: hidden;">
-            {{details.title_ch}}
+            {{good.title_ch}}
           </view>
         </view>
 

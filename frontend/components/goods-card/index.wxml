@@ -6,8 +6,6 @@
 		<view class="goods-card__body">
 			<view class="goods-card__upper">
 				<view wx:class="goods-card__title-placeholder">
-					<!-- {{ " " }} -->
-					<!-- 占位符 -->
 					{{goods.title}}
 				</view>
 				<view wx:if="{{ goods.tags && !!goods.tags.length }}" class="goods-card__tags">

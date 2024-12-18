@@ -12,30 +12,40 @@ Page({
   data: {
     userInfo: {},
     religiousBeliefs: ['None', 'Christianity', 'Islam', 'Hinduism', 'Buddhism', 'Judaism', 'Other'],
-    dietaryRestrictions: ['Vegetarian', 'Vegan', 'Halal', 'Kosher', 'Gluten-Free', 'Lactose Intolerant', 'Other'],
+    dietaryRestrictions: [], // 从 API 获取的饮食偏好标签
     selectedReligiousBelief: '',
-    selectedDietaryRestrictions: [],
+    selectedDietaryPreferences: [], // [{ tag: 'Meat', preference: 'LIKE' }, ...]
+    dietaryPreferencesMap: {},
     showDietaryModal: false, // For modal visibility
-    dietarySelections: [], // Temporary storage for selections in modal
+    isLoadingDietary: false, // 添加加载状态
   },
 
-  // Recursive function to retry fetchUserData
+  // 递归函数重试获取用户数据
   retryFetchUserData(token, maxRetries, attempt = 1) {
     return new Promise((resolve, reject) => {
       fetchUserData(token).then((data) => {
-        resolve(data); // Successfully returned data
+        resolve(data); // 成功获取数据
       }).catch((error) => {
         if (attempt < maxRetries) {
           console.warn(`Attempt ${attempt} failed. Retrying...`);
-          // Retry after a delay
+          // 延迟后重试
           setTimeout(() => {
             this.retryFetchUserData(token, maxRetries, attempt + 1).then(resolve).catch(reject);
-          }, 1000); // 1-second delay (adjustable)
+          }, 1000); // 1秒延迟（可调整）
         } else {
           reject(`Failed after ${maxRetries} attempts: ${error}`);
         }
       });
     });
+  },
+
+  // 辅助函数，用于创建标签偏好映射
+  createDietaryPreferencesMap(preferences) {
+    const map = {};
+    preferences.forEach(pref => {
+      map[pref.tag] = pref.preference;
+    });
+    return map;
   },
 
   onLoad() {
@@ -45,17 +55,24 @@ Page({
         title: 'Login status error.',
         icon: 'error',
       });
+      return; // 终止执行，避免后续逻辑出错
     }
     console.log('logged by ', loggedBy);
+
+    // 调用获取饮食偏好的函数
+    this.fetchDietaryRestrictions();
 
     if (loggedBy === 'tourist') {
       const userInfo = {
         name: wx.getStorageSync('userName') || 'Tourist',
-        avatar: '/pages/usercenter/avatar.jpeg',
-        motto: wx.getStorageSync('userMotto') || 'Enjoy your journey!',
+        avatar: wx.getStorageSync('avatar') || 'https://cloud.tsinghua.edu.cn/f/9a5d8ec171fa4541a9f4/?dl=1',
+        personality_description: wx.getStorageSync('userMotto') || 'Enjoy your journey!',
       };
       this.setData({
-        userInfo
+        userInfo,
+        selectedReligiousBelief: wx.getStorageSync('religiousBelief') || '',
+        selectedDietaryPreferences: wx.getStorageSync('dietaryPreferences') || [],
+        dietaryPreferencesMap: this.createDietaryPreferencesMap(wx.getStorageSync('dietaryPreferences') || []),
       });
       console.log(this.data.userInfo);
     } else if (loggedBy === 'auth') {
@@ -65,11 +82,20 @@ Page({
         success: (res) => {
           const token = res.data;
 
-          // Use authToken to call fetchUserData and pass the token
+          // 使用 authToken 调用 fetchUserData 并传递 token
           this.retryFetchUserData(token, 5).then((data) => {
             this.setData({
-              userInfo: data
+              userInfo: data,
+              selectedReligiousBelief: data.religious_belief || '',
+              selectedDietaryPreferences: data.dietary_preferences || [],
+              dietaryPreferencesMap: this.createDietaryPreferencesMap(data.dietary_preferences || []),
             });
+            console.log("userinfo", this.data.userInfo);
+            // 同步到本地存储
+            wx.setStorageSync('religiousBelief', data.religious_belief || '');
+            console.log("local religiousBelief", data.religious_belief);
+            wx.setStorageSync('dietaryPreferences', data.dietary_preferences || []);
+            console.log("local dietaryPreferences", data.dietary_preferences);
           }).catch((error) => {
             wx.showToast({
               title: 'Fail to load user info',
@@ -83,14 +109,15 @@ Page({
             title: 'Please login first.',
             icon: 'error',
           });
-          // Redirect to login page if authToken is not found
+          // 如果 authToken 未找到，重定向到登录页面
           wx.redirectTo({
             url: '/pages/login/login',
           });
         },
       });
+      wx.setStorageSync('registeredAt', this.userInfo.signup_date)
     } else {
-      // Handle other login methods or error states
+      // 处理其他登录方式或错误状态
       wx.showToast({
         title: 'Unknown login method.',
         icon: 'error',
@@ -100,16 +127,59 @@ Page({
       });
     }
 
-    // Load dietary restrictions from local storage
-    const storedReligiousBelief = wx.getStorageSync('religiousBelief') || '';
-    const storedDietaryRestrictions = wx.getStorageSync('dietaryRestrictions') || [];
+    // 从本地存储加载宗教信仰和饮食偏好（仅适用于未通过 API 登录的情况）
+    if (loggedBy !== 'auth') {
+      const storedReligiousBelief = '';
+      const storedDietaryPreferences = [];
+      const dietaryPreferencesMap = this.createDietaryPreferencesMap(storedDietaryPreferences);
+      this.setData({
+        selectedReligiousBelief: storedReligiousBelief,
+        selectedDietaryPreferences: storedDietaryPreferences,
+        dietaryPreferencesMap: dietaryPreferencesMap,
+      });
+    }
+  },
+
+  // 获取饮食偏好数据的函数
+  fetchDietaryRestrictions() {
     this.setData({
-      selectedReligiousBelief: storedReligiousBelief,
-      selectedDietaryRestrictions: storedDietaryRestrictions,
+      isLoadingDietary: true
+    });
+    wx.request({
+      url: 'http://1.15.174.177/api/tags/',
+      method: 'GET',
+      success: (res) => {
+        if (res.statusCode === 200) {
+          // 假设 API 返回的数据结构是 [{id, name, name_en}, ...]
+          const dietaryTags = res.data.map(tag => tag.name_en); // 提取中文名称
+          this.setData({
+            dietaryRestrictions: dietaryTags,
+            isLoadingDietary: false,
+          });
+        } else {
+          wx.showToast({
+            title: 'Failed to load dietary preferences.',
+            icon: 'error',
+          });
+          this.setData({
+            isLoadingDietary: false
+          });
+        }
+      },
+      fail: (error) => {
+        console.error('API 请求失败:', error);
+        wx.showToast({
+          title: 'Failed to load dietary preferences.',
+          icon: 'error',
+        });
+        this.setData({
+          isLoadingDietary: false
+        });
+      }
     });
   },
 
-  // Handle religious belief selection changes
+  // 处理宗教信仰选择变化
   onReligiousChange(e) {
     const index = e.detail.value;
     const selected = this.data.religiousBeliefs[index];
@@ -135,7 +205,7 @@ Page({
           });
           // 同步本地存储
           wx.setStorageSync('religiousBelief', data.user.religious_belief || '');
-          wx.setStorageSync('dietaryRestrictions', data.user.dietary_restrictions || []);
+          wx.setStorageSync('dietaryPreferences', data.user.dietary_preferences || []);
         }
       })
       .catch((error) => {
@@ -147,82 +217,175 @@ Page({
       });
   },
 
-
-  // Open dietary restrictions selection modal
+  // 打开饮食偏好选择模态框
   openDietaryModal() {
     this.setData({
       showDietaryModal: true,
-      dietarySelections: this.data.selectedDietaryRestrictions, // Initialize with current selections
+      // 不再需要 dietarySelections，因为我们直接在 modal 中操作 selectedDietaryPreferences
     });
   },
 
-  // Close dietary restrictions selection modal
+  // 关闭饮食偏好选择模态框
   closeDietaryModal() {
     this.setData({
       showDietaryModal: false,
     });
   },
 
-  // Handle dietary restrictions checkbox changes
-  onDietaryCheckboxChange(e) {
+  // 处理饮食偏好选择变化
+  onPreferenceChange(e) {
+    const tag = e.currentTarget.dataset.tag;
+    const preference = e.detail.value; // 'LIKE' 或 'DISLIKE'
+    let updatedPreferences = [...this.data.selectedDietaryPreferences];
+
+    // 检查是否已经存在该标签的偏好
+    const existingIndex = updatedPreferences.findIndex(item => item.tag === tag);
+    if (existingIndex !== -1) {
+      if (preference === 'OTHER') {
+        // 如果选择了 'OTHER'，移除该偏好
+        updatedPreferences.splice(existingIndex, 1);
+      } else {
+        // 更新现有的偏好
+        updatedPreferences[existingIndex].preference = preference;
+      }
+    } else {
+      if (preference !== 'OTHER') {
+        // 添加新的偏好
+        updatedPreferences.push({
+          tag: tag,
+          preference: preference
+        });
+      }
+    }
+
+    // 更新 dietaryPreferencesMap
+    const dietaryPreferencesMap = this.createDietaryPreferencesMap(updatedPreferences);
+
     this.setData({
-      dietarySelections: e.detail.value,
+      selectedDietaryPreferences: updatedPreferences,
+      dietaryPreferencesMap: dietaryPreferencesMap,
     });
+    this.saveDietaryPreferences();
   },
 
-  // Save dietary restrictions selections
-  saveDietaryRestrictions() {
-    const selections = this.data.dietarySelections; // 已移除 'None'
+  // 检查某个标签是否有特定的偏好
+  isPreference(tag, preference) {
+    const pref = this.data.selectedDietaryPreferences.find(item => item.tag === tag);
+    console.log(tag);
+    console.log(pref);
+    return pref ? pref.preference === preference : false;
+  },
+
+  onSaveDietaryPreferences() {
     this.setData({
-      selectedDietaryRestrictions: selections,
       showDietaryModal: false,
     });
+    this.saveDietaryPreferences();
+  },
+
+  // 保存饮食偏好选择
+  saveDietaryPreferences() {
+    const preferences = this.data.selectedDietaryPreferences;
     // 本地存储选择
-    wx.setStorageSync('dietaryRestrictions', selections);
+    wx.setStorageSync('dietaryPreferences', preferences);
 
-    // 调用后端API更新饮食禁忌
-    updateUserPreferences({
-        dietary_restrictions: selections
-      })
-      .then((data) => {
-        wx.showToast({
-          title: '饮食禁忌更新成功。',
-          icon: 'success',
-        });
-        // 更新 userInfo 数据（如果后端返回更新后的用户信息）
-        if (data.user) {
-          this.setData({
-            userInfo: data.user,
+    // 调用后端API更新饮食偏好
+    const payload = {
+      dietary_preferences: preferences
+    };
+
+    // 假设需要发送 Authorization Token，请确保 token 可用
+    const authToken = wx.getStorageSync('authToken') || '';
+
+    wx.request({
+      url: 'http://1.15.174.177/api/user/preferences/',
+      method: 'PATCH',
+      header: {
+        'Content-Type': 'application/json',
+        'Authorization': `${authToken}`
+      },
+      data: payload,
+      success: (res) => {
+        if (res.statusCode === 200) {
+          // wx.showToast({
+          //   title: 'Dietary preferences updated.',
+          //   icon: 'none',
+          // });
+          // 更新 userInfo 数据（如果后端返回更新后的用户信息）
+          if (res.data.user) {
+            const newMap = this.createDietaryPreferencesMap(res.data.user.dietary_preferences || []);
+            this.setData({
+              userInfo: res.data.user,
+              dietaryPreferencesMap: newMap,
+            });
+            console.log('local dietaryPre updated to:', newMap);
+            // 同步本地存储
+            wx.setStorageSync('religiousBelief', res.data.user.religious_belief || '');
+            wx.setStorageSync('dietaryPreferences', res.data.user.dietary_preferences || []);
+          }
+        } else {
+          wx.showToast({
+            title: 'Failed to update dietary preferences.',
+            icon: 'error',
           });
-          // 同步本地存储
-          wx.setStorageSync('religiousBelief', data.user.religious_belief || '');
-          wx.setStorageSync('dietaryRestrictions', data.user.dietary_restrictions || []);
         }
-      })
-      .catch((error) => {
-        console.error('Failed to update dietary restrictions:', error);
+      },
+      fail: (error) => {
+        console.error('API 请求失败:', error);
         wx.showToast({
-          title: error,
-          icon: 'none',
+          title: 'Failed to update dietary preferences.',
+          icon: 'error',
         });
-      });
+      }
+    });
   },
 
-  // Check if a dietary restriction is selected
-  isSelected(item) {
-    return this.data.selectedDietaryRestrictions.includes(item);
+  // 清除特定标签的偏好
+  clearPreferenceItem(e) {
+    const tag = e.currentTarget.dataset.tag;
+    let updatedPreferences = this.data.selectedDietaryPreferences.filter(item => item.tag !== tag);
+    const dietaryPreferencesMap = this.createDietaryPreferencesMap(updatedPreferences);
+    this.setData({
+      selectedDietaryPreferences: updatedPreferences,
+      dietaryPreferencesMap: dietaryPreferencesMap,
+    });
+    // 更新本地存储
+    wx.setStorageSync('dietaryPreferences', updatedPreferences);
+    // 发送更新请求
+    this.saveDietaryPreferences();
   },
 
-  // Navigate to Settings page
+  clearPreference(e) {
+    const tag = e.currentTarget.dataset.tag;
+    let updatedPreferences = this.data.selectedDietaryPreferences.filter(item => item.tag !== tag);
+    const dietaryPreferencesMap = this.createDietaryPreferencesMap(updatedPreferences);
+    this.setData({
+      selectedDietaryPreferences: updatedPreferences,
+      dietaryPreferencesMap: dietaryPreferencesMap,
+    });
+    // 更新本地存储
+    wx.setStorageSync('dietaryPreferences', updatedPreferences);
+    // 发送更新请求
+    this.saveDietaryPreferences();
+  },
+
+  // 导航到设置页面
   goToSetting() {
     wx.navigateTo({
       url: '/pages/setting/index'
     });
   },
 
-  // Logout account
+  // 导航到我的喜欢页面
+  goToLikes() {
+    wx.navigateTo({
+      url: '/pages/myLikes/index'
+    });
+  },
+
+  // 登出账户
   onQuitAccount() {
-    const keysToRemove = ['authToken', 'user', 'loggedBy', 'userName', 'registeredAt', 'religiousBelief', 'dietaryRestrictions', 'userMotto'];
+    const keysToRemove = ['authToken', 'user', 'loggedBy', 'userName', 'registeredAt', 'religiousBelief', 'dietaryPreferences', 'userMotto'];
 
     const removePromises = keysToRemove.map((key) => {
       return new Promise((resolve, reject) => {
@@ -252,7 +415,7 @@ Page({
       });
   },
 
-  // Clear all cookies/cache
+  // 清除所有缓存
   onClearCookies() {
     wx.clearStorage({
       success: () => {

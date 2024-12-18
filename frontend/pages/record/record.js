@@ -78,9 +78,27 @@ Page({
       currentPhrases: this.data.phrases.map((phrase) => ({
         text: phrase.english,
       })),
+    });
+  },
+
+  onShow() {
+    this.getTabBar().init();
+    const app = getApp();
+    const title = app.globalData.title;
+    const image = app.globalData.image;
+    console.log(app);
+    this.setData({
+      selectedText: "", // 清空文本框内容
+      isInputFocused: false, // 重置输入框聚焦状态
       title: title,
       image: image,
     });
+  },
+
+  onHide() {
+    const app = getApp();
+    app.globalData.title = ""; // 清空 title
+    app.globalData.image = ""; // 清空 image
   },
 
   // 切换语言模式

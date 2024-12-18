@@ -79,17 +79,15 @@ export function genGood(id, available = 1) {
         const transformedData = {
           spuId: String(apiData.id),
           title: apiData.name_en,
-          title_ch: apiData.name_ch,
+          title_ch: apiData.name,
           description: apiData.description_en,
-          //primaryImage: "https://cloud.tsinghua.edu.cn/f/699e94b18091454db7a8/?dl=1",
           primaryImage: apiData.images[0].image_url,
           images: apiData.images.map(image => image.image_url),
           spuTagList: apiData.tags.map(tag => ({
             title: tag.name_en
           }))
         };
-        // console.log("转换完成");
-        // console.log(transformedData); // 输出转换后的结果
+
 
         // 解析 Promise，返回 transformedData
         resolve({
