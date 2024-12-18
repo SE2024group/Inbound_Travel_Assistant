@@ -108,7 +108,7 @@ Page({
   },
   onNavigateButtonTap() {
     const self = this;
-    const name = self.data.details.title;
+    const name = self.data.good.title_ch;
     const app = getApp(); // 获取全局应用实例
 
     wx.showModal({

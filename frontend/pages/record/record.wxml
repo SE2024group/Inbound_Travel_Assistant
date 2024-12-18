@@ -1,8 +1,10 @@
 <!--pages/record/record.wxml-->
 <view class="container">
   <view class="header" wx:if="{{title}}">
-    <image class="header-image" src="{{image}}" alt="Image" />
     <text class="header-title">{{title}}</text>
+    <view class="header-image-container aspect-ratio-16-9">
+      <image class="header-image" src="{{image}}" />
+    </view>
   </view>
 
   <!-- 大文本框 -->
