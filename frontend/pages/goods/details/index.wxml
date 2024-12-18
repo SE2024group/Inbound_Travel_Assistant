@@ -10,41 +10,62 @@
       <!-- <view class="goods-name" style="font-weight: bold; flex: 1; text-align: center; word-break: break-word; white-space: normal;">
         {{good.title}}
       </view> -->
-      <view class="goods-title" style="display: flex; justify-content: space-between; align-items: center; padding: 0 10rpx;">
-        <!-- Title -->
-        <!-- <view class="goods-text" style=" display: flex; justify-content: space-between; align-items: center; padding: 0 10rpx;"> -->
-        <view class="goods-name" style="font-weight: bold; text-align: center; word-break: break-word; white-space: normal; font-size: 28rpx;">
-          {{details.title}}
-        </view>
-        <!-- Sub Title (title_ch) with smaller font size -->
-        <view class="goods-name" style="font-weight: normal; text-align: center; word-break: break-word; white-space: normal; font-size: 20rpx; color: #666;">
-          {{details.title_ch}}
-        </view>
-        <!-- </view> -->
-        <!-- Ask For Help Button -->
-        <view class="navigate-btn" style="margin: 0 10rpx;">
-          <t-button t-class="navBtn" theme="primary" shape="round" bind:tap="onNavigateButtonTap">
-            <view class="btn-icon">
-              <view class="nav-text">Ask For Help</view>
-            </view>
-          </t-button>
-        </view>
-        <!-- Share Button -->
+      <view class="goods-title" style="display: flex; justify-content: space-between; align-items: center; padding: 0 10rpx; width: 100%; flex-wrap: wrap;">
 
-        <view class="goods-tag">
-
-          <t-button open-type="share" t-class="shareBtn" variant="text">
-            <view class="btn-icon">
-              <t-icon name="share" size="40rpx" color="#000" />
-              <view class="share-text">share</view>
-            </view>
-          </t-button>
-          <view class="goods-card__down">
-            <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
+        <!-- Title Container -->
+        <view class="title-container" style="display: flex; flex-direction: column; align-items: flex-start; flex: 1; overflow: hidden;">
+          <!-- Main Title -->
+          <view class="goods-name" style="font-weight: bold; text-align: left; word-break: break-word;  word-wrap: break-word;white-space: normal; font-size: 28rpx; overflow: hidden;">
+            {{details.title}}
+          </view>
+          <!-- Sub Title (title_ch) with smaller font size -->
+          <view class="goods-name" style="font-weight: normal; text-align: left; word-break: break-word; white-space: normal; font-size: 20rpx; color: #666; overflow: hidden;">
+            {{details.title_ch}}
           </view>
         </view>
+
+        <!-- Buttons Container -->
+        <view style="display: flex; flex-direction: row; align-items: center; margin-left: 10rpx;">
+          <!-- 修改 align-items: flex-end 为 align-items: center -->
+
+          <!-- Ask For Help Button -->
+          <view class="navigate-btn" style="margin-bottom: 5rpx;">
+            <t-button t-class="navBtn" theme="primary" shape="round" bind:tap="onNavigateButtonTap" style="padding: 5rpx 10rpx;">
+              <view class="btn-icon">
+                <view class="nav-text">Ask For Help</view>
+              </view>
+            </t-button>
+          </view>
+
+          <!-- Share Button -->
+          <view class="goods-tag">
+            <t-button open-type="share" t-class="shareBtn" variant="text" style="padding: 5rpx 10rpx;">
+              <view class="btn-icon" style="display: flex; align-items: center;">
+                <t-icon name="share" size="40rpx" color="#000" />
+                <view class="share-text" style="margin-left: 5rpx;">Share</view>
+              </view>
+            </t-button>
+          </view>
+
+          <!-- Star Button -->
+          <view class="goods-card__down">
+            <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="40rpx" color="#FA550F" style="margin-left: 5rpx;" />
+          </view>
+        </view>
+
       </view>
 
+
+      <!-- <view class="goods-card__down">
+        <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
+      </view> -->
+
+
+
+
+      <!-- <view class="goods-card__down">
+        <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
+      </view> -->
 
       <view class="goods-description">{{details.description}}</view>
       <view class="goods-intro">{{intro}}</view>

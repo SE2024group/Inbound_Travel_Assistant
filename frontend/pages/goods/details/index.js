@@ -108,7 +108,7 @@ Page({
   },
   onNavigateButtonTap() {
     const self = this;
-    const name = self.data.details.title;
+    const name_cn = self.data.good.title_ch;
     const app = getApp(); // 获取全局应用实例
 
     wx.showModal({
@@ -118,7 +118,7 @@ Page({
       success(res) {
         if (res.confirm) {
           // 用户点击确认，跳转页面并修改参数
-          app.globalData.title = name;
+          app.globalData.title = name_cn;
           app.globalData.image = self.data.details.images[0];
 
           wx.switchTab({

@@ -63,9 +63,19 @@ page {
   height: 750rpx;
 }
 
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  /* This ensures that the title takes up remaining space */
+  justify-content: center;
+}
+
 .goods-detail-page .goods-info .goods-price {
   display: flex;
   align-items: baseline;
+  flex-grow: 1;
 }
 
 .add-comment-btn-wrap .btn-icon {
@@ -106,6 +116,7 @@ page {
   color: #999999;
   font-size: 32rpx;
 }
+
 
 .goods-detail-page .goods-info .goods-number {
   display: flex;
@@ -206,25 +217,29 @@ page {
 }
 
 .goods-detail-page .goods-info .goods-title .goods-name {
-  width: 600rpx;
+  /* width: 600rpx; */
   font-weight: 500;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  -webkit-line-clamp: 20;
+  /* overflow: hidden; */
   font-size: 32rpx;
-  word-break: break-all;
+  word-break: break-word;
   color: #333333;
+  white-space: normal;
+  /* 确保文本可以换行 */
 }
 
+
+
 .goods-detail-page .goods-info .goods-title .goods-tag {
-  width: 104rpx;
+  /* width: 100rpx; */
   margin-left: 26rpx;
 }
 
 .goods-detail-page .goods-info .goods-title .goods-tag .shareBtn {
   border-radius: 200rpx 0px 0px 200rpx;
-  width: 100rpx;
+  /* width: 100rpx; */
   height: 96rpx;
   border: none;
   padding-right: 36rpx !important;
