@@ -12,9 +12,9 @@
 
   <!-- 描述内容 -->
   <view class="description-box">
-    <text class="description-text" user-select="true">
-      {{description}}
-    </text>
+    <block wx:for="{{descriptionArray}}" wx:key="*this">
+      <text class="description-text" user-select="true">{{item}}</text>
+    </block>
   </view>
 
   <!-- 票务信息 -->
