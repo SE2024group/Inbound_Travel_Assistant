@@ -4,6 +4,19 @@ import {
 } from '../../../services/good/fetchSearchHistory';
 
 Page({
+  onCheckboxChange: function (event) {
+    // 打印复选框状态
+    console.log("dongxi");
+    console.log('复选框状态:', event.detail.value);
+  },
+  checkboxChange(e) {
+    const values = e.detail.value;
+    this.setData({
+      filter: values.includes('agree'),
+      filterActive: values.includes('agree'),
+    });
+    console.log('复选框是否勾选:', this.data.filter);
+  },
   data: {
     historyWords: [],
     popularWords: [],
@@ -32,16 +45,16 @@ Page({
     console.log('传递的 keyword:', keyword);
   },
 
-  toggleFilter: function (event) {
-    // 获取 checkbox 是否被选中的状态
-    const isChecked = event.detail.value.length > 0;
+  // toggleFilter: function (event) {
+  //   // 获取 checkbox 是否被选中的状态
+  //   const isChecked = event.detail.value.length > 0;
+  //   // 更新页面的 `filter` 和 `filterActive` 参数
+  //   this.setData({
+  //     filter: isChecked,
+  //     filterActive: isChecked
+  //   });
 
-    // 更新页面的 `filter` 和 `filterActive` 参数
-    this.setData({
-      filter: isChecked,
-      filterActive: isChecked
-    });
-  },
+  // },
   onShow() {
     this.queryHistory();
     this.queryPopular();
@@ -150,9 +163,9 @@ Page({
     } = e.currentTarget;
     const _searchValue = historyWords[dataset.index || 0] || '';
     if (_searchValue) {
-      console.log(`/pages/goods/result/index?searchValue=${_searchValue}`);
+
       wx.navigateTo({
-        url: `/pages/goods/result/index?searchValue=${_searchValue}`,
+        url: `/pages/goods/result/index?searchValue=${_searchValue}&filter=${this.data.filter}`,
       });
     }
   },
@@ -162,9 +175,9 @@ Page({
     const {
       value
     } = e.detail;
-    console.log(`/pages/goods/result/index?searchValue=${value}`);
+
     wx.navigateTo({
-      url: `/pages/goods/result/index?searchValue=${value}`,
+      url: `/pages/goods/result/index?searchValue=${value}&filter=${this.data.filter}`,
     });
   },
 });

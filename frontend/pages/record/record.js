@@ -69,6 +69,11 @@ Page({
   },
 
   onLoad() {
+    const app = getApp();
+    const title = app.globalData.title;
+    // console.log("title");
+    // console.log(title);
+    const image = app.globalData.image;
     this.setData({
       currentPhrases: this.data.phrases.map((phrase) => ({
         text: phrase.english,
@@ -132,7 +137,7 @@ Page({
     });
   },
 
-  sendText: function() {
+  sendText: function () {
     // 获取文本框中的文本
     const textToUpload = this.data.selectedText;
     console.log("发送的文本：", textToUpload);
@@ -173,22 +178,25 @@ Page({
     });
   },
 
-  handleTextServerResponse: function(data) {
+  handleTextServerResponse: function (data) {
     // 假设服务器返回的数据是 JSON 格式
     try {
       const response = data;
       console.log('response', response);
 
       if (response.code === 200) {
-        const { cn_text, en_text, isChineseMode } = response.data;
+        const {
+          cn_text,
+          en_text,
+          isChineseMode
+        } = response.data;
         const textToDisplay = isChineseMode ? en_text : cn_text;
         console.log('显示的文本:', textToDisplay);
 
         this.setData({
           selectedText: textToDisplay
         });
-      } 
-      else {
+      } else {
         console.error('服务器返回错误代码:', response.code, '消息:', response.message);
         wx.showToast({
           title: `error: ${response.message}`,
@@ -273,9 +281,9 @@ Page({
   },
 
   // 上传录音文件到服务器
-  uploadRecording: function(filePath) {
+  uploadRecording: function (filePath) {
     console.log('上传录音文件，isChineseMode:', this.data.isChineseMode);
-    
+
     wx.uploadFile({
       url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
       filePath: filePath,
@@ -303,22 +311,25 @@ Page({
   },
 
   // 处理服务器返回的数据
-  handleServerResponse: function(data) {
+  handleServerResponse: function (data) {
     // 假设服务器返回的数据是 JSON 格式
     try {
       const response = JSON.parse(data);
       console.log('response', response);
 
       if (response.code === 200) {
-        const { cn_text, en_text, isChineseMode } = response.data;
+        const {
+          cn_text,
+          en_text,
+          isChineseMode
+        } = response.data;
         const textToDisplay = isChineseMode ? en_text : cn_text;
         console.log('显示的文本:', textToDisplay);
 
         this.setData({
           selectedText: textToDisplay
         });
-      } 
-      else {
+      } else {
         console.error('服务器返回错误代码:', response.code, '消息:', response.message);
         wx.showToast({
           title: `error: ${response.message}`,

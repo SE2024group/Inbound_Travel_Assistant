@@ -4,9 +4,24 @@
   </t-search>
   <view class="search-wrap">
     <view class="history-wrap">
-      <view class="filter-checkbox">
-        <checkbox value="filterHot" checked="{{filterActive}}" bindchange="toggleFilter">filter</checkbox>
+      <view class="container">
+        <checkbox-group bindchange="checkboxChange">
+          <label class="checkbox-label">
+            <checkbox value="agree" checked="{{isChecked}}" /> filter
+          </label>
+        </checkbox-group>
+
+        <!-- <view class="status">
+          复选框状态：{{isChecked ? '已勾选' : '未勾选'}}
+        </view> -->
       </view>
+
+      <!-- <view class="filter-checkbox">
+        <checkbox value="filterHot" checked="{{filterActive}}" bindchange="onCheckboxChange">filter</checkbox>
+      </view> -->
+      <!-- <view>
+        <checkbox bindchange="onCheckboxChange" value="agree">我同意条款</checkbox>
+      </view> -->
       <view class="search-header">
         <text class="search-title">history</text>
         <text class="search-clear" bind:tap="handleClearHistory">clear</text>

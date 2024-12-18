@@ -1,16 +1,20 @@
-import {
-  cdnBase
-} from '../config/index';
-const imgPrefix = cdnBase;
 
 /**
  * @param {string} id
  * @param {number} [available] 库存, 默认1
  */
+
 function fetchWithTimeout(url, options = {}, timeout = 5000) {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
-      reject(new Error('请求超时'));
+      // 弹出提示框，显示超时错误信息
+      wx.showToast({
+        title: 'Request Timeout', // 英文提示信息
+        icon: 'none', // 无图标
+        duration: 2000 // 显示时间 2秒
+      });
+
+      reject(new Error('Request Timeout')); // Reject promise with error
     }, timeout);
 
     wx.request({
@@ -28,9 +32,33 @@ function fetchWithTimeout(url, options = {}, timeout = 5000) {
       },
       fail: (error) => {
         clearTimeout(timer);
+
+        // 这里可以根据具体的错误信息显示不同的提示
+        let errorMessage = "fail to load"; // 默认的错误提示
+
+        // 检查错误类型，进行适当处理
+        if (error.errMsg.includes('request:fail')) {
+          if (error.errMsg.includes('net::ERR_INTERNET_DISCONNECTED')) {
+            errorMessage = "Network disconnected. Please check your internet connection.";
+          } else {
+            errorMessage = "Network request failed. Please try again.";
+          }
+        } else {
+          errorMessage = "An unknown error occurred.";
+        }
+
+        // 在小程序中显示弹窗提示
+        wx.showToast({
+          title: errorMessage,
+          icon: 'none', // 使用默认的提示图标
+          duration: 2000 // 设置显示时长
+        });
+
+        // 还可以选择将错误信息抛出或传递给其他地方进行处理
         reject(error);
       }
     });
+
   });
 }
 
@@ -54,15 +82,13 @@ export function genGood(id, available = 1) {
           title: apiData.name_en,
           title_ch: apiData.name,
           description: apiData.description_en,
-          //primaryImage: "https://cloud.tsinghua.edu.cn/f/699e94b18091454db7a8/?dl=1",
           primaryImage: apiData.images[0].image_url,
           images: apiData.images.map(image => image.image_url),
           spuTagList: apiData.tags.map(tag => ({
             title: tag.name_en
           }))
         };
-        // console.log("转换完成");
-        // console.log(transformedData); // 输出转换后的结果
+
 
         // 解析 Promise，返回 transformedData
         resolve({

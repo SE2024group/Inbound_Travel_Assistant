@@ -34,22 +34,57 @@ function mockSearchResult(params) {
     return data;
   });
 }
+export function getSearchResultFilter(params) {
+  console.log(params);
 
-/** 获取搜索历史 */
+  return new Promise((resolve, reject) => {
+    const url = "http://1.15.174.177/api/dish/advanced_search/";
+    const data = {
+      text: params.keyword, // 使用传入的 keyword 作为搜索文本
+      filter: [] // 初始化过滤条件为空数组
+    };
+
+    // 如果有过滤条件，构建 filter 数组
+    if (params.filter && Array.isArray(params.filter)) {
+      data.filter = params.filter.map(f => ({
+        tag: f.tag, // 过滤标签
+        preference: f.preference // 用户偏好，如 LIKE 或 DISLIKE
+      }));
+    }
+
+    wx.request({
+      url: url,
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
+      success: (res) => {
+        console.log('API 返回的结果:', res.data); // 打印返回的结果
+
+        // 检查 API 返回的 code 是否为 200，表示成功
+        if (res.data.code === 200) {
+          resolve(res.data); // 返回结果
+        } else {
+          reject('API 错误: ' + res.data.message); // 返回错误信息
+        }
+      },
+      fail: (error) => {
+        reject('网络错误: ' + error.errMsg); // 处理网络错误
+      },
+    });
+  });
+}
+
 export function getSearchResult(params) {
+
   console.log(params)
-  // if (config.useMock) {
-  //   const result = mockSearchResult(params); // 获取模拟结果
-  //   console.log('模拟数据:', result); // 打印模拟结果
-  //   return result; // 返回模拟结果
-  // }
   return new Promise((resolve, reject) => {
     const url = "http://1.15.174.177/api/dish/search/";
     const data = {
-      // tags: [params.keyword], // Using params.keyword as the search query in tags
-      "tags": ["辣", "海鲜"]
+      "tags": [params.keyword], // Using params.keyword as the search query in tags
+      // "tags": ["辣", "海鲜"]
     };
-
     wx.request({
       url: url,
       method: 'POST',
