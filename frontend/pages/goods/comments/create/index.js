@@ -52,7 +52,6 @@ Page({
     const {
       files
     } = e.detail;
-    console.log("Uploaded files:", files); // 打印文件信息，确认是否有 path 属性
     this.setData({
       uploadFiles: files,
     });
@@ -109,39 +108,63 @@ Page({
     });
 
     wx.navigateBack();
-
-    // 检查是否有上传文件
+    const authToken = wx.getStorageSync('authToken') || '';
+    console.log(authToken);
+    // 如果有上传文件
     if (uploadFiles.length > 0) {
-      uploadFiles.forEach(file => {
-        wx.uploadFile({
-          url: 'http://1.15.174.177/api/comments/upload/',
-          filePath: file.url, // 确保这里传递的是本地文件路径
-          name: 'images', // 表单名，需和API端一致
-          header: {
-            'Authorization': 'Token 9c05df89dbc2e281c74827c35a968a98049b1163',
-          },
-          formData: {
-            'dish': 1,
-            'comment': this.textAreaValue,
-            'rating': this.data.goodRateValue,
-          },
-          success: function (uploadRes) {
-            console.log('上传成功', uploadRes);
-            // 处理上传成功后的响应
-          },
-          fail: function (uploadErr) {
-            console.log('上传失败', uploadErr);
-            // 处理上传失败
-          }
+      // 将所有文件的路径作为一个数组传递
+      const files = uploadFiles.map(file => file.url); // 获取所有文件路径
+
+      // 构建 formData 中的 images 字段，支持多个文件
+      const formData = {
+        'dish': 1,
+        'comment': this.textAreaValue,
+        'rating': this.data.goodRateValue,
+      };
+
+
+      const uploadPromises = files.map(filePath => {
+        return new Promise((resolve, reject) => {
+          wx.uploadFile({
+            url: 'http://1.15.174.177/api/comments/upload/',
+            filePath: filePath,
+            name: 'images', // 这里的 `name` 要确保和 API 一致
+            header: {
+              'Authorization': authToken
+              //'Authorization': 'Token 9c05df89dbc2e281c74827c35a968a98049b1163'
+            },
+            formData: formData,
+            success: (uploadRes) => {
+              console.log('上传成功', uploadRes);
+              resolve(uploadRes);
+            },
+            fail: (uploadErr) => {
+              console.log('上传失败', uploadErr);
+              reject(uploadErr);
+            }
+          });
         });
       });
+
+      // 使用 Promise.all 等待所有文件上传完成
+      Promise.all(uploadPromises)
+        .then(results => {
+          console.log('所有文件上传成功:', results);
+          // 处理上传成功后的响应
+        })
+        .catch(err => {
+          console.log('文件上传失败:', err);
+          // 处理上传失败
+        });
+
     } else {
       // 如果没有文件，则只上传评论数据
       wx.request({
         url: 'http://1.15.174.177/api/comments/upload/',
         method: 'POST',
         header: {
-          'Authorization': 'Token 9c05df89dbc2e281c74827c35a968a98049b1163',
+          'Authorization': authToken
+          //'Authorization': 'Token 9c05df89dbc2e281c74827c35a968a98049b1163',
         },
         data: {
           'dish': 1,
@@ -157,5 +180,6 @@ Page({
       });
     }
   }
+
 
 });
