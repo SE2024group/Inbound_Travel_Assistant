@@ -105,11 +105,13 @@ Page({
     });
     try {
       const code = 'Success';
+      const authToken = wx.getStorageSync('authToken') || '';
       wx.request({
         url: 'http://1.15.174.177/api/user/comments/',
         method: 'GET',
         header: {
-          'Authorization': 'Token 9c05df89dbc2e281c74827c35a968a98049b1163',
+          //'Authorization': 'Token 9c05df89dbc2e281c74827c35a968a98049b1163',
+          'Authorization': authToken,
           'Content-Type': 'application/json',
         },
         success: (res) => {
@@ -118,8 +120,9 @@ Page({
             console.log("data", data);
             const nextState = {
               commentList: data.map((item) => {
+                console.log('item.id:', item.id, '类型:', typeof item.id);
                 return {
-                  goodsSpu: item.dish.id, // 菜品ID
+                  // goodsSpu: item.dish.id, // 菜品ID
                   // goodsName: item.dish.name || '',
                   // goodsNameEn: item.dish.name_en || '',
                   goodsImages: item.dish.images || [], // 菜品图片
@@ -131,7 +134,7 @@ Page({
                   })),
                   commentTimestamp: item.timestamp, // 评论时间戳
                   spuId: item.dish.id,
-                  id: item.id,
+                  commentId: item.id,
                 };
               }),
             };

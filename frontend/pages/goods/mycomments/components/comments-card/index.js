@@ -38,11 +38,11 @@ Component({
     },
     spuId: {
       type: Number,
-      value: [],
+      value: 0,
     },
-    id: {
+    commentId: {
       type: Number,
-      value: [],
+      value: 0,
     },
   },
 
@@ -64,17 +64,18 @@ Component({
       });
     },
     deleteComment: function () {
+      const that = this; // 将当前组件实例存储到that中
       const authToken = wx.getStorageSync('authToken') || '';
       wx.showModal({
         title: 'delete confirm',
         content: 'Are you sure you want to delete this comment？',
         success(res) {
           if (res.confirm) {
-            console.log(this.properties.id);
+            console.log(that.properties.commentId);
             // 调用删除评论 API
             wx.request({
               // url: `http://1.15.174.177/api/comments/${that.data.commentId}/delete/`,
-              url: `http://1.15.174.177/api/comments/${this.properties.id}/delete/`,
+              url: `http://1.15.174.177/api/comments/${that.properties.commentId}/delete/`,
               method: 'DELETE',
               header: {
                 'Authorization': authToken,
