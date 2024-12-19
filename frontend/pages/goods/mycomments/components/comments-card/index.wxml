@@ -1,0 +1,35 @@
+<view class="comments-card-item wr-class">
+  <view class="comments-card-item-container">
+    <view class="comments-title">
+      <view class="comments-card-item-userImg">
+        <t-image t-class="userImg" src="{{userHeadUrl}}" />
+      </view>
+      <view class="userName">{{userName}}</view>
+      <text class="commentTime">{{commentTime}}</text>
+    </view>
+    <view class="comments-info">
+      <view class="rate-container">
+        <t-rate value="{{commentScore}}" size="14" gap="2" color="{{['#ffc51c', '#ddd']}}" />
+        <view class="action-buttons">
+          查看商品
+          <view class="button-view-goods" bindtap="viewGoods">
+            <t-icon prefix="wr" name="arrow_right" size="20" />
+
+          </view>
+          删除评论
+          <view class="button-delete-comment" bindtap="deleteComment">
+            <t-icon prefix="wr" name="delete" size="20" color="red" />
+
+          </view>
+        </view>
+      </view>
+      <view class="goods-info-text" wx:if="{{goodsDetailInfo}}">{{goodsDetailInfo}}</view>
+    </view>
+    <view class="comments-card-item-container-content">
+      <view class="content-text" hidden="{{showContent}}"> {{commentContent}} </view>
+    </view>
+    <view class="comments-card-item-container-image" wx:if="{{commentResources.length > 0}}">
+      <images-videos resources="{{commentResources}}" />
+    </view>
+  </view>
+</view>

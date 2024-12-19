@@ -52,20 +52,7 @@
             <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="40rpx" color="#FA550F" style="margin-left: 5rpx;" />
           </view>
         </view>
-
       </view>
-
-
-      <!-- <view class="goods-card__down">
-        <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
-      </view> -->
-
-
-
-
-      <!-- <view class="goods-card__down">
-        <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
-      </view> -->
 
       <view class="goods-description">{{details.description}}</view>
       <view class="goods-intro">{{intro}}</view>
@@ -75,10 +62,10 @@
       <view class="comments-head" bindtap="navToCommentsListPage">
         <view class="comments-title-wrap">
           <view class="comments-title-label">comments</view>
-          <view class="comments-title-count"> ({{ commentsStatistics.commentCount }}) </view>
+          <!-- <view class="comments-title-count"> ({{ commentsStatistics.commentCount }}) </view> -->
         </view>
         <view class="comments-rate-wrap">
-          <view class="comments-good-rate">{{commentsStatistics.goodRate}}%good</view>
+          <!-- <view class="comments-good-rate">{{commentsStatistics.goodRate}}%good</view> -->
           <t-icon name="chevron-right" size="40rpx" color="#BBBBBB" />
         </view>
       </view>

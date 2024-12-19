@@ -100,7 +100,7 @@ Page({
   },
   goToCreateComment() {
     wx.navigateTo({
-      url: '../comments/create/index'
+      url: `../comments/create/index?spuId=${this.data.spuId}`,
     });
   },
   addCartHandle(e) {
@@ -331,29 +331,53 @@ Page({
   async getCommentsList() {
     try {
       const code = 'Success';
-      const data = await getGoodsDetailsCommentList();
-      const {
-        homePageComments
-      } = data;
-      if (code.toUpperCase() === 'SUCCESS') {
-        const nextState = {
-          commentsList: homePageComments.map((item) => {
-            return {
-              goodsSpu: item.spuId,
-              userName: item.userName || '',
-              commentScore: item.commentScore,
-              commentContent: item.commentContent || '用户未填写评价',
-              userHeadUrl: item.isAnonymity ?
-                this.anonymityAvatar : item.userHeadUrl || this.anonymityAvatar,
-            };
-          }),
-        };
-        this.setData(nextState);
-      }
+      wx.request({
+        url: `http://1.15.174.177/api/dish/${this.data.spuId}/comments/`,
+        method: 'GET',
+        header: {
+          'Content-Type': 'application/json', // 请求头
+        },
+        success: (res) => {
+          if (res.statusCode === 200 && code.toUpperCase() === 'SUCCESS') {
+            const data = res.data; // 获取返回的数据
+            if (data && data.length > 0) {
+              const firstComment = data[0]; // 只取第一条评论
+              const nextState = {
+                commentsList: [{
+                  goodsSpu: firstComment.id, // 假设 id 作为 goodsSpu
+                  userName: firstComment.username || '',
+                  commentScore: firstComment.rating, // 使用 rating 替代 commentScore
+                  commentContent: firstComment.comment || '用户未填写评价',
+                  userHeadUrl: firstComment.avatar || this.anonymityAvatar, // 如果没有头像，使用匿名头像
+                  commentResources: firstComment.images.map((image) => ({
+                    src: image, // 使用 item.images 作为 src
+                    type: 'image', // 默认 type 为 'image'
+                  })),
+                }],
+              };
+              this.setData(nextState); // 更新数据
+            }
+          }
+        },
+        fail: (error) => {
+          wx.showToast({
+            title: '加载评论失败，请稍后再试',
+            icon: 'none',
+            duration: 2000, // 显示2秒
+          });
+          console.error('comments error:', error);
+        },
+      });
     } catch (error) {
+      wx.showToast({
+        title: '系统错误，请稍后再试',
+        icon: 'none',
+        duration: 2000, // 显示2秒
+      });
       console.error('comments error:', error);
     }
   },
+
 
   onShareAppMessage() {
     // 自定义的返回信息

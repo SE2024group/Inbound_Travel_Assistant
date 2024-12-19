@@ -11,6 +11,7 @@
     "pages/goods/search/index",
     "pages/goods/result/index",
     "pages/goods/comments/index",
+    "pages/goods/mycomments/index",
     "pages/goods/comments/create/index",
     "pages/usercenter/name-edit/index",
     "pages/appDetail/appDetail",

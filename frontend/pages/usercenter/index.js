@@ -383,6 +383,13 @@ Page({
     });
   },
 
+  goToComments() {
+    console.log("goToComments");
+    wx.navigateTo({
+      url: '/pages/goods/mycomments/index'
+    });
+  },
+
   // 登出账户
   onQuitAccount() {
     const keysToRemove = ['authToken', 'user', 'loggedBy', 'userName', 'registeredAt', 'religiousBelief', 'dietaryPreferences', 'userMotto'];

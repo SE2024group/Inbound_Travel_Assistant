@@ -16,6 +16,9 @@
   <view class="settings-section">
     <view class="settings-item" bindtap="goToLikes">My likes</view>
   </view>
+  <view class="settings-section">
+    <view class="settings-item" bindtap="goToComments">My comments</view>
+  </view>
 
   <!-- 饮食偏好选择区域 -->
   <view class="dietary-section">

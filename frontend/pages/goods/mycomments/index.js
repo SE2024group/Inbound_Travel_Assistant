@@ -106,58 +106,40 @@ Page({
     try {
       const code = 'Success';
       wx.request({
-        url: `http://1.15.174.177/api/dish/${this.data.spuId}/comments/`,
+        url: 'http://1.15.174.177/api/user/comments/',
         method: 'GET',
         header: {
-          'Content-Type': 'application/json', // 请求头
+          'Authorization': 'Token 9c05df89dbc2e281c74827c35a968a98049b1163',
+          'Content-Type': 'application/json',
         },
         success: (res) => {
-          // if (res.statusCode === 200 && code.toUpperCase() === 'SUCCESS') {
-          //   const data = res.data; // 获取返回的数据
-          //   console.log(data);
-          //   const nextState = {
-          //     commentList: data.map((item) => {
-          //       return {
-          //         goodsSpu: item.id, // 假设 id 作为 goodsSpu
-          //         userName: item.username || '',
-          //         userHeadUrl: item.avatar,
-          //         commentScore: item.rating, // 使用 rating 替代 commentScore
-          //         commentContent: item.comment || '用户未填写评价',
-          //         userHeadUrl: item.avatar || this.anonymityAvatar, // 如果没有头像，使用匿名头像
-          //         commentResources: item.images.map((resource) => ({
-          //           // src: 'https://cloud.tsinghua.edu.cn/f/e0d6af7b94574b06b4ee/?dl=1',
-          //           src: resource.image, // 使用 item.images 作为 src
-          //           type: 'image', // 默认 type 为 'image'
-          //         })),
-          //       };
-          //     }),
-          //   };
-          //   this.setData(
-          //     nextState
-          //   ); // 更新数据
-          //   console.log("commentList");
-          //   console.log(this.data.commentList);
-          // }
-          if (res.statusCode === 200 && code.toUpperCase() === 'SUCCESS') {
+          if (res.statusCode === 200) {
             const data = res.data; // 获取返回的数据
-            if (data && data.length > 0) {
-              const firstComment = data[0]; // 只取第一条评论
-              console.log(firstComment);
-              const nextState = {
-                commentList: [{
-                  goodsSpu: firstComment.id, // 假设 id 作为 goodsSpu
-                  userName: firstComment.username || '',
-                  commentScore: firstComment.rating, // 使用 rating 替代 commentScore
-                  commentContent: firstComment.comment || '用户未填写评价',
-                  userHeadUrl: firstComment.avatar || this.anonymityAvatar, // 如果没有头像，使用匿名头像
-                  commentResources: firstComment.images.map((image) => ({
-                    src: image.image, // 使用 item.images 作为 src
-                    type: 'image', // 默认 type 为 'image'
+            console.log("data", data);
+            const nextState = {
+              commentList: data.map((item) => {
+                return {
+                  goodsSpu: item.dish.id, // 菜品ID
+                  // goodsName: item.dish.name || '',
+                  // goodsNameEn: item.dish.name_en || '',
+                  goodsImages: item.dish.images || [], // 菜品图片
+                  commentContent: item.comment || '用户未填写评价',
+                  commentScore: item.rating, // 评分
+                  commentResources: item.images.map((resource) => ({
+                    src: resource.image, // 评论图片链接
+                    type: 'image', // 默认类型为'image'
                   })),
-                }],
-              };
-              this.setData(nextState); // 更新数据
-            }
+                  commentTimestamp: item.timestamp, // 评论时间戳
+                  // spuId: this.data.spuId,
+                  id: item.id,
+                };
+              }),
+            };
+
+            this.setData(nextState); // 更新数据
+            console.log("commentList", this.data.commentList);
+          } else {
+            console.error('Failed to fetch comments:', res);
           }
         },
         fail: (error) => {
@@ -195,7 +177,7 @@ Page({
     this.setData({
       hasImage: hasImage,
       commentType: hasImage ? '4' : '',
-      spuId: spuId,
+      // spuId: spuId,
     });
     this.init(true);
   },

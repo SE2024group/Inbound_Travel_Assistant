@@ -310,100 +310,12 @@ Page({
   // 上传图片并请求OCR
   uploadImage(filePath) {
     const self = this;
-    // const testArray = [{
-    //     imageURL: filePath, // 子图片地址
-    //     name: 'Image 1', // 图片名称
-    //     rectangle: {
-    //       topLeft: {
-    //         x: 50,
-    //         y: 50
-    //       }, // 长方形左上角
-    //       topRight: {
-    //         x: 150,
-    //         y: 50
-    //       }, // 长方形右上角
-    //       bottomLeft: {
-    //         x: 50,
-    //         y: 150
-    //       }, // 长方形左下角
-    //       bottomRight: {
-    //         x: 150,
-    //         y: 150
-    //       }, // 长方形右下角
-    //     },
-    //   },
-    //   {
-    //     imageURL: filePath, // 子图片地址
-    //     name: 'Image 2', // 图片名称
-    //     rectangle: {
-    //       topLeft: {
-    //         x: 20,
-    //         y: 20
-    //       },
-    //       topRight: {
-    //         x: 30,
-    //         y: 20
-    //       },
-    //       bottomLeft: {
-    //         x: 20,
-    //         y: 30
-    //       },
-    //       bottomRight: {
-    //         x: 30,
-    //         y: 30
-    //       },
-    //     },
-    //   },
-    // ];
-    // wx.navigateTo({
-    //   //url: '/pages/ocrResults/ocrResults',
-    //   url: '/pages/ocrResults/ocrResults',
-    //   success: (res) => {
-    //     res.eventChannel.emit('sendWordsData', {
-    //       wordsData: testArray,
-    //       imagePath: filePath,
-    //     });
-    //     console.log(filePath)
-    //   },
-    // });
     // 读取图片为 Base64
     wx.getFileSystemManager().readFile({
       filePath: filePath,
       encoding: 'base64',
       success(res) {
         const base64Image = res.data;
-        // wx.uploadFile({
-        //   url: 'http://1.15.174.177/api/ocr/', // 替换为新API地址
-        //   filePath: filePath,
-        //   name: 'image', // 对应API中的表单字段
-        //   // header: {
-        //   //   'Content-Type': 'multipart/form-data',
-
-        // wx.request({
-        //   // url: 'https://api.ocr.space/parse/image', // OCR.space API 地址
-        //   // method: 'POST',
-        //   // header: {
-        //   //   apikey: 'K82943261788957',
-        //   //   'content-type': 'application/x-www-form-urlencoded',
-
-        //   // },
-        //   // data: {
-        //   //   language: 'chs', // 设置语言
-        //   //   isOverlayRequired: 'true', // 请求包含每个词的位置信息
-        //   //   base64Image: `data:image/png;base64,${base64Image}`, // 将图片作为 Base64 发送
-        //   // },
-
-        //   url: 'https://luckycola.com.cn/tools/fanyi', // OCR.space API 地址
-        //   method: 'POST',
-        //   header: {
-        //     "Content-Type": "application/json", // 设置为 JSON 格式
-        //   },
-        //   data: {
-        //     ColaKey: 'ATafPBqUcSPtfb17320747838599dpYhkAsl6',
-        //     text: "索着生活的秘密。花儿一样的年纪，带着对未来的期许，我们喜欢在雨后的长亭或走道静静站立，闭上眼睛感受淡淡的泥土芬芳，风似调皮的孩子带着水汽扑面而来，轻轻扯动那秀丽的长发。一碧如洗的天空，",
-        //     fromlang: "ZH", // 原文语言类型
-        //     tolang: "EN", // 目标语言类型
-        //   },
         wx.uploadFile({
 
           url: 'http://1.15.174.177/api/ocr/', // 替换为新API地址
