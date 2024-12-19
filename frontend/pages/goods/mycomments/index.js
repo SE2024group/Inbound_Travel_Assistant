@@ -130,7 +130,7 @@ Page({
                     type: 'image', // 默认类型为'image'
                   })),
                   commentTimestamp: item.timestamp, // 评论时间戳
-                  // spuId: this.data.spuId,
+                  spuId: item.dish.id,
                   id: item.id,
                 };
               }),

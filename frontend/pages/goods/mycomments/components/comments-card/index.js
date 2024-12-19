@@ -36,14 +36,14 @@ Component({
       type: Array,
       value: [],
     },
-    // spuId: {
-    //   type: Int,
-    //   value: 0,
-    // },
-    // id: {
-    //   type: Int,
-    //   value: 0,
-    // }
+    spuId: {
+      type: Number,
+      value: [],
+    },
+    id: {
+      type: Number,
+      value: [],
+    },
   },
 
   data: {
@@ -57,33 +57,24 @@ Component({
   },
   methods: {
     viewGoods: function () {
-      console.log("dw");
       // 使用 wx.navigateTo 跳转到商品详情页面
       wx.navigateTo({
-        // url: `/pages/goods/details/index?spuId=${spuId}`,
-        url: `/pages/goods/details/index?spuId=1`,
+        // url: `/pages/goods/details/index?spuId=1`, 
+        url: `/pages/goods/details/index?spuId=${this.properties.spuId}`,
       });
     },
     deleteComment: function () {
-      const that = this;
-
-      // if (!this.data.commentId) {
-      //   wx.showToast({
-      //     title: '评论信息缺失',
-      //     icon: 'none',
-      //   });
-      //   return;
-      // }
       const authToken = wx.getStorageSync('authToken') || '';
       wx.showModal({
         title: 'delete confirm',
         content: 'Are you sure you want to delete this comment？',
         success(res) {
           if (res.confirm) {
+            console.log(this.properties.id);
             // 调用删除评论 API
             wx.request({
-              url: `http://1.15.174.177/api/comments/${that.data.commentId}/delete/`,
-              //url: `http://1.15.174.177/api/comments/${id}/delete/`,
+              // url: `http://1.15.174.177/api/comments/${that.data.commentId}/delete/`,
+              url: `http://1.15.174.177/api/comments/${this.properties.id}/delete/`,
               method: 'DELETE',
               header: {
                 'Authorization': authToken,
