@@ -38,6 +38,18 @@ Page({
       uidCount: '0',
     },
   },
+  handleRefreshParent(e) {
+    const {
+      commentId
+    } = e.detail; // 获取子组件传递的参数
+    console.log(`Refreshing comments, deleted commentId: ${commentId}`);
+
+    // 重新加载评论列表
+    this.init(true);
+    setTimeout(() => {
+      console.log('Refreshed commentList:', this.data.commentList);
+    }, 1000);
+  },
   onLoad(options) {
     this.getCount(options);
     this.getComments(options);
@@ -96,9 +108,9 @@ Page({
       commentList = []
     } = this.data;
     const params = this.generalQueryData(reset);
-
+    console.log("进入init");
     // 在加载中或者无更多数据，直接返回
-    if (loadMoreStatus !== 0) return;
+    // if (loadMoreStatus !== 0) return;
 
     this.setData({
       loadMoreStatus: 1,

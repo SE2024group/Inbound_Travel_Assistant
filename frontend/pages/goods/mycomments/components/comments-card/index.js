@@ -84,12 +84,14 @@ Component({
               success: function (response) {
                 if (response.statusCode === 200) {
                   wx.showToast({
-                    title: 'comments have been deleted',
+                    title: 'comment deleted',
                     icon: 'success',
                   });
 
                   // 如果需要，刷新页面或更新评论列表
-                  that.refreshComments();
+                  that.triggerEvent('refreshParent', {
+                    commentId: that.properties.commentId
+                  });
                 } else {
                   wx.showToast({
                     title: response.data.detail || 'fail to delete',

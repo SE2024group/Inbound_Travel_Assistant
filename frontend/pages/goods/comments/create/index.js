@@ -143,6 +143,12 @@ Page({
             formData: formData,
             success: (uploadRes) => {
               console.log('上传成功', uploadRes);
+              wx.showModal({
+                title: 'note',
+                content: 'upload successfully',
+                showCancel: false, // 不显示取消按钮
+                confirmText: 'confirm', // 确认按钮文字
+              });
               resolve(uploadRes);
             },
             fail: (uploadErr) => {
