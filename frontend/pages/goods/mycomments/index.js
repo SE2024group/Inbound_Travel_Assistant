@@ -122,7 +122,7 @@ Page({
         url: 'http://1.15.174.177/api/user/comments/',
         method: 'GET',
         header: {
-          //'Authorization': 'Token 9c05df89dbc2e281c74827c35a968a98049b1163',
+
           'Authorization': authToken,
           'Content-Type': 'application/json',
         },

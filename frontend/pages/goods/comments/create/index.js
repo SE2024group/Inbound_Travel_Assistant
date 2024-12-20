@@ -138,7 +138,7 @@ Page({
             name: 'images', // 这里的 `name` 要确保和 API 一致
             header: {
               'Authorization': authToken
-              //'Authorization': 'Token 9c05df89dbc2e281c74827c35a968a98049b1163'
+
             },
             formData: formData,
             success: (uploadRes) => {
@@ -177,7 +177,7 @@ Page({
         method: 'POST',
         header: {
           'Authorization': authToken
-          //'Authorization': 'Token 9c05df89dbc2e281c74827c35a968a98049b1163',
+
         },
         data: {
           'dish': this.data.spuId,
