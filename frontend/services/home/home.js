@@ -1,14 +1,16 @@
-import { config, cdnBase } from '../../config/index';
+import {
+  config,
+  cdnBase
+} from '../../config/index';
 
 /** 获取首页数据 */
 function mockFetchHome() {
-  const { delay } = require('../_utils/delay');
-  const { genSwiperImageList } = require('../../model/swiper');
+  const {
+    delay
+  } = require('../_utils/delay');
   return delay().then(() => {
     return {
-      swiper: genSwiperImageList(),
-      tabList: [
-        {
+      tabList: [{
           text: 'Application Guidance',
           key: 0,
         },
@@ -16,7 +18,7 @@ function mockFetchHome() {
           text: 'Ticket Reservation',
           key: 1,
         },
-        
+
       ],
       activityImg: `${cdnBase}/activity/banner.png`,
     };

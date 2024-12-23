@@ -4,10 +4,7 @@ import {
 import {
   fetchCommentsCount
 } from '../../../services/comments/fetchCommentsCount';
-// import dayjs from 'dayjs';
-// import {
-//   genSwiperImageList
-// } from 'model/swiper';
+
 const layoutMap = {
   0: 'vertical',
 };

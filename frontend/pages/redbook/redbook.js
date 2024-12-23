@@ -75,18 +75,13 @@ Page({
 
           });
           wx.navigateTo({
-            //url: '/pages/ocrResults/ocrResults',
             url: '/pages/editImgs/editImgs',
             success: (res) => {
               res.eventChannel.emit('sendWordsData', {
-                //wordsData: testArray,
                 imagePath: this.data.imagePath,
               });
-              //console.log(filePath)
             },
           })
-          // self.uploadImage(res.tempFiles[0].tempFilePath);
-          //self.drawImageToCanvas(res.tempFiles[0].tempFilePath);
         }
       },
       fail(err) {
