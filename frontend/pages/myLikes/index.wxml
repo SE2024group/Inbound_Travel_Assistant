@@ -6,7 +6,7 @@
 <view class="my-likes-page">
   <view wx:if="{{!pageLoading}}">
     <view wx:if="{{goodsList.length > 0}}" class="goods-list-wrapper">
-      <goods-list wr-class="goods-list-container" goodsList="{{goodsList}}" bind:click="goodListClickHandle" bind:addcart="goodListAddCartHandle" />
+      <goods-list wr-class="goods-list-container" goodsList="{{goodsList}}" bind:click="goodListClickHandle" bind:addcart="goodListLikedHandle" />
     </view>
     <view wx:else style="text-align:center; margin-top:100rpx; color:#666;">
       <text>Haven't liked anything.</text>
