@@ -57,9 +57,7 @@ Component({
   },
   methods: {
     viewGoods: function () {
-      // 使用 wx.navigateTo 跳转到商品详情页面
       wx.navigateTo({
-        // url: `/pages/goods/details/index?spuId=1`, 
         url: `/pages/goods/details/index?spuId=${this.properties.spuId}`,
       });
     },
@@ -74,7 +72,6 @@ Component({
             console.log(that.properties.commentId);
             // 调用删除评论 API
             wx.request({
-              // url: `http://1.15.174.177/api/comments/${that.data.commentId}/delete/`,
               url: `http://1.15.174.177/api/comments/${that.properties.commentId}/delete/`,
               method: 'DELETE',
               header: {

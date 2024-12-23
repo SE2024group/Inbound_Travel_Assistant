@@ -55,7 +55,10 @@
           <t-icon name="chevron-right" size="40rpx" color="#BBBBBB" />
         </view>
       </view>
-      <view class="comment-item-wrap" wx:for="{{ commentsList }}" wx:for-item="commentItem" wx:key="goodsSpu">
+      <view wx:if="{{index === 0}}" class="comment-item-wrap" wx:for="{{ commentsList }}" wx:for-item="commentItem" wx:for-index="index" wx:key="goodsSpu">
+        <!-- <view class="comment-item-wrap" wx:for="{{ commentsList }}" wx:for-item="commentItem" wx:key="goodsSpu"> -->
+        <!-- <view class="comment-item-wrap" wx:for="{{ commentsList.slice(0, 1) }}" wx:for-item="commentItem" wx:key="goodsSpu"> -->
+
         <view class="comment-item-head">
           <t-image src="{{commentItem.userHeadUrl}}" t-class="comment-item-avatar" />
           <view class="comment-head-right">

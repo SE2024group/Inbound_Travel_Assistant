@@ -111,21 +111,23 @@ Page({
         success: (res) => {
           if (res.statusCode === 200 && code.toUpperCase() === 'SUCCESS') {
             const data = res.data; // 获取返回的数据
+            console.log(data);
             if (data && data.length > 0) {
               const firstComment = data[0]; // 只取第一条评论
               const nextState = {
-                commentList: [{
-                  goodsSpu: firstComment.id,
-                  userName: firstComment.username || '',
-                  commentScore: firstComment.rating, // 使用 rating 替代 commentScore
-                  commentContent: firstComment.comment || '用户未填写评价',
-                  userHeadUrl: firstComment.avatar || this.anonymityAvatar, // 如果没有头像，使用匿名头像
-                  commentResources: firstComment.images.map((image) => ({
-                    src: image.image, // 使用 item.images 作为 src
+                commentList: data.map((comment) => ({
+                  goodsSpu: comment.id,
+                  userName: comment.username || '',
+                  commentScore: comment.rating, // 使用 rating 替代 commentScore
+                  commentContent: comment.comment || '用户未填写评价',
+                  userHeadUrl: comment.avatar || this.anonymityAvatar, // 如果没有头像，使用匿名头像
+                  commentResources: comment.images.map((image) => ({
+                    src: image.image_url, // 使用 image.image_url 作为 src
                     type: 'image', // 默认 type 为 'image'
                   })),
-                }],
+                })),
               };
+
               this.setData(nextState); // 更新数据
             }
           }

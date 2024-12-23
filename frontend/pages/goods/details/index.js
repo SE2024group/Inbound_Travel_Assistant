@@ -341,19 +341,21 @@ Page({
             const data = res.data; // 获取返回的数据
             if (data && data.length > 0) {
               const firstComment = data[0]; // 只取第一条评论
+
               const nextState = {
-                commentsList: [{
-                  goodsSpu: firstComment.id, // 假设 id 作为 goodsSpu
-                  userName: firstComment.username || '',
-                  commentScore: firstComment.rating, // 使用 rating 替代 commentScore
-                  commentContent: firstComment.comment || '用户未填写评价',
-                  userHeadUrl: firstComment.avatar || this.anonymityAvatar, // 如果没有头像，使用匿名头像
-                  commentResources: firstComment.images.map((image) => ({
-                    src: image, // 使用 item.images 作为 src
+                commentsList: data.map((comment) => ({
+                  goodsSpu: comment.id, // 假设 id 作为 goodsSpu
+                  userName: comment.username || '',
+                  commentScore: comment.rating, // 使用 rating 替代 commentScore
+                  commentContent: comment.comment || '用户未填写评价',
+                  userHeadUrl: comment.avatar || this.anonymityAvatar, // 如果没有头像，使用匿名头像
+                  commentResources: comment.images.map((image) => ({
+                    src: image, // 使用 comment.images 作为 src
                     type: 'image', // 默认 type 为 'image'
                   })),
-                }],
+                })),
               };
+
               this.setData(nextState); // 更新数据
             }
           }
