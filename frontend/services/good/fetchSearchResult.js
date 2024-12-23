@@ -80,11 +80,12 @@ export function getSearchResult(params) {
 
   console.log(params)
   return new Promise((resolve, reject) => {
-    const url = "http://1.15.174.177/api/dish/search/";
+    const url = "http://1.15.174.177/api/dish/advanced_search/";
     const data = {
-      "tags": [params.keyword], // Using params.keyword as the search query in tags
-      // "tags": ["辣", "海鲜"]
+      "text": params.keyword, // 使用 params.keyword 作为搜索的文本
+      "filter": []
     };
+
     wx.request({
       url: url,
       method: 'POST',
@@ -95,7 +96,7 @@ export function getSearchResult(params) {
       success: (res) => {
         console.log('API返回的结果:', res.data); // 打印返回的结果
         if (res.data.code === 200) {
-          resolve(res.data); // Return the result from the API
+          resolve(res.data); // 返回 API 结果
         } else {
           reject('API error: ' + res.data.message);
         }
@@ -105,6 +106,4 @@ export function getSearchResult(params) {
       },
     });
   });
-
-
 }
