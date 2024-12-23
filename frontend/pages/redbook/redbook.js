@@ -224,6 +224,12 @@ Page({
           this.setData({
             goodsList: newGoodsList
           });
+          const storedFavoriteIds = wx.getStorageSync('favoriteIds') || [];
+          // 如果还没有这个 spuId，就 push 进去
+          if (!storedFavoriteIds.includes(String(spuId))) {
+            storedFavoriteIds.push(String(spuId));
+            wx.setStorageSync('favoriteIds', storedFavoriteIds);
+          }
         },
         fail: (err) => {
           console.error('添加收藏失败', err);
@@ -243,6 +249,9 @@ Page({
           this.setData({
             goodsList: newGoodsList
           });
+          const storedFavoriteIds = wx.getStorageSync('favoriteIds') || [];
+          const newFavoriteIds = storedFavoriteIds.filter(id => id !== String(spuId));
+          wx.setStorageSync('favoriteIds', newFavoriteIds);
         },
         fail: (err) => {
           console.error('移除收藏失败', err);
@@ -288,7 +297,10 @@ function fetchFavoriteIds() {
         const favoriteIds = favorites.map(item => String(item.id));
         // 转成字符串，便于跟 spuId 字符串比对
 
-        // 4. Promise 结束
+        // 4. 存储菜品收藏列表到本地
+        wx.setStorageSync('favoriteIds', favoriteIds);
+
+        // 5. Promise 结束
         resolve(favoriteIds);
       },
       fail: (err) => {

@@ -104,8 +104,64 @@ Page({
     });
   },
   addCartHandle(e) {
-    console.log("star")
+    // 1. 取到当前商品对象 (this.data.details 或 this.data.good)
+    const dish = this.data.good; // 或 details
+    const spuId = dish.spuId || dish.id;
+    const isFavoriteNow = dish.isFavorite || false;
+
+    // 2. 准备 token
+    const authToken = wx.getStorageSync('authToken') || '';
+
+    // 3. 调用接口
+    if (!isFavoriteNow) {
+      // => 添加收藏
+      wx.request({
+        url: `http://1.15.174.177/api/favorite/${spuId}/`,
+        method: 'POST',
+        header: {
+          'Authorization': authToken
+        },
+        success: (res) => {
+          // 更新 isFavorite
+          this.setData({
+            ['good.isFavorite']: true,
+          });
+          // 如果是 details 里在用，就写 ['details.isFavorite']: true
+          //更新本地收藏 ID 列表
+          const storedFavoriteIds = wx.getStorageSync('favoriteIds') || [];
+          // 如果还没有这个 spuId，就 push 进去
+          if (!storedFavoriteIds.includes(String(spuId))) {
+            storedFavoriteIds.push(String(spuId));
+            wx.setStorageSync('favoriteIds', storedFavoriteIds);
+          }
+        },
+        fail: (err) => {
+          console.error('添加收藏失败', err);
+        },
+      });
+    } else {
+      // => 移除收藏
+      wx.request({
+        url: `http://1.15.174.177/api/favorite/${spuId}/`,
+        method: 'DELETE',
+        header: {
+          'Authorization': authToken
+        },
+        success: (res) => {
+          // 更新 isFavorite
+          this.setData({
+            ['good.isFavorite']: false,
+          });
+          const newFavoriteIds = storedFavoriteIds.filter(id => id !== String(spuId));
+          wx.setStorageSync('favoriteIds', newFavoriteIds);
+        },
+        fail: (err) => {
+          console.error('移除收藏失败', err);
+        },
+      });
+    }
   },
+
   onNavigateButtonTap() {
     const self = this;
     const name = self.data.good.title_ch;
@@ -309,7 +365,7 @@ Page({
         throw error; // 抛出错误，方便调用方处理
       });
   },
-  getDetail(spuId) {
+  getDetail(spuId, favoriteIds) {
     Promise.all([fetchGood(spuId), fetchActivityList()]).then((res) => {
       // const [details, activityList] = res;
       const [details] = res;
@@ -318,6 +374,17 @@ Page({
         // skuList,
         primaryImage,
       } = details;
+      // 先看 goodDetail 里有没有 id
+      const dishId = details.id || spuId;
+      // 判断是否收藏
+      const isFav = favoriteIds.includes(String(dishId));
+
+      // 把 isFavorite 存到 details 里
+      details.isFavorite = isFav;
+      this.setData({
+        ['good.isFavorite']: isFav,
+      });
+
       this.setData({
         details,
         primaryImage,
@@ -412,13 +479,17 @@ Page({
   },
 
   onLoad(query) {
+    // 1. 保存 spuId
     const {
       spuId
     } = query;
     this.setData({
       spuId: spuId,
     });
-    this.getDetail(spuId);
+    // 2. 从本地 Storage 拿到收藏 ID 列表
+    const storedFavoriteIds = wx.getStorageSync('favoriteIds') || [];
+    // 3. 获取商品详情
+    this.getDetail(spuId, storedFavoriteIds);
     this.getCommentsList(spuId);
     this.getCommentsStatistics(spuId);
   },

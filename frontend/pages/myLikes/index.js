@@ -101,6 +101,12 @@ Page({
           this.setData({
             goodsList: newGoodsList
           });
+          const storedFavoriteIds = wx.getStorageSync('favoriteIds') || [];
+          // 如果还没有这个 spuId，就 push 进去
+          if (!storedFavoriteIds.includes(String(spuId))) {
+            storedFavoriteIds.push(String(spuId));
+            wx.setStorageSync('favoriteIds', storedFavoriteIds);
+          }
         },
         fail: (err) => {
           console.error('添加收藏失败', err);
@@ -120,6 +126,9 @@ Page({
           this.setData({
             goodsList: newGoodsList
           });
+          const storedFavoriteIds = wx.getStorageSync('favoriteIds') || [];
+          const newFavoriteIds = storedFavoriteIds.filter(id => id !== String(spuId));
+          wx.setStorageSync('favoriteIds', newFavoriteIds);
         },
         fail: (err) => {
           console.error('移除收藏失败', err);
@@ -154,6 +163,8 @@ Page({
             // tags: dish.tags.map(t => t.name_en),
             isFavorite: true,
           }));
+          const favoriteIds = favorites.map(dish => String(dish.id));
+          wx.setStorageSync('favoriteIds', favoriteIds);
           resolve(mapped);
         },
         fail: (err) => {
