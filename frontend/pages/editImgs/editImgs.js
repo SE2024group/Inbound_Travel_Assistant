@@ -23,14 +23,6 @@ Page({
         //wordsData = []
       } = data;
 
-      // // 检查数据
-      // if (!Array.isArray(wordsData) || wordsData.length === 0) {
-      //   console.error('No valid wordsData provided!');
-      //   return;
-      // }
-
-
-
       // 更新数据
       this.setData({
         imageSrc: imagePath,
@@ -58,8 +50,6 @@ Page({
           windowWidth,
           windowHeight
         } = wx.getWindowInfo();
-        // const systemInfo = wx.getSystemInfoSync(); // 获取设备信息
-        // const pixelRatio = systemInfo.pixelRatio; // 获取设备像素比
 
         // 设置高分辨率 Canvas
         canvas.width = 300 * pixelRatio;
@@ -290,9 +280,7 @@ Page({
 
           // 清空画布并绘制缩放后的图片
           ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-          //ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
           ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
-          // ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth * pixelRatio, drawHeight * pixelRatio);
           // 上传图片
           this.uploadImage(imagePath);
         };

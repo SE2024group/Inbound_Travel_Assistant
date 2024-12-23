@@ -1,9 +1,6 @@
 <view class="comments-card-item wr-class">
   <view class="comments-card-item-container">
     <view class="comments-title">
-      <view class="comments-card-item-userImg">
-        <t-image t-class="userImg" src="{{userHeadUrl}}" />
-      </view>
       <view class="userName">{{userName}}</view>
       <text class="commentTime">{{commentTime}}</text>
     </view>

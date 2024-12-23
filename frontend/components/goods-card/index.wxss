@@ -126,15 +126,6 @@
   /* 调整距离右侧的距离 */
 }
 
-/* .goods-card__down {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: baseline;
-  line-height: 32rpx;
-  margin: 8rpx 0 0 0;
-} */
 
 .goods-card__origin-price {
   white-space: nowrap;

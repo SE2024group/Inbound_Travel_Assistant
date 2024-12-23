@@ -131,14 +131,11 @@ Page({
               commentList: data.map((item) => {
                 console.log('item.id:', item.id, '类型:', typeof item.id);
                 return {
-                  // goodsSpu: item.dish.id, // 菜品ID
-                  // goodsName: item.dish.name || '',
-                  // goodsNameEn: item.dish.name_en || '',
                   goodsImages: item.dish.images || [], // 菜品图片
                   commentContent: item.comment || '用户未填写评价',
                   commentScore: item.rating, // 评分
                   commentResources: item.images.map((resource) => ({
-                    src: resource.image, // 评论图片链接
+                    src: resource.image_url, // 评论图片链接
                     type: 'image', // 默认类型为'image'
                   })),
                   commentTimestamp: item.timestamp, // 评论时间戳
@@ -189,7 +186,6 @@ Page({
     this.setData({
       hasImage: hasImage,
       commentType: hasImage ? '4' : '',
-      // spuId: spuId,
     });
     this.init(true);
   },

@@ -172,12 +172,12 @@ Page({
 
     } else {
       // 如果没有文件，则只上传评论数据
-      wx.uploadFile({
+      wx.request({
         url: 'http://1.15.174.177/api/comments/upload/',
         method: 'POST',
         header: {
-          'Authorization': authToken
-
+          'Authorization': authToken,
+          'Content-Type': 'application/x-www-form-urlencoded' // 使用 form-urlencoded 格式
         },
         data: {
           'dish': this.data.spuId,
@@ -186,12 +186,26 @@ Page({
         },
         success: function (res) {
           console.log('评论上传成功', res);
+          wx.showModal({
+            title: 'note',
+            content: 'comment uploaded successfully',
+            showCancel: false, // 不显示取消按钮
+            confirmText: 'confirm', // 确认按钮文字
+          });
         },
         fail: function (err) {
           console.log('评论上传失败', err);
+          wx.showModal({
+            title: 'error',
+            content: 'comment upload failed',
+            showCancel: false, // 不显示取消按钮
+            confirmText: 'confirm', // 确认按钮文字
+          });
         }
       });
     }
+
+
   }
 
 

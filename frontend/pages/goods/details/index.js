@@ -209,7 +209,6 @@ Page({
     selectedSkuValues.forEach((item) => {
       selectedAttrStr += `，${item.specValue}  `;
     });
-    // eslint-disable-next-line array-callback-return
     const skuItem = skuArray.filter((item) => {
       let status = true;
       (item.specInfo || []).forEach((subItem) => {

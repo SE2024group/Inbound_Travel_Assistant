@@ -95,13 +95,6 @@ Page({
           // 清空画布并绘制缩放后的图片
           ctx.clearRect(0, 0, canvasWidth, canvasHeight);
           ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
-          //  ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
-          //console.log('Image redrawn, ready for the new crop frame.');
-
-          // // 绘制实时裁剪框
-          // ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)'; // 半透明红框
-          // ctx.lineWidth = 2;
-          // ctx.strokeRect(this.data.startX, this.data.startY, this.data.cropWidth, this.data.cropHeight);
         };
 
         img.onerror = (err) => {
@@ -110,7 +103,6 @@ Page({
 
         console.log('Setting image source to:', imagePath);
         img.src = imagePath; // 设置图片路径
-        //this.uploadImage(imagePath)
       });
   },
   onOptionTap(e) {
@@ -122,7 +114,6 @@ Page({
       selectedIndex: index,
       selectedRect: rect,
       buttonActive: true,
-      // selectedUrl: `/pages/goods/details/index?spuId=${index % 4 + 1}`
       selectedUrl: `/pages/goods/details/index?spuId=${this.data.options[index].ID }`
     }, () => {
       this.drawRectangle(rect);
@@ -136,14 +127,12 @@ Page({
   },
   onButtonTap() {
     if (this.data.buttonActive) {
-      // console.log(this.data.ID)
       wx.navigateTo({
         url: this.data.selectedUrl,
       });
     }
   },
   drawRectangle(rect) {
-    console.log("画长方形了")
     const query = wx.createSelectorQuery().in(this);
     query.select('#rectCanvas')
       .node()
@@ -203,22 +192,7 @@ Page({
         img.onerror = (err) => {
           console.error('Failed to load image:', err);
         };
-
-
-        // img.onload = () => {
-        //   ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
-        //   //console.log('Image redrawn, ready for the new crop frame.');
-
-        //   // 绘制实时裁剪框
-        //   ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)'; // 半透明红框
-        //   ctx.lineWidth = 2;
-        //   ctx.strokeRect(rect.topLeft.x,
-        //     rect.topLeft.y,
-        //     rect.topRight.x - rect.topLeft.x,
-        //     rect.bottomLeft.y - rect.topLeft.y);
-        // };
         img.src = this.data.imageSrc; // 确保绘制图片的路径有效
       });
-
   }
 });

@@ -23,7 +23,7 @@ page {
 .goods-list-wrapper {
   flex: 1;
   overflow-y: auto;
-  /*中文 设置一个固定的最大高度，可以根据需要调整 */
+  /*设置一个固定的最大高度，可以根据需要调整 */
   max-height: 75vh;
   margin-top: 16rpx;
   /* 保持与 .goods-list-container 一致 */
@@ -89,7 +89,6 @@ page {
 }
 
 .home-page-container .tabs-external__item {
-  /* color: #666 !important; */
   font-size: 28rpx;
 }
 
@@ -99,7 +98,6 @@ page {
 }
 
 .home-page-container .tabs-external__track {
-  /* background-color: #fa4126 !important; */
   height: 6rpx !important;
   border-radius: 4rpx !important;
   width: 48rpx !important;

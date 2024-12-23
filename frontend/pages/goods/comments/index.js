@@ -109,40 +109,13 @@ Page({
           'Content-Type': 'application/json', // 请求头
         },
         success: (res) => {
-          // if (res.statusCode === 200 && code.toUpperCase() === 'SUCCESS') {
-          //   const data = res.data; // 获取返回的数据
-          //   console.log(data);
-          //   const nextState = {
-          //     commentList: data.map((item) => {
-          //       return {
-          //         goodsSpu: item.id, // 假设 id 作为 goodsSpu
-          //         userName: item.username || '',
-          //         userHeadUrl: item.avatar,
-          //         commentScore: item.rating, // 使用 rating 替代 commentScore
-          //         commentContent: item.comment || '用户未填写评价',
-          //         userHeadUrl: item.avatar || this.anonymityAvatar, // 如果没有头像，使用匿名头像
-          //         commentResources: item.images.map((resource) => ({
-          //           // src: 'https://cloud.tsinghua.edu.cn/f/e0d6af7b94574b06b4ee/?dl=1',
-          //           src: resource.image, // 使用 item.images 作为 src
-          //           type: 'image', // 默认 type 为 'image'
-          //         })),
-          //       };
-          //     }),
-          //   };
-          //   this.setData(
-          //     nextState
-          //   ); // 更新数据
-          //   console.log("commentList");
-          //   console.log(this.data.commentList);
-          // }
           if (res.statusCode === 200 && code.toUpperCase() === 'SUCCESS') {
             const data = res.data; // 获取返回的数据
             if (data && data.length > 0) {
               const firstComment = data[0]; // 只取第一条评论
-              console.log(firstComment);
               const nextState = {
                 commentList: [{
-                  goodsSpu: firstComment.id, // 假设 id 作为 goodsSpu
+                  goodsSpu: firstComment.id,
                   userName: firstComment.username || '',
                   commentScore: firstComment.rating, // 使用 rating 替代 commentScore
                   commentContent: firstComment.comment || '用户未填写评价',
