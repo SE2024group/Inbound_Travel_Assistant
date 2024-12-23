@@ -3,12 +3,12 @@
    */
   Page({
     data: {
-      currentTab: 'App', // 当前选中的 Tab，默认为 App
+      currentTab: 'Ticket', // 当前选中的 Tab，默认为 App
       tripApps: [{
           icon: "https://cloud.tsinghua.edu.cn/f/024c76f8b1234965b23b/?dl=1",
           name: "Gaode Map",
           desc: "Navigation & Traffic",
-          appId: "gaode" 
+          appId: "gaode"
         },
         {
           icon: "https://cloud.tsinghua.edu.cn/f/d56fe614d79c4d7a855c/?dl=1",
@@ -98,34 +98,6 @@
       ],
       pagedAttractions: []
     },
-
-    // onAppTap: function (e) {
-    //   const appId = e.currentTarget.dataset.appId; // 获取点击的 appId
-    //   console.log("App ID:", appId);
-
-    //   // 跳转逻辑
-    //   if (appId === "gaode") {
-    //     wx.navigateTo({
-    //       url: '/pages/gaodeMap/gaodeMap' // 假设 Gaode Map 的页面路径为此
-    //     });
-    //   } else if (appId === "huazhuhui") {
-    //     wx.navigateTo({
-    //       url: '/pages/huazhuClub/huazhuClub'
-    //     });
-    //   } else if (appId === "xiecheng") {
-    //     wx.navigateTo({
-    //       url: '/pages/ctrip/ctrip'
-    //     });
-    //   } else {
-    //     wx.showToast({
-    //       title: '功能开发中',
-    //       icon: 'none'
-    //     });
-    //   }
-    // },
-
-
-
 
     /**
      * 生命周期函数--监听页面加载

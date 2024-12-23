@@ -1,11 +1,11 @@
 <view class="container">
   <!-- 顶部 Tab 容器 -->
   <view class="tab-container">
-    <view class="tab-item {{currentTab === 'App' ? 'active' : ''}}" bindtap="switchTab" data-tab="App">
-      App Guide
-    </view>
     <view class="tab-item {{currentTab === 'Ticket' ? 'active' : ''}}" bindtap="switchTab" data-tab="Ticket">
       Spots & Tickets
+    </view>
+    <view class="tab-item {{currentTab === 'App' ? 'active' : ''}}" bindtap="switchTab" data-tab="App">
+      App Guide
     </view>
   </view>
 
