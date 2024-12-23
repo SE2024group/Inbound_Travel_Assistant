@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "detail",
+  "navigationBarTitleText": "Detail",
   "usingComponents": {
     "t-image": "/components/webp-image/index",
     "t-tag": "tdesign-miniprogram/tag/tag",
