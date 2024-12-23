@@ -36,7 +36,6 @@ function mockSearchResult(params) {
 }
 export function getSearchResultFilter(params) {
   console.log(params);
-
   return new Promise((resolve, reject) => {
     const url = "http://1.15.174.177/api/dish/advanced_search/";
     const data = {
@@ -85,7 +84,6 @@ export function getSearchResult(params) {
       "text": params.keyword, // 使用 params.keyword 作为搜索的文本
       "filter": []
     };
-
     wx.request({
       url: url,
       method: 'POST',

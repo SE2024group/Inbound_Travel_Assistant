@@ -37,10 +37,23 @@
 
           <!-- Star Button -->
           <view class="goods-card__down">
-            <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="40rpx" color="#FA550F" style="margin-left: 5rpx;" />
+            <t-icon class="goods-card__add-cart" prefix="wr" name="{{ good.isFavorite ? 'star_filled' : 'star' }}" catchtap="addCartHandle" size="40rpx" color="#FA550F" style="margin-left: 5rpx;" />
           </view>
         </view>
+
       </view>
+
+
+      <!-- <view class="goods-card__down">
+        <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
+      </view> -->
+
+
+
+
+      <!-- <view class="goods-card__down">
+        <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
+      </view> -->
 
       <view class="goods-description">{{details.description}}</view>
       <view class="goods-intro">{{intro}}</view>

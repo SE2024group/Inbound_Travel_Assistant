@@ -16,11 +16,19 @@ function fetchWithTimeout(url, options = {}, timeout = 5000) {
       reject(new Error('Request Timeout')); // Reject promise with error
     }, timeout);
 
+    const authToken = wx.getStorageSync('authToken') || '';
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `${authToken}`,
+      ...options.header // 合并传入的 header
+    };
+
     wx.request({
       url,
       method: options.method || 'GET',
       data: options.data || {},
-      header: options.header || {},
+      header: headers,
       success: (response) => {
         clearTimeout(timer);
         if (response.statusCode >= 200 && response.statusCode < 300) {

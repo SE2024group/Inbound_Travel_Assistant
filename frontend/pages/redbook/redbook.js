@@ -48,6 +48,7 @@ Page({
 
   onReachBottom() {
     if (this.data.goodsListLoadStatus === 0) {
+      console.log('load status 0')
       this.loadGoodsList();
     }
   },
@@ -107,6 +108,21 @@ Page({
       });
       this.loadGoodsList(true);
     });
+
+    // 1. 先拿到收藏列表ID
+    fetchFavoriteIds()
+      .then(favoriteIds => {
+        // 2. 把它存到 data 或者存到 this.privateData
+        this.privateData.favoriteIds = favoriteIds;
+        // 3. 然后再去加载首页 & 商品列表
+        // this.loadHomePage();
+      })
+      .catch(err => {
+        // 如果失败，也可以继续加载，只不过 favoriteIds = []
+        console.error('获取收藏ID失败', err);
+        this.privateData.favoriteIds = [];
+        // this.loadHomePage();
+      });
   },
 
   tabChangeHandle(e) {
@@ -137,6 +153,16 @@ Page({
 
     try {
       const nextList = await fetchGoodsList(pageIndex, pageSize);
+      const {
+        favoriteIds = []
+      } = this.privateData;
+      nextList.forEach(item => {
+        if (favoriteIds.includes(String(item.spuId))) {
+          item.isFavorite = true;
+        } else {
+          item.isFavorite = false;
+        }
+      });
       this.setData({
         goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
         goodsListLoadStatus: 0,
@@ -164,12 +190,69 @@ Page({
     });
   },
 
-  goodListLikedHandle() {
-    Toast({
-      context: this,
-      selector: '#t-toast',
-      message: 'Liked',
-    });
+  // redbook.js
+  goodListLikedHandle(e) {
+    // 从 e.detail 中拿到 index, goods
+    const {
+      index,
+      goods
+    } = e.detail;
+    const spuId = goods.spuId; // 你的菜品 ID
+    const isFavoriteNow = goods.isFavorite; // 当前是否收藏
+
+    const authToken = wx.getStorageSync('authToken') || '';
+
+    // 如果 isFavorite = true -> 调用删除收藏
+    // 如果 isFavorite = false -> 调用添加收藏
+    if (!isFavoriteNow) {
+      // 添加收藏
+      wx.request({
+        url: `http://1.15.174.177/api/favorite/${spuId}/`,
+        method: 'POST',
+        header: {
+          'Authorization': `${authToken}`
+        },
+        success: (res) => {
+          // 接口成功后，需要更新本地的 isFavorite
+          const newGoodsList = [...this.data.goodsList];
+          newGoodsList[index].isFavorite = true;
+          this.setData({
+            goodsList: newGoodsList
+          });
+          const storedFavoriteIds = wx.getStorageSync('favoriteIds') || [];
+          // 如果还没有这个 spuId，就 push 进去
+          if (!storedFavoriteIds.includes(String(spuId))) {
+            storedFavoriteIds.push(String(spuId));
+            wx.setStorageSync('favoriteIds', storedFavoriteIds);
+          }
+        },
+        fail: (err) => {
+          console.error('添加收藏失败', err);
+        },
+      });
+    } else {
+      // 移除收藏
+      wx.request({
+        url: `http://1.15.174.177/api/favorite/${spuId}/`,
+        method: 'DELETE',
+        header: {
+          'Authorization': `${authToken}`
+        },
+        success: (res) => {
+          const newGoodsList = [...this.data.goodsList];
+          newGoodsList[index].isFavorite = false;
+          this.setData({
+            goodsList: newGoodsList
+          });
+          const storedFavoriteIds = wx.getStorageSync('favoriteIds') || [];
+          const newFavoriteIds = storedFavoriteIds.filter(id => id !== String(spuId));
+          wx.setStorageSync('favoriteIds', newFavoriteIds);
+        },
+        fail: (err) => {
+          console.error('移除收藏失败', err);
+        },
+      });
+    }
   },
 
   navToSearchPage() {
@@ -189,3 +272,36 @@ Page({
     });
   },
 });
+
+function fetchFavoriteIds() {
+  const authToken = wx.getStorageSync('authToken') || '';
+  // 1. 返回一个Promise，方便后续使用 then
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: 'http://1.15.174.177/api/favorites/',
+      method: 'GET',
+      header: {
+        'Authorization': `${authToken}`,
+      },
+      success: (res) => {
+        // 2. 接口返回的是收藏菜品列表数组，如 
+        //  [ {id:3, name:'香辣牛蛙',...}, {id:23,name:'京酱肉丝',...} ]
+        const favorites = res.data || [];
+
+        // 3. 我们只需要提取所有已收藏菜品的 ID 做对比
+        const favoriteIds = favorites.map(item => String(item.id));
+        // 转成字符串，便于跟 spuId 字符串比对
+
+        // 4. 存储菜品收藏列表到本地
+        wx.setStorageSync('favoriteIds', favoriteIds);
+
+        // 5. Promise 结束
+        resolve(favoriteIds);
+      },
+      fail: (err) => {
+        console.error('获取收藏列表失败', err);
+        reject(err);
+      }
+    })
+  });
+}

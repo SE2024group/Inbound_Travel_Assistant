@@ -88,6 +88,10 @@ Component({
       const {
         id: cardID
       } = e.currentTarget.dataset;
+      // console.log('Button clicked!', {
+      //   id,
+      //   cardID
+      // }); // 直接打印id和cardID
       this.triggerEvent('add-cart', {
         ...e.detail,
         id,
