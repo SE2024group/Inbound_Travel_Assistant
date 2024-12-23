@@ -76,7 +76,7 @@ Page({
     });
   },
 
-  goodListAddCartHandle() {
+  goodListLikedHandle() {
     Toast({
       context: this,
       selector: '#t-toast',
