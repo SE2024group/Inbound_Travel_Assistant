@@ -9,7 +9,7 @@
 
   <!-- 大文本框 -->
   <view class="large-text-box">
-    <textarea class="large-input" bindinput="onInputChange" value="{{selectedText}}" focus="{{isInputFocused}}" placeholder="{{placeholderText}}" bindfocus="focusInput" bindblur="blurInput"></textarea>
+    <textarea class="large-input" bindinput="onInputChange" value="{{selectedText}}" focus="{{isInputFocused}}" placeholder="{{placeholderText}}" bindfocus="focusInput" bindblur="blurInput" maxlength="500"></textarea>
 
     <!-- 按钮容器 -->
     <view class="button-row" wx:if="{{isInputFocused}}">

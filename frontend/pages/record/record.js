@@ -1,7 +1,7 @@
 // pages/record/record.js
 const recorderManager = wx.getRecorderManager();
 const options = {
-  duration: 60000, // 最长录制 1 分钟
+  duration: 30000, // 最长录制 30 s
   sampleRate: 44100, // 采样率
   numberOfChannels: 2, // 双声道
   encodeBitRate: 320000, // 比特率
