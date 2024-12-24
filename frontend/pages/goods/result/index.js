@@ -25,15 +25,13 @@ Page({
     sorts: '',
     overall: 1,
     show: false,
-    minVal: '',
-    maxVal: '',
-    minSalePriceFocus: false,
-    maxSalePriceFocus: false,
-    filter: false,
-    hasLoaded: false,
     keywords: '',
     loadMoreStatus: 0,
     loading: true,
+    // TODO: 更换为软编码
+    tags: ['新品', '热卖', '折扣', '限时', '推荐'], // 硬编码的一些标签
+    selectedLikeTags: [], // 选中的喜欢标签
+    selectedDislikeTags: [], // 选中的不喜欢标签
   },
 
   total: 0,
@@ -59,14 +57,77 @@ Page({
     this.setData({
       filter: filter
     });
+    this.fetchTags();
   },
 
+  async fetchTags() {
+    try {
+      const response = await wx.request({
+        url: 'http://1.15.174.177/api/tags/', // 假设有一个获取标签的 API
+        method: 'GET',
+        header: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.data.code === 200) {
+        this.setData({
+          tags: response.data.data.tags, // 根据 API 返回的数据结构调整
+        });
+      } else {
+        console.error('获取标签失败:', response.data.message);
+      }
+    } catch (error) {
+      console.error('网络错误:', error);
+    }
+  },
+
+  /**
+   * 切换喜欢标签的选中状态
+   */
+  toggleLikeTag(e) {
+    const tag = e.currentTarget.dataset.tag;
+    let {
+      selectedLikeTags
+    } = this.data;
+    if (selectedLikeTags.includes(tag)) {
+      selectedLikeTags = selectedLikeTags.filter(t => t !== tag);
+    } else {
+      selectedLikeTags.push(tag);
+    }
+    this.setData({
+      selectedLikeTags,
+    });
+    console.log('selectedLikeTags', this.data.selectedLikeTags)
+  },
+
+  /**
+   * 切换不喜欢标签的选中状态
+   */
+  toggleDislikeTag(e) {
+    const tag = e.currentTarget.dataset.tag;
+    let {
+      selectedDislikeTags
+    } = this.data;
+    if (selectedDislikeTags.includes(tag)) {
+      selectedDislikeTags = selectedDislikeTags.filter(t => t !== tag);
+    } else {
+      selectedDislikeTags.push(tag);
+    }
+    this.setData({
+      selectedDislikeTags,
+    });
+    console.log('selectedDislikeTags', this.data.selectedDislikeTags)
+  },
+
+  /**
+   * 构建搜索参数
+   */
   generalQueryData(reset = false) {
     const {
       filter,
       keywords,
-      minVal,
-      maxVal
+      selectedLikeTags,
+      selectedDislikeTags
     } = this.data;
     const {
       pageNum,
@@ -77,11 +138,28 @@ Page({
       overall
     } = filter;
     const params = {
-      sort: 0, // 0 综合，1 价格
+      sort: 0, // 0 综合，1 价格 (价格已移除)
       pageNum: 1,
       pageSize: 30,
       keyword: keywords,
+      filter: [], // 将根据选中的标签构建
     };
+
+    // 添加喜欢的标签
+    selectedLikeTags.forEach(tag => {
+      params.filter.push({
+        tag: tag,
+        preference: 'LIKE'
+      });
+    });
+
+    // 添加不喜欢的标签
+    selectedDislikeTags.forEach(tag => {
+      params.filter.push({
+        tag: tag,
+        preference: 'DISLIKE'
+      });
+    });
 
     if (sorts) {
       params.sort = 1;
@@ -92,8 +170,7 @@ Page({
     } else {
       params.sort = 1;
     }
-    params.minPrice = minVal ? minVal * 100 : 0;
-    params.maxPrice = maxVal ? maxVal * 100 : undefined;
+
     if (reset) return params;
     return {
       ...params,
@@ -102,6 +179,9 @@ Page({
     };
   },
 
+  /**
+   * 初始化或加载更多数据
+   */
   async init(reset = true) {
     console.log("init");
     const {
@@ -109,20 +189,19 @@ Page({
       goodsList = []
     } = this.data;
     const params = this.generalQueryData(reset);
-    console.log("params");
-    // if (loadMoreStatus !== 0) return;
+    console.log("params", params);
+    // if (loadMoreStatus !== 0) return; // 可根据需要启用
     this.setData({
       loadMoreStatus: 1,
       loading: true,
     });
     try {
       let result;
-      if (this.data.filter) {
-        console.log("true");
+      if (this.data.filter || this.data.selectedLikeTags.length > 0 || this.data.selectedDislikeTags.length > 0) {
+        console.log("使用过滤条件");
         result = await getSearchResultFilter(params);
-
       } else {
-        console.log("false");
+        console.log("不使用过滤条件");
         result = await getSearchResult(params);
       }
       // const result = await getSearchResult(params);
@@ -136,7 +215,7 @@ Page({
         console.log(spuList);
         if (spuList.length === 0 && reset) {
           console.log("spuList.length === 0 && reset")
-          this.total = totalCount;
+          this.total = data.totalCount || 0; // 假设API返回totalCount
           this.setData({
             emptyInfo: {
               tip: '抱歉，未找到相关商品',
@@ -205,12 +284,18 @@ Page({
     });
   },
 
+  /**
+   * 处理购物车点击
+   */
   handleCartTap() {
     wx.switchTab({
       url: '/pages/cart/index',
     });
   },
 
+  /**
+   * 处理搜索提交
+   */
   handleSubmit() {
     this.setData({
         goodsList: [],
@@ -222,6 +307,9 @@ Page({
     );
   },
 
+  /**
+   * 处理页面滚动到底部
+   */
   onReachBottom() {
     const {
       goodsList
@@ -238,6 +326,9 @@ Page({
     this.init(false);
   },
 
+  /**
+   * 处理添加到购物车
+   */
   handleAddCart() {
     Toast({
       context: this,
@@ -246,6 +337,9 @@ Page({
     });
   },
 
+  /**
+   * 跳转到商品详情
+   */
   gotoGoodsDetail(e) {
     const {
       index
@@ -258,6 +352,9 @@ Page({
     });
   },
 
+  /**
+   * 处理过滤器变化
+   */
   handleFilterChange(e) {
     const {
       overall,
@@ -287,76 +384,50 @@ Page({
     );
   },
 
+  /**
+   * 显示过滤器弹窗
+   */
   showFilterPopup() {
     this.setData({
       show: true,
     });
   },
 
+  /**
+   * 关闭过滤器弹窗
+   */
   showFilterPopupClose() {
     this.setData({
       show: false,
     });
   },
 
-  onMinValAction(e) {
-    const {
-      value
-    } = e.detail;
-    this.setData({
-      minVal: value
-    });
-  },
-
-  onMaxValAction(e) {
-    const {
-      value
-    } = e.detail;
-    this.setData({
-      maxVal: value
-    });
-  },
-
+  /**
+   * 重置筛选条件
+   */
   reset() {
     this.setData({
-      minVal: '',
-      maxVal: ''
+      selectedLikeTags: [],
+      selectedDislikeTags: [],
+      goodsList: [],
+      loadMoreStatus: 0,
+    }, () => {
+      this.init(true);
     });
   },
 
+  /**
+   * 确认筛选条件
+   */
   confirm() {
-    const {
-      minVal,
-      maxVal
-    } = this.data;
-    let message = '';
-    if (minVal && !maxVal) {
-      message = `价格最小是${minVal}`;
-    } else if (!minVal && maxVal) {
-      message = `价格范围是0-${minVal}`;
-    } else if (minVal && maxVal && minVal <= maxVal) {
-      message = `价格范围${minVal}-${this.data.maxVal}`;
-    } else {
-      message = '请输入正确范围';
-    }
-    if (message) {
-      Toast({
-        context: this,
-        selector: '#t-toast',
-        message,
-      });
-    }
+    // 不再需要验证价格范围，直接应用筛选
     this.pageNum = 1;
     this.setData({
-        show: false,
-        minVal: '',
-        goodsList: [],
-        loadMoreStatus: 0,
-        maxVal: '',
-      },
-      () => {
-        this.init();
-      },
-    );
+      show: false,
+      goodsList: [],
+      loadMoreStatus: 0,
+    }, () => {
+      this.init();
+    });
   },
 });
