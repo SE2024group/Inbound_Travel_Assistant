@@ -1,6 +1,6 @@
 <view class="goods-detail-page">
   <view class="goods-head">
-    <t-swiper wx:if="{{details.images.length > 0}}" height="750rpx" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" navigation="{{navigation}}" list="{{details.images}}"></t-swiper>
+    <t-swiper wx:if="{{good.all_images.length > 0}}" height="750rpx" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" navigation="{{navigation}}" list="{{good.all_images}}"></t-swiper>
     <view class="goods-info">
       <view wx:for="{{ good.spuTagList }}" wx:key="index" wx:for-item="tag" class="goods-card__tag" data-index="{{index}}">
         <button class="tag-wrapper" bindtap="onTagTap" data-title="{{tag.title}}">{{tag.title}}</button>
@@ -40,21 +40,7 @@
             <t-icon class="goods-card__add-cart" prefix="wr" name="{{ good.isFavorite ? 'star_filled' : 'star' }}" catchtap="addCartHandle" size="40rpx" color="#FA550F" style="margin-left: 5rpx;" />
           </view>
         </view>
-
       </view>
-
-
-      <!-- <view class="goods-card__down">
-        <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
-      </view> -->
-
-
-
-
-      <!-- <view class="goods-card__down">
-        <t-icon class="goods-card__add-cart" prefix="wr" name="star" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
-      </view> -->
-
       <view class="goods-description">{{details.description}}</view>
       <view class="goods-intro">{{intro}}</view>
     </view>
@@ -69,9 +55,6 @@
         </view>
       </view>
       <view wx:if="{{index === 0}}" class="comment-item-wrap" wx:for="{{ commentsList }}" wx:for-item="commentItem" wx:for-index="index" wx:key="goodsSpu">
-        <!-- <view class="comment-item-wrap" wx:for="{{ commentsList }}" wx:for-item="commentItem" wx:key="goodsSpu"> -->
-        <!-- <view class="comment-item-wrap" wx:for="{{ commentsList.slice(0, 1) }}" wx:for-item="commentItem" wx:key="goodsSpu"> -->
-
         <view class="comment-item-head">
           <t-image src="{{commentItem.userHeadUrl}}" t-class="comment-item-avatar" />
           <view class="comment-head-right">

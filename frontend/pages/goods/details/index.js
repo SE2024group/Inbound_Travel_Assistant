@@ -356,7 +356,8 @@ Page({
         this.setData({
           good: good, // 将生成的商品对象存储到 goodDetails
         });
-
+        console.log("this.data.good");
+        console.log(this.data.good);
         return good; // 返回生成的商品对象
       })
       .catch((error) => {

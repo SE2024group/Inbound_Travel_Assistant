@@ -68,22 +68,18 @@ function fetchWithTimeout(url, options = {}, timeout = 5000) {
 
   });
 }
-
-
-
 export function genGood(id, available = 1) {
   return new Promise((resolve, reject) => {
     if (id == 0) {
       id = 5;
     }
     fetchWithTimeout(`http://1.15.174.177/api/dish/${id}/`)
-      // fetchWithTimeout(`http://1.15.174.177/api/dish/1/`)
       .then(response => {
         return response; // 直接返回响应
       })
       .then(apiData => {
         // 进行转换
-        // console.log("成功获取数据:", apiData); // 输出获取的数据
+        console.log("成功获取数据:", apiData); // 输出获取的数据
         const transformedData = {
           spuId: String(apiData.id),
           title: apiData.name_en,
@@ -95,13 +91,15 @@ export function genGood(id, available = 1) {
             title: tag.name_en
           }))
         };
-
+        console.log("transformedData:", apiData); // 输出获取的数据
 
         // 解析 Promise，返回 transformedData
         resolve({
           ...transformedData,
           spuId: `${id}`,
           images: [transformedData?.primaryImage],
+          all_images: [...transformedData?.images],
+          // images: [transformedData?.images],
         });
       })
       .catch(error => {
