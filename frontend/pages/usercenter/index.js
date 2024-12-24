@@ -96,6 +96,8 @@ Page({
             console.log("local religiousBelief", data.religious_belief);
             wx.setStorageSync('dietaryPreferences', data.dietary_preferences || []);
             console.log("local dietaryPreferences", data.dietary_preferences);
+            wx.setStorageSync('registeredAt', data.signup_date)
+            console.log('set registeredAt', data.signup_date);
           }).catch((error) => {
             wx.showToast({
               title: 'Fail to load user info',
@@ -115,7 +117,6 @@ Page({
           });
         },
       });
-      wx.setStorageSync('registeredAt', this.userInfo.signup_date)
     } else {
       // 处理其他登录方式或错误状态
       wx.showToast({

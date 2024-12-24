@@ -19,13 +19,14 @@ Page({
       const userName = wx.getStorageSync('userName') || 'Unknown User'; // 如果不存在则设为默认值
       const loggedBy = wx.getStorageSync('loggedBy') || 'Unknown Method';
       const registeredAt = wx.getStorageSync('registeredAt') || 'Not Available';
+      console.log('registered at', registeredAt),
 
-      // 更新 data 数据
-      this.setData({
-        userName,
-        loggedBy,
-        registeredAt,
-      });
+        // 更新 data 数据
+        this.setData({
+          userName,
+          loggedBy,
+          registeredAt,
+        });
     } catch (err) {
       console.error('Failed to read storage:', err);
     }
