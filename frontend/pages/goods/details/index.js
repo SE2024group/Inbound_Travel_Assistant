@@ -152,6 +152,7 @@ Page({
           this.setData({
             ['good.isFavorite']: false,
           });
+          const storedFavoriteIds = wx.getStorageSync('favoriteIds') || [];
           const newFavoriteIds = storedFavoriteIds.filter(id => id !== String(spuId));
           wx.setStorageSync('favoriteIds', newFavoriteIds);
         },
