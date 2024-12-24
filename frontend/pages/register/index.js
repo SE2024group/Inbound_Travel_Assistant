@@ -50,10 +50,15 @@ Page({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
+      mediaType: ['image'], // 如果你只需要图片，可以明确指定
       success: (res) => {
-        this.setData({
-          avatarPath: res.tempFilePaths[0],
-        });
+        if (res.tempFiles && res.tempFiles.length > 0) {
+          this.setData({
+            avatarPath: res.tempFiles[0].tempFilePath,
+          });
+        } else {
+          console.error('选择的文件为空');
+        }
       },
       fail: (err) => {
         console.error('选择头像失败:', err);
