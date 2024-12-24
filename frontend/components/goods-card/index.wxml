@@ -11,9 +11,10 @@
           </view>
         </view>
         <view wx:if="{{ goods.tags && !!goods.tags.length }}" class="goods-card__tags">
-          <view wx:for="{{ goods.tags }}" wx:key="index" wx:for-item="tag" class="goods-card__tag" data-index="{{index}}">
-            {{tag}}
+          <view wx:for="{{ goods.tags }}" wx:key="index" wx:for-item="tag" class="goods-card__tag tag-{{tag.preference}}" data-index="{{index}}">
+            {{tag.title}}
           </view>
+
           <view class="goods-card__down">
             <t-icon class="goods-card__add-cart" prefix="wr" name="{{ goods.isFavorite ? 'star_filled' : 'star' }}" id="{{independentID}}-cart" data-id="{{independentID}}" catchtap="addCartHandle" size="48rpx" color="#FA550F" />
           </view>

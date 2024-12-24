@@ -88,19 +88,50 @@
 
 .goods-card__tag {
   color: #fa4126;
+  /* 默认文字颜色 */
   background: transparent;
   font-size: 20rpx;
   border: 1rpx solid #fa4126;
   padding: 0 8rpx;
   border-radius: 16rpx;
   line-height: 30rpx;
-  margin: 8rpx 8rpx 8rpx 8rpx;
-  display: block;
+  margin: 8rpx;
+  display: inline-block;
+  /* 改为 inline-block 以更好地控制布局 */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* OTHER 样式 */
+.tag-OTHER {
+  color: #2c3e50;
+  /* 深灰色文字 */
+  border: 1px solid #3498db;
+  /* 中灰色边框 */
+  background-color: #f5fbff;
+  /* 浅灰色背景 */
+}
+
+/* LIKE 样式 */
+.tag-LIKE {
+  color: #52c41a;
+  /* 文字颜色 */
+  border: 1px solid #52c41a;
+  /* 边框颜色 */
+  background-color: #f6ffed;
+  /* 背景色 */
+}
+
+/* DISLIKE 样式 */
+.tag-DISLIKE {
+  color: #f5222d;
+  /* 文字颜色 */
+  border: 1px solid #f5222d;
+  /* 边框颜色 */
+  background-color: #fff1f0;
+  /* 背景色 */
+}
 
 .goods-card__tags {
   max-width: calc(100% - 60rpx);
