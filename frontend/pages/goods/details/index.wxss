@@ -176,22 +176,43 @@ page {
 
 .tag-wrapper {
   display: inline-block;
-  /* 保证标签的内容能够根据文字长度自适应 */
   padding: 5px 10px;
-  /* 设置标签内边距，使其更美观 */
   font-size: 14px;
-  /* 设置文字大小 */
-  color: #ff4d4f;
-  /* 设置文字颜色为红色 */
-  border: 1px solid #ff4d4f;
-  /* 红色边框 */
   border-radius: 15px;
-  /* 设置圆角 */
-  background-color: transparent;
-  /* 无背景色 */
   white-space: nowrap;
-  /* 避免文字换行 */
+  /* 通用样式 */
 }
+
+/* OTHER 样式 */
+.OTHER {
+  color: #2c3e50;
+  /* 深灰色文字 */
+  border: 1px solid #3498db;
+  /* 中灰色边框 */
+  background-color: #f5fbff;
+  /* 浅灰色背景 */
+}
+
+/* LIKE 样式 */
+.LIKE {
+  color: #52c41a;
+  /* 文字颜色 */
+  border: 1px solid #52c41a;
+  /* 边框颜色 */
+  background-color: #f6ffed;
+  /* 背景色 */
+}
+
+/* DISLIKE 样式 */
+.DISLIKE {
+  color: #f5222d;
+  /* 文字颜色 */
+  border: 1px solid #f5222d;
+  /* 边框颜色 */
+  background-color: #fff1f0;
+  /* 背景色 */
+}
+
 
 
 .goods-card__tags {

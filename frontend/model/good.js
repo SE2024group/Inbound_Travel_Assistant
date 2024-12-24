@@ -88,7 +88,8 @@ export function genGood(id, available = 1) {
           primaryImage: apiData.images[0].image_url,
           images: apiData.images.map(image => image.image_url),
           spuTagList: apiData.tags.map(tag => ({
-            title: tag.name_en
+            title: tag.name_en,
+            preference: tag.preference
           }))
         };
         console.log("transformedData:", apiData); // 输出获取的数据
