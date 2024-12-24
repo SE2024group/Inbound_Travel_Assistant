@@ -296,49 +296,50 @@ Page({
     };
 
     // 假设需要发送 Authorization Token，请确保 token 可用
-    const authToken = wx.getStorageSync('authToken') || '';
-
-    wx.request({
-      url: 'http://1.15.174.177/api/user/preferences/',
-      method: 'PATCH',
-      header: {
-        'Content-Type': 'application/json',
-        'Authorization': `${authToken}`
-      },
-      data: payload,
-      success: (res) => {
-        if (res.statusCode === 200) {
-          // wx.showToast({
-          //   title: 'Dietary preferences updated.',
-          //   icon: 'none',
-          // });
-          // 更新 userInfo 数据（如果后端返回更新后的用户信息）
-          if (res.data.user) {
-            const newMap = this.createDietaryPreferencesMap(res.data.user.dietary_preferences || []);
-            this.setData({
-              userInfo: res.data.user,
-              dietaryPreferencesMap: newMap,
+    const loggedBy = wx.getStorageSync('loggedBy') || '';
+    if (loggedBy === 'auth') {
+      wx.request({
+        url: 'http://1.15.174.177/api/user/preferences/',
+        method: 'PATCH',
+        header: {
+          'Content-Type': 'application/json',
+          'Authorization': `${authToken}`
+        },
+        data: payload,
+        success: (res) => {
+          if (res.statusCode === 200) {
+            // wx.showToast({
+            //   title: 'Dietary preferences updated.',
+            //   icon: 'none',
+            // });
+            // 更新 userInfo 数据（如果后端返回更新后的用户信息）
+            if (res.data.user) {
+              const newMap = this.createDietaryPreferencesMap(res.data.user.dietary_preferences || []);
+              this.setData({
+                userInfo: res.data.user,
+                dietaryPreferencesMap: newMap,
+              });
+              console.log('local dietaryPre updated to:', newMap);
+              // 同步本地存储
+              wx.setStorageSync('religiousBelief', res.data.user.religious_belief || '');
+              wx.setStorageSync('dietaryPreferences', res.data.user.dietary_preferences || []);
+            }
+          } else {
+            wx.showToast({
+              title: 'Failed to update dietary preferences.',
+              icon: 'error',
             });
-            console.log('local dietaryPre updated to:', newMap);
-            // 同步本地存储
-            wx.setStorageSync('religiousBelief', res.data.user.religious_belief || '');
-            wx.setStorageSync('dietaryPreferences', res.data.user.dietary_preferences || []);
           }
-        } else {
+        },
+        fail: (error) => {
+          console.error('API 请求失败:', error);
           wx.showToast({
             title: 'Failed to update dietary preferences.',
             icon: 'error',
           });
         }
-      },
-      fail: (error) => {
-        console.error('API 请求失败:', error);
-        wx.showToast({
-          title: 'Failed to update dietary preferences.',
-          icon: 'error',
-        });
-      }
-    });
+      });
+    }
   },
 
   // 清除特定标签的偏好
@@ -379,16 +380,33 @@ Page({
 
   // 导航到我的喜欢页面
   goToLikes() {
-    wx.navigateTo({
-      url: '/pages/myLikes/index'
-    });
+    console.log("goToMyLikes");
+    const loggedBy = wx.getStorageSync('loggedBy') || '';
+    if (loggedBy === 'auth') {
+      wx.navigateTo({
+        url: '/pages/myLikes/index'
+      });
+    } else {
+      wx.showToast({
+        title: 'Haven\'t logged in yet\.',
+        icon: 'error',
+      });
+    }
   },
 
   goToComments() {
     console.log("goToComments");
-    wx.navigateTo({
-      url: '/pages/goods/mycomments/index'
-    });
+    const loggedBy = wx.getStorageSync('loggedBy') || '';
+    if (loggedBy === 'auth') {
+      wx.navigateTo({
+        url: '/pages/goods/mycomments/index'
+      });
+    } else {
+      wx.showToast({
+        title: 'Haven\'t logged in yet\.',
+        icon: 'error',
+      });
+    }
   },
 
   // 登出账户

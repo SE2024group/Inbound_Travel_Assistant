@@ -92,7 +92,8 @@ Page({
     const {
       textAreaValue
     } = this;
-    const temp = serviceRateValue && goodRateValue && conveyRateValue && textAreaValue;
+    const authed = (wx.getStorageSync('loggedBy') === 'auth');
+    const temp = serviceRateValue && goodRateValue && conveyRateValue && textAreaValue && authed;
     if (temp !== isAllowedSubmit) this.setData({
       isAllowedSubmit: temp
     });
@@ -138,7 +139,6 @@ Page({
             name: 'images', // 这里的 `name` 要确保和 API 一致
             header: {
               'Authorization': authToken
-
             },
             formData: formData,
             success: (uploadRes) => {

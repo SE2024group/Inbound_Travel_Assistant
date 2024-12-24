@@ -104,6 +104,18 @@ Page({
     });
   },
   addCartHandle(e) {
+    const loggedBy = wx.getStorageSync('loggedBy');
+    if (loggedBy === 'auth') {
+      this.addCart(e);
+    } else {
+      wx.showToast({
+        title: 'Haven\'t logged in yet\.',
+        icon: 'error',
+      });
+    }
+  },
+
+  addCart(e) {
     // 1. 取到当前商品对象 (this.data.details 或 this.data.good)
     const dish = this.data.good; // 或 details
     const spuId = dish.spuId || dish.id;
