@@ -1,3 +1,4 @@
+/* 基础样式 */
 page {
   background-color: #fff;
 }
@@ -55,10 +56,9 @@ page view {
   margin-top: 40rpx;
 }
 
-.result-container .price-container {
+/* 移除价格相关的样式 */
+/* .result-container .price-container {
   padding: 32rpx;
-  height: 100vh;
-  max-width: 632rpx;
   background-color: #fff;
   border-radius: 30rpx 0 0 30rpx;
 }
@@ -94,7 +94,7 @@ page view {
   border-radius: 8rpx;
   color: #333;
   background: rgba(245, 245, 245, 1);
-}
+} */
 
 .t-class-input {
   font-size: 24rpx !important;
@@ -104,11 +104,136 @@ page view {
   font-size: 40rpx !important;
 }
 
-.result-container .price-ipts-wrap .price-ipt::after {
-  border: none !important;
-}
-
 .result-container .t-input__control {
   font-size: 24rpx !important;
   text-align: center;
+}
+
+/* 新增标签筛选区域的样式 */
+
+.tags-container {
+  padding: 20rpx;
+  background-color: #fff;
+  border-top: 1rpx solid #eaeaea;
+  /* 与上方内容分隔 */
+}
+
+.tags-title {
+  font-size: 26rpx;
+  color: rgba(51, 51, 51, 1);
+  margin-bottom: 10rpx;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  margin: 5rpx;
+}
+
+.tag-default {
+  padding: 10rpx 20rpx;
+  background-color: #f2f2f2;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.tag-selected {
+  padding: 10rpx 20rpx;
+  background-color: #007aff;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.tag-LIKE {
+  color: #52c41a;
+  /* 绿色 */
+  border: 1px solid #52c41a;
+  /* 背景色 */
+}
+
+.tag-DISLIKE {
+  color: #f5222d;
+  /* 红色 */
+  border: 1px solid #f5222d;
+  /* 背景色 */
+}
+
+/* 确保 .tag-default 有透明边框，避免选中时元素大小变化 */
+.tag-default {
+  padding: 10rpx 20rpx;
+  background-color: #f2f2f2;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  color: #333;
+  border: 1px solid transparent;
+  /* 添加透明边框 */
+}
+
+/* 可选：为 tag 添加点击效果 */
+.tag-default:hover,
+.tag-selected:hover {
+  opacity: 0.8;
+}
+
+/* 确保 filter-popup 的内容正确布局 */
+.filter-popup {
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* 调整 filter-btns-wrap */
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content .filter-btns-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-top: 1rpx solid #e5e5e5;
+  padding: 16rpx 32rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  /* 确保按钮区域有背景色 */
+}
+
+/* 按钮样式 */
+.filter-btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  font-weight: 500;
+  height: 80rpx;
+  cursor: pointer;
+  /* 鼠标悬停效果 */
+}
+
+/* 重置按钮 */
+.btn-reset {
+  color: #fa4126;
+  background: rgba(255, 255, 255, 1);
+  border: 1rpx solid #fa4126;
+  border-radius: 10rpx;
+  /* 调整圆角为统一 */
+  margin-right: 10rpx;
+  /* 按钮间距 */
+}
+
+/* 确认按钮 */
+.btn-confirm {
+  color: #fff;
+  background: #fa4126;
+  border: 1rpx solid #fa4126;
+  border-radius: 10rpx;
+  /* 调整圆角为统一 */
 }
