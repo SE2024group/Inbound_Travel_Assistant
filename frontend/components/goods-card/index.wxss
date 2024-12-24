@@ -71,20 +71,15 @@
 }
 
 .goods-card__title {
-  flex-shrink: 0;
-  font-size: 28rpx;
-  color: #333;
-  font-weight: 400;
-  display: -webkit-box;
-  height: 72rpx;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  word-break: break-word;
-  line-height: 36rpx;
+  padding-left: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333333;
+  margin: 3px 0;
 }
 
 .goods-card__tags {
+  padding-left: 4px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
