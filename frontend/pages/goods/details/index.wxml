@@ -3,7 +3,7 @@
     <t-swiper wx:if="{{good.all_images.length > 0}}" height="750rpx" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" navigation="{{navigation}}" list="{{good.all_images}}"></t-swiper>
     <view class="goods-info">
       <view wx:for="{{ good.spuTagList }}" wx:key="index" wx:for-item="tag" class="goods-card__tag" data-index="{{index}}">
-        <button class="tag-wrapper {{tag.preference}}" bindtap="onTagTap" data-title="{{tag.title}}">
+        <button class="tag-wrapper tag-{{tag.preference}}" bindtap="onTagTap" data-title="{{tag.title}}">
           {{tag.title}}
         </button>
       </view>

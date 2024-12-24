@@ -184,7 +184,7 @@ page {
 }
 
 /* OTHER 样式 */
-.OTHER {
+.tag-OTHER {
   color: #2c3e50;
   /* 深灰色文字 */
   border: 1px solid #3498db;
@@ -194,7 +194,7 @@ page {
 }
 
 /* LIKE 样式 */
-.LIKE {
+.tag-LIKE {
   color: #52c41a;
   /* 文字颜色 */
   border: 1px solid #52c41a;
@@ -204,7 +204,7 @@ page {
 }
 
 /* DISLIKE 样式 */
-.DISLIKE {
+.tag-DISLIKE {
   color: #f5222d;
   /* 文字颜色 */
   border: 1px solid #f5222d;

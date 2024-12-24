@@ -19,7 +19,10 @@ function GoodsList(pageIndex = 1, pageSize = 20) {
         spuId: item.spuId,
         thumb: item.primaryImage,
         title: item.title,
-        tags: item.spuTagList.map((tag) => tag.title),
+        tags: item.spuTagList.map((tag) => ({
+          title: tag.title,
+          preference: tag.preference || "OTHER", // 确保 preference 有默认值
+        })),
       }));
       return result; // 返回处理后的数据
     });
