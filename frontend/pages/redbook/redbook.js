@@ -49,7 +49,7 @@ Page({
 
   onReachBottom() {
     if (this.data.goodsListLoadStatus === 0) {
-      console.log('load status 0')
+      
       this.loadGoodsList();
     }
   },
@@ -70,7 +70,7 @@ Page({
       maxDuration: 30,
       camera: 'back',
       success: (res) => {
-        console.log(res.tempFiles[0]); // 打印检查 tempFiles 结构
+        
         if (res.tempFiles.length > 0) {
           this.setData({
             imagePath: res.tempFiles[0].tempFilePath // 设置图片路径到数据
@@ -87,7 +87,7 @@ Page({
         }
       },
       fail(err) {
-        console.log("选择媒体失败", err);
+        
       }
     });
   },
@@ -181,8 +181,8 @@ Page({
         goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
         goodsListLoadStatus: 0,
       });
-      console.log("goodsList");
-      console.log(this.data.goodsList);
+      
+      
       this.goodListPagination.index = pageIndex;
       this.goodListPagination.num = pageSize;
     } catch (err) {

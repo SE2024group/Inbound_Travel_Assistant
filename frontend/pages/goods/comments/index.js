@@ -111,7 +111,7 @@ Page({
         success: (res) => {
           if (res.statusCode === 200 && code.toUpperCase() === 'SUCCESS') {
             const data = res.data; // 获取返回的数据
-            console.log(data);
+            
             if (data && data.length > 0) {
               const firstComment = data[0]; // 只取第一条评论
               const nextState = {

@@ -69,7 +69,7 @@ Component({
         content: 'Are you sure you want to delete this comment？',
         success(res) {
           if (res.confirm) {
-            console.log(that.properties.commentId);
+            
             // 调用删除评论 API
             wx.request({
               url: `http://1.15.174.177/api/comments/${that.properties.commentId}/delete/`,

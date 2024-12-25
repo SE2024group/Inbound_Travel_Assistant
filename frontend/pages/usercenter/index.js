@@ -57,7 +57,7 @@ Page({
       });
       return; // 终止执行，避免后续逻辑出错
     }
-    console.log('logged by ', loggedBy);
+    
 
     // 调用获取饮食偏好的函数
     this.fetchDietaryRestrictions();
@@ -75,7 +75,7 @@ Page({
         selectedDietaryPreferences: wx.getStorageSync('dietaryPreferences') || [],
         dietaryPreferencesMap: this.createDietaryPreferencesMap(wx.getStorageSync('dietaryPreferences') || []),
       });
-      console.log(this.data.userInfo);
+      
     } else if (loggedBy === 'auth') {
       // Retrieve authToken from local storage
       wx.getStorage({
@@ -91,14 +91,14 @@ Page({
               selectedDietaryPreferences: data.dietary_preferences || [],
               dietaryPreferencesMap: this.createDietaryPreferencesMap(data.dietary_preferences || []),
             });
-            console.log("userinfo", this.data.userInfo);
+            
             // 同步到本地存储
             wx.setStorageSync('religiousBelief', data.religious_belief || '');
-            console.log("local religiousBelief", data.religious_belief);
+            
             wx.setStorageSync('dietaryPreferences', data.dietary_preferences || []);
-            console.log("local dietaryPreferences", data.dietary_preferences);
+            
             wx.setStorageSync('registeredAt', data.signup_date)
-            console.log('set registeredAt', data.signup_date);
+            
           }).catch((error) => {
             wx.showToast({
               title: 'Fail to load user info',
@@ -273,8 +273,8 @@ Page({
   // 检查某个标签是否有特定的偏好
   isPreference(tag, preference) {
     const pref = this.data.selectedDietaryPreferences.find(item => item.tag === tag);
-    console.log(tag);
-    console.log(pref);
+    
+    
     return pref ? pref.preference === preference : false;
   },
 
@@ -321,7 +321,7 @@ Page({
                 userInfo: res.data.user,
                 dietaryPreferencesMap: newMap,
               });
-              console.log('local dietaryPre updated to:', newMap);
+              
               // 同步本地存储
               wx.setStorageSync('religiousBelief', res.data.user.religious_belief || '');
               wx.setStorageSync('dietaryPreferences', res.data.user.dietary_preferences || []);
@@ -382,7 +382,7 @@ Page({
 
   // 导航到我的喜欢页面
   goToLikes() {
-    console.log("goToMyLikes");
+    
     const loggedBy = wx.getStorageSync('loggedBy') || '';
     if (loggedBy === 'auth') {
       wx.navigateTo({
@@ -397,7 +397,7 @@ Page({
   },
 
   goToComments() {
-    console.log("goToComments");
+    
     const loggedBy = wx.getStorageSync('loggedBy') || '';
     if (loggedBy === 'auth') {
       wx.navigateTo({

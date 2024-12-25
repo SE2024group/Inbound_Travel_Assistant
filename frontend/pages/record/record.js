@@ -81,7 +81,7 @@ Page({
     const app = getApp();
     const title = app.globalData.title;
     const image = app.globalData.image;
-    console.log(app);
+    
     this.setData({
       selectedText: "", // 清空文本框内容
       isInputFocused: false, // 重置输入框聚焦状态
@@ -135,7 +135,7 @@ Page({
   sendText: function () {
     // 获取文本框中的文本
     const textToUpload = this.data.selectedText;
-    console.log("发送的文本：", textToUpload);
+    
 
     // 构建请求参数
     const requestData = {
@@ -155,7 +155,7 @@ Page({
         'Content-Type': 'application/json' // 确保为JSON格式
       },
       success: (res) => {
-        console.log('文本发送成功', res.data);
+        
         wx.showToast({
           title: 'send',
           icon: 'success'
@@ -177,7 +177,7 @@ Page({
     // 假设服务器返回的数据是 JSON 格式
     try {
       const response = data;
-      console.log('response', response);
+      
 
       if (response.code === 200) {
         const {
@@ -186,7 +186,7 @@ Page({
           isChineseMode
         } = response.data;
         const textToDisplay = isChineseMode ? en_text : cn_text;
-        console.log('显示的文本:', textToDisplay);
+        
 
         this.setData({
           selectedText: textToDisplay
@@ -255,7 +255,7 @@ Page({
     });
     recorderManager.stop();
     recorderManager.onStop((res) => {
-      console.log('录音结束', res);
+      
       const {
         tempFilePath
       } = res; // 获取临时文件路径
@@ -277,7 +277,7 @@ Page({
 
   // 上传录音文件到服务器
   uploadRecording: function (filePath) {
-    console.log('上传录音文件，isChineseMode:', this.data.isChineseMode);
+    
 
     wx.uploadFile({
       url: 'http://1.15.174.177/api/voice-translation/', // 替换为实际服务器地址
@@ -287,7 +287,7 @@ Page({
         'isChineseMode': this.data.isChineseMode.toString(), // 确保发送的是字符串 'true' 或 'false'
       },
       success: (res) => {
-        console.log('文件上传成功', res);
+        
         wx.showToast({
           title: '上传成功',
           icon: 'success'
@@ -310,7 +310,7 @@ Page({
     // 假设服务器返回的数据是 JSON 格式
     try {
       const response = JSON.parse(data);
-      console.log('response', response);
+      
 
       if (response.code === 200) {
         const {
@@ -319,7 +319,7 @@ Page({
           isChineseMode
         } = response.data;
         const textToDisplay = isChineseMode ? en_text : cn_text;
-        console.log('显示的文本:', textToDisplay);
+        
 
         this.setData({
           selectedText: textToDisplay
@@ -356,7 +356,7 @@ Page({
     innerAudioContext.src = audioFilePath;
     innerAudioContext.play();
     innerAudioContext.onPlay(() => {
-      console.log('开始播放');
+      
     });
     innerAudioContext.onError((err) => {
       console.error('播放错误:', err);

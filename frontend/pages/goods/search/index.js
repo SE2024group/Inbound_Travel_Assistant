@@ -6,8 +6,8 @@ import {
 Page({
   onCheckboxChange: function (event) {
     // 打印复选框状态
-    console.log("dongxi");
-    console.log('复选框状态:', event.detail.value);
+    
+    
   },
   checkboxChange(e) {
     const values = e.detail.value;
@@ -15,7 +15,7 @@ Page({
       filter: values.includes('agree'),
       filterActive: values.includes('agree'),
     });
-    console.log('复选框是否勾选:', this.data.filter);
+    
   },
   data: {
     historyWords: [],
@@ -42,7 +42,7 @@ Page({
     this.setData({
       searchValue: keyword,
     });
-    console.log('传递的 keyword:', keyword);
+    
   },
 
   // toggleFilter: function (event) {
@@ -186,7 +186,7 @@ Page({
   },
 
   handleSubmit(e) {
-    console.log('submit event detail:', e.detail); // 调试事件数据
+    
     const {
       value
     } = e.detail;

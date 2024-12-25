@@ -13,9 +13,9 @@ export function login(username, password) {
         password: password,
       },
       success: (response) => {
-        console.log('response code = ', response.statusCode);
+        
         if (response.statusCode === 200) {
-          console.log('response', response);
+          
           const token = response.data.token;
           // 将 authToken 存储到本地
           wx.setStorage({
@@ -38,7 +38,7 @@ export function login(username, password) {
               reject('存储 authToken 失败');
             }
           });
-          console.log('data = Bearer', token);
+          
         } else {
           // 根据 API 文档，可能返回具体的错误信息
           if (response.data && response.data.error) {

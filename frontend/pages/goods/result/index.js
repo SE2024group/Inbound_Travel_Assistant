@@ -53,7 +53,7 @@ Page({
         this.init(true);
       },
     );
-    console.log('filter:', filter); // 显示传递的过滤值，布尔值
+    
     this.setData({
       filter: filter
     });
@@ -117,7 +117,7 @@ Page({
     this.setData({
       selectedLikeTags,
     });
-    console.log('selectedLikeTags', this.data.selectedLikeTags)
+    
   },
 
   /**
@@ -136,7 +136,7 @@ Page({
     this.setData({
       selectedDislikeTags,
     });
-    console.log('selectedDislikeTags', this.data.selectedDislikeTags)
+    
   },
 
   /**
@@ -203,13 +203,13 @@ Page({
    * 初始化或加载更多数据
    */
   async init(reset = true) {
-    console.log("init");
+    
     const {
       loadMoreStatus,
       goodsList = []
     } = this.data;
     const params = this.generalQueryData(reset);
-    console.log("params", params);
+    
     // if (loadMoreStatus !== 0) return; // 可根据需要启用
     this.setData({
       loadMoreStatus: 1,
@@ -218,24 +218,24 @@ Page({
     try {
       let result;
       if (this.data.filter || this.data.selectedLikeTags.length > 0 || this.data.selectedDislikeTags.length > 0) {
-        console.log("使用过滤条件");
+        
         result = await getSearchResultFilter(params);
       } else {
-        console.log("不使用过滤条件");
+        
         result = await getSearchResult(params);
       }
       // const result = await getSearchResult(params);
-      console.log(result);
+      
       const code = 'Success';
       const data = result.data;
       if (code.toUpperCase() === 'SUCCESS') {
         data.results = data.results.slice(0, 20);
         const spuList = data.results;
         // const spuList = [7, 2]
-        console.log("spuList");
-        console.log(spuList);
+        
+        
         if (spuList.length === 0 && reset) {
-          console.log("spuList.length === 0 && reset")
+          
           this.total = data.totalCount || 0; // 假设API返回totalCount
           this.setData({
             emptyInfo: {
@@ -277,7 +277,7 @@ Page({
               // loadMoreStatus: _loadMoreStatus, // 设置加载状态
             });
 
-            console.log(this.data.goodsList);
+            
             this.setData({
               loadMoreStatus: 2,
             });

@@ -123,10 +123,10 @@ Page({
       });
       return;
     }
-    console.log('username entered is ', username);
+    
 
     if (this.data.username == '') {
-      console.log('havent enter username')
+      
       wx.showToast({
         title: 'Haven\'t entered username\n, treated as \'Tourist\'.',
         icon: 'none',
@@ -135,7 +135,7 @@ Page({
       this.setData({
         username: 'Tourist',
       });
-      console.log('username is ', this.data.username);
+      
     };
 
     wx.showToast({
@@ -143,7 +143,7 @@ Page({
       icon: 'success',
     });
 
-    console.log('tourist');
+    
 
     wx.setStorage({
       key: 'userName',

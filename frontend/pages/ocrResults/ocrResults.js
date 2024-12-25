@@ -37,7 +37,7 @@ Page({
         options: options,
       });
       this.drawImageToCanvas(imagePath);
-      console.log('Options set:', this.data.options);
+      
     });
   },
   drawImageToCanvas(imagePath) {
@@ -90,7 +90,7 @@ Page({
 
           // 计算图片在画布上的居中偏移量
           const offsetX = (canvasWidth - drawWidth) / 2;
-          //console.log(offsetX)
+          
           const offsetY = (canvasHeight - drawHeight) / 2;
           // 清空画布并绘制缩放后的图片
           ctx.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -101,7 +101,7 @@ Page({
           console.error('Failed to load image:', err);
         };
 
-        console.log('Setting image source to:', imagePath);
+        
         img.src = imagePath; // 设置图片路径
       });
   },
@@ -142,7 +142,7 @@ Page({
 
         // 清除画布内容
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        console.log("清除画布");
+        
         //重新绘制图片（ 确保背景恢复到裁剪框绘制前的状态）
         const img = canvas.createImage();
         const {
@@ -156,7 +156,7 @@ Page({
         ctx.scale(pixelRatio, pixelRatio); // 按照像素比缩放
         img.onload = () => {
           // 图片加载完成后才能获取宽高
-          console.log('Image loaded successfully:', img.width, img.height);
+          
 
           const imgWidth = img.width;
           const imgHeight = img.height;

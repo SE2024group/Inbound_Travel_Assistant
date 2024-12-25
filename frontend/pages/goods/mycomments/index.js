@@ -39,12 +39,12 @@ Page({
     const {
       commentId
     } = e.detail; // 获取子组件传递的参数
-    console.log(`Refreshing comments, deleted commentId: ${commentId}`);
+    
 
     // 重新加载评论列表
     this.init(true);
     setTimeout(() => {
-      console.log('Refreshed commentList:', this.data.commentList);
+      
     }, 1000);
   },
   onLoad(options) {
@@ -105,7 +105,7 @@ Page({
       commentList = []
     } = this.data;
     const params = this.generalQueryData(reset);
-    console.log("进入init");
+    
     // 在加载中或者无更多数据，直接返回
     // if (loadMoreStatus !== 0) return;
 
@@ -126,10 +126,10 @@ Page({
         success: (res) => {
           if (res.statusCode === 200) {
             const data = res.data; // 获取返回的数据
-            console.log("data", data);
+            
             const nextState = {
               commentList: data.map((item) => {
-                console.log('item.id:', item.id, '类型:', typeof item.id);
+                
                 return {
                   goodsImages: item.dish.images || [], // 菜品图片
                   commentContent: item.comment || '用户未填写评价',
@@ -146,7 +146,7 @@ Page({
             };
 
             this.setData(nextState); // 更新数据
-            console.log("commentList", this.data.commentList);
+            
           } else {
             console.error('Failed to fetch comments:', res);
           }

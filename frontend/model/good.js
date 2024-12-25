@@ -18,7 +18,7 @@ function fetchWithTimeout(url, options = {}, timeout = 5000) {
 
     const loggedBy = wx.getStorageSync('loggedBy') || 'Unknown Method';
     let headers;
-    console.log("food loggedBy", loggedBy);
+    
     if (loggedBy == 'auth') {
       const authToken = wx.getStorageSync('authToken') || '';
 
@@ -90,7 +90,7 @@ export function genGood(id, available = 1) {
       })
       .then(apiData => {
         // 进行转换
-        // console.log("成功获取数据:", apiData); // 输出获取的数据
+        
         const transformedData = {
           spuId: String(apiData.id),
           title: apiData.name_en,
@@ -103,7 +103,7 @@ export function genGood(id, available = 1) {
             preference: tag.preference
           }))
         };
-        // console.log("transformedData:", apiData); // 输出获取的数据
+        
 
         // 解析 Promise，返回 transformedData
         resolve({

@@ -35,7 +35,7 @@ function mockSearchResult(params) {
   });
 }
 export function getSearchResultFilter(params) {
-  console.log(params);
+  
   return new Promise((resolve, reject) => {
     const url = "http://1.15.174.177/api/dish/advanced_search/";
     const data = {
@@ -59,7 +59,7 @@ export function getSearchResultFilter(params) {
       },
       data: data,
       success: (res) => {
-        console.log('API 返回的结果:', res.data); // 打印返回的结果
+        
 
         // 检查 API 返回的 code 是否为 200，表示成功
         if (res.data.code === 200) {
@@ -77,7 +77,7 @@ export function getSearchResultFilter(params) {
 
 export function getSearchResult(params) {
 
-  console.log(params)
+  
   return new Promise((resolve, reject) => {
     const url = "http://1.15.174.177/api/dish/advanced_search/";
     const data = {
@@ -92,7 +92,7 @@ export function getSearchResult(params) {
       },
       data: data,
       success: (res) => {
-        console.log('API返回的结果:', res.data); // 打印返回的结果
+        
         if (res.data.code === 200) {
           resolve(res.data); // 返回 API 结果
         } else {

@@ -15,7 +15,7 @@ function mockFetchGood(ID = 0) {
 
 /** 获取商品列表 */
 export function fetchGood(ID = 0) {
-  console.log("fetchGood")
+
   if (config.useMock) {
     return mockFetchGood(ID);
   }

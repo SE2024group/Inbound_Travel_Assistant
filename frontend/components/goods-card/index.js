@@ -17,7 +17,7 @@ Component({
     data: {
       type: Object,
       observer(data) {
-        console.log("传入的参数:", data); // 打印传入的数据
+        
         if (!data) {
           return;
         }
@@ -88,10 +88,6 @@ Component({
       const {
         id: cardID
       } = e.currentTarget.dataset;
-      // console.log('Button clicked!', {
-      //   id,
-      //   cardID
-      // }); // 直接打印id和cardID
       this.triggerEvent('add-cart', {
         ...e.detail,
         id,

@@ -13,7 +13,7 @@ Page({
     this.setData({
       notificationsEnabled: isEnabled,
     });
-    console.log('Notifications toggled:', isEnabled);
+    
     // 这里可以添加逻辑，例如存储状态或通知服务器
   },
 

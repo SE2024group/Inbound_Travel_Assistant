@@ -83,15 +83,15 @@ Page({
 
           // 计算图片在画布上的居中偏移量
           const offsetX = (canvasWidth - drawWidth) / 2;
-          //console.log(offsetX)
+          
           const offsetY = (canvasHeight - drawHeight) / 2;
-          // console.log(canvasHeight)
-          // console.log(drawHeight)
+          
+          
           // 清空画布并绘制缩放后的图片
           ctx.clearRect(0, 0, canvasWidth, canvasHeight);
           ctx.drawImage(img, 0, 0, imgWidth, imgHeight, offsetX, offsetY, drawWidth, drawHeight);
-          // console.log("offsety1")
-          // console.log(offsetY)
+          
+          
         };
 
 
@@ -99,14 +99,14 @@ Page({
           console.error('Failed to load image:', err);
         };
 
-        //console.log('Setting image source to:', imagePath);
+        
 
         //this.uploadImage(imagePath)
       });
   },
   // 结束触摸
   onTouchEnd(e) {
-    //console.log('Touch end');
+    
     this.setData({
       isTouching: false, // 重置触摸状态
     });
@@ -115,14 +115,14 @@ Page({
 
   // 手指开始触摸
   onTouchStart(e) {
-    //console.log("开始触摸")
+    
     this.setData({
       startX: e.touches[0].x,
 
       startY: e.touches[0].y,
     });
-    console.log(this.data.startX);
-    console.log(this.data.startY);
+    
+    
   },
 
 
@@ -241,7 +241,7 @@ Page({
           console.error('Canvas node not found');
           return;
         }
-        //console.log(imagePath)
+        
         const canvas = res[0].node;
         const ctx = canvas.getContext('2d');
         const img = canvas.createImage(); // 创建新的图片对象
@@ -313,7 +313,7 @@ Page({
             'Content-Type': 'multipart/form-data',
           },
           success(res) {
-            console.log('OCR API Response:', res);
+            
 
 
             // if (res.data && res.data.ParsedResults && res.data.ParsedResults.length > 0) {
@@ -372,7 +372,7 @@ Page({
               };
             });
 
-            console.log('Parsed Test Array:', testArray);
+            
 
             // 跳转到新页面，并传递数据
             wx.navigateTo({
@@ -382,7 +382,7 @@ Page({
                   wordsData: testArray,
                   imagePath: filePath,
                 });
-                console.log(filePath)
+                
               },
             });
 
@@ -407,7 +407,7 @@ Page({
   },
 
   drawRectangle(rect) {
-    console.log("画长方形了")
+    
     const query = wx.createSelectorQuery().in(this);
     query.select('#rectCanvas')
       .node()
@@ -417,13 +417,13 @@ Page({
 
         // 清除画布内容
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        console.log("清除画布");
+        
         //重新绘制图片（ 确保背景恢复到裁剪框绘制前的状态）
         const img = canvas.createImage();
         img.src = this.data.imageSrc; // 确保绘制图片的路径有效
         img.onload = () => {
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 绘制图片
-          //console.log('Image redrawn, ready for the new crop frame.');
+          
 
           // 绘制实时裁剪框
           ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)'; // 半透明红框

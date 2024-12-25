@@ -114,7 +114,7 @@ Page({
 
     wx.navigateBack();
     const authToken = wx.getStorageSync('authToken') || '';
-    console.log(authToken);
+    
     // 如果有上传文件
     if (uploadFiles.length > 0) {
       // 将所有文件的路径作为一个数组传递
@@ -129,8 +129,8 @@ Page({
 
 
       const uploadPromises = files.map(filePath => {
-        console.log(filePath);
-        console.log("filePath");
+        
+        
         return new Promise((resolve, reject) => {
           wx.uploadFile({
             url: 'http://1.15.174.177/api/comments/upload/',
@@ -142,11 +142,11 @@ Page({
             },
             formData: formData,
             success: (uploadRes) => {
-              console.log('上传成功', uploadRes);
+              
               resolve(uploadRes);
             },
             fail: (uploadErr) => {
-              console.log('上传失败', uploadErr);
+              
               reject(uploadErr);
             }
           });
@@ -156,11 +156,11 @@ Page({
       // 使用 Promise.all 等待所有文件上传完成
       Promise.all(uploadPromises)
         .then(results => {
-          console.log('所有文件上传成功:', results);
+          
           // 处理上传成功后的响应
         })
         .catch(err => {
-          console.log('文件上传失败:', err);
+          
           // 处理上传失败
         });
 
@@ -178,10 +178,10 @@ Page({
           'rating': this.data.goodRateValue,
         },
         success: function (res) {
-          console.log('评论上传成功', res);
+          
         },
         fail: function (err) {
-          console.log('评论上传失败', err);
+          
         }
       });
     }
