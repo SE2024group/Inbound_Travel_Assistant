@@ -1,15 +1,33 @@
-.content .filter-btns-wrap {
-  width: 100%;
-  position: absolute;
-  bottom: calc(20rpx + env(safe-area-inset-bottom));
+/* filter-popup.wxss */
+
+/* 基础布局 */
+.content {
   display: flex;
-  flex-direction: row;
-  border-radius: 10rpx 0 0 10rpx;
-  padding: 16rpx 32rpx;
-  border-top: 1rpx solid #e5e5e5;
-  box-sizing: border-box;
+  flex-direction: column;
+  height: 100%;
 }
 
+/* 滚动内容区域 */
+.filter-slot-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+/* 底部按钮区域 */
+.filter-btns-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-top: 1rpx solid #e5e5e5;
+  padding: 16rpx 32rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  /* 确保按钮区域有背景色 */
+}
+
+/* 按钮样式 */
 .filter-btn {
   flex: 1;
   display: flex;
@@ -18,22 +36,26 @@
   font-size: 28rpx;
   font-weight: 500;
   height: 80rpx;
+  cursor: pointer;
+  /* 鼠标悬停效果 */
 }
 
+/* 重置按钮 */
 .btn-reset {
   color: #fa4126;
   background: rgba(255, 255, 255, 1);
-  position: relative;
   border: 1rpx solid #fa4126;
-  border-radius: 84rpx 0 0 84rpx;
+  border-radius: 10rpx;
+  /* 调整圆角为统一 */
+  margin-right: 10rpx;
+  /* 按钮间距 */
 }
 
-.btn-confirm {
-  border-radius: 0 84rpx 84rpx 0;
-  border: 1rpx solid #fa4126;
-}
-
+/* 确认按钮 */
 .btn-confirm {
   color: #fff;
   background: #fa4126;
+  border: 1rpx solid #fa4126;
+  border-radius: 10rpx;
+  /* 调整圆角为统一 */
 }

@@ -1,25 +1,59 @@
 <view class="result-container">
+  <!-- 搜索栏 -->
   <t-search t-class="t-search" t-class-input-container="t-class__input-container" t-class-left="t-search__left-icon" t-class-input="t-search__input" value="{{keywords}}" leftIcon="" placeholder="type to search for tags" bind:submit="handleSubmit">
     <t-icon slot="left-icon" prefix="wr" name="search" size="40rpx" color="#bbb" />
   </t-search>
+
+  <!-- 现有的过滤器 -->
   <filter wr-class="filter-container" bind:change="handleFilterChange" layout="{{layout}}" sorts="{{sorts}}" overall="{{overall}}" bind:showFilterPopup="showFilterPopup">
     <filter-popup show="{{show}}" slot="filterPopup" bind:showFilterPopupClose="showFilterPopupClose" bind:reset="reset" bind:confirm="confirm">
-      <view class="price-container" slot="filterSlot">
-        <view class="price-between">价格区间</view>
-        <view class="price-ipts-wrap">
-          <t-input type="number" t-class="price-ipt" t-class-input="t-class-input" placeholder="最低价" value="{{minVal}}" bindchange="onMinValAction" />
-          <view class="price-divided">-</view>
-          <t-input type="number" t-class="price-ipt" t-class-input="t-class-input" placeholder="最高价" value="{{maxVal}}" bindchange="onMaxValAction" />
+      <!-- 删除价格区间 -->
+
+      <!-- 添加的喜欢的标签筛选区域 -->
+      <view class="tags-container" slot="filterSlot">
+        <view class="tags-title">喜欢的标签</view>
+        <view class="tags-list">
+          <view class="tag" wx:for="{{tags}}" wx:key="{{item}}" data-tag="{{item}}" bindtap="toggleLikeTag">
+            <view class="{{selectedLikeTags.includes(item) ? 'tag-selected tag-LIKE' : 'tag-default'}}">
+              {{item}}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 添加的不喜欢的标签筛选区域 -->
+      <view class="tags-container" slot="filterSlot">
+        <view class="tags-title">不喜欢的标签</view>
+        <view class="tags-list">
+          <view class="tag" wx:for="{{tags}}" wx:key="{{item}}" data-tag="{{item}}" bindtap="toggleDislikeTag">
+            <view class="{{selectedDislikeTags.includes(item) ? 'tag-selected tag-DISLIKE' : 'tag-default'}}">
+              {{item}}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 底部按钮区域 -->
+      <view class="filter-btns-wrap">
+        <view class="filter-btn btn-reset" bind:tap="reset">Reset</view>
+        <view class="filter-btn btn-confirm" bind:tap="confirm" data-index="5">
+          Confirm
         </view>
       </view>
     </filter-popup>
   </filter>
+
+  <!-- 空状态 -->
   <view class="empty-wrap" wx:if="{{goodsList.length === 0 && hasLoaded}}">
     <t-empty t-class="empty-tips" size="240rpx" description="no results" />
   </view>
+
+  <!-- 商品列表 -->
   <view class="category-goods-list" wx:if="{{goodsList.length}}">
     <goods-list wr-class="wr-goods-list" goodsList="{{goodsList}}" bind:click="gotoGoodsDetail" bind:addcart="handleAddCart" />
   </view>
+
+  <!-- 加载更多 -->
   <load-more wx:if="{{goodsList.length > 0}}" status="{{loadMoreStatus}}" no-more-text="no more" />
 </view>
 <t-toast id="t-toast" />

@@ -44,7 +44,7 @@ export function getSearchResultFilter(params) {
     };
 
     // 如果有过滤条件，构建 filter 数组
-    if (params.filter && Array.isArray(params.filter)) {
+    if (params.filter && Array.isArray(params.filter) && params.filter.length > 0) {
       data.filter = params.filter.map(f => ({
         tag: f.tag, // 过滤标签
         preference: f.preference // 用户偏好，如 LIKE 或 DISLIKE

@@ -1,7 +1,7 @@
 // pages/record/record.js
 const recorderManager = wx.getRecorderManager();
 const options = {
-  duration: 60000, // 最长录制 1 分钟
+  duration: 30000, // 最长录制 30s
   sampleRate: 44100, // 采样率
   numberOfChannels: 2, // 双声道
   encodeBitRate: 320000, // 比特率
@@ -50,7 +50,7 @@ Page({
     ], // 中英文短语对
     cphrases: [{
         english: "Sure, What can I help you?",
-        chinese: "没问题，你有什么需要帮助的？"
+        chinese: "没问题，你有什么需要帮助？"
       },
       {
         english: "You're welcome.",
@@ -69,11 +69,6 @@ Page({
   },
 
   onLoad() {
-    const app = getApp();
-    const title = app.globalData.title;
-    // console.log("title");
-    // console.log(title);
-    const image = app.globalData.image;
     this.setData({
       currentPhrases: this.data.phrases.map((phrase) => ({
         text: phrase.english,
