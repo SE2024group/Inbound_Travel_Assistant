@@ -69,9 +69,10 @@ Page({
           'Content-Type': 'application/json',
         },
       });
-      if (response.data.code === 200) {
+      // if (response.data.code === 200) {
+      if (true) {
         this.setData({
-          tags: response.data.data.tags, // 根据 API 返回的数据结构调整
+          // tags: response.data.tags, // 根据 API 返回的数据结构调整
         });
       } else {
         console.error('获取标签失败:', response.data.message);
@@ -253,6 +254,7 @@ Page({
               // loadMoreStatus: _loadMoreStatus, // 设置加载状态
             });
 
+            console.log(this.data.goodsList);
             this.setData({
               loadMoreStatus: 2,
             });

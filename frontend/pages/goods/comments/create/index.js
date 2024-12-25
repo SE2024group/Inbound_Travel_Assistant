@@ -93,7 +93,7 @@ Page({
       textAreaValue
     } = this;
     const authed = (wx.getStorageSync('loggedBy') === 'auth');
-    const temp = serviceRateValue && goodRateValue && conveyRateValue && textAreaValue && authed;
+    const temp = goodRateValue && textAreaValue && authed;
     if (temp !== isAllowedSubmit) this.setData({
       isAllowedSubmit: temp
     });
