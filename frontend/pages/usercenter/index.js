@@ -67,6 +67,7 @@ Page({
         name: wx.getStorageSync('userName') || 'Tourist',
         avatar: wx.getStorageSync('avatar') || 'https://cloud.tsinghua.edu.cn/f/9a5d8ec171fa4541a9f4/?dl=1',
         personality_description: wx.getStorageSync('userMotto') || 'Enjoy your journey!',
+        dietaryPreferencesMap: this.createDietaryPreferencesMap(wx.getStorageSync('dietaryPreferences') || []),
       };
       this.setData({
         userInfo,
@@ -297,6 +298,7 @@ Page({
 
     // 假设需要发送 Authorization Token，请确保 token 可用
     const loggedBy = wx.getStorageSync('loggedBy') || '';
+    const authToken = wx.getStorageSync('authToken') || '';
     if (loggedBy === 'auth') {
       wx.request({
         url: 'http://1.15.174.177/api/user/preferences/',

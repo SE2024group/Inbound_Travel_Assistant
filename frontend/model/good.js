@@ -16,13 +16,24 @@ function fetchWithTimeout(url, options = {}, timeout = 5000) {
       reject(new Error('Request Timeout')); // Reject promise with error
     }, timeout);
 
-    const authToken = wx.getStorageSync('authToken') || '';
+    const loggedBy = wx.getStorageSync('loggedBy') || 'Unknown Method';
+    let headers;
+    console.log("food loggedBy", loggedBy);
+    if (loggedBy == 'auth') {
+      const authToken = wx.getStorageSync('authToken') || '';
 
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `${authToken}`,
-      ...options.header // 合并传入的 header
-    };
+      headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `${authToken}`,
+        ...options.header // 合并传入的 header
+      };
+    } else {
+      headers = {
+        'Content-Type': 'application/json',
+        ...options.header // 合并传入的 header
+      };
+    }
+
 
     wx.request({
       url,
