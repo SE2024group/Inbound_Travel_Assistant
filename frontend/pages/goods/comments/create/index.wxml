@@ -21,6 +21,6 @@
   </view>
 </view>
 <view class="submit-button-container">
-  <t-button content="confirm" block shape="round" t-class="submit-button{{isAllowedSubmit ? '' : '-disabled'}}" bind:tap="onSubmitBtnClick" />
+  <t-button content="Confirm" block shape="round" t-class="submit-button{{isAllowedSubmit ? '' : '-disabled'}}" bind:tap="onSubmitBtnClick" />
 </view>
 <t-toast id="t-toast" />

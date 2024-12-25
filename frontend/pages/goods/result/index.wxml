@@ -7,14 +7,13 @@
   <!-- 现有的过滤器 -->
   <filter wr-class="filter-container" bind:change="handleFilterChange" layout="{{layout}}" sorts="{{sorts}}" overall="{{overall}}" bind:showFilterPopup="showFilterPopup">
     <filter-popup show="{{show}}" slot="filterPopup" bind:showFilterPopupClose="showFilterPopupClose" bind:reset="reset" bind:confirm="confirm">
-      <!-- 删除价格区间 -->
 
       <!-- 添加的喜欢的标签筛选区域 -->
       <view class="tags-container" slot="filterSlot">
-        <view class="tags-title">喜欢的标签</view>
+        <view class="tags-title">Only Prefer:</view>
         <view class="tags-list">
           <view class="tag" wx:for="{{tags}}" wx:key="item" data-tag="{{item}}" bindtap="toggleLikeTag">
-            <view class="{{selectedLikeTags.includes(item) ? 'tag-selected tag-LIKE' : 'tag-default'}}">
+            <view class="{{selectedLikeTags.includes(item) ? 'tag-LIKE' : 'tag-OTHER'}}">
               {{item}}
             </view>
           </view>
@@ -23,10 +22,10 @@
 
       <!-- 添加的不喜欢的标签筛选区域 -->
       <view class="tags-container" slot="filterSlot">
-        <view class="tags-title">不喜欢的标签</view>
+        <view class="tags-title">Dislike:</view>
         <view class="tags-list">
           <view class="tag" wx:for="{{tags}}" wx:key="item" data-tag="{{item}}" bindtap="toggleDislikeTag">
-            <view class="{{selectedDislikeTags.includes(item) ? 'tag-selected tag-DISLIKE' : 'tag-default'}}">
+            <view class="{{selectedDislikeTags.includes(item) ? 'tag-DISLIKE' : 'tag-OTHER'}}">
               {{item}}
             </view>
           </view>

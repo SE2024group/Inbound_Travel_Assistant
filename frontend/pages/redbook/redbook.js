@@ -40,6 +40,7 @@ Page({
 
   onShow() {
     this.getTabBar().init();
+    this.init();
   },
 
   onLoad() {

@@ -65,7 +65,7 @@ Page({
     if (loggedBy === 'tourist') {
       const userInfo = {
         name: wx.getStorageSync('userName') || 'Tourist',
-        avatar: wx.getStorageSync('avatar') || 'https://cloud.tsinghua.edu.cn/f/9a5d8ec171fa4541a9f4/?dl=1',
+        avatar: wx.getStorageSync('avatar') || 'https://cloud.tsinghua.edu.cn/f/e11099344aaf4586930a/?dl=1',
         personality_description: wx.getStorageSync('userMotto') || 'Enjoy your journey!',
         dietaryPreferencesMap: this.createDietaryPreferencesMap(wx.getStorageSync('dietaryPreferences') || []),
       };

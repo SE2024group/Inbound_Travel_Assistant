@@ -229,6 +229,7 @@ Page({
       const code = 'Success';
       const data = result.data;
       if (code.toUpperCase() === 'SUCCESS') {
+        data.results = data.results.slice(0, 20);
         const spuList = data.results;
         // const spuList = [7, 2]
         console.log("spuList");

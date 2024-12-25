@@ -7,7 +7,7 @@ Page({
   data: {
     spuId: 1,
     serviceRateValue: 1,
-    goodRateValue: 1,
+    goodRateValue: 3,
     conveyRateValue: 1,
     isAnonymous: false,
     uploadFiles: [],
@@ -113,7 +113,6 @@ Page({
       icon: 'check-circle',
     });
 
-    wx.navigateBack();
     const authToken = wx.getStorageSync('authToken') || '';
     console.log(authToken);
     // 如果有上传文件
@@ -192,6 +191,12 @@ Page({
             showCancel: false, // 不显示取消按钮
             confirmText: 'confirm', // 确认按钮文字
           });
+          wx.showToast({
+            title: 'You Commented!',
+            icon: 'success',
+            duration: 2000,
+          })
+          wx.navigateBack();
         },
         fail: function (err) {
           console.log('评论上传失败', err);

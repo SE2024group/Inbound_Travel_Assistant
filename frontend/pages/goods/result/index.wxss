@@ -133,22 +133,12 @@ page view {
   margin: 5rpx;
 }
 
-.tag-default {
-  padding: 10rpx 20rpx;
-  background-color: #f2f2f2;
-  border-radius: 20rpx;
-  font-size: 24rpx;
-  color: #333;
-}
 
-.tag-selected {
+.tag-LIKE {
   padding: 10rpx 20rpx;
   background-color: #007aff;
   border-radius: 20rpx;
   font-size: 24rpx;
-}
-
-.tag-LIKE {
   color: #52c41a;
   /* 绿色 */
   border: 1px solid #52c41a;
@@ -156,14 +146,18 @@ page view {
 }
 
 .tag-DISLIKE {
+  padding: 10rpx 20rpx;
+  background-color: #d0e6fd;
+  border-radius: 20rpx;
+  font-size: 24rpx;
   color: #f5222d;
   /* 红色 */
   border: 1px solid #f5222d;
   /* 背景色 */
 }
 
-/* 确保 .tag-default 有透明边框，避免选中时元素大小变化 */
-.tag-default {
+/* 确保 .tag-OTHER 有透明边框，避免选中时元素大小变化 */
+.tag-OTHER {
   padding: 10rpx 20rpx;
   background-color: #f2f2f2;
   border-radius: 20rpx;
@@ -174,8 +168,12 @@ page view {
 }
 
 /* 可选：为 tag 添加点击效果 */
-.tag-default:hover,
-.tag-selected:hover {
+.tag-OTHER:hover,
+.tag-LIKE:hover {
+  opacity: 0.8;
+}
+
+.tag-DISLIKE:hover {
   opacity: 0.8;
 }
 
