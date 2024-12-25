@@ -109,20 +109,33 @@ Page({
       this.loadGoodsList(true);
     });
 
-    // 1. 先拿到收藏列表ID
-    fetchFavoriteIds()
-      .then(favoriteIds => {
-        // 2. 把它存到 data 或者存到 this.privateData
-        this.privateData.favoriteIds = favoriteIds;
-        // 3. 然后再去加载首页 & 商品列表
-        // this.loadHomePage();
-      })
-      .catch(err => {
-        // 如果失败，也可以继续加载，只不过 favoriteIds = []
-        console.error('获取收藏ID失败', err);
-        this.privateData.favoriteIds = [];
-        // this.loadHomePage();
-      });
+    const loggedBy = wx.getStorageSync('loggedBy') || 'Unknown Method';
+    if (loggedBy === 'auth') {
+      // 1. 先拿到收藏列表ID
+      fetchFavoriteIds()
+        .then(favoriteIds => {
+          // 2. 把它存到 data 或者存到 this.privateData
+          this.privateData.favoriteIds = favoriteIds;
+          // 3. 然后再去加载首页 & 商品列表
+          // this.loadHomePage();
+        })
+        .catch(err => {
+          // 如果失败，也可以继续加载，只不过 favoriteIds = []
+          console.error('获取收藏ID失败', err);
+          this.privateData.favoriteIds = [];
+          // this.loadHomePage();
+        });
+    } else {
+      // 处理游客登录的情况
+      // 1. 尝试从本地存储获取收藏ID
+      const localFavoriteIds = wx.getStorageSync('favoriteIds') || [];
+
+      // 2. 确保 localFavoriteIds 是一个数组
+      const favoriteIds = Array.isArray(localFavoriteIds) ? localFavoriteIds : [];
+
+      // 3. 存储到 this.privateData
+      this.privateData.favoriteIds = favoriteIds;
+    }
   },
 
   tabChangeHandle(e) {

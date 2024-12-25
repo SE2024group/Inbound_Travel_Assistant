@@ -60,26 +60,47 @@ Page({
     this.fetchTags();
   },
 
+  // 通用的请求函数，将 wx.request 包装为 Promise
+  makeRequest(options) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        ...options,
+        success: (res) => {
+          resolve(res);
+        },
+        fail: (err) => {
+          reject(err);
+        }
+      });
+    });
+  },
+
+  // 修改后的 fetchTags 函数
   async fetchTags() {
     try {
-      const response = await wx.request({
-        url: 'http://1.15.174.177/api/tags/', // 假设有一个获取标签的 API
+      const response = await this.makeRequest({
+        url: 'http://1.15.174.177/api/tags/', // 获取标签的 API
         method: 'GET',
         header: {
           'Content-Type': 'application/json',
         },
       });
-      if (response.data.code === 200) {
+
+      // 根据 API 返回的数据结构调整
+      // 假设 API 直接返回标签数组
+      if (Array.isArray(response.data)) {
+        const nameEnList = response.data.map(item => item.name_en);
         this.setData({
-          tags: response.data.data.tags, // 根据 API 返回的数据结构调整
+          tags: nameEnList, // 直接使用返回的标签数组
         });
       } else {
-        console.error('获取标签失败:', response.data.message);
+        console.error('API 返回的数据结构不符合预期:', response.data);
       }
     } catch (error) {
-      console.error('网络错误:', error);
+      console.error('获取标签失败:', error);
     }
   },
+
 
   /**
    * 切换喜欢标签的选中状态
@@ -242,7 +263,10 @@ Page({
                 item.originPrice = item.maxLinePrice;
                 item.desc = '';
                 if (item.spuTagList) {
-                  item.tags = item.spuTagList.map((tag) => tag.title);
+                  item.tags = item.spuTagList.map((tag) => ({
+                    title: tag.title,
+                    preference: tag.preference || "OTHER", // 确保 preference 有默认值
+                  }));
                 } else {
                   item.tags = [];
                 }
