@@ -170,6 +170,21 @@ Page({
     }
   },
 
+  handlePopularTap(e) {
+    const {
+      popularWords
+    } = this.data;
+    const {
+      dataset
+    } = e.currentTarget;
+    const _searchValue = popularWords[dataset.index || 0] || '';
+    if (_searchValue) {
+      wx.navigateTo({
+        url: `/pages/goods/result/index?searchValue=${_searchValue}&filter=${this.data.filter}`,
+      });
+    }
+  },
+
   handleSubmit(e) {
     console.log('submit event detail:', e.detail); // 调试事件数据
     const {

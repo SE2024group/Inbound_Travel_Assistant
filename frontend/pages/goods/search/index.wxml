@@ -37,7 +37,7 @@
         <text class="search-title">Hot</text>
       </view>
       <view class="search-content">
-        <view class="search-item" hover-class="hover-history-item" wx:for="{{popularWords}}" bind:tap="handleHistoryTap" data-index="{{index}}" wx:key="*this">
+        <view class="search-item" hover-class="hover-history-item" wx:for="{{popularWords}}" bind:tap="handlePopularTap" data-index="{{index}}" wx:key="*this">
           {{item}}
         </view>
       </view>
