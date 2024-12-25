@@ -167,7 +167,10 @@ Page({
               spuId: String(dish.id),
               thumb: dish.images?.[0] || '',
               title: dish.name_en || dish.name,
-              tags: dish.tags.map(t => t.name_en),
+              tags: dish.tags.map(tag => ({
+                title: tag.name_en,
+                preference: tag.preference
+              })),
               isFavorite: true,
             }));
             const favoriteIds = favorites.map(dish => String(dish.id));
