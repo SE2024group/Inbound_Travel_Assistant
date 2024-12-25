@@ -63,7 +63,7 @@
         <!-- 新增一行表头 -->
         <view class="preference-header">
           <text class="item-header"></text>
-          <view class="like-header">Only</view>
+          <view class="like-header">Prefer</view>
           <view class="dislike-header">Forbid</view>
           <view class="clear-header"></view>
         </view>

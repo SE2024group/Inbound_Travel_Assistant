@@ -527,6 +527,11 @@ Page({
     });
   },
 
+  onShow() {
+    this.getCommentsList(spuId);
+    this.getCommentsStatistics(spuId);
+  },
+
   onLoad(query) {
     // 1. 保存 spuId
     const {

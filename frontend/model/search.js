@@ -23,8 +23,11 @@ export function getSearchHistory() {
 export function getSearchPopular() {
   return {
     popularWords: [
-      'beef',
+      'spicy',
       'soup',
+      'Appetizer',
+      'Pork',
+      'noodle',
     ],
   };
 }

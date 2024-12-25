@@ -3,7 +3,7 @@
     <t-icon slot="left-icon" prefix="wr" name="search" size="40rpx" color="#bbb" />
   </t-search>
   <view class="search-wrap">
-    <view class="history-wrap">
+    <!-- <view class="history-wrap">
       <view class="container">
         <checkbox-group bindchange="checkboxChange">
           <label class="checkbox-label">
@@ -11,17 +11,17 @@
           </label>
         </checkbox-group>
 
-        <!-- <view class="status">
+        <view class="status">
           复选框状态：{{isChecked ? '已勾选' : '未勾选'}}
-        </view> -->
+        </view>
       </view>
 
-      <!-- <view class="filter-checkbox">
+      <view class="filter-checkbox">
         <checkbox value="filterHot" checked="{{filterActive}}" bindchange="onCheckboxChange">filter</checkbox>
-      </view> -->
-      <!-- <view>
+      </view>
+      <view>
         <checkbox bindchange="onCheckboxChange" value="agree">我同意条款</checkbox>
-      </view> -->
+      </view>
       <view class="search-header">
         <text class="search-title">history</text>
         <text class="search-clear" bind:tap="handleClearHistory">clear</text>
@@ -31,10 +31,10 @@
           {{item}}
         </view>
       </view>
-    </view>
+    </view> -->
     <view class="popular-wrap">
       <view class="search-header">
-        <text class="search-title">hot</text>
+        <text class="search-title">Hot</text>
       </view>
       <view class="search-content">
         <view class="search-item" hover-class="hover-history-item" wx:for="{{popularWords}}" bind:tap="handleHistoryTap" data-index="{{index}}" wx:key="*this">
