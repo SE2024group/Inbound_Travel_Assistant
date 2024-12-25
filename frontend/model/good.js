@@ -71,7 +71,7 @@ function fetchWithTimeout(url, options = {}, timeout = 5000) {
 export function genGood(id, available = 1) {
   return new Promise((resolve, reject) => {
     if (id == 0) {
-      id = 5;
+      id = 105;
     }
     fetchWithTimeout(`http://1.15.174.177/api/dish/${id}/`)
       .then(response => {
@@ -100,7 +100,6 @@ export function genGood(id, available = 1) {
           spuId: `${id}`,
           images: [transformedData?.primaryImage],
           all_images: [...transformedData?.images],
-          // images: [transformedData?.images],
         });
       })
       .catch(error => {
