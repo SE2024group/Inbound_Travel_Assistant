@@ -75,7 +75,7 @@
 .category-section-container-ticket {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100vh;
   padding: 20rpx;
   margin: 10rpx 0;
   background: linear-gradient(145deg, #f2f6fa, #e3ebf2);

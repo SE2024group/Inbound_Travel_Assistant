@@ -1,18 +1,15 @@
-<t-popup
- visible="{{visible}}"
- placement="right"
- bind:visible-change="close"
- data-index="5"
- close-btn="{{closeBtn}}"
->
-	<view class="content">
-		<slot name="filterSlot" />
-		<view class="filter-btns-wrap">
-			<view class="filter-btn btn-reset" bind:tap="reset">重置</view>
-			<view class="filter-btn btn-confirm" bind:tap="confirm" data-index="5">
-				确定
-			</view>
-		</view>
-	</view>
-</t-popup>
+<!-- filter-popup.wxml -->
+<t-popup visible="{{visible}}" placement="right" bind:visible-change="close" data-index="5" close-btn="{{closeBtn}}">
+  <view class="content">
+    <!-- 滚动内容区域 -->
+    <view class="filter-slot-content">
+      <slot name="filterSlot" />
+    </view>
 
+    <!-- 底部按钮区域 -->
+    <view class="filter-btns-wrap">
+      <view class="filter-btn btn-reset" bind:tap="reset">Reset</view>
+      <view class="filter-btn btn-confirm" bind:tap="confirm" data-index="5">Confirm</view>
+    </view>
+  </view>
+</t-popup>

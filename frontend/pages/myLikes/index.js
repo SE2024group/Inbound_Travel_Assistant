@@ -71,9 +71,20 @@ Page({
       url: `/pages/goods/details/index?spuId=${spuId}`,
     });
   },
+  goodListLikedHandle(e) {
+    const loggedBy = wx.getStorageSync('loggedBy');
+    if (loggedBy === 'auth') {
+      this.goodListLiked(e);
+    } else {
+      wx.showToast({
+        title: 'Haven\'t logged in yet\.',
+        icon: 'error',
+      });
+    }
+  },
 
   // 点赞/取消点赞的回调（如果需要与 redbook.js 类似的逻辑，这里也可以做二次请求）
-  goodListLikedHandle(e) {
+  goodListLiked(e) {
     // 从 e.detail 中拿到 index, goods
     const {
       index,
@@ -139,33 +150,40 @@ Page({
 
 
   fetchFavoriteDishes() {
-    return new Promise((resolve, reject) => {
-      const authToken = wx.getStorageSync('authToken') || '';
-      wx.request({
-        url: 'http://1.15.174.177/api/favorites/',
-        method: 'GET',
-        header: {
-          'Authorization': authToken
-        },
-        success: (res) => {
-          const favorites = res.data || [];
-          // 这里把后端的收藏列表映射成 goodsList 所需的格式
-          const mapped = favorites.map(dish => ({
-            spuId: String(dish.id),
-            thumb: dish.images?.[0] || '',
-            title: dish.name_en || dish.name,
-            tags: dish.tags.map(t => t.name_en),
-            isFavorite: true,
-          }));
-          const favoriteIds = favorites.map(dish => String(dish.id));
-          wx.setStorageSync('favoriteIds', favoriteIds);
-          resolve(mapped);
-        },
-        fail: (err) => {
-          reject(err);
-        },
+    const loggedBy = wx.getStorageSync('loggedBy');
+    if (loggedBy === 'auth') {
+      return new Promise((resolve, reject) => {
+        const authToken = wx.getStorageSync('authToken') || '';
+        wx.request({
+          url: 'http://1.15.174.177/api/favorites/',
+          method: 'GET',
+          header: {
+            'Authorization': authToken
+          },
+          success: (res) => {
+            const favorites = res.data || [];
+            // 这里把后端的收藏列表映射成 goodsList 所需的格式
+            const mapped = favorites.map(dish => ({
+              spuId: String(dish.id),
+              thumb: dish.images?.[0] || '',
+              title: dish.name_en || dish.name,
+              tags: dish.tags.map(t => t.name_en),
+              isFavorite: true,
+            }));
+            const favoriteIds = favorites.map(dish => String(dish.id));
+            wx.setStorageSync('favoriteIds', favoriteIds);
+            resolve(mapped);
+          },
+          fail: (err) => {
+            reject(err);
+          },
+        });
       });
-    });
+    } else {
+      wx.showToast({
+        title: 'Haven\'t logged in yet\.',
+      });
+    }
   },
 
   onReady() {},
