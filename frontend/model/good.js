@@ -90,7 +90,7 @@ export function genGood(id, available = 1) {
       })
       .then(apiData => {
         // 进行转换
-        console.log("成功获取数据:", apiData); // 输出获取的数据
+        // console.log("成功获取数据:", apiData); // 输出获取的数据
         const transformedData = {
           spuId: String(apiData.id),
           title: apiData.name_en,
@@ -103,7 +103,7 @@ export function genGood(id, available = 1) {
             preference: tag.preference
           }))
         };
-        console.log("transformedData:", apiData); // 输出获取的数据
+        // console.log("transformedData:", apiData); // 输出获取的数据
 
         // 解析 Promise，返回 transformedData
         resolve({
@@ -116,6 +116,7 @@ export function genGood(id, available = 1) {
       .catch(error => {
 
         console.error('Error fetching data:', error);
+        console.error("id", id)
         reject(error); // 拒绝 Promise，返回错误
       });
   });

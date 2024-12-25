@@ -99,9 +99,24 @@ Page({
     });
   },
   goToCreateComment() {
-    wx.navigateTo({
-      url: `../comments/create/index?spuId=${this.data.spuId}`,
-    });
+    const authed = (wx.getStorageSync('loggedBy') === 'auth');
+    if (!authed) {
+      wx.showModal({
+        title: 'Error',
+        content: 'You must be logged in to comment.',
+        showCancel: false, // 不显示取消按钮
+        confirmText: 'OK',
+        success: function (res) {
+          if (res.confirm) {
+            // 用户点击了确认按钮，弹窗会自动关闭
+          }
+        }
+      });
+    } else {
+      wx.navigateTo({
+        url: `../comments/create/index?spuId=${this.data.spuId}`,
+      });
+    }
   },
   addCartHandle(e) {
     const loggedBy = wx.getStorageSync('loggedBy');

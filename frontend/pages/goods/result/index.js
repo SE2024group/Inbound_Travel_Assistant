@@ -85,7 +85,6 @@ Page({
           'Content-Type': 'application/json',
         },
       });
-
       // 根据 API 返回的数据结构调整
       // 假设 API 直接返回标签数组
       if (Array.isArray(response.data)) {
@@ -277,6 +276,7 @@ Page({
               // loadMoreStatus: _loadMoreStatus, // 设置加载状态
             });
 
+            console.log(this.data.goodsList);
             this.setData({
               loadMoreStatus: 2,
             });
