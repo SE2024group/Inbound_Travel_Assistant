@@ -83,7 +83,7 @@
               <button class="view-all-button">View All</button>
             </navigator>
           </view>
-          <swiper class="spot-swiper" indicator-dots="true" autoplay="false">
+          <swiper class="spot-swiper" autoplay="false">
             <block wx:for="{{pagedAttractions}}" wx:key="index">
               <swiper-item>
                 <view class="spot-page">
