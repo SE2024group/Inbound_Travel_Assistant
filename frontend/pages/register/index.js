@@ -143,114 +143,139 @@ Page({
       title: 'Excecuting Registration...',
     });
 
-    if (avatarPath) {
-      // 如果有头像，则使用 wx.uploadFile
-      wx.uploadFile({
-        url: 'http://1.15.174.177/api/register/',
+    // 先使用 wx.request
+    wx.request({
+      url: 'http://1.15.174.177/api/register/',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json',
+      },
+      data: {
+        username: username,
+        password: password,
+        password2: password2,
+        nickname: this.data.nickname,
+        personality_description: this.data.personality_description,
+      },
+      success: (res) => {
+        wx.hideLoading();
+        if (res.statusCode === 201) {
+          wx.showToast({
+            title: 'Successful Registration',
+            icon: 'success',
+            duration: 2000,
+          });
+          // 存储 authToken 和用户信息
+          wx.setStorageSync('authToken', `Token ${res.data.token}`);
+          wx.setStorageSync('user', res.data.user);
+          wx.setStorageSync('loggedBy', 'auth'); // 标记为认证登录
+          // 如果有头像路径，则上传头像
+          if (avatarPath) {
+            this.uploadAvatar(avatarPath, res.data.token);
+          } else {
+            // 跳转到主页面
+            setTimeout(() => {
+              wx.switchTab({
+                url: '/pages/navigation/navigation',
+              });
+            }, 2000);
+          }
+        } else {
+          // 处理错误
+          const errorMsg = Object.values(res.data).flat().join('\n');
+          wx.showModal({
+            title: 'Registration failed\.',
+            content: errorMsg,
+            showCancel: false,
+            confirmText: 'OK'
+          });
+        }
+      },
+      fail: (err) => {
+        wx.hideLoading();
+        console.error('注册请求失败:', err);
+        wx.showToast({
+          title: 'Registration request failed\.',
+          icon: 'none',
+        });
+      }
+    });
+  },
+  // 上传头像的函数，使用 PATCH 方法
+  uploadAvatar(avatarPath, token) {
+    return new Promise((resolve, reject) => {
+      const boundary = '----WebKitFormBoundary' + Math.random().toString(16);
+
+      // 读取文件数据
+      wx.getFileSystemManager().readFile({
         filePath: avatarPath,
-        name: 'avatar',
-        formData: {
-          username: username,
-          password: password,
-          password2: password2,
-          nickname: this.data.nickname,
-          personality_description: this.data.personality_description,
-        },
-        header: {
-          'Content-Type': 'multipart/form-data',
-        },
-        success: (res) => {
-          wx.hideLoading();
-          const data = JSON.parse(res.data);
-          if (res.statusCode === 201) {
-            wx.showToast({
-              title: 'Successfully registered!',
-              icon: 'success',
-              duration: 2000,
-            });
-            // 存储 authToken 和用户信息
-            wx.setStorageSync('authToken', `Token ${data.token}`);
-            wx.setStorageSync('user', data.user);
-            wx.setStorageSync('loggedBy', 'auth'); // 标记为认证登录
-            // 跳转到主页面
-            setTimeout(() => {
-              wx.switchTab({
-                url: '/pages/navigation/navigation',
-              });
-            }, 2000);
-          } else {
-            // 处理错误
-            const errorMsg = Object.values(data).flat().join('\n');
-            wx.showModal({
-              title: 'Registration failed\.',
-              content: errorMsg,
-              showCancel: false,
-              confirmText: 'OK'
-            });
-          }
+        encoding: 'binary',
+        success: (fileData) => {
+          const avatarBinary = fileData.data;
+
+          // 构建 multipart/form-data 的请求体
+          let body = '';
+          // 添加 avatar 文件
+          body += `--${boundary}\r\n`;
+          body += `Content-Disposition: form-data; name="avatar"; filename="avatar.jpg"\r\n`;
+          body += `Content-Type: image/jpeg\r\n\r\n`;
+          const avatarBuffer = wx.arrayBufferToBase64(wx.base64ToArrayBuffer(avatarBinary));
+          const avatarBytes = wx.base64ToArrayBuffer(avatarBuffer);
+
+          // 转换为 ArrayBuffer
+          const encoder = new TextEncoder();
+          const header = encoder.encode(body);
+          const footer = encoder.encode(`\r\n--${boundary}--\r\n`);
+
+          // 合并所有部分
+          const combined = new Uint8Array(header.byteLength + avatarBytes.byteLength + footer.byteLength);
+          combined.set(new Uint8Array(header.buffer), 0);
+          combined.set(new Uint8Array(avatarBytes), header.byteLength);
+          combined.set(new Uint8Array(footer.buffer), header.byteLength + avatarBytes.byteLength);
+
+          // 发送 PATCH 请求
+          wx.request({
+            url: 'http://1.15.174.177/api/user/',
+            method: 'PATCH',
+            header: {
+              'Content-Type': `multipart/form-data; boundary=${boundary}`,
+              'Authorization': `Token ${token}`,
+            },
+            data: combined.buffer,
+            success: (res) => {
+              if (res.statusCode === 200) {
+                wx.showToast({
+                  title: '头像上传成功!',
+                  icon: 'success',
+                  duration: 2000,
+                });
+                // 更新存储的用户信息
+                const user = wx.getStorageSync('user');
+                user.avatar = res.data.avatar;
+                wx.setStorageSync('user', user);
+                resolve();
+              } else {
+                const errorMsg = Object.values(res.data).flat().join('\n');
+                wx.showModal({
+                  title: '头像上传失败',
+                  content: errorMsg,
+                  showCancel: false,
+                  confirmText: '确定'
+                });
+                reject(errorMsg);
+              }
+            },
+            fail: (err) => {
+              console.error('头像上传请求失败:', err);
+              reject(err);
+            }
+          });
         },
         fail: (err) => {
-          wx.hideLoading();
-          console.error('注册请求失败:', err);
-          wx.showToast({
-            title: 'Registration request failed\.',
-            icon: 'none',
-          });
+          console.error('读取头像文件失败:', err);
+          reject(err);
         }
       });
-    } else {
-      // 如果没有头像，使用 wx.request
-      wx.request({
-        url: 'http://1.15.174.177/api/register/',
-        method: 'POST',
-        header: {
-          'Content-Type': 'application/json',
-        },
-        data: {
-          username: username,
-          password: password,
-          password2: password2,
-          nickname: this.data.nickname,
-          personality_description: this.data.personality_description,
-        },
-        success: (res) => {
-          wx.hideLoading();
-          if (res.statusCode === 201) {
-            wx.showToast({
-              title: 'Successful Registration',
-              icon: 'success',
-              duration: 2000,
-            });
-            // 存储 authToken 和用户信息
-            wx.setStorageSync('authToken', `Token ${res.data.token}`);
-            wx.setStorageSync('user', res.data.user);
-            wx.setStorageSync('loggedBy', 'auth'); // 标记为认证登录
-            // 跳转到主页面
-            setTimeout(() => {
-              wx.switchTab({
-                url: '/pages/navigation/navigation',
-              });
-            }, 2000);
-          } else {
-            // 处理错误
-            const errorMsg = Object.values(res.data).flat().join('\n');
-            wx.showModal({
-              title: 'Registration failed\.',
-              content: errorMsg,
-              showCancel: false,
-              confirmText: 'OK'
-            });
-          }
-        },
-        fail: (err) => {
-          wx.hideLoading();
-          console.error('注册请求失败:', err);
-          wx.showToast({
-            title: 'Registration request failed\.',
-            icon: 'none',
-          });
-        }
-      });
-    }
+    });
   },
 });
