@@ -172,6 +172,11 @@ Page({
           // 如果有头像路径，则上传头像
           if (avatarPath) {
             this.uploadAvatar(avatarPath, res.data.token);
+            setTimeout(() => {
+              wx.switchTab({
+                url: '/pages/navigation/navigation',
+              });
+            }, 2000);
           } else {
             // 跳转到主页面
             setTimeout(() => {
@@ -204,44 +209,48 @@ Page({
   // 上传头像的函数，使用 PATCH 方法
   uploadAvatar(avatarPath, token) {
     return new Promise((resolve, reject) => {
+      // 生成一个唯一的边界字符串
       const boundary = '----WebKitFormBoundary' + Math.random().toString(16);
 
-      // 读取文件数据
+      // 读取头像文件的二进制数据
       wx.getFileSystemManager().readFile({
         filePath: avatarPath,
-        encoding: 'binary',
+        encoding: 'binary', // 以二进制方式读取文件
         success: (fileData) => {
-          const avatarBinary = fileData.data;
+          const avatarBinary = fileData.data; // 二进制字符串
 
-          // 构建 multipart/form-data 的请求体
-          let body = '';
-          // 添加 avatar 文件
-          body += `--${boundary}\r\n`;
-          body += `Content-Disposition: form-data; name="avatar"; filename="avatar.jpg"\r\n`;
-          body += `Content-Type: image/jpeg\r\n\r\n`;
-          const avatarBuffer = wx.arrayBufferToBase64(wx.base64ToArrayBuffer(avatarBinary));
-          const avatarBytes = wx.base64ToArrayBuffer(avatarBuffer);
+          // 将二进制字符串转换为 Uint8Array
+          const avatarBytes = new Uint8Array(avatarBinary.length);
+          for (let i = 0; i < avatarBinary.length; i++) {
+            avatarBytes[i] = avatarBinary.charCodeAt(i);
+          }
 
-          // 转换为 ArrayBuffer
+          // 构建 multipart/form-data 的头部
+          let headerString = `--${boundary}\r\n`;
+          headerString += `Content-Disposition: form-data; name="avatar"; filename="avatar.jpg"\r\n`;
+          headerString += `Content-Type: image/jpeg\r\n\r\n`;
           const encoder = new TextEncoder();
-          const header = encoder.encode(body);
+          const header = encoder.encode(headerString);
+
+          // 构建 multipart/form-data 的尾部
           const footer = encoder.encode(`\r\n--${boundary}--\r\n`);
 
-          // 合并所有部分
-          const combined = new Uint8Array(header.byteLength + avatarBytes.byteLength + footer.byteLength);
-          combined.set(new Uint8Array(header.buffer), 0);
-          combined.set(new Uint8Array(avatarBytes), header.byteLength);
-          combined.set(new Uint8Array(footer.buffer), header.byteLength + avatarBytes.byteLength);
+          // 计算总长度并创建一个新的 Uint8Array 来存储完整的请求体
+          const totalLength = header.length + avatarBytes.length + footer.length;
+          const combined = new Uint8Array(totalLength);
+          combined.set(header, 0);
+          combined.set(avatarBytes, header.length);
+          combined.set(footer, header.length + avatarBytes.length);
 
-          // 发送 PATCH 请求
+          // 发送 PATCH 请求上传头像
           wx.request({
-            url: 'http://1.15.174.177/api/user/',
+            url: 'http://1.15.174.177/api/user/', // 确保这是正确的上传头像的端点
             method: 'PATCH',
             header: {
               'Content-Type': `multipart/form-data; boundary=${boundary}`,
               'Authorization': `Token ${token}`,
             },
-            data: combined.buffer,
+            data: combined.buffer, // 使用 ArrayBuffer 发送数据
             success: (res) => {
               if (res.statusCode === 200) {
                 wx.showToast({
@@ -251,11 +260,18 @@ Page({
                 });
                 // 更新存储的用户信息
                 const user = wx.getStorageSync('user');
-                user.avatar = res.data.avatar;
+                user.avatar = res.data.avatar; // 根据后端返回的数据结构调整
                 wx.setStorageSync('user', user);
                 resolve();
               } else {
-                const errorMsg = Object.values(res.data).flat().join('\n');
+                // 解析并显示错误信息
+                let errorMsg = '未知错误';
+                try {
+                  const errorData = JSON.parse(res.data);
+                  errorMsg = Object.values(errorData).flat().join('\n') || errorMsg;
+                } catch (e) {
+                  console.error('解析错误响应失败:', e);
+                }
                 wx.showModal({
                   title: '头像上传失败',
                   content: errorMsg,
@@ -267,12 +283,24 @@ Page({
             },
             fail: (err) => {
               console.error('头像上传请求失败:', err);
+              wx.showModal({
+                title: '头像上传失败',
+                content: '网络错误，请稍后再试。',
+                showCancel: false,
+                confirmText: '确定'
+              });
               reject(err);
             }
           });
         },
         fail: (err) => {
           console.error('读取头像文件失败:', err);
+          wx.showModal({
+            title: '头像上传失败',
+            content: '无法读取头像文件，请重试。',
+            showCancel: false,
+            confirmText: '确定'
+          });
           reject(err);
         }
       });
