@@ -49,8 +49,8 @@ Page({
       },
     ], // 中英文短语对
     cphrases: [{
-        english: "Sorry, could you repeat that?",
-        chinese: "对不起，你能再说一遍吗？"
+        english: "Sure, What can I help you?",
+        chinese: "没问题，你有什么需要帮助的？"
       },
       {
         english: "You're welcome.",
