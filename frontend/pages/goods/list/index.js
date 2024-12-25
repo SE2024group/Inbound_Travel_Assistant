@@ -171,7 +171,7 @@ Page({
     Toast({
       context: this,
       selector: '#t-toast',
-      message: '点击加购',
+      message: '点击',
     });
   },
 
