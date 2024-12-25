@@ -340,7 +340,6 @@ Page({
     } else {
       this.addCart();
     }
-    // this.handlePopupHide();
   },
 
 
@@ -367,11 +366,8 @@ Page({
   },
   getDetail(spuId, favoriteIds) {
     Promise.all([fetchGood(spuId), fetchActivityList()]).then((res) => {
-      // const [details, activityList] = res;
       const [details] = res;
-      // const skuArray = [];
       const {
-        // skuList,
         primaryImage,
       } = details;
       // 先看 goodDetail 里有没有 id
@@ -407,7 +403,6 @@ Page({
           if (res.statusCode === 200 && code.toUpperCase() === 'SUCCESS') {
             const data = res.data; // 获取返回的数据
             if (data && data.length > 0) {
-              const firstComment = data[0]; // 只取第一条评论
 
               const nextState = {
                 commentsList: data.map((comment) => ({
